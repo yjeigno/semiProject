@@ -5,11 +5,11 @@
   Time: 오후 2:01
   To change this template use File | Settings | File Templates.
 --%>
-<link rel="stylesheet" href="../css/common.css">
-<link rel="stylesheet" href="../css/header(ver1.0.2).css">
-<link rel="stylesheet" href="../css/deal(ver1.0.1).css">
+<link rel="stylesheet" href="./css/common.css">
+<link rel="stylesheet" href="./css/header(ver1.0.2).css">
+<link rel="stylesheet" href="./css/deal(ver1.0.1).css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="../js/header(ver1.0.2).js"></script>
+<script src="./js/header(ver1.0.2).js"></script>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -42,7 +42,7 @@
                 </form>
             </div>
             <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="#"><div class="logo"><img src="img/fiximg/logo_black.png" alt=""></div></a>
+            <a href="/main"><div class="logo"><img src="img/fiximg/logo_black.png" alt=""></div></a>
         </div>
 
         <div class="header_bottom">
