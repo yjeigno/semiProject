@@ -1,7 +1,7 @@
 $(document).ready(function(){
     //호버하면 카테고리 나오는 함수
     function ho_slide(){
-        $('.bottom_nav_ul > li , .menu_box').mouseenter(function(){
+        $('.bottom_nav_ul > li.box , .menu_box').mouseenter(function(){
             $('.menu_box').addClass('menu_active')
             if(!$(this).hasClass("menu_active") ) {
                 $('.ul_category_box').stop().fadeOut(300)
@@ -23,26 +23,6 @@ $(document).ready(function(){
         $('.bottom_nav_ul > li , .menu_box').mouseleave(function(){
             $('.bottom_nav_ul>li').removeClass('txt_underline')
         });
-    }
-    //호버하면 영문 한글 반전 
-    function font_inversion(){
-        $('.bottom_nav_ul > li').mouseenter(function(){
-           $('.kor').eq($(this).index()).css({
-            display:'block'
-           })
-           $('.eng').eq($(this).index()).css({
-            display:'none'
-           })
-        });
-        $('.bottom_nav_ul > li').mouseleave(function(){
-            $('.kor').css({
-                display:'none'
-               })
-               $('.eng').css({
-                display:'block'
-               })
-        });
-
     }
     //색 반전 함수
     function inversion(h_bg,logo_bg,at_bg,br_bg){
@@ -80,6 +60,7 @@ $(document).ready(function(){
 
     // 서치 아이콘 클릭하면 아래에 서치바 나오는 함수
     function cl_blockSearchBox() {
+        
         $('#search_icon').click(function(){
             $('.search_box').css({
                 display:'block'
@@ -89,7 +70,7 @@ $(document).ready(function(){
     //서브 카테고리 호버하면 호버된 제목 색 변경 되는 함수
     function ho_subChRed(ho_box,ch_box,cur_color,ch_color){
         $(ho_box).mouseenter(function(){
-            console.log($(this).index())
+            // console.log($(this).index())
             $(ch_box).css({color:cur_color})
             $(ch_box).eq($(this).index()).css({color:ch_color})
         });
@@ -114,14 +95,14 @@ $(document).ready(function(){
         event.stopPropagation();
 
     }
-    //스크롤 내려가면 헤더 메뉴 고정
+    //스크롤 내려가면 헤더 메뉴 고정 -- 헤더이미지 작은걸로 
     function scr_fixed() {
         let h_top = $('.header').offset().top + 100;
         $(window).scroll(function(){
             let s_top = $(window).scrollTop();
-            console.log(h_top,s_top)
+            // console.log(h_top,s_top)
             if(h_top <= s_top){
-                inversion('#000000e6','img/fiximg/logo_white.png','#ffffffe6','3px solid #ffffffe6')
+                inversion('#000000e6','img/headerImg/logo_white.png','#ffffffe6','3px solid #ffffffe6')
                 $('.h_100').css({
                     height: 200
                 })
@@ -132,7 +113,7 @@ $(document).ready(function(){
                     height: 50
                 });
             }else{
-                inversion('#ffffffe6','img/fiximg/logo_black.png','#000000e6','3px solid #000000e6')
+                inversion('#ffffffe6','img/headerImg/logo_black.png','#000000e6','3px solid #000000e6')
                 $('.h_100').css({
                     height: 0
                 })
@@ -158,5 +139,4 @@ $(document).ready(function(){
     ho_subChRed('.ca_box','.ca_txt','#fff','red')
     ho_topNavRed()
     scr_fixed()
-    font_inversion()
 })
