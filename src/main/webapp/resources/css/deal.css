@@ -1,0 +1,179 @@
+.d_sub_nav {
+    height: 50px;
+    /* background-color: brown; */
+}
+.d_product {
+    width: 100%;
+    /* height: 700px; */
+    /* background-color: pink; */
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20%;
+    margin-bottom: 200px;
+    /* justify-content: space-between; */
+}
+.d_img_box {
+    width: 100%;
+    height: 100%;
+    background-color: skyblue;
+
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+}
+.d_img {
+    width: 400px;
+    height: 400px;
+    background-color: violet;
+}
+.d_indicator {
+    position: absolute;
+    left: 50%;
+    top: 105%;
+    transform: translate(-50%);
+
+    display: flex;
+    gap: 10px;
+}
+.d_indi_btn {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    background-color: red;
+}
+.d_info_box {
+    width: 100%;
+    height: 100%;
+    /* background-color: gray; */
+}
+.d_head {
+    color: #222;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px; 
+    /* border-top:2px solid #000 ;*/
+}
+
+.d_title {
+    font-weight: normal;
+    color: #353535;
+    width: 150px;
+    font-size: 12px;
+    padding: 7px 0 8px 9px;
+    text-align: left;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+.d_contents{
+    color: #777;
+    font-size: 12px;
+    font-weight: normal;
+}
+.d_sell_title{
+    color: #222;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 7px 0 8px 9px;
+    text-align: left;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+.d_sell_contents{
+    color: #222;
+    font-size: 17px;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding: 7px 6px 8px 0;
+    vertical-align: middle;
+}
+.d_b_tb2{
+    border-top: 2px solid #222;
+    width: 100%;
+}
+.d_b_bw2{
+    border-bottom: 2px solid #e8e8e8;
+}
+.d_b_tw2{
+    border-top: 2px solid #e8e8e8;
+    width: 100%;
+}
+ /*애매모호*/
+/* .d_heart_box{ 
+    position: absolute;
+    top: 50px;
+    left: auto;
+    right: 0px;
+    border-top: 2px solid#222;
+    width: 50px;
+    height: 50px;
+    background: #444;
+    box-sizing: border-box;
+} */
+.d_p{
+    color: #757575;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 7px 0 8px 9px;
+    margin: 0;
+}
+.d_p2{
+    margin: 2px 9px;
+    padding: 1px 0 1px 20px;
+    line-height: 1.4;
+    font-size: 11px;
+    background: url(img/dealImg/ico_info.gif) no-repeat 0 2px;
+    color: #f76560
+}
+th {
+    display: none;
+}
+.d_total_price{
+    margin: 10px 0 0;
+    padding: 34px 9px 19px;
+    border-top: 1px solid #9a9ba0;
+    color: #353535;
+    vertical-align: middle;
+    background: #fff;
+    font-size: 12px;
+
+}
+.d_total {
+    float: right;
+    color: #222;
+}
+.d_total_price .d_total em {
+    font-style: normal;
+    font-size: 21px;
+}
+strong {
+    font-weight: bold;
+}
+.d_btn_box{
+    padding: 30px 0 10px;
+    box-sizing: border-box;
+
+    width: 100%;
+    /* height: 50px; */
+    display: flex;
+    font-size: 18px;
+    color: #434343;
+    font-weight: 900;
+    text-align: center;
+    line-height: 50px;
+    justify-content: space-evenly;
+}
+.d_btn_box > div:nth-child(1) {
+    font-size: 24px;
+    color: #fff;
+    background-color: #434343;
+    border: 1px solid;
+    box-sizing: border-box;
+    padding:0 30px;    
+}
+.d_btn_box > div:nth-child(2),.d_btn_box > div:nth-child(3) {
+    border: 1px solid #cacaca;
+    box-sizing: border-box;
+    padding:0 20px;
+}

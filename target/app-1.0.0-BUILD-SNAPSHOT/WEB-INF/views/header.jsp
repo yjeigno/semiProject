@@ -23,10 +23,10 @@
   <header class="header">
     <div class="content_area header_top">
       <ul class="top_nav_ul">
-        <!-- 로그인 페이지로 이동 -->
-        <li><a href="#">LOGIN</a></li>
         <!-- 회원가입 페이지로 이동 -->
         <li><a href="#">JOIN</a></li>
+        <!-- 로그인 페이지로 이동 -->
+        <li><a href="#">LOGIN</a></li>
         <!-- 위시리스트 내역 페이지로 이동 -->
         <li><a href="#">WISHLIST</a></li>
         <!-- 본인인증 후 / 마이페이지로 이동 -->
