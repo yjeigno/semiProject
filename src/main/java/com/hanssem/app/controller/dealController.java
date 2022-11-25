@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class dealController {
     @RequestMapping("/deal")
     public String deal() {
-        return "deal(ver1.0.2)";
+        return "deal";
     }
 }
