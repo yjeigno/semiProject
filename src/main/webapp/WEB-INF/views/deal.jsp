@@ -5,13 +5,17 @@
   Time: 오전 6:11
   To change this template use File | Settings | File Templates.
 --%>
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/header.css">
-<link rel="stylesheet" href="css/deal.css">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/deal.css'/> ">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<%--href="<c:url value='/js/header.js'/>--%>
 <script src="js/header.js"></script>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>deal</title>
@@ -42,7 +46,7 @@
                 </form>
             </div>
             <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="#"><div class="logo"><img src="img/headerImg/logo_black.png" alt=""></div></a>
+            <a href="<c:url value='/'/>"><div class="logo"><img src="img/headerImg/logo_black.png" alt=""></div></a>
         </div>
 
         <div class="header_bottom">

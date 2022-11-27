@@ -1,28 +1,22 @@
 package com.hanssem.app.dto;
 
-import java.sql.Timestamp;
-
-public class dealDto {
+public class ProductDto {
     private Integer product_number;
     private String product_name;
     private Integer product_price;
-    private Timestamp product_register_date;
+    private Integer product_register_date;
     private String product_content;
     private Integer product_status;
     private Integer product_class;
     private Integer category_code_number;
 
-    public dealDto() {
-    }
+    public ProductDto() {}
 
-    public dealDto(String product_name, Integer product_price,
-                   String product_content,
-                   Integer product_status, Integer product_class,
-                   Integer category_code_number) {
-//        this.product_number = product_number;
+    public ProductDto(Integer product_number, String product_name, Integer product_price, Integer product_register_date, String product_content, Integer product_status, Integer product_class, Integer category_code_number) {
+        this.product_number = product_number;
         this.product_name = product_name;
         this.product_price = product_price;
-//        this.product_register_date = product_register_date;
+        this.product_register_date = product_register_date;
         this.product_content = product_content;
         this.product_status = product_status;
         this.product_class = product_class;
@@ -53,11 +47,11 @@ public class dealDto {
         this.product_price = product_price;
     }
 
-    public Timestamp getProduct_register_date() {
-        return (Timestamp) product_register_date;
+    public Integer getProduct_register_date() {
+        return product_register_date;
     }
 
-    public void setProduct_register_date(Timestamp product_register_date) {
+    public void setProduct_register_date(Integer product_register_date) {
         this.product_register_date = product_register_date;
     }
 
