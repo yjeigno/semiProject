@@ -28,5 +28,3 @@ $(function () {
     $(this).addClass("on");
   });
 });
-
-이전페이지;
