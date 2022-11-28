@@ -5,12 +5,12 @@
   Time: 오후 11:56
   To change this template use File | Settings | File Templates.
 --%>
-<link rel="stylesheet" href="../css/common.css">
-<link rel="stylesheet" href="../css/header(ver1.0.2).css">
-<link rel="stylesheet" href="../css/special_price.css">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/special_price.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="../js/header(ver1.0.2).js"></script>
-<script src="../js/special_price.js"></script>
+<script src="js/header.js"></script>
+<script src="js/special_price.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
