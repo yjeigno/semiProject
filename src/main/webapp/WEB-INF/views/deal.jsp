@@ -13,8 +13,9 @@
 <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
 <link rel="stylesheet" href="<c:url value='/css/deal.css'/> ">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<%--href="<c:url value='/js/header.js'/>--%>
-<script src="js/header.js"></script>
+<%--<script href="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/>"></script>--%>
+<%--<script href="<c:url value='/js/header.js'/>"></script>--%>
+<script src="/js/header.js"></script>
 
 <html>
 <head>
@@ -160,19 +161,20 @@
                     <table class="d_b_tb2">
                         <tr >
                             <th scope="row"></th>
-                            <td class="d_head">샘플상품</td>
+                            <td class="d_head" >${Productdto.product_name}</td>
                         </tr>
                         <tr class="d_b_tb2">
                             <td class="d_title">상품요약정보</td>
-                            <td class="d_contents">상품요약설명란에 글을 올리시면 여기 노출</td>
+                            <td class="d_contents">${Productdto.product_content}</td>
                         </tr>
                         <tr>
                             <td class="d_title">소비자가</td>
-                            <td class="d_contents"><del>10,000원</del></td>
+                            <td class="d_contents"><del>${Productdto.product_price}</del></td>
                         </tr>
                         <tr>
                             <td class="d_sell_title">가격</td>
-                            <td class="d_sell_contents">870,000원</td>
+                            <td class="d_sell_contents">${Productdto.status==2?"":Productdto.product_price}</td>
+                        <%-- 할인된 가격 Productdto.product_price/(100/special_poduct.special_product_discount) 추후에 추가--%>
                         </tr>
                         <tr>
                             <td class="d_title">배송방법</td>
@@ -181,7 +183,7 @@
                         <tr>
                             <td class="d_title">배송비</td>
                             <td class="d_contents">
-                                <span>2,500원 </span>
+                                <span>2,500원</span>
                                 <select name="send">
                                     <option value="ppay">주문시 결제(선결제)</option>
                                     <option value="dpay">수령시 결제(착불)</option>
@@ -195,11 +197,11 @@
                     </table>
                     <table class="d_b_tw2 d_b_bw2">
                         <tr>
-                            <td class="d_title">샘플 사이즈</td>
+                            <td class="d_title">사이즈</td>
                             <td class="d_contents">S,M,L</td>
                         </tr>
                         <tr>
-                            <td class="d_title">샘플 색상</td>
+                            <td class="d_title">색상</td>
                             <td class="d_contents">빨,파,초</td>
                         </tr>
                     </table>

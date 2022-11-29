@@ -1,10 +1,12 @@
 package com.hanssem.app.dto;
 
+import java.sql.Timestamp;
+
 public class ProductDto {
     private Integer product_number;
     private String product_name;
     private Integer product_price;
-    private Integer product_register_date;
+    private Timestamp product_register_date;
     private String product_content;
     private Integer product_status;
     private Integer product_class;
@@ -12,7 +14,7 @@ public class ProductDto {
 
     public ProductDto() {}
 
-    public ProductDto(Integer product_number, String product_name, Integer product_price, Integer product_register_date, String product_content, Integer product_status, Integer product_class, Integer category_code_number) {
+    public ProductDto(Integer product_number, String product_name, Integer product_price, Timestamp product_register_date, String product_content, Integer product_status, Integer product_class, Integer category_code_number) {
         this.product_number = product_number;
         this.product_name = product_name;
         this.product_price = product_price;
@@ -47,11 +49,11 @@ public class ProductDto {
         this.product_price = product_price;
     }
 
-    public Integer getProduct_register_date() {
+    public Timestamp getProduct_register_date() {
         return product_register_date;
     }
 
-    public void setProduct_register_date(Integer product_register_date) {
+    public void setProduct_register_date(Timestamp product_register_date) {
         this.product_register_date = product_register_date;
     }
 
@@ -85,5 +87,19 @@ public class ProductDto {
 
     public void setCategory_code_number(Integer category_code_number) {
         this.category_code_number = category_code_number;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDto{" +
+                "product_number=" + product_number +
+                ", product_name='" + product_name + '\'' +
+                ", product_price=" + product_price +
+                ", product_register_date=" + product_register_date +
+                ", product_content='" + product_content + '\'' +
+                ", product_status=" + product_status +
+                ", product_class=" + product_class +
+                ", category_code_number=" + category_code_number +
+                '}';
     }
 }

@@ -9,4 +9,8 @@
         VALUES
         (#{image_path},#{image_file_name},#{image_rename_file_name},#{image_code_number},#{product_number})
     </insert>
+
+    <select id="select" parameterType="int" resultType="ImageDto">
+        SELECT * FROM image WHERE product_number = #{product_number}
+    </select>
 </mapper>
