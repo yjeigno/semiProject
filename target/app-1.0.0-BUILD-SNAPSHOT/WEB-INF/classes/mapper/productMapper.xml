@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hanssem.app.dao.productMapper">
+<!--    상품 등록    -->
+    <insert id="insert" parameterType="ProductDto">
+        INSERT INTO product
+        (product_name, product_price, product_content, product_status, product_class,category_code_number)
+        VALUES
+        (#{product_name},#{product_price},#{product_content},#{product_status},#{product_class},#{category_code_number})
+    </insert>
+
+<!--    전체 상품 개수 구하기    -->
+    <select id="count" resultType="int">
+        SELECT count(*) FROM product
+    </select>
+
+<!--    특정 상품 하나 가져오기    -->
+    <select id="select" parameterType="int" resultType="ProductDto">
+        SELECT * FROM product WHERE product_number = #{product_number}
+    </select>
+
+<!--    상품 전체 가져오기 (정렬: 최근 게시물이 위로)    -->
+    <select id="selectAll" resultType="ProductDto">
+        SELECT * FROM product ORDER BY product_register_date desc, product_number desc
+    </select>
+
+<!--    특정 카테고리에 담긴 상품 전체 가져오기    -->
+    <select id="selectCate" resultType="ProductDto">
+        SELECT * FROM product WHERE category_code_number = #{category_code_number}
+    </select>
+
+<!--    상품 정보 수정    -->
+    <update id="update" parameterType="ProductDto">
+        UPDATE product
+        SET product_name=#{product_name},
+            product_price=#{product_price},
+            product_content=#{product_content}
+        WHERE product_number=#{product_number}
+    </update>
+
+<!--    상품 정보 삭제    -->
+    <delete id="delete" parameterType="map">
+        DELETE FROM product WHERE product_number=#{product_number}
+    </delete>
+
+
+</mapper>
