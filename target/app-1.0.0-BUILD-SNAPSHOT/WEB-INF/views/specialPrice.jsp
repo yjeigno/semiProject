@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 고예진
@@ -123,8 +125,9 @@
   </header>
   <div class="h_100"></div>
 
-  <div class="sprc_main">
-    <div class="content_area">
+  <input type="hidden" id="lc">
+
+  <div class="sprc_main content_area">
       <div class="sprc_nav">
         <a href="#" class="sprc_tab_nav" id="sprc_tab_nav1">쌤딜특가</a>
         <a href="#" class="sprc_tab_nav" id="sprc_tab_nav2">타임특가</a>
@@ -139,6 +142,7 @@
 
     <div class="sprc_sec">
       <div class="sprc_list contents_area">
+        <c:forEach var="li" items="${list}" varStatus="status">
         <div class="sprc_item">
           <a href="/deal">
             <div class="sprc_img_box">
@@ -161,24 +165,27 @@
             </div>
           </div>
           <a href="/deal">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
+            <div class="sprc_item_name">${li.productDto.product_name}</div>
+            <div class="sprc_item_prd">${li.productDto.product_content}</div>
+         <div class="sprc_item_prc">
+            <div class="sprc_item_cur">
+              <c:set var="s_price" value="${li.productDto.product_price * (li.special_product_discount * 0.01)}" />
+              <fmt:formatNumber value="${s_price}" type="number" />
+            </div>
+            <div class="sprc_item_sale">${li.productDto.product_price}</div>
+            <span class="sprc_item_rate">${li.special_product_discount}<span>%</span></span>
             <div class="sprc_item_user">
               <div class="user_score">
-                <span class="num">4.7</span>
+                <span class="num">${li.review_rank_average}</span>
               </div>
               <div class="user_review">
-                <span class="num">28</span>
+                <span class="num">${li.review_count}</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="sprc_item">
+        </c:forEach>
+        <%--<div class="sprc_item">
           <a href="/deal">
             <div class="sprc_img_box">
               <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
@@ -216,8 +223,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="sprc_item">
+        </div>--%>
+        <%--<div class="sprc_item">
           <a href="/deal">
             <div class="sprc_img_box">
               <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
@@ -917,7 +924,7 @@
                 <span class="num">28</span>
               </div>
             </div>
-          </div>
+          </div>--%>
         </div>
       </div>
     </div>
