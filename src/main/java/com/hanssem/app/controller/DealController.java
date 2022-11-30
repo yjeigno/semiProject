@@ -1,6 +1,5 @@
 package com.hanssem.app.controller;
 
-import com.hanssem.app.dao.DealDao;
 import com.hanssem.app.dto.ImageDto;
 import com.hanssem.app.dto.ProductDto;
 import com.hanssem.app.dto.ProductSizeColorDto;
@@ -18,7 +17,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/deal")
-public class dealController {
+public class DealController {
 
     @Autowired
     DealService dealService;

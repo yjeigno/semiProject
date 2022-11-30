@@ -91,47 +91,6 @@ $(document).ready(function () {
     event.stopPropagation();
   }
   //스크롤 내려가면 헤더 메뉴 고정 -- 헤더이미지 작은걸로
-  function scr_fixed() {
-    let h_top = $(".header").offset().top + 100;
-    $(window).scroll(function () {
-      let s_top = $(window).scrollTop();
-      // console.log(h_top,s_top)
-      if (h_top <= s_top) {
-        inversion(
-          "#000000e6",
-          "img/headerImg/logo_white.png",
-          "#ffffffe6",
-          "3px solid #ffffffe6"
-        );
-        $(".h_100").css({
-          height: 200,
-        });
-        $(".header").css({
-          position: "fixed",
-        });
-        $(".header_top").css({
-          height: 50,
-        });
-      } else {
-        inversion(
-          "#ffffffe6",
-          "img/headerImg/logo_black.png",
-          "#000000e6",
-          "3px solid #000000e6"
-        );
-        $(".h_100").css({
-          height: 0,
-        });
-        $(".header").css({
-          position: "relative",
-        });
-        $(".header_top").css({
-          height: 150,
-        });
-      }
-    });
-  }
-    }
     //스크롤 내려가면 헤더 메뉴 고정 -- 헤더이미지 작은걸로 
     function scr_fixed() {
         let h_top = $('.header').offset().top + 100;
