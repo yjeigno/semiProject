@@ -223,7 +223,7 @@
                     <ul class="Interior_item_img">
                         <li>
 
-                            <a><img src="img/interior_1(1).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(1).jpg" width="400" alt=""></a>
                         </li>
 
                         <div class="txt_box">
@@ -246,7 +246,7 @@
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
-                            <a><img src="img/interior_1(2).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(2).jpg" width="400" alt=""></a>
                         </li>
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
@@ -265,7 +265,7 @@
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
-                            <a><img src="img/interior_1(3).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(3).jpg" width="400" alt=""></a>
                         </li>
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
@@ -281,7 +281,7 @@
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
-                            <a><img src="img/interior_1(4).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(4).jpg" width="400" alt=""></a>
                         </li>
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
@@ -297,7 +297,7 @@
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
-                            <a><img src="img/interior_1(5).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(5).jpg" width="400" alt=""></a>
                         </li>
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
@@ -313,7 +313,7 @@
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
-                            <a><img src="img/interior_1(6).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(6).jpg" width="400" alt=""></a>
                         </li>
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
@@ -329,7 +329,7 @@
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
-                            <a><img src="img/interior_1(7).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(7).jpg" width="400" alt=""></a>
                         </li>
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
@@ -345,7 +345,7 @@
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
-                            <a><img src="img/interior_1(8).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(8).jpg" width="400" alt=""></a>
                         </li>
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
@@ -362,7 +362,7 @@
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
-                            <a><img src="img/interior_1(9).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(9).jpg" width="400" alt=""></a>
                         </li>
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
@@ -378,7 +378,7 @@
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
-                            <a><img src="img/interior_1(10).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(10).jpg" width="400" alt=""></a>
                         </li>
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
@@ -395,7 +395,7 @@
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
-                            <a><img src="img/interior_1(11).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(11).jpg" width="400" alt=""></a>
                         </li>
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
@@ -411,7 +411,7 @@
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
-                            <a><img src="img/interior_1(12).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(12).jpg" width="400" alt=""></a>
                         </li>
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
@@ -427,7 +427,7 @@
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
-                            <a><img src="img/interior_1(13).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(13).jpg" width="400" alt=""></a>
                         </li>
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
@@ -443,7 +443,7 @@
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
-                            <a><img src="img/interior_1(14).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(14).jpg" width="400" alt=""></a>
                         </li>
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
@@ -459,7 +459,7 @@
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
-                            <a><img src="img/interior_1(15).jpg" width="400" alt=""></a>
+                            <a><img src="img/Interior/interior_1(15).jpg" width="400" alt=""></a>
                         </li>
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
