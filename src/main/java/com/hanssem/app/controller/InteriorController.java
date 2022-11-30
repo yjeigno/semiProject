@@ -10,5 +10,25 @@ public class InteriorController {
     public String Interior() {
         return "Interior1";
     }
+
+    @GetMapping("/Interior2")
+    public String Interior2() {
+        return "Interior2";
+    }
+
+    @GetMapping("/Interior3")
+    public String Interior3() {
+        return "Interior3";
+    }
+
+    @GetMapping("/Interior4")
+    public String Interior4() {
+        return "Interior4";
+    }
+
+
+
+
+
 }
 
