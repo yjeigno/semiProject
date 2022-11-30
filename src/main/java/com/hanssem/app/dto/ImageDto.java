@@ -78,4 +78,17 @@ public class ImageDto {
     public void setProduct_number(Integer product_number) {
         this.product_number = product_number;
     }
+
+    @Override
+    public String toString() {
+        return "ImageDto{" +
+                "image_number=" + image_number +
+                ", image_path='" + image_path + '\'' +
+                ", image_file_name='" + image_file_name + '\'' +
+                ", image_rename_file_name='" + image_rename_file_name + '\'' +
+                ", image_code_number='" + image_code_number + '\'' +
+                ", image_register_date=" + image_register_date +
+                ", product_number=" + product_number +
+                '}';
+    }
 }

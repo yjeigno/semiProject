@@ -5,14 +5,29 @@
   Time: 오전 6:11
   To change this template use File | Settings | File Templates.
 --%>
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/header.css">
-<link rel="stylesheet" href="css/deal.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="js/header.js"></script>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%--var ProductDto = '<c:out value='${productDto}' />';--%>
+
+<link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/deal.css'/> ">
+<%--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--%>
+<script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/> "></script>
+<script src="<c:url value='/js/header.js'/> "></script>
+<script src="<c:url value='/js/deal.js'/> "></script>
+<%--<script src="/js/header.js"></script>--%>
+
+<script>
+    // 소비자가, 가격에 원 하고 , 표시
+    var oPrice = ${pdto.product_price};
+    <%--여기에 ${pdto.product_price}--%>
+    var sPrice = ${pdto.product_status==2?"":pdto.product_price};
+    <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
+    var logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
+    var logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
+</script>
 <head>
     <title>deal</title>
 </head>
@@ -42,9 +57,10 @@
                 </form>
             </div>
             <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="#"><div class="logo"><img src="img/headerImg/logo_black.png" alt=""></div></a>
+            <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/> " alt=""></div></a>
         </div>
-
+<%--        src="img/headerImg/logo_black.png"--%>
+<%--        href="<c:url value='img/headerImg/logo_black.png'/> "--%>
         <div class="header_bottom">
             <div class="content_area">
                 <ul class="bottom_nav_ul">
@@ -65,35 +81,35 @@
                     <li class="li_content">
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn1.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table & Dining</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn2.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Chair</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn3.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Sofa</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn4.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Desk</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn5.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">TV Stand & Storage</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn6.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Small Furniture</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn7.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Bed</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn8.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/> "></li>
                         </ul>
                     </li>
 
@@ -143,7 +159,7 @@
             <div class="d_sub_nav"></div>
             <div class="d_product">
                 <div class="d_img_box">
-                    <div class="d_img"></div>
+                    <div class="d_img"><img src="${idto.image_path}"></div>
                     <div class="d_indicator">
                         <!-- 상품의 색상 값 만큼 생성  / 색상에 맞는 이미지 찾아서 이동-->
                         <div class="d_indi_btn"></div>
@@ -153,22 +169,20 @@
                 </div>
                 <div class="d_info_box">
                     <!-- <span class="d_heart_box"></span> -->
+                    <div class="d_head">${pdto.product_name}</div>
                     <table class="d_b_tb2">
-                        <tr >
-                            <th scope="row"></th>
-                            <td class="d_head">샘플상품</td>
-                        </tr>
                         <tr class="d_b_tb2">
                             <td class="d_title">상품요약정보</td>
-                            <td class="d_contents">상품요약설명란에 글을 올리시면 여기 노출</td>
+                            <td class="d_contents">${pdto.product_content}</td>
                         </tr>
                         <tr>
                             <td class="d_title">소비자가</td>
-                            <td class="d_contents"><del>10,000원</del></td>
+                            <td class="d_contents" id="o_price"></td>
                         </tr>
                         <tr>
                             <td class="d_sell_title">가격</td>
-                            <td class="d_sell_contents">870,000원</td>
+                            <td class="d_sell_contents" id="s_price"></td>
+                        <%-- 할인된 가격 Productdto.product_price/(100/special_poduct.special_product_discount) 추후에 추가--%>
                         </tr>
                         <tr>
                             <td class="d_title">배송방법</td>
@@ -177,7 +191,7 @@
                         <tr>
                             <td class="d_title">배송비</td>
                             <td class="d_contents">
-                                <span>2,500원 </span>
+                                <span>2,500원</span>
                                 <select name="send">
                                     <option value="ppay">주문시 결제(선결제)</option>
                                     <option value="dpay">수령시 결제(착불)</option>
@@ -191,12 +205,20 @@
                     </table>
                     <table class="d_b_tw2 d_b_bw2">
                         <tr>
-                            <td class="d_title">샘플 사이즈</td>
-                            <td class="d_contents">S,M,L</td>
+                            <td class="d_title">사이즈</td>
+                            <td class="d_contents" id="size_contents">
+                                <c:forEach items="${list}" var="size">
+                                   <div id="size_btn"><c:out value="${size.size_code_name}"/></div>
+                                </c:forEach>
+                            </td>
                         </tr>
                         <tr>
-                            <td class="d_title">샘플 색상</td>
-                            <td class="d_contents">빨,파,초</td>
+                            <td class="d_title">색상</td>
+                            <td class="d_contents">
+                                <c:forEach items="${list2}" var="color">
+                                    <div id="size_btn"><c:out value="${color.colorCodeDto.color_code_name}"/></div>
+                                </c:forEach>
+                            </td>
                         </tr>
                     </table>
                     <p class="d_p">(최소주문수량 1개 이상 / 최대주문수량 100개 이하)</p>
@@ -213,7 +235,22 @@
                     </div>
                 </div>
             </div>
+            <ul class="d_tab_btn">
+                <li> <a href="#sec1">상품상세</a> </li>
+                <li> <a href="#sec2">상품후기</a> </li>
+                <li> <a href="#sec3">상품문의</a> </li>
+                <li> <a href="#sec4">배송안내</a> </li>
+                <li> <a href="#sec5">교환/반품정책</a> </li>
+            </ul>
+            <div class="h1000" id="sec1" >sec1</div>
+            <div class="h1000" id="sec2" >sec2</div>
+            <div class="h1000" id="sec3" >sec3</div>
+            <div class="h1000" id="sec4" >sec4</div>
+            <div class="h1000" id="sec5" >sec5</div>
         </div>
+        <div class="btn_top"><a href="#wrap">TOP</a></div>
+
+        </html>
     </main>
 </div>
 </body>
