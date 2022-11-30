@@ -8,27 +8,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인페이지 초안</title>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script defer src="../js/header(ver1.0.2).js"></script>
-    <script defer src="../js/main.js"></script>
-    <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" href="./css/header(ver1.0.2).css">
-    <link rel="stylesheet" href="./css/main.css">
+    <script defer src="js/header.js"></script>
+    <script defer src="js/main.js"></script>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <div id="wrap">
+    <div class="basket_box">
+
+        <div class="basket_min">
+            <div class="basket_icon"><img src="img/main/cart_img.png" alt=""></div>
+            <div class="basket_total_quentity">(1)</div>
+        </div>
+
+        <form class="basket_pan">
+            <input type="hidden" name="cmd" value="order">
+            <!-- 장바구니 카테고리  -->
+            <div class="basket_title">
+                <div class="row bkt_check">선택</div>
+                <div class="row bkt_img">이미지</div>
+                <div class="row bkt_product_name">상품명</div>
+                <div class="row bkt_product_price">가격</div>
+                <div class="row bkt_product_quentity">수량</div>
+                <div class="row bkt_product_delete">삭제</div>
+            </div>
+            <!-- 장바구니 상품 -->
+            <div class="basket_items">
+                <div class="basket_item_data">
+                    <div class="row basket_item_check">
+                        <input type="checkbox" name="item_check" value="260" checked="" onclick="javascript:basket.checkItem();">
+                    </div>
+
+                    <!-- 상품 상세 페이지 이동 생각 할것(img 테이블 > image_number(PK)) -->
+                    <div class="row basket_product_img">
+                        <a href="#"><img src="" alt=""></a>
+                    </div>
+                    <!-- 상품 상세 페이지 이동 생각 할것(product 테이블 > product_name(image_numberPK)) -->
+                    <div class="row basket_product_name"><a href="">상품명</a></div>
+
+                    <div class="row basket_product_price"><a href="">100.000원</a></div>
+
+                    <div class="row basket_product_quentity">1</div>
+
+                    <div class="row basket_product_delete"><a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delItem();">삭제</a></div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+    <!-- 팝업배너 -->
     <input type="checkbox" value="close" id="close">
     <div class="event_banner">
-        <a href="#"><img src="./img/mainpage_img/event_banner.png" alt="" id="event_img"></a>
-        <label for="close" class="close_img"><img src="./img/mainpage_img/X.png" alt=""></label>
+        <a href="#"><img src="img/main/event_banner.png" alt="" id="event_img"></a>
+        <label for="close" class="close_img"><img src="img/main/X.png" alt=""></label>
     </div>
+
 
     <header class="header">
         <div class="content_area header_top">
             <ul class="top_nav_ul">
-                <!-- 로그인 페이지로 이동 -->
-                <li><a href="./login&logoutpage_1.0.0.html">LOGIN</a></li>
                 <!-- 회원가입 페이지로 이동 -->
-                <li><a href="#">JOIN</a></li>
+                <li><a href="/login_register">JOIN</a></li>
+                <!-- 로그인 페이지로 이동 -->
+                <li><a href="/login_register">LOGIN</a></li>
                 <!-- 위시리스트 내역 페이지로 이동 -->
                 <li><a href="#">WISHLIST</a></li>
                 <!-- 본인인증 후 / 마이페이지로 이동 -->
@@ -46,17 +93,19 @@
                 </form>
             </div>
             <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="#"><div class="logo"><img src="./img/logo_black.png" alt=""></div></a>
+            <a href="#"><div class="logo"><img src="img/headerImg/logo_black.png" alt=""></div></a>
         </div>
 
         <div class="header_bottom">
             <div class="content_area">
                 <ul class="bottom_nav_ul">
-                    <li>Furniture</li>
-                    <li>Lighting</li>
-                    <li>Kitchen</li>
-                    <li>Home Deco</li>
-                    <li>Hot Deal</li>
+                    <li class="box">Furniture</li>
+                    <li class="box">Lighting</li>
+                    <li class="box">Fabric</li>
+                    <!-- 홈데코 클릭시 인테리어 페이지 이동 -->
+                    <li><a href="">Home Deco</a></li>
+                    <!-- 특가페이지 이동 -->
+                    <li><a href="">Hot Deal</a></li>
                 </ul>
             </div>
         </div>
@@ -65,52 +114,68 @@
                 <ul class="ul_category_box">
                     <li class="li_Title">Furniture</li>
                     <li class="li_content">
-                        <ul class="ca_box">
-                            <li class="ca_txt">Boutique Furniture</li>
-                            <li class="ca_img"><img src="./img/Furn1.png"></li>
+                        <ul class="ca_box" onclick="location.href='#';">
+                            <li class="ca_txt">Table</li>
+                            <li class="ca_img"><img src="img/headerImg/Furn1.png"></li>
                         </ul>
-                        <ul class="ca_box">
+                        <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table & Dining</li>
-                            <li class="ca_img"><img src="./img/Furn2.png"></li>
+                            <li class="ca_img"><img src="img/headerImg/Furn2.png"></li>
                         </ul>
-                        <ul class="ca_box">
+                        <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Chair</li>
-                            <li class="ca_img"><img src="./img/Furn3.png"></li>
+                            <li class="ca_img"><img src="img/headerImg/Furn3.png"></li>
                         </ul>
-                        <ul class="ca_box">
+                        <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Sofa</li>
-                            <li class="ca_img"><img src="./img/Furn4.png"></li>
+                            <li class="ca_img"><img src="img/headerImg/Furn4.png"></li>
                         </ul>
-                        <ul class="ca_box">
-                            <li class="ca_txt">Global Furniture</li>
-                            <li class="ca_img"><img src="./img/Furn5.png"></li>
+                        <ul class="ca_box" onclick="location.href='#';">
+                            <li class="ca_txt">Desk</li>
+                            <li class="ca_img"><img src="img/headerImg/Furn5.png"></li>
                         </ul>
-                        <ul class="ca_box">
+                        <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">TV Stand & Storage</li>
-                            <li class="ca_img"><img src="./img/Furn6.png"></li>
+                            <li class="ca_img"><img src="img/headerImg/Furn6.png"></li>
                         </ul>
-                        <ul class="ca_box">
+                        <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Small Furniture</li>
-                            <li class="ca_img"><img src="./img/Furn7.png"></li>
+                            <li class="ca_img"><img src="img/headerImg/Furn7.png"></li>
                         </ul>
-                        <ul class="ca_box">
+                        <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Bed</li>
-                            <li class="ca_img"><img src="./img/Furn8.png"></li>
+                            <li class="ca_img"><img src="img/headerImg/Furn8.png"></li>
                         </ul>
                     </li>
 
                 </ul>
                 <ul class="ul_category_box">
                     <li class="li_Title">Lighting</li>
-                    <li class="li_content"></li>
+                    <li>
+                        <ul class="li_content str">
+                            <li class="l_txt">pendant</li>
+                            <li class="l_txt">table</li>
+                            <li class="l_txt">floor lamp</li>
+                            <li class="l_txt">wall</li>
+                            <li class="l_txt">ceiling</li>
+                        </ul>
+                    </li>
 
                 </ul>
                 <ul class="ul_category_box">
-                    <li class="li_Title">Kitchen</li>
-                    <li class="li_content"></li>
+                    <li class="li_Title">Fabric</li>
+                    <li>
+                        <ul class="li_content str right">
+                            <li class="l_txt">Curtain</li>
+                            <li class="l_txt">Rug</li>
+                            <li class="l_txt">blind</li>
+                            <li class="l_txt">mat</li>
+                            <li></li>
+                        </ul>
+                    </li>
 
                 </ul>
-                <ul class="ul_category_box">
+                <!-- <ul class="ul_category_box">
                     <li class="li_Title">Home Deco</li>
                     <li class="li_content"></li>
 
@@ -119,11 +184,11 @@
                     <li class="li_Title">Hot Deal</li>
                     <li class="li_content"></li>
 
-                </ul>
+                </ul> -->
             </div>
         </div>
     </header>
-
+    <div class="h_100"></div>
 
 
     <div class="main_banner">
