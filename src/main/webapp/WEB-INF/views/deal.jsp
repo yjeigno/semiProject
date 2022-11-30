@@ -8,16 +8,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%--var ProductDto = '<c:out value='${productDto}' />';--%>
 
 <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
 <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
 <link rel="stylesheet" href="<c:url value='/css/deal.css'/> ">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<%--<script href="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/>"></script>--%>
-<%--<script href="<c:url value='/js/header.js'/>"></script>--%>
-<script src="/js/header.js"></script>
+<%--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--%>
+<script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/> "></script>
+<script src="<c:url value='/js/header.js'/> "></script>
+<script src="<c:url value='/js/deal.js'/> "></script>
+<%--<script src="/js/header.js"></script>--%>
 
-<html>
 <head>
     <title>deal</title>
 </head>
@@ -47,9 +48,10 @@
                 </form>
             </div>
             <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="<c:url value='/'/>"><div class="logo"><img src="img/headerImg/logo_black.png" alt=""></div></a>
+            <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/> " alt=""></div></a>
         </div>
-
+<%--        src="img/headerImg/logo_black.png"--%>
+<%--        href="<c:url value='img/headerImg/logo_black.png'/> "--%>
         <div class="header_bottom">
             <div class="content_area">
                 <ul class="bottom_nav_ul">
@@ -70,35 +72,35 @@
                     <li class="li_content">
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn1.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table & Dining</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn2.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Chair</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn3.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Sofa</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn4.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Desk</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn5.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">TV Stand & Storage</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn6.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Small Furniture</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn7.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Bed</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn8.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/> "></li>
                         </ul>
                     </li>
 
@@ -148,7 +150,7 @@
             <div class="d_sub_nav"></div>
             <div class="d_product">
                 <div class="d_img_box">
-                    <div class="d_img"></div>
+                    <div class="d_img"><img src="${idto.image_path}"></div>
                     <div class="d_indicator">
                         <!-- 상품의 색상 값 만큼 생성  / 색상에 맞는 이미지 찾아서 이동-->
                         <div class="d_indi_btn"></div>
@@ -158,22 +160,19 @@
                 </div>
                 <div class="d_info_box">
                     <!-- <span class="d_heart_box"></span> -->
+                    <div class="d_head">${pdto.product_name}</div>
                     <table class="d_b_tb2">
-                        <tr >
-                            <th scope="row"></th>
-                            <td class="d_head" >${Productdto.product_name}</td>
-                        </tr>
                         <tr class="d_b_tb2">
                             <td class="d_title">상품요약정보</td>
-                            <td class="d_contents">${Productdto.product_content}</td>
+                            <td class="d_contents">${pdto.product_content}</td>
                         </tr>
                         <tr>
                             <td class="d_title">소비자가</td>
-                            <td class="d_contents"><del>${Productdto.product_price}</del></td>
+                            <td class="d_contents" id="o_price"></td>
                         </tr>
                         <tr>
                             <td class="d_sell_title">가격</td>
-                            <td class="d_sell_contents">${Productdto.status==2?"":Productdto.product_price}</td>
+                            <td class="d_sell_contents" id="s_price"></td>
                         <%-- 할인된 가격 Productdto.product_price/(100/special_poduct.special_product_discount) 추후에 추가--%>
                         </tr>
                         <tr>
@@ -198,7 +197,11 @@
                     <table class="d_b_tw2 d_b_bw2">
                         <tr>
                             <td class="d_title">사이즈</td>
-                            <td class="d_contents">S,M,L</td>
+                            <td class="d_contents">
+                                <c:forEach items="${list}" var="size">
+                                   <div id="size_btn"><c:out value="${size.size_code_name}"/></div>
+                                </c:forEach>
+                            </td>
                         </tr>
                         <tr>
                             <td class="d_title">색상</td>
@@ -219,7 +222,32 @@
                     </div>
                 </div>
             </div>
+            <ul class="d_tab_btn">
+                <li> <a href="#sec1">상품상세</a> </li>
+                <li> <a href="#sec2">상품후기</a> </li>
+                <li> <a href="#sec3">상품문의</a> </li>
+                <li> <a href="#sec4">배송안내</a> </li>
+                <li> <a href="#sec5">교환/반품정책</a> </li>
+            </ul>
+            <div class="h1000" id="sec1" >sec1</div>
+            <div class="h1000" id="sec2" >sec2</div>
+            <div class="h1000" id="sec3" >sec3</div>
+            <div class="h1000" id="sec4" >sec4</div>
+            <div class="h1000" id="sec5" >sec5</div>
         </div>
+        <div class="btn_top"><a href="#wrap">TOP</a></div>
+        <script>// 소비자가, 가격에 원 하고 , 표시
+        let oPrice = ${pdto.product_price}
+            <%--여기에 ${pdto.product_price}--%>
+            $('#o_price').text(oPrice.toLocaleString('ko')+"원");
+        let sPrice = ${pdto.product_status==2?"":pdto.product_price}
+            <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
+            $('#s_price').text(sPrice.toLocaleString('ko')+"원");
+
+
+
+        </script>
+        <html>
     </main>
 </div>
 </body>

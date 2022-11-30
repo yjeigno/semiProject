@@ -45,5 +45,34 @@
         DELETE FROM product WHERE product_number=#{product_number}
     </delete>
 
+    <resultMap id="ProductDto" type="ProductDto">
+        <result column="product_number" property="product_number"/>
+        <result column="product_name" property="product_name"/>
+        <result column="product_price" property="product_price"/>
+        <result column="product_content" property="product_content"/>
+    </resultMap>
+
+    <resultMap id="CateSizeDto" type="CateSizeDto">
+        <result column="size_code_number" property="size_code_number"/>
+    </resultMap>
+    <resultMap id="SizeCodeDto" type="SizeCodeDto">
+        <result column="size_code_name" property="size_code_name"/>
+        <collection property="CateSizeDto" resultMap="CateSizeDto"/>
+        <collection property="ProductDto" resultMap="ProductDto"/>
+    </resultMap>
+
+<!--    상품의 사이즈 정보 가져오기-->
+    <select id="selectSize" parameterType="int" resultType="SizeCodeDto">
+        SELECT product_number,
+        product_name,
+        product_price,
+        product_content,
+        cs.size_code_number,
+        size_code_name
+        FROM product p
+        JOIN category_size cs on p.category_code_number = cs.category_code_number
+        JOIN size_code sc on cs.size_code_number = sc.size_code_number
+        WHERE product_number =#{product_number}
+    </select>
 
 </mapper>
