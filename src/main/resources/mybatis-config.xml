@@ -7,6 +7,9 @@
         <!-- 여기는 별칭 정하는곳  ProductMapper 에 resultType="ProductDto" 이다.  -->
         <typeAlias alias="ProductDto" type="com.hanssem.app.dto.ProductDto"/>
         <typeAlias alias="ImageDto" type="com.hanssem.app.dto.ImageDto"/>
-
+        <typeAlias alias="SearchCondition" type="com.hanssem.app.dto.SearchCondition" />
+        <typeAlias alias="CategoryDto" type="com.hanssem.app.dto.CategoryDto" />
+        <typeAlias alias="SearchResult" type="com.hanssem.app.dto.SearchResult" />
+        <typeAlias alias="SizeDto" type="com.hanssem.app.dto.SizeDto" />
     </typeAliases>
 </configuration>
