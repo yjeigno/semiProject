@@ -1,8 +1,8 @@
 $(document).ready(function(){
     // 탭버튼,top버튼 클릭시 해당섹션으로 이동
     let menu_h = $('.d_tab_btn').innerHeight()
-    $('.d_tab_btn a , .btn_top a').click(function(){
-        event.preventDefault();
+    $('.d_tab_btn a , .btn_top a').click(function(e){
+        e.preventDefault();
         let href = $(this).attr('href');
         console.log(href)
         let tmp;
@@ -42,5 +42,6 @@ $(document).ready(function(){
             });
         }
     })
-
+    $('#o_price').text(oPrice.toLocaleString('ko')+"원");
+    $('#s_price').text(sPrice.toLocaleString('ko')+"원");
 });

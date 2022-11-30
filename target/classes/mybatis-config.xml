@@ -9,5 +9,7 @@
         <typeAlias alias="ImageDto" type="com.hanssem.app.dto.ImageDto"/>
         <typeAlias alias="SizeCodeDto" type="com.hanssem.app.dto.SizeCodeDto"/>
         <typeAlias alias="CateSizeDto" type="com.hanssem.app.dto.CateSizeDto"/>
+        <typeAlias alias="ProductSizeColorDto" type="com.hanssem.app.dto.ProductSizeColorDto"/>
+        <typeAlias alias="ColorCodeDto" type="com.hanssem.app.dto.ColorCodeDto"/>
     </typeAliases>
 </configuration>

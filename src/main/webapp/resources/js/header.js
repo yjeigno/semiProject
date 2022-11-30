@@ -102,18 +102,18 @@ $(document).ready(function(){
             let s_top = $(window).scrollTop();
             // console.log(h_top,s_top)
             if(h_top <= s_top){
-                inversion('#000000e6','img/headerImg/logo_white.png','#ffffffe6','3px solid #ffffffe6')
+                inversion('#000000e6',logoWhite,'#ffffffe6','3px solid #ffffffe6')
                 $('.h_100').css({
                     height: 200
                 })
                 $('.header').css({
-                    position: 'fixed',
+                    position: 'fixed'
                 });
                 $('.header_top').css({
                     height: 50
                 });
             }else{
-                inversion('#ffffffe6','img/headerImg/logo_black.png','#000000e6','3px solid #000000e6')
+                inversion('#ffffffe6',logoBlack,'#000000e6','3px solid #000000e6')
                 $('.h_100').css({
                     height: 0
                 })

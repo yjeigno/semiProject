@@ -19,6 +19,15 @@
 <script src="<c:url value='/js/deal.js'/> "></script>
 <%--<script src="/js/header.js"></script>--%>
 
+<script>
+    // 소비자가, 가격에 원 하고 , 표시
+    var oPrice = ${pdto.product_price};
+    <%--여기에 ${pdto.product_price}--%>
+    var sPrice = ${pdto.product_status==2?"":pdto.product_price};
+    <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
+    var logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
+    var logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
+</script>
 <head>
     <title>deal</title>
 </head>
@@ -197,7 +206,7 @@
                     <table class="d_b_tw2 d_b_bw2">
                         <tr>
                             <td class="d_title">사이즈</td>
-                            <td class="d_contents">
+                            <td class="d_contents" id="size_contents">
                                 <c:forEach items="${list}" var="size">
                                    <div id="size_btn"><c:out value="${size.size_code_name}"/></div>
                                 </c:forEach>
@@ -205,7 +214,11 @@
                         </tr>
                         <tr>
                             <td class="d_title">색상</td>
-                            <td class="d_contents">빨,파,초</td>
+                            <td class="d_contents">
+                                <c:forEach items="${list2}" var="color">
+                                    <div id="size_btn"><c:out value="${color.colorCodeDto.color_code_name}"/></div>
+                                </c:forEach>
+                            </td>
                         </tr>
                     </table>
                     <p class="d_p">(최소주문수량 1개 이상 / 최대주문수량 100개 이하)</p>
@@ -236,18 +249,8 @@
             <div class="h1000" id="sec5" >sec5</div>
         </div>
         <div class="btn_top"><a href="#wrap">TOP</a></div>
-        <script>// 소비자가, 가격에 원 하고 , 표시
-        let oPrice = ${pdto.product_price}
-            <%--여기에 ${pdto.product_price}--%>
-            $('#o_price').text(oPrice.toLocaleString('ko')+"원");
-        let sPrice = ${pdto.product_status==2?"":pdto.product_price}
-            <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
-            $('#s_price').text(sPrice.toLocaleString('ko')+"원");
 
-
-
-        </script>
-        <html>
+        </html>
     </main>
 </div>
 </body>

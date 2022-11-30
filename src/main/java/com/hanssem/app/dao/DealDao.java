@@ -3,6 +3,7 @@ package com.hanssem.app.dao;
 
 import com.hanssem.app.dto.ImageDto;
 import com.hanssem.app.dto.ProductDto;
+import com.hanssem.app.dto.ProductSizeColorDto;
 import com.hanssem.app.dto.SizeCodeDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,9 @@ public class DealDao {
         // 특정 상품의 사이즈 불러오기
         public List<SizeCodeDto> selectSize(Integer product_number){
             return session.selectList(namespace+"selectSize",product_number);
+        }
+        // 특정 상품의 사이즈에 맞는 컬러 불러오기
+        public List<ProductSizeColorDto> selectSizeColor(Map map){
+            return session.selectList(namespace+"selectSizeColor",map);
         }
 }

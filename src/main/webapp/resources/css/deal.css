@@ -70,7 +70,6 @@
     color: #777;
     font-size: 12px;
     font-weight: normal;
-    display: flex;
 }
 
 .d_sell_title{
@@ -234,10 +233,17 @@ strong {
 #o_price {
     text-decoration: line-through;
 }
-.size_btn{
+
+#size_contents{
+    display: flex;
+    gap: 5px;
+}
+#size_btn{
     width:40px;
     height: 40px;
-    background-color: #9a9ba0;
+    background-color: #ddd;
     border: 1px solid #353535;
     box-sizing: border-box;
+    line-height: 40px;
+    text-align: center;
 }

@@ -3,6 +3,7 @@ package com.hanssem.app.service;
 import com.hanssem.app.dao.DealDao;
 import com.hanssem.app.dto.ImageDto;
 import com.hanssem.app.dto.ProductDto;
+import com.hanssem.app.dto.ProductSizeColorDto;
 import com.hanssem.app.dto.SizeCodeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,8 @@ public class DealService {
     }
     public List<SizeCodeDto> show3(Integer product_number) {
         return dealDao.selectSize(product_number);
+    }
+    public List<ProductSizeColorDto> getColor(Map map){
+        return dealDao.selectSizeColor(map);
     }
 }

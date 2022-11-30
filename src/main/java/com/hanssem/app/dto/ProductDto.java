@@ -9,12 +9,14 @@ public class ProductDto {
     private Timestamp product_register_date;
     private String product_content;
     private Integer product_status;
-    private Integer product_class;
+    private String product_class;
     private Integer category_code_number;
+
+
 
     public ProductDto() {}
 
-    public ProductDto(Integer product_number, String product_name, Integer product_price, Timestamp product_register_date, String product_content, Integer product_status, Integer product_class, Integer category_code_number) {
+    public ProductDto(Integer product_number, String product_name, Integer product_price, Timestamp product_register_date, String product_content, Integer product_status, String product_class, Integer category_code_number) {
         this.product_number = product_number;
         this.product_name = product_name;
         this.product_price = product_price;
@@ -73,11 +75,11 @@ public class ProductDto {
         this.product_status = product_status;
     }
 
-    public Integer getProduct_class() {
+    public String getProduct_class() {
         return product_class;
     }
 
-    public void setProduct_class(Integer product_class) {
+    public void setProduct_class(String product_class) {
         this.product_class = product_class;
     }
 
