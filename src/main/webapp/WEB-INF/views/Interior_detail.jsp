@@ -184,10 +184,10 @@
         <div class="Interior_box4">
           <div class="Interior_item_img">
 
-            <img src="img/interior_5(1).jpg" width="100%" height="350px" alt="">
+            <img src="img/Interior/interior_5(1).jpg" width="100%" height="350px" alt="">
 
 
-            <img src="img/interior_5(2).jpg" width="100%" height="350px" alt="" class="Interior_img0">
+            <img src="img/Interior/interior_5(2).jpg" width="100%" height="350px" alt="" class="Interior_img0">
 
 
             <button class="Interior_btn" id="btn1" type="button">+</button>
@@ -204,7 +204,7 @@
                 <ul class="Interior_case">
                   <li class="Interior_case_box">
                     <a href="">
-                      <img class="Interior_case_img" id="Interior_box1" src="img/interior_5(3).jpg"  alt="">
+                      <img class="Interior_case_img" id="Interior_box1" src="img/Interior/interior_5(3).jpg"  alt="">
                     </a>
 
                   </li>
@@ -212,7 +212,7 @@
 
                   <li class="Interior_case_box">
                     <a href="">
-                      <img class="Interior_case_img" id="Interior_box2" src="img/interior_5(4).jpg"  alt="">
+                      <img class="Interior_case_img" id="Interior_box2" src="img/Interior/interior_5(4).jpg"  alt="">
                     </a>
 
                   </li>
@@ -222,21 +222,21 @@
 
                   <li class="Interior_case_box">
                     <a href="">
-                      <img class="Interior_case_img" id="Interior_box3" src="img/interior_5(5).jpg" width="100%" alt="">
+                      <img class="Interior_case_img" id="Interior_box3" src="img/Interior/interior_5(5).jpg" width="100%" alt="">
                     </a>
 
                   </li>
 
                   <li class="Interior_case_box" >
                     <a href="">
-                      <img class="Interior_case_img" id="Interior_box4" src="img/interior_5(6).jpg" width="100%" alt="">
+                      <img class="Interior_case_img" id="Interior_box4" src="img/Interior/interior_5(6).jpg" width="100%" alt="">
                     </a>
 
                   </li>
 
                   <li class="Interior_case_box">
                     <a href="">
-                      <img class="Interior_case_img" id="Interior_box5" src="img/interior_5(7).jpg" width="100%" alt="">
+                      <img class="Interior_case_img" id="Interior_box5" src="img/Interior/interior_5(7).jpg" width="100%" alt="">
                     </a>
 
                   </li>
@@ -251,19 +251,19 @@
           </div>
 
           <p class="Interior_arrow_box" id="arrow1">파스타 2S 렌지대 겸 조리대 185,000원
-            <img src="img/interior_5(3).jpg" width="100%" style="height:80%" alt="">
+            <img src="img/Interior/interior_5(3).jpg" width="100%" style="height:80%" alt="">
           </p>
           <p class="Interior_arrow_box" id="arrow2">반자동머신 249,000원
-            <img src="img/interior_5(4).jpg" width="100%" style="height:80%" alt="">
+            <img src="img/Interior/interior_5(4).jpg" width="100%" style="height:80%" alt="">
           </p>
           <p class="Interior_arrow_box" id="arrow3">아이코나 전기주전자 89,000원
-            <img src="img/interior_5(5).jpg" width="100%" style="height:80%" alt="">
+            <img src="img/Interior/interior_5(5).jpg" width="100%" style="height:80%" alt="">
           </p>
           <p class="Interior_arrow_box" id="arrow4">데일리 단모 사계절 원형 러그 카페트 13,900원
-            <img src="img/interior_5(6).jpg" width="100%" style="height:75%" alt="">
+            <img src="img/Interior/interior_5(6).jpg" width="100%" style="height:75%" alt="">
           </p>
           <p class="Interior_arrow_box" id="arrow5">신혼집 인테리어 포스터 33,500원
-            <img src="img/interior_5(7).jpg" width="100%" style="height:80%" alt="">
+            <img src="img/Interior/interior_5(7).jpg" width="100%" style="height:80%" alt="">
           </p>
 
 
@@ -276,7 +276,7 @@
 
 
         <div class="Interior_box2">
-          <img src="img/interior_5(0).png">
+          <img src="img/Interior/interior_5(0).png">
         </div>
 
 
