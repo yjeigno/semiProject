@@ -1,5 +1,6 @@
 .sprc_main {
-    min-width: 1920px;
+    width: 100%;
+    height: auto;
     margin-top: 52px;
 }
 .sprc_nav {
@@ -22,13 +23,13 @@
     position: relative;
     /* height: 38.5vw; */
     width: 1920px;
-    height: 621px;
+    height: 650px;
     margin: 0 auto;
 }
 .sprc_banner {
     width: 100%;
     height: 100%;
-    background: url(../img/1652686909325_12370_0.png) no-repeat center / contain;
+    background: url(../img/main/event_banner.png) no-repeat center / contain;
     position: absolute;
     left: 0;
     top: 0;
@@ -44,6 +45,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     font-size: 14px;
+    margin: 0 auto;
 }
 .sprc_item {
     width: 227px;
@@ -70,7 +72,7 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    background: url(../img/wishlist_heart.png) no-repeat center / contain;
+    background: url(../img/etc/heart2.png) no-repeat center 0 / cover;
     cursor: pointer;
 }
 .sprc_wish_on {
@@ -79,7 +81,7 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    background: url(../img/wishlist_heart_on.png) no-repeat center / contain;
+    background: url(../img/etc/heart2.png) no-repeat center 100% / cover;
     cursor: pointer;
 }
 .sprc_timer {
@@ -159,7 +161,7 @@
     left: 0;
     width: 16px;
     height: 15px;
-    background: url(../img/sprite-common.png) no-repeat -925px 0;
+    background: url(../img/etc/sprite-common.png) no-repeat -925px 0;
 }
 .sprc_item_user .user_review .num::before {
     content: "";
@@ -168,7 +170,7 @@
     left: 0;
     width: 18px;
     height: 15px;
-    background: url(../img/sprite-common.png) no-repeat -945px 0;
+    background: url(../img/etc/sprite-common.png) no-repeat -945px 0;
 }
 .footer {
     width: 100%;
