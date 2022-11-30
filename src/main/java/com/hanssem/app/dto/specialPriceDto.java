@@ -2,17 +2,22 @@ package com.hanssem.app.dto;
 
 import java.sql.Timestamp;
 
-public class specialPriceDto {
+public class SpecialPriceDto {
     private Integer special_product_number;
     private Timestamp special_product_end_date;
     private Integer special_product_discount;
     private Integer product_number;
 
-    public specialPriceDto() {
+    private ProductDto productDto;
+
+    private Double review_rank_average;
+    private Integer review_count;
+
+    public SpecialPriceDto() {
 
     }
 
-    public specialPriceDto(Integer special_product_number, Timestamp special_product_end_date, Integer special_product_discount, Integer product_number) {
+    public SpecialPriceDto(Integer special_product_number, Timestamp special_product_end_date, Integer special_product_discount, Integer product_number) {
         this.special_product_number = special_product_number;
         this.special_product_end_date = special_product_end_date;
         this.special_product_discount = special_product_discount;
@@ -59,5 +64,29 @@ public class specialPriceDto {
 
     public void setProduct_number(Integer product_number) {
         this.product_number = product_number;
+    }
+
+    public ProductDto getProductDto() {
+        return productDto;
+    }
+
+    public void setProductDto(ProductDto productDto) {
+        this.productDto = productDto;
+    }
+
+    public Double getReview_rank_average() {
+        return review_rank_average;
+    }
+
+    public void setReview_rank_average(Double review_rank_average) {
+        this.review_rank_average = review_rank_average;
+    }
+
+    public Integer getReview_count() {
+        return review_count;
+    }
+
+    public void setReview_count(Integer review_count) {
+        this.review_count = review_count;
     }
 }
