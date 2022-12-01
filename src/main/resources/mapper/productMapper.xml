@@ -76,6 +76,7 @@
     <resultMap id="ColorCodeDto" type="ColorCodeDto">
         <result column="color_code_number" property="color_code_number"/>
         <result column="color_code_name" property="color_code_name"/>
+        <result column="color_code_code" property="color_code_code"/>
     </resultMap>
 
     <resultMap id="ProductSizeColorDto" type="ProductSizeColorDto">
@@ -98,6 +99,7 @@
         product_class,
         product_size_color_amount,
         color_code_name,
+        color_code_code,
         size_code_name
         FROM product
         JOIN product_size_color psc on product.product_number = psc.product_number

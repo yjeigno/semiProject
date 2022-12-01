@@ -1,5 +1,6 @@
 package com.hanssem.app.dao;
 
+import com.hanssem.app.dto.ImageColorDto;
 import com.hanssem.app.dto.ImageDto;
 import com.hanssem.app.dto.ProductDto;
 import com.hanssem.app.dto.SizeCodeDto;
@@ -35,5 +36,11 @@ public class DealDaoTest {
          List<SizeCodeDto> list = DealDao.selectSize(1);
         System.out.println("list : "+ list.toString());
 
+    }
+    @Test
+    public void selectSizeColor() throws Exception{
+//        .get(0).getColorCodeDto().getColor_code_name().length()
+        List<ImageColorDto> list = DealDao.selectImgColor(1);
+        System.out.println("list : " + list.get(0));
     }
 }

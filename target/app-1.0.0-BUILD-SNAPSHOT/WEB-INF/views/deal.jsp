@@ -21,12 +21,13 @@
 
 <script>
     // 소비자가, 가격에 원 하고 , 표시
-    var oPrice = ${pdto.product_price};
+    var oPrice = ${pInfo.product_price};
     <%--여기에 ${pdto.product_price}--%>
-    var sPrice = ${pdto.product_status==2?"":pdto.product_price};
+    var sPrice = ${pInfo.product_status==2?"":pInfo.product_price};
     <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
     var logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
     var logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
+    var colorLength = ${imgList.size()}
 </script>
 <head>
     <title>deal</title>
@@ -159,21 +160,28 @@
             <div class="d_sub_nav"></div>
             <div class="d_product">
                 <div class="d_img_box">
-                    <div class="d_img"><img src="<c:url value='${idto.image_path}'/>"></div>
+                        <c:forEach items="${imgList}" var="img">
+                            <div class="d_img">
+                                <img src="<c:url value='${img.imageDto.image_path}'/>">
+                            </div>
+                        </c:forEach>
                     <div class="d_indicator">
+                        <c:forEach items="${imgList}" var="color">
+                                    <%--  ${color.colorCodeDto.color_code_name} 이거를 색상코드화 한 칼럼이 필요 백그라운드에 넣기--%>
+                            <div class="d_indi_btn" style="background-color:${color.colorCodeDto.color_code_code}">
+<%--                                <c:out value="${color.colorCodeDto.color_code_name}"/>--%>
+                            </div>
+                        </c:forEach>
                         <!-- 상품의 색상 값 만큼 생성  / 색상에 맞는 이미지 찾아서 이동-->
-                        <div class="d_indi_btn"></div>
-                        <div class="d_indi_btn"></div>
-                        <div class="d_indi_btn"></div>
                     </div>
                 </div>
                 <div class="d_info_box">
                     <!-- <span class="d_heart_box"></span> -->
-                    <div class="d_head">${pdto.product_name}</div>
+                    <div class="d_head">${pInfo.product_name}</div>
                     <table class="d_b_tb2">
                         <tr class="d_b_tb2">
                             <td class="d_title">상품요약정보</td>
-                            <td class="d_contents">${pdto.product_content}</td>
+                            <td class="d_contents">${pInfo.product_content}</td>
                         </tr>
                         <tr>
                             <td class="d_title">소비자가</td>
@@ -207,8 +215,8 @@
                         <tr>
                             <td class="d_title">사이즈</td>
                             <td class="d_contents" id="size_contents">
-                                <c:forEach items="${list2}" var="size">
-                                   <div id="size_btn"><c:out value="${size.sizeCodeDto.size_code_name}"/></div>
+                                <c:forEach items="${list}" var="size">
+                                   <div id="size_btn"><c:out value="${size.size_code_name}"/></div>
                                 </c:forEach>
                             </td>
                         </tr>
@@ -216,7 +224,8 @@
                             <td class="d_title">색상</td>
                             <td class="d_contents">
                                 <c:forEach items="${list2}" var="color">
-                                    <div id="size_btn"><c:out value="${color.colorCodeDto.color_code_name}"/></div>
+                                    <div id="size_btn"style="background-color:${color.colorCodeDto.color_code_code}" >
+                                            </div>
                                 </c:forEach>
                             </td>
                         </tr>
