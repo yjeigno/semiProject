@@ -215,15 +215,15 @@
                         <tr>
                             <td class="d_title">사이즈</td>
                             <td class="d_contents" id="size_contents">
-                                <c:forEach items="${list}" var="size">
-                                   <div id="size_btn"><c:out value="${size.size_code_name}"/></div>
+                                <c:forEach items="${sizeList}" var="size">
+                                   <div id="size_btn"><c:out value="${size.sizeCodeDto.size_code_name}"/></div>
                                 </c:forEach>
                             </td>
                         </tr>
                         <tr>
                             <td class="d_title">색상</td>
                             <td class="d_contents">
-                                <c:forEach items="${list2}" var="color">
+                                <c:forEach items="${colorList}" var="color">
                                     <div id="size_btn"style="background-color:${color.colorCodeDto.color_code_code}" >
                                             </div>
                                 </c:forEach>

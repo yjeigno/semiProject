@@ -30,7 +30,7 @@ public class DealDao {
         }
 
         // 특정 상품의 사이즈 불러오기
-        public List<SizeCodeDto> selectSize(Integer product_number){
+        public List<CateSizeDto> selectSize(Integer product_number){
             return session.selectList(productPath+"selectSize",product_number);
         }
         // 특정 상품의 사이즈에 맞는 컬러 불러오기

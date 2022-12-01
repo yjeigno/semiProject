@@ -32,12 +32,6 @@ public class DealDaoTest {
     }
 
     @Test
-    public void selectSize() throws Exception{
-         List<SizeCodeDto> list = DealDao.selectSize(1);
-        System.out.println("list : "+ list.toString());
-
-    }
-    @Test
     public void selectSizeColor() throws Exception{
 //        .get(0).getColorCodeDto().getColor_code_name().length()
         List<ImageColorDto> list = DealDao.selectImgColor(1);

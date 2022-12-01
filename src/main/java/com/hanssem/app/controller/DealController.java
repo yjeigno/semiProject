@@ -29,14 +29,14 @@ public class DealController {
             List<ImageColorDto> imageColorDto = dealService.showImgColor(1);
             m.addAttribute("imgList",imageColorDto);
 
-            List<SizeCodeDto> list = dealService.show3(1);
-            m.addAttribute("list",list);
+            List<CateSizeDto> sizeList = dealService.showSize(1);
+            m.addAttribute("sizeList",sizeList);
 
             Map map = new HashMap();
             map.put("product_number",1);
             map.put("size_code_name",'Q');
-            List<ProductSizeColorDto> list2 = dealService.getColor(map);
-            m.addAttribute("list2",list2);
+            List<ProductSizeColorDto> sizeColorList = dealService.getColor(map);
+            m.addAttribute("colorList",sizeColorList);
 
             return "deal";
 
