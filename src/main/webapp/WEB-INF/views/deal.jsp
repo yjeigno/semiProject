@@ -159,7 +159,7 @@
             <div class="d_sub_nav"></div>
             <div class="d_product">
                 <div class="d_img_box">
-                    <div class="d_img"><img src="${idto.image_path}"></div>
+                    <div class="d_img"><img src="<c:url value='${idto.image_path}'/>"></div>
                     <div class="d_indicator">
                         <!-- 상품의 색상 값 만큼 생성  / 색상에 맞는 이미지 찾아서 이동-->
                         <div class="d_indi_btn"></div>
@@ -207,8 +207,8 @@
                         <tr>
                             <td class="d_title">사이즈</td>
                             <td class="d_contents" id="size_contents">
-                                <c:forEach items="${list}" var="size">
-                                   <div id="size_btn"><c:out value="${size.size_code_name}"/></div>
+                                <c:forEach items="${list2}" var="size">
+                                   <div id="size_btn"><c:out value="${size.sizeCodeDto.size_code_name}"/></div>
                                 </c:forEach>
                             </td>
                         </tr>
