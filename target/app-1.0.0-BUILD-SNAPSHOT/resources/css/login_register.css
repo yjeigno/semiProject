@@ -11,7 +11,9 @@ h2, h1, h3,h5{margin: 0;}
 }
 input[name="member_btn"] { display: none; }
 
-
+.colSpace{
+    height: 55px;
+}
 
 /* ////////////////////////////////////////////////////////// */
 /* 메인 탭(로그인/회원가입) 버튼 */
@@ -173,11 +175,9 @@ button {
 }
 
 input[name="regi_gender"]{
-    /* display: none; */
+    display: none;
 }
-.gender_box{
 
-}
 .gender_m, .gender_f{
     display: inline-block;
     width: 50px;
@@ -185,14 +185,57 @@ input[name="regi_gender"]{
     margin-left: 10px;
     background: gray;
     color: white;
+    border-radius: 5px;
     font-weight: 600;
     text-align: center;
 
 }
+/* //////////////////////////////////////////// */
+/* 이메일 영역 */
+#mail_domain{
+    width: 100px;
+}
+/* ///////////////////////////////////////////// */
+/* 주소입력 */
 
+#regi_generalAddress{
+    width: 245px;
+}
+#regi_address_detail{
+    width: 245px;
+}
+/* ////////////////////////////////////////////// */
+/* sms 수신 */
+input[name="sms_chk"]{
+    accent-color: black;
+    margin: 0;
+}
+.regi_sms_y, .regi_sms_n{
+    font-size: 10px;
+    font-weight: 600;
+}
+/* ////////////////////////////////////////////// */
+/* 이용약관 */
+textarea{
+    width: 500px;
+    height: 300px;
+    font-size: 12px;
+    text-align:left;
+    outline: none;
+    resize: none;
 
+    /* vertical-align: auto; */
 
-/* 이벤트 목록 */
+}
+#agree_y{
+    accent-color: black;
+}
+.regi_agree{
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+/* /////////////////////////////////이벤트 목록///////////////////////////////// */
 /* 메인 탭버튼(로그인/회원가입) 호버 밑줄 */
 .m_btn_line:hover {
     cursor: pointer;
@@ -226,21 +269,9 @@ input[name="regi_gender"]{
 }
 /* 메인 판 회원가입 판 높이 조절 */
 #regi_btn:checked ~ .member_sec{
-    height: 800px;
+    height: 1300px;
 }
 
-
-
-/* 성별 아직 못함 */
-.gender_m,.gender_f:hover{
-    background: black;
-    cursor: pointer;
-}
-
-#regi_gender_male:checked ~ .regi_row_sec > .gender_m,
-#regi_gender_female:checked ~ .regi_row_sec > .gender_f{
-    background: black;
-}
 
 /* 메인 탭버튼(로그인/회원가입) 호버 밑줄 */
 .m_btn_line:hover {
@@ -250,10 +281,13 @@ input[name="regi_gender"]{
     border-bottom: 3px solid black;
 }
 /* 메인 탭버튼 클릭 시, 글씨/밑줄 색변환 */
-#login_btn:checked ~ .member_sec > .tap_btn > label:nth-child(1),
-#regi_btn:checked ~ .member_sec > .tap_btn > label:nth-child(2) {
+#login_btn:checked ~ .member_sec > .tap_btn > .gender_color
+#regi_btn:checked ~ .member_sec > .tap_btn > .gender_color {
     color: black;
     border-bottom: 3px solid black;
 }
-
-
+/* 성별 */
+#regi_gender_male:checked ~ .gender_m,
+#regi_gender_female:checked ~ .gender_f{
+    background: black;
+}

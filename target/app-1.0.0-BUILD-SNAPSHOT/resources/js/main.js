@@ -100,15 +100,16 @@ $(document).ready(function(){
         }
     })
 
+    let countBest=1;
 //인기상품 더보기
     $(document).on('click', '.best', function(){
-        if(count == 1){
+        if(countBest == 1){
             for(let i=0; i<8; i++){
                 $('.main_sec_best > .items_area')
                     .append(
                         '<div class="item"><div class="img_box"><img src="../img/main/best1.png" alt="" id="best_img1" ></div><div class="item_txt"><h4>SAMPLE</h4><h5>상품요약 설명</h5><h5><del>000,000원</del></h5><h4>000,000원</h4></div>')
             }
-            count++
+            countBest++
         }
     })
 
