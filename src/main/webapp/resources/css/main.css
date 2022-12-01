@@ -153,7 +153,7 @@
     display: none;
 }
 
-
+/* 메인배너 틀 */
 .main_banner{
     margin: 0 auto;
     width: 1200px;
@@ -163,6 +163,7 @@
 
     /* z-index: -99; */
 }
+/* 이미지영역 */
 .banner {
     width: 100%;
     height: 100%;
@@ -183,20 +184,19 @@
     outline: none;
     border: none;
     cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-
-
+    /* display: flex;
+    justify-content: space-between; */
 }
 
 #btn_slide_L {
     left: 0 ;
-    background-image: url(../img/main/btn_L.png);
+    background:url(./img/main/btn_L.png) ;
 }
 #btn_slide_R {
     right: 0;
-    background-image: url(../img/main/btn_R.png);
+    background: url(./img/main/btn_R.png) ;
 }
+
 .circle_indicator {
     position: absolute;
     bottom: 10px;

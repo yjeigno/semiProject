@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script defer src="./js/header.js"></script>
     <script defer src="./js/main.js"></script>
+    <script defer src="./js/main_cart.js"></script>
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/main.css">
@@ -17,9 +18,8 @@
 <body>
 <div id="wrap">
     <div class="basket_box">
-
         <div class="basket_min">
-            <div class="basket_icon"><img src="./img/main/cart_img.png" alt=""></div>
+            <div class="basket_icon"><img src="./img/main/cart_img.png" class="cart_img" alt=""></div>
             <div class="basket_total_quentity">(1)</div>
         </div>
 
@@ -64,8 +64,8 @@
     <!-- 팝업배너 -->
     <input type="checkbox" value="close" id="close">
     <div class="event_banner">
-        <a href="#"><img src="img/main/event_banner.png" alt="" id="event_img"></a>
-        <label for="close" class="close_img"><img src="./img/main/X.png" alt=""></label>
+        <a href="/specialPrice"><img src="./img/main/event_banner.png " alt="" id="event_img"></a>
+        <label for="close" class="close_img"><img src="./img/main/X.png" width="20px"height="20px" alt=""></label>
     </div>
 
 
@@ -211,15 +211,16 @@
 
 
 
-    <div class="main_sec">
+    <div class="main_sec main_sec_new">
         <div class="sec_title">
             <div class="main_title">NEW ARRIVALS</div>
             <br>
             <h4 class="sub_title">한샘의 새로운 상품을 구경하세요.</h4>
-            <a href="#_new"><div class="more"><u>More</u></div></a>
+              <a href="#_new"><div class="more new">More</div></a>
         </div>
 
         <div class="items_area">
+
             <div class="item">
                 <div class="img_box"><img src="./img/main/new1.png" alt="" id="new_img1" ></div>
                 <div class="item_txt">
@@ -265,12 +266,13 @@
         </div>
 
 
-        <div class="main_sec">
+        <div class="main_sec main_sec_best">
             <div class="sec_title">
                 <div class="main_title">BEST PRODUCTS</div>
                 <br>
                 <h4 class="sub_title">한샘의 인기 상품을 구경하세요.</h4>
-                <a href="#_new"><div class="more">More</div></a>
+                <a href="#_best"><div class="more best">More</div></a>
+
             </div>
 
             <div class="items_area">
@@ -323,7 +325,7 @@
                     <div class="main_title">HANSAM INTERIORS</div>
                     <br>
                     <h4 class="sub_title">한샘제품으로 꾸민 인테리어를 구경하세요.</h4>
-                    <a href="#_new"><div class="more"><u>More</u></div></a>
+                    <a href="#_new"><div class="more interior"><u>More</u></div></a>
                 </div>
 
                 <div class="items_area">
