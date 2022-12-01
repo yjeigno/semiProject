@@ -15,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>메인페이지 초안</title>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script defer src="js/header.js"></script>
-  <script defer src="js/main.js"></script>
-  <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/main.css">
+  <script defer src="./js/header.js"></script>
+  <script defer src="./js/main.js"></script>
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
