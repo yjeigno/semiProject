@@ -1,3 +1,8 @@
+img {
+    width: 100%;
+    height: 100%;
+}
+
 .d_sub_nav {
     height: 50px;
     /* background-color: brown; */
@@ -239,11 +244,11 @@ strong {
     gap: 5px;
 }
 #size_btn{
-    width:30px;
-    height: 30px;
+    width:40px;
+    height: 40px;
     background-color: #ddd;
     border: 1px solid #353535;
     box-sizing: border-box;
-    line-height: 30px;
+    line-height: 40px;
     text-align: center;
 }
