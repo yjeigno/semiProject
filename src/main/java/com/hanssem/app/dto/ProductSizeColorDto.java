@@ -6,8 +6,30 @@ public class ProductSizeColorDto {
     private Integer product_number;
     private Integer size_code_number;
     private Integer color_code_number;
-    private ColorCodeDto colorCodeDto;
+
+    private ProductDto productDto;
     private SizeCodeDto sizeCodeDto;
+    private ColorCodeDto colorCodeDto;
+
+    public ProductSizeColorDto(){}
+    public ProductSizeColorDto(Integer product_size_color_number, Integer product_size_color_amount, Integer product_number, Integer size_code_number, Integer color_code_number, ProductDto productDto, SizeCodeDto sizeCodeDto, ColorCodeDto colorCodeDto) {
+        this.product_size_color_number = product_size_color_number;
+        this.product_size_color_amount = product_size_color_amount;
+        this.product_number = product_number;
+        this.size_code_number = size_code_number;
+        this.color_code_number = color_code_number;
+        this.productDto = productDto;
+        this.sizeCodeDto = sizeCodeDto;
+        this.colorCodeDto = colorCodeDto;
+    }
+
+    public ProductDto getProductDto() {
+        return productDto;
+    }
+
+    public void setProductDto(ProductDto productDto) {
+        this.productDto = productDto;
+    }
 
     public Integer getProduct_size_color_number() {
         return product_size_color_number;
@@ -65,16 +87,7 @@ public class ProductSizeColorDto {
         this.sizeCodeDto = sizeCodeDto;
     }
 
-    public ProductSizeColorDto(){}
 
-    public ProductSizeColorDto(Integer product_size_color_number, Integer product_size_color_amount, Integer product_number, Integer size_code_number, Integer color_code_number, ColorCodeDto colorCodeDto, SizeCodeDto sizeCodeDto) {
-        this.product_size_color_number = product_size_color_number;
-        this.product_size_color_amount = product_size_color_amount;
-        this.product_number = product_number;
-        this.size_code_number = size_code_number;
-        this.color_code_number = color_code_number;
 
-        this.colorCodeDto = colorCodeDto;
-        this.sizeCodeDto = sizeCodeDto;
-    }
+
 }

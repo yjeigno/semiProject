@@ -20,7 +20,7 @@ img {
 .d_img_box {
     width: 100%;
     height: 520px;
-    /*background-color: skyblue;*/
+    background-color: #dddddd;
 
     position: relative;
 
@@ -138,7 +138,7 @@ img {
     padding: 1px 0 1px 20px;
     line-height: 1.4;
     font-size: 11px;
-    background: url(/img/ico_info.gif) no-repeat 0 2px;
+    /*background: url(/img/ico_info.gif) no-repeat 0 2px;*/
     color: #f76560
 }
 th {

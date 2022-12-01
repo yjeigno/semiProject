@@ -7,17 +7,21 @@
         <!-- 여기는 별칭 정하는곳  ProductMapper 에 resultType="ProductDto" 이다.  -->
         <typeAlias alias="ProductDto" type="com.hanssem.app.dto.ProductDto"/>
         <typeAlias alias="ImageDto" type="com.hanssem.app.dto.ImageDto"/>
-        <typeAlias alias="SizeCodeDto" type="com.hanssem.app.dto.SizeCodeDto"/>
-        <typeAlias alias="CateSizeDto" type="com.hanssem.app.dto.CateSizeDto"/>
-        <typeAlias alias="ProductSizeColorDto" type="com.hanssem.app.dto.ProductSizeColorDto"/>
+        <typeAlias alias="ImageColorDto" type="com.hanssem.app.dto.ImageColorDto"/>
         <typeAlias alias="ColorCodeDto" type="com.hanssem.app.dto.ColorCodeDto"/>
+        <typeAlias alias="CateCodeDto" type="com.hanssem.app.dto.CateCodeDto" />
+        <typeAlias alias="CateSizeDto" type="com.hanssem.app.dto.CateSizeDto"/>
+        <typeAlias alias="SizeCodeDto" type="com.hanssem.app.dto.SizeCodeDto"/>
+        <typeAlias alias="ProductSizeColorDto" type="com.hanssem.app.dto.ProductSizeColorDto"/>
+
         <typeAlias alias="SearchCondition" type="com.hanssem.app.dto.SearchCondition" />
         <typeAlias alias="CategoryDto" type="com.hanssem.app.dto.CategoryDto" />
         <typeAlias alias="SearchResult" type="com.hanssem.app.dto.SearchResult" />
         <typeAlias alias="SizeDto" type="com.hanssem.app.dto.SizeDto" />
+
         <typeAlias alias="SpecialPriceDto" type="com.hanssem.app.dto.SpecialPriceDto"/>
-        <typeAlias alias="ImageColorDto" type="com.hanssem.app.dto.ImageColorDto"/>
 
 
     </typeAliases>
 </configuration>
+
