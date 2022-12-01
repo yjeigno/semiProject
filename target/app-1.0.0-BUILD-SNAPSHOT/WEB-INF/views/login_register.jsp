@@ -210,7 +210,7 @@
         <div class="t2">한샘몰 회원가입을 통해 많은 혜택을 누리세요.</div>
       </div>
 
-      <form action="<c:url value='/register'/>" method="POST" id="regi_form" onsubmit="return formCheck(this)">
+      <form action="#" method="POST" id="regi_form" onsubmit="return formCheck(this)">
 
         <table class="regi_form_table">
 
@@ -220,7 +220,7 @@
             <td class="regi_col1">아이디</td>
             <td class="regi_col2 colSpace">
               <input type="text" name="regi_id" value="" minlength="6" maxlength="12">
-              <input type="button"name='regi_id_chk' type="button" value="중복확인" onclick="">
+              <input type="button"name='regi_id_chk' value="중복확인" onclick="">
               <br>
               <span class="min_txt">최소 6자 이상 최대 12자 이내로 입력 해주세요.</span>
               <!-- <div class="regi_msg" id="regi_msg">${URLDecoder.decode(param.msg, "utf-8")}</div> -->
@@ -294,7 +294,7 @@
               <input type="text" class="regi_post_code" id="regi_post_code" value="" readonly>
               <input type="button" class="regi_address_search" id="regi_address_search" value="주소검색" onclick="search_post_code()">
               <br>
-              <input type="text" name="regi_general_address" id="regi_general_address" value=""readonly>
+              <input type="text" name="regi_general_address" id="regi_general_address" value="" readonly>
               <br>
               <input type="text" name="regi_address_detail" id="regi_address_detail" value="" minlength="6" maxlength="12">
             </td>
@@ -303,10 +303,10 @@
           <tr class="regi_row_sec">
             <td class="regi_col1">sms 수신동의</td>
             <td class="regi_col2 colSpace">
-              <input type ="radio" name="sms_chk" id="sms_y" checked/>
+              <input type ="radio" name="sms_chk" id="sms_y" checked>
               <label for="sms_y" class="regi_sms_y">예, 이벤트 정보를 수신 하겠습니다.</label>
               <br>
-              <input type="radio" name="sms_chk" id="sms_n"/>
+              <input type="radio" name="sms_chk" id="sms_n">
               <label for="sms_n" class="regi_sms_n">아니오, 이벤트 정보를 수신하지 않겠습니다.</label>
             </td>
           </tr>
@@ -318,7 +318,7 @@
 
             <td class="regi_col2 colSpace">
 
-                        <textarea class="agree_form" wrap="off" disabled value>
+                        <textarea class="agree_form"  wrap="hard" disabled>
 가. 개인정보의 수집 및 이용 목적
 국가공간정보포털은 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는 경우에는 개인정보 보호법 제18조에 따라 별도의 동의를 받는 등 필요한 조치를 이행할 예정입니다.
 
@@ -344,8 +344,8 @@
 위 개인정보의 수집 및 이용에 대한 동의를 거부할 수 있으나, 동의를 거부할 경우 회원 가입이 제한됩니다.
                         </textarea>
               <br>
-              <input type ="checkbox" name="agree_y" id="agree_y"/>
-              <label for="agree_y" class="regi_agree">(필수)예, 정보이용에 동의합니다.</label>
+              <input type ="checkbox" name="agree_y" id="agree_y">
+              <label for="agree_y" class="regi_agree"><span>(필수)예, 정보이용에 동의합니다.</span></label>
             </td>
           </tr>
 

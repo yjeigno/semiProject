@@ -35,7 +35,7 @@ input[name="member_btn"] { display: none; }
     height: 100%;
     border-bottom: 3px solid gray;
     color: gray;
-    border-width: 1,4;
+    border-width: 1px 4px;
     border-spacing: 2px;
     text-align: center;
 }
@@ -109,6 +109,9 @@ h3{
     box-sizing: border-box;
     margin-bottom: 10px;
 }
+#rememberId{
+    accent-color: black;
+}
 h5{
     display: inline;
 }
@@ -174,9 +177,7 @@ button {
     box-sizing: border-box;
 }
 
-input[name="regi_gender"]{
-    display: none;
-}
+input[name="regi_gender"] { display: none; }
 
 .gender_m, .gender_f{
     display: inline-block;
@@ -216,13 +217,16 @@ input[name="sms_chk"]{
 }
 /* ////////////////////////////////////////////// */
 /* 이용약관 */
-textarea{
+.agree_form{
     width: 500px;
     height: 300px;
     font-size: 12px;
     text-align:left;
     outline: none;
     resize: none;
+    wrap-option: off;
+    resize: none;
+
 
     /* vertical-align: auto; */
 
@@ -281,7 +285,7 @@ textarea{
     border-bottom: 3px solid black;
 }
 /* 메인 탭버튼 클릭 시, 글씨/밑줄 색변환 */
-#login_btn:checked ~ .member_sec > .tap_btn > .gender_color
+#login_btn:checked ~ .member_sec > .tap_btn > .gender_color,
 #regi_btn:checked ~ .member_sec > .tap_btn > .gender_color {
     color: black;
     border-bottom: 3px solid black;
