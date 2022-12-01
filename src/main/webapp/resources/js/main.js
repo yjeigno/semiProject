@@ -87,8 +87,6 @@ $(document).ready(function(){
 
 
 
-
-
     let count=1;
     // 신상품 더보기
     $(document).on('click', '.new', function(){

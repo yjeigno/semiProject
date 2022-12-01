@@ -29,6 +29,10 @@
     background: white;
     cursor: pointer;
 }
+.cart_img{
+    width: 50px;
+    height: 50px;
+}
 .basket_icon{
     width: 50%;
     height: 100%;
@@ -137,7 +141,14 @@
     top: calc(100vh - 200px);
     z-index: 99999;
 }
-
+#event_img{
+    width:270px;
+    height: 150px;
+}
+.close_img > img{
+    width:20px;
+    height:20px;
+}
 #close{
     display: none;
 }
@@ -189,12 +200,12 @@
 }
 
 #btn_slide_L {
-    left: 0 ;
-    background:url(./img/main/btn_L.png) ;
+    left: 0;
+    background:url(../img/main/btn_L.png);
 }
 #btn_slide_R {
     right: 0;
-    background: url(./img/main/btn_R.png) ;
+    background: url(../img/main/btn_R.png) ;
 }
 
 .circle_indicator {

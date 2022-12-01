@@ -65,7 +65,7 @@
     <input type="checkbox" value="close" id="close">
     <div class="event_banner">
         <a href="/specialPrice"><img src="./img/main/event_banner.png " alt="" id="event_img"></a>
-        <label for="close" class="close_img"><img src="./img/main/X.png" width="20px"height="20px" alt=""></label>
+        <label for="close" class="close_img"><img src="./img/main/X.png"  alt=""></label>
     </div>
 
 
