@@ -82,7 +82,7 @@ $(document).ready(function(){
     $('.d_img').eq(0).css({ left: 0});
     // 인디케이터 클릭
     $('.d_indi_btn').click(function(){
-        console.log($(this).index() , $('.indi_active').index())
+        // console.log($(this).index() , $('.indi_active').index())
 
         let tmp_index = $(this).index()
 

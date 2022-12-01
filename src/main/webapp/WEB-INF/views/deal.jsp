@@ -214,17 +214,17 @@
                     <table class="d_b_tw2 d_b_bw2">
                         <tr>
                             <td class="d_title">사이즈</td>
-                            <td class="d_contents" id="size_contents">
+                            <td class="d_contents sc_contents">
                                 <c:forEach items="${sizeList}" var="size">
-                                   <div id="size_btn"><c:out value="${size.sizeCodeDto.size_code_name}"/></div>
+                                   <div class="sc_btn"><c:out value="${size.sizeCodeDto.size_code_name}"/></div>
                                 </c:forEach>
                             </td>
                         </tr>
                         <tr>
                             <td class="d_title">색상</td>
-                            <td class="d_contents">
+                            <td class="d_contents sc_contents">
                                 <c:forEach items="${colorList}" var="color">
-                                    <div id="size_btn"style="background-color:${color.colorCodeDto.color_code_code}" >
+                                    <div class="sc_btn"style="background-color:${color.colorCodeDto.color_code_code}" >
                                             </div>
                                 </c:forEach>
                             </td>
