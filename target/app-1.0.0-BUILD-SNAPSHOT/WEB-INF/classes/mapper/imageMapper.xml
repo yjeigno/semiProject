@@ -2,6 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/schema/mybatis-3-mapper.dtd">
 <mapper namespace="com.hanssem.app.dao.imageMapper">
+<!-- ImageDto resultMap -->
+    <resultMap id="ImageDto" type="ImageDto">
+        <result column="image_number" property="image_number"/>
+        <result column="image_path" property="image_path"/>
+        <result column="image_file_name" property="image_file_name"/>
+        <result column="image_rename_file_name" property="image_rename_file_name"/>
+        <result column="image_code_number" property="image_code_number"/>
+        <result column="image_register_date" property="image_register_date"/>
+        <result column="product_number" property="product_number"/>
+    </resultMap>
+<!-- ColorCodeDto resultMap -->
+    <resultMap id="ColorCodeDto" type="ColorCodeDto">
+        <result column="color_code_number" property="color_code_number"/>
+        <result column="color_code_name" property="color_code_name"/>
+        <result column="color_code_code" property="color_code_code"/>
+
+    </resultMap>
+<!-- ImageColorDto resultMap -->
+    <resultMap id="ImageColorDto" type="ImageColorDto">
+        <result column="image_color_number" property="image_color_number"/>
+        <result column="image_number" property="image_number"/>
+        <result column="color_code_number" property="color_code_number"/>
+
+        <collection property="imageDto" resultMap="ImageDto"/>
+        <collection property="colorCodeDto" resultMap="ColorCodeDto"/>
+    </resultMap>
+
 <!--    상품 이미지 등록-->
     <insert id="insert" parameterType="ImageDto">
         INSERT INTO image
@@ -10,7 +37,24 @@
         (#{image_path},#{image_file_name},#{image_rename_file_name},#{image_code_number},#{product_number})
     </insert>
 
-    <select id="select" parameterType="int" resultType="ImageDto">
+<!--    상품에 맞는 이미지경로 불러오기-->
+    <select id="selectImg" parameterType="int" resultType="ImageDto">
         SELECT * FROM image WHERE product_number = #{product_number}
     </select>
+
+<!--    상품에 맞는 이미지경로와 이미지에 맞는 색상 이름 불러오기    -->
+    <select id="selectImgColor" resultMap="ImageColorDto">
+        SELECT color_code_name,
+        color_code_code,
+        image_path,
+        product_number
+        FROM image_color
+        JOIN color_code cc on image_color.color_code_number = cc.color_code_number
+        JOIN image i on image_color.image_number = i.image_number
+        WHERE product_number = #{product_number}
+    </select>
+
+
+
+
 </mapper>
