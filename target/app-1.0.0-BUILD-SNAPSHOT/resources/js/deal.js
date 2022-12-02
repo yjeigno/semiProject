@@ -97,21 +97,21 @@ $(document).ready(function(){
         }
     });
 
-    // 사이즈 클릭하면 선택한 사이즈에 테두리 넣어주기
-    function bg_rb(){
-        for(let i =0; i<$('sclick').length ; i++){
-            $('sclick').eq(i).css({
-                background: '#ddd'
-            })
-        }
-    }
-    $('sclick').click(function (){
-        let sc = this.style.background
-        bg_rb()
-        if(sc != 'gray') {
-            $(this).css({
-                background:'gray'
-            })
-        }
-    })
+    // 사이즈 클릭하면 선택한 사이즈에 테두리 넣어주기 ( 보류 )
+    // function bg_rb(){
+    //     for(let i =0; i<$('sclick').length ; i++){
+    //         $('sclick').eq(i).css({
+    //             background: '#ddd'
+    //         })
+    //     }
+    // }
+    // $('sclick').click(function (){
+    //     let sc = this.style.background
+    //     bg_rb()
+    //     if(sc != 'gray') {
+    //         $(this).css({
+    //             background:'gray'
+    //         })
+    //     }
+    // })
 });

@@ -64,7 +64,7 @@
     <!-- 팝업배너 -->
     <input type="checkbox" value="close" id="close">
     <div class="event_banner">
-        <a href="/specialPrice"><img src="./img/main/event_banner.png " alt="" id="event_img"></a>
+        <a href="specialPrice"><img src="./img/main/event_banner.png " alt="" id="event_img"></a>
         <label for="close" class="close_img"><img src="./img/main/X.png"  alt=""></label>
     </div>
 
@@ -73,9 +73,9 @@
         <div class="content_area header_top">
             <ul class="top_nav_ul">
                 <!-- 회원가입 페이지로 이동 -->
-                <li><a href="/login_register">JOIN</a></li>
+                <li><a href="login_register">JOIN</a></li>
                 <!-- 로그인 페이지로 이동 -->
-                <li><a href="/login_register">LOGIN</a></li>
+                <li><a href="login_register">LOGIN</a></li>
                 <!-- 위시리스트 내역 페이지로 이동 -->
                 <li><a href="#">WISHLIST</a></li>
                 <!-- 본인인증 후 / 마이페이지로 이동 -->

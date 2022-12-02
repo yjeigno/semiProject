@@ -56,7 +56,7 @@
                         if(colorInfo.colorCodeDto.color_code_code != 'noneColorCode'){
                             colorText += colorInfo.colorCodeDto.color_code_code;
                             $('#sizeColor').append(
-                                "<div class='sc_btn' style='background-color:" + colorInfo.colorCodeDto.color_code_code + ";'>"
+                                "<div class='sc_btn cclick' style='background-color:" + colorInfo.colorCodeDto.color_code_code + ";'>"
                                 + "</div>"
                             )
                         }
