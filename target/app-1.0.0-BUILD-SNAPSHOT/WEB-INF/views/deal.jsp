@@ -21,7 +21,6 @@
 <%--<script src="/js/header.js"></script>--%>
 
 <script>
-
     // 소비자가, 가격에 원 하고 , 표시
     var oPrice = ${pInfo.product_price};
     <%--여기에 ${pdto.product_price}--%>
@@ -29,8 +28,11 @@
     <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
     var logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
     var logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
-    var colorLength = ${imgList.size()}
-        // 사이즈 클릭하면 맞는 색상 나오게 하기.. 개힘들었따
+    var deleteBtn = "<c:url value='/img/dealImg/btn_price_delete.gif'/>"
+    var optTitle = "${pInfo.product_name}";
+
+    <%--var colorLength = ${imgList.size()}--%>
+        // 사이즈 클릭하면 맞는 색상 나오게 하기..
         function ajax(size_code_name,product_number){
             let colorText = "";
             let jsonData = {
@@ -52,12 +54,19 @@
                     // console.log(ParseColorList);
                     for(let i = 0 ; i < ParseColorList.length ; i++){
                         let colorInfo = ParseColorList[i];
-                        // console.log(colorInfo.colorCodeDto.color_code_code)
+                        console.log(colorInfo)
+
                         if(colorInfo.colorCodeDto.color_code_code != 'noneColorCode'){
-                            colorText += colorInfo.colorCodeDto.color_code_code;
+                            let colorCodeText = colorInfo.colorCodeDto.color_code_code;
+                            let colorSizeText = colorInfo.sizeCodeDto.size_code_name;
+                            let colorNameText = colorInfo.colorCodeDto.color_code_name;
+                            colorId = colorCodeText.split('#')[1] ;
+                            console.log(colorNameText) ;
+                            console.log(colorSizeText) ;
                             $('#sizeColor').append(
-                                "<div class='sc_btn' style='background-color:" + colorInfo.colorCodeDto.color_code_code + ";'>"
-                                + "</div>"
+                                "<div class='sc_btn cClick' id='"+ colorId + "' style='background-color:" + colorCodeText + ";'>"
+                               +
+                                "</div>"
                             )
                         }
                     }
@@ -74,6 +83,7 @@
                 }
             })
         }
+
 </script>
 <head>
     <title>deal</title>
@@ -282,10 +292,11 @@
                     </table>
                     <p class="d_p">(최소주문수량 1개 이상 / 최대주문수량 100개 이하)</p>
                     <p class="d_p2">위 옵션선택 박스를 선택하시면 아래에 상품이 추가됩니다.</p>
+                    <div class="opt_selected"></div>
                     <div class="d_total_price d_b_bw2">
-                        <strong>총 상품금액</strong>
-                        "(수량) : "
-                        <span class="d_total"><strong><em>0</em></strong>" (0개)"</span>
+                        <div>TOTAL: <span id="p_tot">0 원</span> (0개)</div>
+
+<%--                        <span class="d_total"><strong><em>0</em></strong>" (0개)"</span>--%>
                     </div>
                     <div class="d_btn_box">
                         <div>BUY NOW</div>
@@ -295,11 +306,11 @@
                 </div>
             </div>
             <ul class="d_tab_btn">
-                <li> <a href="#sec1">상품상세</a> </li>
-                <li> <a href="#sec2">상품후기</a> </li>
-                <li> <a href="#sec3">상품문의</a> </li>
-                <li> <a href="#sec4">배송안내</a> </li>
-                <li> <a href="#sec5">교환/반품정책</a> </li>
+                <li class="small_btn"> <a href="#sec1">상품상세</a> </li>
+                <li class="small_btn"> <a href="#sec2">상품후기</a> </li>
+                <li class="small_btn"> <a href="#sec3">상품문의</a> </li>
+                <li class="small_btn"> <a href="#sec4">배송안내</a> </li>
+                <li class="small_btn"> <a href="#sec5">교환/반품정책</a> </li>
             </ul>
             <div class="h1000" id="sec1" >sec1</div>
             <div class="h1000" id="sec2" >sec2</div>
