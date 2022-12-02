@@ -11,12 +11,9 @@ public class ProductDto {
     private Integer product_status;
     private String product_class;
     private Integer category_code_number;
+    private String product_tag;
 
-
-
-    public ProductDto() {}
-
-    public ProductDto(Integer product_number, String product_name, Integer product_price, Timestamp product_register_date, String product_content, Integer product_status, String product_class, Integer category_code_number) {
+    public ProductDto(Integer product_number, String product_name, Integer product_price, Timestamp product_register_date, String product_content, Integer product_status, String product_class, Integer category_code_number, String product_tag) {
         this.product_number = product_number;
         this.product_name = product_name;
         this.product_price = product_price;
@@ -25,7 +22,9 @@ public class ProductDto {
         this.product_status = product_status;
         this.product_class = product_class;
         this.category_code_number = category_code_number;
+        this.product_tag = product_tag;
     }
+    public ProductDto() {}
 
     public Integer getProduct_number() {
         return product_number;
@@ -91,6 +90,14 @@ public class ProductDto {
         this.category_code_number = category_code_number;
     }
 
+    public String getProduct_tag() {
+        return product_tag;
+    }
+
+    public void setProduct_tag(String product_tag) {
+        this.product_tag = product_tag;
+    }
+
     @Override
     public String toString() {
         return "ProductDto{" +
@@ -100,8 +107,9 @@ public class ProductDto {
                 ", product_register_date=" + product_register_date +
                 ", product_content='" + product_content + '\'' +
                 ", product_status=" + product_status +
-                ", product_class=" + product_class +
+                ", product_class='" + product_class + '\'' +
                 ", category_code_number=" + category_code_number +
+                ", product_tag='" + product_tag + '\'' +
                 '}';
     }
 }

@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="app" />
+        <module name="semiProject-Juho" />
         <module name="concept-byme" />
         <module name="semiProject" />
       </profile>
@@ -17,6 +18,7 @@
       <module name="app" options="-Xlint:all" />
       <module name="concept-byme" options="-Xlint:all" />
       <module name="semiProject" options="-Xlint:all" />
+      <module name="semiProject-Juho" options="-Xlint:all" />
     </option>
   </component>
 </project>
