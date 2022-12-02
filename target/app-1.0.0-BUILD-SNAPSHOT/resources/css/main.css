@@ -29,6 +29,10 @@
     background: white;
     cursor: pointer;
 }
+.cart_img{
+    width: 50px;
+    height: 50px;
+}
 .basket_icon{
     width: 50%;
     height: 100%;
@@ -137,7 +141,14 @@
     top: calc(100vh - 200px);
     z-index: 99999;
 }
-
+#event_img{
+    width:270px;
+    height: 150px;
+}
+.close_img > img{
+    width:20px;
+    height:20px;
+}
 #close{
     display: none;
 }
@@ -153,7 +164,7 @@
     display: none;
 }
 
-
+/* 메인배너 틀 */
 .main_banner{
     margin: 0 auto;
     width: 1200px;
@@ -163,6 +174,7 @@
 
     /* z-index: -99; */
 }
+/* 이미지영역 */
 .banner {
     width: 100%;
     height: 100%;
@@ -183,20 +195,19 @@
     outline: none;
     border: none;
     cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-
-
+    /* display: flex;
+    justify-content: space-between; */
 }
 
 #btn_slide_L {
-    left: 0 ;
-    background-image: url(img/mainpage_img/btn_L.png);
+    left: 0;
+    background:url(../img/main/btn_L.png);
 }
 #btn_slide_R {
     right: 0;
-    background-image: url(img/mainpage_img/btn_R.png);
+    background: url(../img/main/btn_R.png) ;
 }
+
 .circle_indicator {
     position: absolute;
     bottom: 10px;
