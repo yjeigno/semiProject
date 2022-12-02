@@ -31,7 +31,7 @@
                         <div class="cate_major">
                             <div class="major_title">CATEGORY</div>
                             <div class="major_selector">
-                                <a href='./search?search=${sc.search}&sort=${sc.sort}$pageSize=${ph.pageSize}' class='major ${sc.category==null?"major_checked":""}'>전체(${totalAmount})</a>
+                                <a href='./search?search=${sc.search}&sort=${sc.sort}&pageSize=${ph.pageSize}' class='major ${sc.category==null?"major_checked":""}'>전체(${totalAmount})</a>
                                 <c:forEach var="cate" items="${cate}">
                                     <c:set var="cno" value="${cate.category_code_number}"/>
                                 <a href='./search?search=${sc.search}&category=${cno}&sort=${sc.sort}&pageSize=${ph.pageSize}' class='major ${sc.category==cno?"major_checked":""}' >${cate.category_code_name}(${cate.category_amount})
