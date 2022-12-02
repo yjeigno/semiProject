@@ -17,6 +17,7 @@
 <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/> "></script>
 <script src="<c:url value='/js/header.js'/> "></script>
 <script src="<c:url value='/js/deal.js'/> "></script>
+
 <%--<script src="/js/header.js"></script>--%>
 
 <script>
@@ -27,7 +28,62 @@
     <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
     var logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
     var logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
-    var colorLength = ${imgList.size()}
+    var deleteBtn = "<c:url value='/img/dealImg/btn_price_delete.gif'/>"
+    var optTitle = "${pInfo.product_name}";
+
+    <%--var colorLength = ${imgList.size()}--%>
+        // 사이즈 클릭하면 맞는 색상 나오게 하기..
+        function ajax(size_code_name,product_number){
+            let colorText = "";
+            let jsonData = {
+                "size_code_name" : size_code_name,
+                "product_number" : product_number
+            };
+            // console.log(jsonData)
+            $.ajax({
+                type : 'POST',
+                url : '/semiProject/deal/color',
+                data: JSON.stringify(jsonData),
+                dataType : 'json',
+                contentType: "application/json; charset=utf-8",
+                success : function(data){
+                    $('#sizeColor').empty();
+                    let JsonColorList = JSON.stringify(data);
+                    // console.log(JsonColorList);
+                    let ParseColorList = JSON.parse(JsonColorList);
+                    // console.log(ParseColorList);
+                    for(let i = 0 ; i < ParseColorList.length ; i++){
+                        let colorInfo = ParseColorList[i];
+                        console.log(colorInfo)
+
+                        if(colorInfo.colorCodeDto.color_code_code != 'noneColorCode'){
+                            let colorCodeText = colorInfo.colorCodeDto.color_code_code;
+                            let colorSizeText = colorInfo.sizeCodeDto.size_code_name;
+                            let colorNameText = colorInfo.colorCodeDto.color_code_name;
+                            colorId = colorCodeText.split('#')[1] ;
+                            console.log(colorNameText) ;
+                            console.log(colorSizeText) ;
+                            $('#sizeColor').append(
+                                "<div class='sc_btn cClick' id='"+ colorId + "' style='background-color:" + colorCodeText + ";'>"
+                               +
+                                "</div>"
+                            )
+                        }
+                    }
+                },
+                error : function(err) {
+                    console.log("");
+                    console.log("[requestPostBodyJson] : [error] : " + JSON.stringify(err));
+                    console.log("");
+                },
+                complete : function(data,textStatus) {
+                    console.log("");
+                    console.log("[requestPostBodyJson] : [complete] : " + textStatus);
+                    console.log("");
+                }
+            })
+        }
+
 </script>
 <head>
     <title>deal</title>
@@ -214,28 +270,33 @@
                     <table class="d_b_tw2 d_b_bw2">
                         <tr>
                             <td class="d_title">사이즈</td>
-                            <td class="d_contents" id="size_contents">
+                            <td class="d_contents sc_contents">
                                 <c:forEach items="${sizeList}" var="size">
-                                   <div id="size_btn"><c:out value="${size.sizeCodeDto.size_code_name}"/></div>
+<%--                                   <div class="sc_btn"><c:out value="${size.sizeCodeDto.size_code_name}"/>--%>
+<%--                                   </div>--%>
+                                    <a href="#" class="sc_btn sclick" onclick="ajax('${size.sizeCodeDto.size_code_name}',${pInfo.product_number})">
+                                        ${size.sizeCodeDto.size_code_name}
+                                    </a>
                                 </c:forEach>
                             </td>
                         </tr>
                         <tr>
                             <td class="d_title">색상</td>
-                            <td class="d_contents">
-                                <c:forEach items="${colorList}" var="color">
-                                    <div id="size_btn"style="background-color:${color.colorCodeDto.color_code_code}" >
-                                            </div>
-                                </c:forEach>
+                            <td class="d_contents sc_contents" id="sizeColor">
+<%--                                <c:forEach items="${colorList}" var="color">--%>
+<%--                                    <div class="sc_btn"style="background-color:${color.colorCodeDto.color_code_code}" >--%>
+<%--                                            </div>--%>
+<%--                                </c:forEach>--%>
                             </td>
                         </tr>
                     </table>
                     <p class="d_p">(최소주문수량 1개 이상 / 최대주문수량 100개 이하)</p>
                     <p class="d_p2">위 옵션선택 박스를 선택하시면 아래에 상품이 추가됩니다.</p>
+                    <div class="opt_selected"></div>
                     <div class="d_total_price d_b_bw2">
-                        <strong>총 상품금액</strong>
-                        "(수량) : "
-                        <span class="d_total"><strong><em>0</em></strong>" (0개)"</span>
+                        <div>TOTAL: <span id="p_tot">0 원</span> (0개)</div>
+
+<%--                        <span class="d_total"><strong><em>0</em></strong>" (0개)"</span>--%>
                     </div>
                     <div class="d_btn_box">
                         <div>BUY NOW</div>
@@ -245,11 +306,11 @@
                 </div>
             </div>
             <ul class="d_tab_btn">
-                <li> <a href="#sec1">상품상세</a> </li>
-                <li> <a href="#sec2">상품후기</a> </li>
-                <li> <a href="#sec3">상품문의</a> </li>
-                <li> <a href="#sec4">배송안내</a> </li>
-                <li> <a href="#sec5">교환/반품정책</a> </li>
+                <li class="small_btn"> <a href="#sec1">상품상세</a> </li>
+                <li class="small_btn"> <a href="#sec2">상품후기</a> </li>
+                <li class="small_btn"> <a href="#sec3">상품문의</a> </li>
+                <li class="small_btn"> <a href="#sec4">배송안내</a> </li>
+                <li class="small_btn"> <a href="#sec5">교환/반품정책</a> </li>
             </ul>
             <div class="h1000" id="sec1" >sec1</div>
             <div class="h1000" id="sec2" >sec2</div>
