@@ -17,9 +17,11 @@
 <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/> "></script>
 <script src="<c:url value='/js/header.js'/> "></script>
 <script src="<c:url value='/js/deal.js'/> "></script>
+
 <%--<script src="/js/header.js"></script>--%>
 
 <script>
+
     // 소비자가, 가격에 원 하고 , 표시
     var oPrice = ${pInfo.product_price};
     <%--여기에 ${pdto.product_price}--%>
@@ -28,6 +30,50 @@
     var logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
     var logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
     var colorLength = ${imgList.size()}
+        // 사이즈 클릭하면 맞는 색상 나오게 하기.. 개힘들었따
+        function ajax(size_code_name,product_number){
+            let colorText = "";
+            let jsonData = {
+                "size_code_name" : size_code_name,
+                "product_number" : product_number
+            };
+            // console.log(jsonData)
+            $.ajax({
+                type : 'POST',
+                url : '/semiProject/deal/color',
+                data: JSON.stringify(jsonData),
+                dataType : 'json',
+                contentType: "application/json; charset=utf-8",
+                success : function(data){
+                    $('#sizeColor').empty();
+                    let JsonColorList = JSON.stringify(data);
+                    // console.log(JsonColorList);
+                    let ParseColorList = JSON.parse(JsonColorList);
+                    // console.log(ParseColorList);
+                    for(let i = 0 ; i < ParseColorList.length ; i++){
+                        let colorInfo = ParseColorList[i];
+                        // console.log(colorInfo.colorCodeDto.color_code_code)
+                        if(colorInfo.colorCodeDto.color_code_code != 'noneColorCode'){
+                            colorText += colorInfo.colorCodeDto.color_code_code;
+                            $('#sizeColor').append(
+                                "<div class='sc_btn' style='background-color:" + colorInfo.colorCodeDto.color_code_code + ";'>"
+                                + "</div>"
+                            )
+                        }
+                    }
+                },
+                error : function(err) {
+                    console.log("");
+                    console.log("[requestPostBodyJson] : [error] : " + JSON.stringify(err));
+                    console.log("");
+                },
+                complete : function(data,textStatus) {
+                    console.log("");
+                    console.log("[requestPostBodyJson] : [complete] : " + textStatus);
+                    console.log("");
+                }
+            })
+        }
 </script>
 <head>
     <title>deal</title>
@@ -214,19 +260,23 @@
                     <table class="d_b_tw2 d_b_bw2">
                         <tr>
                             <td class="d_title">사이즈</td>
-                            <td class="d_contents" id="size_contents">
+                            <td class="d_contents sc_contents">
                                 <c:forEach items="${sizeList}" var="size">
-                                   <div id="size_btn"><c:out value="${size.sizeCodeDto.size_code_name}"/></div>
+<%--                                   <div class="sc_btn"><c:out value="${size.sizeCodeDto.size_code_name}"/>--%>
+<%--                                   </div>--%>
+                                    <a href="#" class="sc_btn sclick" onclick="ajax('${size.sizeCodeDto.size_code_name}',${pInfo.product_number})">
+                                        ${size.sizeCodeDto.size_code_name}
+                                    </a>
                                 </c:forEach>
                             </td>
                         </tr>
                         <tr>
                             <td class="d_title">색상</td>
-                            <td class="d_contents">
-                                <c:forEach items="${colorList}" var="color">
-                                    <div id="size_btn"style="background-color:${color.colorCodeDto.color_code_code}" >
-                                            </div>
-                                </c:forEach>
+                            <td class="d_contents sc_contents" id="sizeColor">
+<%--                                <c:forEach items="${colorList}" var="color">--%>
+<%--                                    <div class="sc_btn"style="background-color:${color.colorCodeDto.color_code_code}" >--%>
+<%--                                            </div>--%>
+<%--                                </c:forEach>--%>
                             </td>
                         </tr>
                     </table>

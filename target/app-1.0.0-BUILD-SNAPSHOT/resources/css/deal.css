@@ -244,11 +244,11 @@ strong {
     text-decoration: line-through;
 }
 
-#size_contents{
+.sc_contents{
     display: flex;
     gap: 5px;
 }
-#size_btn{
+.sc_btn{
     width:40px;
     height: 40px;
     background-color: #ddd;

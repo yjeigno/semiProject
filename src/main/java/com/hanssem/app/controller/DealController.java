@@ -5,15 +5,13 @@ import com.hanssem.app.service.DealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/deal")
 public class DealController {
 
     @Autowired
@@ -32,19 +30,14 @@ public class DealController {
             List<CateSizeDto> sizeList = dealService.showSize(1);
             m.addAttribute("sizeList",sizeList);
 
-            Map map = new HashMap();
-            map.put("product_number",1);
-            map.put("size_code_name",'Q');
-            List<ProductSizeColorDto> sizeColorList = dealService.getColor(map);
-            m.addAttribute("colorList",sizeColorList);
+//            Map map = new HashMap();
+//            map.put("product_number",1);
+//            map.put("size_code_name",'Q');
+//            List<ProductSizeColorDto> sizeColorList = dealService.getColor(map);
+//            m.addAttribute("colorList",sizeColorList);
 
-            return "deal";
+            return "/deal";
 
     }
-//    @RequestMapping("/deal")
-//    public String deal(){
-//        return "deal";
-//    }
-
-
 }
+
