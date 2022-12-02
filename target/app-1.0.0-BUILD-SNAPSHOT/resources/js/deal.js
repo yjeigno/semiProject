@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
     // 탭버튼,top버튼 클릭시 해당섹션으로 이동
     let menu_h = $('.d_tab_btn').innerHeight()
     $('.d_tab_btn a , .btn_top a').click(function(e){
@@ -48,10 +47,12 @@ $(document).ready(function(){
     //가격을 한화로 표시
     $('#o_price').text(oPrice.toLocaleString('ko')+"원");
     $('#s_price').text(sPrice.toLocaleString('ko')+"원");
+
     // 이미지 슬라이드 ,인디게이터
     let index_no = 0;
     let timer = 1000;
     let i_length = $('.d_img').length;
+
     // 버튼 막기
     function btn_status() {
         $('.d_indi_btn').css({pointerEvents: 'none'})
@@ -77,9 +78,11 @@ $(document).ready(function(){
         $('.d_indi_btn').removeClass('indi_active');
         $('.d_indi_btn').eq(index_no % i_length).addClass('indi_active')
     }
+
     //인디게이터 삽입
     $('.d_indi_btn').eq(0).addClass('indi_active')
     $('.d_img').eq(0).css({ left: 0});
+
     // 인디케이터 클릭
     $('.d_indi_btn').click(function(){
         // console.log($(this).index() , $('.indi_active').index())
@@ -93,4 +96,22 @@ $(document).ready(function(){
             slide(index_no, '100%', tmp_index, '-100%',  tmp_index)
         }
     });
+
+    // 사이즈 클릭하면 선택한 사이즈에 테두리 넣어주기
+    function bg_rb(){
+        for(let i =0; i<$('sclick').length ; i++){
+            $('sclick').eq(i).css({
+                background: '#ddd'
+            })
+        }
+    }
+    $('sclick').click(function (){
+        let sc = this.style.background
+        bg_rb()
+        if(sc != 'gray') {
+            $(this).css({
+                background:'gray'
+            })
+        }
+    })
 });

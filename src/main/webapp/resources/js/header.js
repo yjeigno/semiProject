@@ -90,7 +90,6 @@ $(document).ready(function () {
     event.preventDefault();
     event.stopPropagation();
   }
-  //스크롤 내려가면 헤더 메뉴 고정 -- 헤더이미지 작은걸로
     //스크롤 내려가면 헤더 메뉴 고정 -- 헤더이미지 작은걸로 
     function scr_fixed() {
         let h_top = $('.header').offset().top + 100;
