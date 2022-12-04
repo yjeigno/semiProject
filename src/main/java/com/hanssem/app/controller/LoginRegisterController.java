@@ -6,5 +6,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginRegisterController {
     @RequestMapping("/login_register")
-    public String login_register(){return "login_register";}
+    public String login_register(){return "register";}
 }

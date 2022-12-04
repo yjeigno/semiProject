@@ -7,11 +7,11 @@
   <title>로그인페이지</title>
   <link rel="stylesheet" href="./css/common.css">
   <link rel="stylesheet" href="./css/header.css">
-  <link rel="stylesheet" href="./css/login_register.css">
+  <link rel="stylesheet" href="./css/register.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <!-- <script defer src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
   <script src=".js/header.js"></script>
-  <script src=".js/login_register.js"></script>
+  <script src=".js/register.js"></script>
 
 </head>
 <body>

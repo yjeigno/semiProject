@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인페이지 초안</title>
+    <title>메인페이지</title>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script defer src="./js/header.js"></script>
     <script defer src="./js/main.js"></script>
@@ -73,9 +73,9 @@
         <div class="content_area header_top">
             <ul class="top_nav_ul">
                 <!-- 회원가입 페이지로 이동 -->
-                <li><a href="login_register">JOIN</a></li>
+                <li><a href="register">JOIN</a></li>
                 <!-- 로그인 페이지로 이동 -->
-                <li><a href="login_register">LOGIN</a></li>
+                <li><a href="login">LOGIN</a></li>
                 <!-- 위시리스트 내역 페이지로 이동 -->
                 <li><a href="#">WISHLIST</a></li>
                 <!-- 본인인증 후 / 마이페이지로 이동 -->
