@@ -1,6 +1,5 @@
 .container {
-    max-width: 1200px;
-    /* min-width: 1000px; */
+    width: 1200px;
     margin: 0 auto;
 }
 .src_title {
@@ -36,18 +35,13 @@
         border-bottom: 1px solid gray;
         position: relative;
     }
-    .cate_subclass,
-    .opt_box {
-        height: 29px;
-        transition: height 0.3s;
-        
-    }
     .opt_hidden {
         height: 0;
         border: none;
         padding: 0;
         overflow: hidden;
         color: transparent;
+        display: none;
     }
     .price_box {
         border-bottom: none;
@@ -150,7 +144,10 @@
             display: flex;
             gap: 20px;
         }
-        .sort_li li {
+        .sort_li button {
+            outline: none;
+            border: none;
+            background-color: transparent;
             padding: 10px;
             padding-left: 16px;
             font-size: 13px;
@@ -270,24 +267,7 @@
     justify-content: center;
     margin-bottom: 30px;
 }
-    .paging_list {
-        overflow: hidden;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-    }
-    .paging_list li {
-        width: 30px;
-        height: 30px;
-        text-align: center;
-        line-height: 30px;
-        overflow: hidden;
-        margin: 0 0 0 -1px;
-        font-size: 15px;
-        color: #73777B;
-    }
+
     .pagination > a {
         width: 30px;
         height: 30px;
@@ -297,6 +277,17 @@
         margin: 0 0 0 -1px;
         font-size: 15px;
         color: #73777B;
+    }
+    .pagination > div {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        overflow: hidden;
+        margin: 0 0 0 -1px;
+        font-size: 15px;
+        color: #73777B;
+        cursor: pointer;
     }
     .pnum {
         border: 1px solid #e1e1e1;
@@ -352,7 +343,7 @@
         background: url(../img/etc/heart2.png) center top/ cover;
         z-index: 99;
     }
-    .product:hover .wish_mark {
+    .wish_mark:hover {
         background-position-y: bottom;
     }
 

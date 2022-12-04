@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,18 +19,20 @@ public class DealRestController {
 
     @PostMapping(value = "/deal/color")
     public List<ProductSizeColorDto> sizeColorList(@RequestBody Map map) {
-        System.out.println("size_code_name : " + map.get("size_code_name"));
-        System.out.println("product_number : " + map.get("product_number"));
-        System.out.println("map :" + map);
+//        System.out.println("size_code_name : " + map.get("size_code_name"));
+//        System.out.println("product_number : " + map.get("product_number"));
+//        System.out.println("map :" + map);
         List<ProductSizeColorDto> sizeColorList = dealService.getColor(map);
 
-//        Map noColor = new HashMap();
-//        if(sizeColorList.size() == 0){
-//            noColor.put("color_code_name", "noneColor");
-//            noColor.put("color_code_code", "noneColorCode");
-//            sizeColorList.add(0, (ProductSizeColorDto) noColor);
-//        }
+        Map noColor = new HashMap();
+        if(sizeColorList.size() == 0){
+            noColor.put("color_code_name", "noneColor");
+            noColor.put("color_code_code", "noneColorCode");
+            sizeColorList.add(0, (ProductSizeColorDto) noColor);
+        }
 
         return sizeColorList;
     }
+
+
 }

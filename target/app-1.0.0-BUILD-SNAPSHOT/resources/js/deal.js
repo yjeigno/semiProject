@@ -136,15 +136,13 @@ $(document).ready(function(){
             })
         }
     }
-
-
-
-    // 색버튼 클릭시 total에 선택상품 추가
     $(document).on("click", ".cClick", function (e) {
-        console.log("test")
+        //console.log("test")
         let list_count = $('.opt_selected').children().length;
         let color_id =$(this).attr("id");
+        let index_no = $(this).attr("id").split(",")[1];
 
+        console.log("index : " + index_no);
         if(list_count > 0) {
             let class_dupl_chk = false;
 
@@ -156,21 +154,21 @@ $(document).ready(function(){
                 alert("이미 선택한 옵션 입니다.")
             }
             else {
-                make_opt_list(color_id)
+                make_opt_list(color_id,index_no)
+
             }
         }
         else {
-            make_opt_list(color_id)
+            make_opt_list(color_id,index_no)
         }
         total();
     })
-
-    function make_opt_list(color_id) {
+    function make_opt_list(color_id,index_no) {
         $('.opt_selected').append(
             `<div class="sel_color_box ${color_id}">
                 <div class="opt_name">
                     <div>${optTitle}</div>
-                    <div>사이즈명 / 컬러명</div>
+                    <div>${colorSizeText[index_no]} / ${colorNameText[index_no]}</div>
                 </div>
                 <div class="opt_qty">
                     <input type="button" class="btn_qty txt_minus" value="-">
@@ -184,6 +182,7 @@ $(document).ready(function(){
                 </div>
             </div>`
         );
+        console.log("hi : " + index_no);
     }
     // 버튼 클릭하면 + - 되는 기능
     $(document).on('click','.btn_qty', function(){
