@@ -30,6 +30,12 @@ public class DealController {
             List<CateSizeDto> sizeList = dealService.showSize(1);
             m.addAttribute("sizeList",sizeList);
 
+            List<ReviewDto> reviewList = dealService.getReview(1);
+            m.addAttribute("reviewList",reviewList);
+
+            Double review = dealService.getAvgReview(1);
+            m.addAttribute("avgReview",review);
+            System.out.println(review);
 //            Map map = new HashMap();
 //            map.put("product_number",1);
 //            map.put("size_code_name",'Q');

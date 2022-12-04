@@ -13,28 +13,32 @@
 <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
 <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
 <link rel="stylesheet" href="<c:url value='/css/deal.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/dealReview.css'/> ">
 <%--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--%>
 <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/> "></script>
 <script src="<c:url value='/js/header.js'/> "></script>
 <script src="<c:url value='/js/deal.js'/> "></script>
+<script src="<c:url value='/js/dealReview.js'/> "></script>
 
 <%--<script src="/js/header.js"></script>--%>
 
 <script>
-    // 소비자가, 가격에 원 하고 , 표시
-    var oPrice = ${pInfo.product_price};
-    <%--여기에 ${pdto.product_price}--%>
-    var sPrice = ${pInfo.product_status==2?"":pInfo.product_price};
-    <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
-    var logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
-    var logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
-    var deleteBtn = "<c:url value='/img/dealImg/btn_price_delete.gif'/>"
-    var optTitle = "${pInfo.product_name}";
+    let colorCodeText = [];
+    let colorSizeText = [];
+    let colorNameText = [];
 
+    // 소비자가, 가격에 원 하고 , 표시
+    let oPrice = ${pInfo.product_price};
+    <%--여기에 ${pdto.product_price}--%>
+    let sPrice = ${pInfo.product_status==2?"":pInfo.product_price};
+    <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
+    let logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
+    let logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
+    let deleteBtn = "<c:url value='/img/dealImg/btn_price_delete.gif'/>"
+    let optTitle = "${pInfo.product_name}";
     <%--var colorLength = ${imgList.size()}--%>
         // 사이즈 클릭하면 맞는 색상 나오게 하기..
         function ajax(size_code_name,product_number){
-            let colorText = "";
             let jsonData = {
                 "size_code_name" : size_code_name,
                 "product_number" : product_number
@@ -47,27 +51,40 @@
                 dataType : 'json',
                 contentType: "application/json; charset=utf-8",
                 success : function(data){
+                    //var
+                    //
                     $('#sizeColor').empty();
                     let JsonColorList = JSON.stringify(data);
-                    // console.log(JsonColorList);
+                    console.log(JsonColorList);
                     let ParseColorList = JSON.parse(JsonColorList);
-                    // console.log(ParseColorList);
+                    console.log(ParseColorList);
                     for(let i = 0 ; i < ParseColorList.length ; i++){
                         let colorInfo = ParseColorList[i];
                         console.log(colorInfo)
-
                         if(colorInfo.colorCodeDto.color_code_code != 'noneColorCode'){
-                            let colorCodeText = colorInfo.colorCodeDto.color_code_code;
-                            let colorSizeText = colorInfo.sizeCodeDto.size_code_name;
-                            let colorNameText = colorInfo.colorCodeDto.color_code_name;
-                            colorId = colorCodeText.split('#')[1] ;
-                            console.log(colorNameText) ;
-                            console.log(colorSizeText) ;
+                            colorCodeText[i] = colorInfo.colorCodeDto.color_code_code;
+                            colorSizeText[i] = colorInfo.sizeCodeDto.size_code_name;
+                            colorNameText[i] = colorInfo.colorCodeDto.color_code_name;
+                            let colorId = colorCodeText[i].split("#")[1];
+                            console.log("id : " + colorId);
+                            console.log("1 : "+ colorCodeText[i]) ;
+                            console.log("2 : "+ colorNameText[i]) ;
+                            console.log("3 : "+ colorSizeText[i]) ;
+
+                            /*
+                            *  받아온 값을 리스트로 담는다
+                            *  클릭할때 리스트 번호로 불러온다
+                            **/
+
+
                             $('#sizeColor').append(
-                                "<div class='sc_btn cClick' id='"+ colorId + "' style='background-color:" + colorCodeText + ";'>"
-                               +
-                                "</div>"
+                                "<div class='sc_btn cClick' id='"+ colorId +","+ i +
+                                 "' style='background-color:" + colorCodeText[i] +
+                                ";'>" + "</div>"
+                                + "<input class='colorIndex"+i+"' type='hidden' value='"+ i +"'>"
                             )
+                               <%-- `  <div class='sc_btn cClick' id='${colorId}' style='background-color:${colorCodeText};'></div>`--%>
+
                         }
                     }
                 },
@@ -83,7 +100,6 @@
                 }
             })
         }
-
 </script>
 <head>
     <title>deal</title>
@@ -313,7 +329,54 @@
                 <li class="small_btn"> <a href="#sec5">교환/반품정책</a> </li>
             </ul>
             <div class="h1000" id="sec1" >sec1</div>
-            <div class="h1000" id="sec2" >sec2</div>
+            <div class="h1000" id="sec2" >
+                <div class="avg_review_box">
+                    <div class="avg_box">
+                        <span>상품 만족도</span>
+                        <span class="star">★ ★ ★ ★ ★</span>  <!-- 별 플러그인 사용 -->
+                        <span>${avgReview}</span>  <!-- 리뷰총점수  / 리뷰개수  -->
+                    </div>
+                </div>
+                <div class="review_box"> <!-- 포토버튼 클릭하면 포토리뷰 나오게 탭형식 -->
+                    <h2 class="review_title_font">상품 후기</h2>
+                    <div class="review_tap_btn_box">
+                        <div class="review_tap_btn" id="photo_btn">포토</div>
+                        <div class="review_tap_btn" id="text_btn">텍스트</div>
+                        <div id="non_btn"></div>
+                    </div>
+                    <div class="review_list list_photo">
+                        <c:forEach items="${reviewList}" var="re">
+                        <div class="photo_review">
+                            <div class="id_Photo_txt">${re.memberDto.member_id}</div>
+                            <div class="photo_review_img"><img src="<c:url value='${re.review_image}'/>" alt=""></div>
+                            <div class="review_star">★ ★ ★ ★ ★</div><span class="review_date">${re.review_register_date}</span> <!-- 리뷰쓴 날짜 출력  -->
+                            <div class="photo_review_txt">${re.review_content}</div>
+                        </div>
+                        </c:forEach>
+                    </div>
+
+                    <div class="review_list list_text">
+                        <c:forEach items="${reviewList}" var="re">
+                        <div class="text_review">
+                            <div class="id_txt_txt">${re.memberDto.member_id}</div>
+                            <div class="star_date">
+                                <div class="review_text_star">★ ★ ★ ★ ★</div>
+                                <div>${re.review_register_date}</div>
+                            </div>
+                            <div class="review_product_info">
+                                <div class="product_img"><img src="<c:url value='${imgList.get(1).imageDto.image_path}'/>" alt=""></div>
+                                <div>
+                                    <div class="review_product_name">${re.productDto.product_name}</div>
+                                    <div class="review_product_size_color">${re.review_size} / ${re.review_color}</div>
+                                </div>
+
+                            </div>
+                            <div class="review_text_content">${re.review_content}</div>
+                        </div>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
             <div class="h1000" id="sec3" >sec3</div>
             <div class="h1000" id="sec4" >sec4</div>
             <div class="h1000" id="sec5" >sec5</div>

@@ -34,4 +34,14 @@ public class DealService {
     public List<ProductSizeColorDto> getColor(Map map){
         return dealDao.selectSizeColor(map);
     }
+
+    // 특정 상품에 맞는 리뷰 불러오기
+    public List<ReviewDto> getReview(Integer product_number){
+        return dealDao.selectReview(product_number);
+    }
+
+    // 특정 상품에 맞는 리뷰 평점 불러오기
+    public Double getAvgReview(Integer product_number){
+        return dealDao.avgReview(product_number);
+    }
 }
