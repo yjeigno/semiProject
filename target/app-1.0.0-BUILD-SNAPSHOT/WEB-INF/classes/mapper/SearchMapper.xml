@@ -5,7 +5,7 @@
 <mapper namespace="com.hanssem.app.dao.SearchMapper">
     <!--    검색어 포함 상품 전체 가져오기-->
     <select id="searchProduct" parameterType="SearchCondition" resultType="SearchResult">
-        SELECT distinct p.product_number
+        SELECT p.product_number
         , p.product_name
         , p.product_price
         , p.product_register_date
@@ -18,14 +18,15 @@
         , sales.product_sales
         , sp.special_product_discount AS 'discount_rate'
         FROM product p
-        LEFT OUTER JOIN (SELECT product_number, AVG(review_rank) AS review_rank, COUNT(product_number) as review_count FROM review GROUP BY product_number) AS r
+        LEFT OUTER JOIN (SELECT product_number, ROUND(AVG(review_rank), 1) AS review_rank, COUNT(product_number) as review_count FROM review GROUP BY product_number) AS r
         ON p.product_number = r.product_number
         LEFT OUTER JOIN category_code c ON c.category_code_number = p.category_code_number
-        LEFT OUTER JOIN image i ON i.product_number = p.product_number
+        LEFT OUTER JOIN (SELECT DISTINCT(product_number) product_number, MIN(image_path) image_path FROM image GROUP BY product_number) AS i ON i.product_number = p.product_number
         LEFT OUTER JOIN special_product sp ON sp.product_number = p.product_number
         LEFT OUTER JOIN (SELECT product_number, SUM(purchase_amount) AS product_sales FROM purchase GROUP BY product_number) AS sales
         ON p.product_number = sales.product_number
         WHERE p.product_tag LIKE CONCAT('%',#{search},'%')
+        <include refid="category"/>
         <include refid="sort" />
         LIMIT #{offset}, #{pageSize}
     </select>
@@ -36,11 +37,28 @@
     <!--    카테고리  목록 가져오기-->
     <select id="selectCategory" resultType="CategoryDto">
         SELECT * FROM category_code
+        ORDER BY category_code_name ASC
+    </select>
+    <!--    검색대상 카테고리 리스트-->
+    <select id="getCateList" resultType="String">
+        SELECT DISTINCT category_code_number FROM product
+        WHERE product_tag LIKE CONCAT('%', #{search}, '%')
+    </select>
+    <select id="getCateInfo" resultType="com.hanssem.app.dto.CateFilterDto">
+        SELECT DISTINCT count(*) category_amount, p.category_code_number, c.category_code_name FROM product p
+        LEFT JOIN category_code c ON p.category_code_number = c.category_code_number
+        WHERE product_tag LIKE CONCAT('%', #{search}, '%')
+        GROUP BY p.category_code_number, c.category_code_name
     </select>
 
     <!--    사이즈 목록 가져오기-->
-    <select id="selectSizeList" resultType="SizeDto">
-        SELECT * FROM category_size
+    <select id="selectSizeList" parameterType="int" resultType="SizeDto">
+        SELECT cc.category_code_number, cs.size_code_number, size_code_name FROM category_code cc
+        LEFT OUTER JOIN category_size cs
+        ON cs.category_code_number = cc.category_code_number
+        LEFT OUTER JOIN size_code sc
+        ON sc.size_code_number = cs.size_code_number
+        WHERE cc.category_code_number = #{category_code_number};
     </select>
 
     <sql id="sort">
@@ -61,6 +79,11 @@
         </if>
         <if test="sort == 'high'">
             ORDER BY p.product_price DESC
+        </if>
+    </sql>
+    <sql id="category">
+        <if test="category != null">
+            AND p.category_code_number = #{category}
         </if>
     </sql>
 </mapper>

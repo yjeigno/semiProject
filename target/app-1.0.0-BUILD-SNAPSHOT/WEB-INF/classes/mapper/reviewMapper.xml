@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanssem.app.dao.reviewMapper">
+    <resultMap id="ReviewDto" type="ReviewDto">
+        <result column="review_number" property="review_number"/>
+        <result column="review_content" property="review_content"/>
+        <result column="review_rank" property="review_rank"/>
+        <result column="review_status" property="review_status"/>
+        <result column="review_register_date" property="review_register_date"/>
+        <result column="review_image" property="review_image"/>
+        <result column="review_size" property="review_size"/>
+        <result column="review_color" property="review_color"/>
+        <result column="member_number" property="member_number"/>
+        <result column="product_number" property="product_number"/>
+
+        <collection property="productDto" resultMap="ProductDto"/>
+        <collection property="memberDto" resultMap="MemberDto"/>
+    </resultMap>
+
+    <resultMap id="ProductDto" type="ProductDto">
+        <result column="product_name" property="product_name"/>
+    </resultMap>
+
+    <resultMap id="MemberDto" type="MemberDto">
+        <result column="member_id" property="member_id"/>
+    </resultMap>
+
+<!--    상품에 맞는 리뷰 가져오기-->
+    <select id="selectReview" parameterType="int" resultMap="ReviewDto">
+        SELECT review_number,
+        review_content,
+        review_rank,
+        review_status,
+        review_register_date,
+        review_image,
+        review_size,
+        review_color,
+        p.product_number,
+        product_name,
+        member_id
+        FROM review r
+        JOIN product p on r.product_number = p.product_number
+        JOIN member m on r.member_number = m.member_number
+
+        WHERE p.product_number= #{product_number} ORDER BY review_number ;
+    </select>
+
+<!--    상품에 맞는 리뷰 평점 구하기-->
+    <select id="avgReview" parameterType="int" resultType="Double">
+        SELECT ROUND(AVG(review_rank),1)
+        FROM review
+        WHERE product_number= #{product_number}
+    </select>
+</mapper>
