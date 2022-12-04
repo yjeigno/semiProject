@@ -12,6 +12,7 @@
         <result column="special_product_discount" property="special_product_discount"/>
         <result column="review_count" property="review_count"/>
         <result column="review_rank_average" property="review_rank_average"/>
+        <result column="wish_flag" property="wishFlag"/>
         <collection property="productDto" resultMap="ProductDto"/>
         <collection property="imageDto" resultMap="ImageDto"></collection>
     </resultMap>

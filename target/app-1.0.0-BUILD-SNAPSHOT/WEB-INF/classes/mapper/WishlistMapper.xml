@@ -13,6 +13,14 @@
         <result column="image_register_date" property="image_register_date"/>
         <result column="product_number" property="product_number"/>
     </resultMap>
+
+    <resultMap id="WishlistDto" type="WishlistDto">
+        <result column="wishlist_number" property="wishlist_number"/>
+        <result column="wishlist_register_date" property="wishlist_register_date"/>
+        <result column="member_number" property="member_number"/>
+        <result column="product_number" property="product_number"/>
+        <association resultMap="ImageDto" property="imageDto"/>
+    </resultMap>
 <!--
     <select id="select" parameterType="WishlistDto">
         SELECT p.*, w.*
@@ -21,7 +29,7 @@
         w.member_number = #{member_number}
     </select>-->
 
-    <select id="select" parameterType="WishlistDto" resultType="Integer">
+    <select id="select" parameterType="WishlistDto" resultMap="WishlistDto">
         SELECT p.*, w.*, im.*
         FROM product p
              inner join wishlist w
