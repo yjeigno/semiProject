@@ -6,7 +6,7 @@
 .sprc_nav {
     display: flex;
     justify-content: space-around;
-    margin: 30px;
+    margin-bottom: 30px;
     font-weight: 900;
     font-size: 18px;
 }

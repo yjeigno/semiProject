@@ -5,13 +5,16 @@
 <mapper namespace="com.hanssem.app.dao.specialPriceMapper">
 
     <resultMap id="specialProductMain" type="SpecialPriceDto">
+        <result column="product_number" property="product_number"/>
         <result column="special_product_number" property="special_product_number"/>
         <result column="special_product_end_date" property="special_product_end_date"/>
         <result column="special_product_discount" property="special_product_discount"/>
         <result column="special_product_discount" property="special_product_discount"/>
         <result column="review_count" property="review_count"/>
         <result column="review_rank_average" property="review_rank_average"/>
+        <result column="wish_flag" property="wishFlag"/>
         <collection property="productDto" resultMap="ProductDto"/>
+        <collection property="imageDto" resultMap="ImageDto"></collection>
     </resultMap>
 
     <resultMap id="ProductDto" type="ProductDto">
@@ -25,8 +28,34 @@
         <result column="category_code_number" property="category_code_number"/>
     </resultMap>
 
+    <resultMap id="ImageDto" type="ImageDto">
+        <result column="image_number" property="image_number"/>
+        <result column="image_path" property="image_path"/>
+        <result column="image_file_name" property="image_file_name"/>
+        <result column="image_rename_file_name" property="image_rename_file_name"/>
+        <result column="image_code_number" property="image_code_number"/>
+        <result column="image_register_date" property="image_register_date"/>
+        <result column="product_number" property="product_number"/>
+    </resultMap>
+
     <select id="selectSpecialProduct" resultMap="specialProductMain" parameterType="int">
-        select *, (SELECT sum(review_rank)/count(*) FROM review r WHERE r.product_number = p.product_number) review_rank_average, (SELECT COUNT(*) FROM review r WHERE r.product_number = p.product_number) review_count from special_product sp, product p WHERE p.product_number = sp.product_number and p.product_status= #{product_number};
+        SELECT
+            *,
+                IFNULL(ROUND((   SELECT sum(review_rank)/count(*)
+                FROM review r
+                WHERE r.product_number = p.product_number
+            ),1),0) review_rank_average,
+            (   SELECT COUNT(*)
+                FROM review r
+                WHERE r.product_number = p.product_number
+            ) review_count
+        FROM    special_product sp,
+                product p,
+                image im
+        WHERE   p.product_number = sp.product_number
+        and     p.product_number = im.product_number
+        and     p.product_status = 2
+        Limit 20;
     </select>
 
 </mapper>
