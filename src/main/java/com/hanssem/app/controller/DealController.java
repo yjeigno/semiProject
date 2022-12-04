@@ -1,22 +1,17 @@
 package com.hanssem.app.controller;
 
-import com.hanssem.app.dto.ImageDto;
-import com.hanssem.app.dto.ProductDto;
-import com.hanssem.app.dto.ProductSizeColorDto;
-import com.hanssem.app.dto.SizeCodeDto;
+import com.hanssem.app.dto.*;
 import com.hanssem.app.service.DealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/deal")
 public class DealController {
 
     @Autowired
@@ -26,29 +21,23 @@ public class DealController {
     @GetMapping("/deal")
     public String deal( Model m) {
 
-            ProductDto productDto = dealService.show(1);
-            m.addAttribute("pdto",productDto);
+            ProductDto productDto = dealService.getInfo(1);
+            m.addAttribute("pInfo",productDto);
 
-            ImageDto imageDto = dealService.show2(1);
-            m.addAttribute("idto",imageDto);
+            List<ImageColorDto> imageColorDto = dealService.showImgColor(1);
+            m.addAttribute("imgList",imageColorDto);
 
-            List<SizeCodeDto> list = dealService.show3(1);
-            m.addAttribute("list",list);
+            List<CateSizeDto> sizeList = dealService.showSize(1);
+            m.addAttribute("sizeList",sizeList);
 
-            Map map = new HashMap();
-            map.put("product_number",1);
-            map.put("size_code_name",'Q');
-            List<ProductSizeColorDto> list2 = dealService.getColor(map);
-            m.addAttribute("list2",list2);
+//            Map map = new HashMap();
+//            map.put("product_number",1);
+//            map.put("size_code_name",'Q');
+//            List<ProductSizeColorDto> sizeColorList = dealService.getColor(map);
+//            m.addAttribute("colorList",sizeColorList);
 
-
-            return "deal";
+            return "/deal";
 
     }
-//    @RequestMapping("/deal")
-//    public String deal(){
-//        return "deal";
-//    }
-
-
 }
+

@@ -28,6 +28,7 @@
         <result column="category_code_number" property="category_code_number"/>
     </resultMap>
 
+<<<<<<< HEAD
     <resultMap id="ImageDto" type="ImageDto">
         <result column="image_number" property="image_number"/>
         <result column="image_path" property="image_path"/>
@@ -56,6 +57,10 @@
         and     p.product_number = im.product_number
         and     p.product_status = 2
         Limit 20;
+=======
+    <select id="selectSpecialProduct" resultMap="specialProductMain" parameterType="int">
+        select *, (SELECT sum(review_rank)/count(*) FROM review r WHERE r.product_number = p.product_number) review_rank_average, (SELECT COUNT(*) FROM review r WHERE r.product_number = p.product_number) review_count from special_product sp, product p WHERE p.product_number = sp.product_number and p.product_status= #{product_number};
+>>>>>>> upstream/main
     </select>
 
 </mapper>

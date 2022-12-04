@@ -3,6 +3,56 @@
         "http://mybatis.org/schema/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hanssem.app.dao.productMapper">
+<!-- ProductDto resultMap -->
+    <resultMap id="ProductDto" type="ProductDto">
+        <result column="product_number" property="product_number"/>
+        <result column="product_name" property="product_name"/>
+        <result column="product_price" property="product_price"/>
+        <result column="product_register_date" property="product_register_date"/>
+        <result column="product_content" property="product_content"/>
+        <result column="product_status" property="product_status"/>
+        <result column="product_class" property="product_class"/>
+        <result column="category_code_number" property="category_code_number"/>
+        <result column="product_tag" property="product_tag"/>
+    </resultMap>
+<!-- CateCodeDto resultMap -->
+    <resultMap id="CateCodeDto" type="CateCodeDto">
+        <result column="category_code_number" property="category_code_number"/>
+        <result column="category_code_name" property="category_code_name"/>
+
+    </resultMap>
+<!-- SizeCodeDto resultMap -->
+    <resultMap id="SizeCodeDto" type="SizeCodeDto">
+        <result column="size_code_number" property="size_code_number"/>
+        <result column="size_code_name" property="size_code_name"/>
+    </resultMap>
+<!-- ColorCodeDto resultMap -->
+    <resultMap id="ColorCodeDto" type="ColorCodeDto">
+        <result column="color_code_number" property="color_code_number"/>
+        <result column="color_code_name" property="color_code_name"/>
+        <result column="color_code_code" property="color_code_code"/>
+    </resultMap>
+<!-- CateSizeDto resultMap -->
+    <resultMap id="CateSizeDto" type="CateSizeDto">
+        <result column="category_size_number" property="category_size_number"/>
+        <result column="size_code_number" property="size_code_number"/>
+        <result column="category_code_number" property="category_code_number"/>
+
+        <collection property="productDto" resultMap="ProductDto"/>
+        <collection property="sizeCodeDto" resultMap="SizeCodeDto"/>
+    </resultMap>
+<!-- ProductSizeColorDto resultMap -->
+    <resultMap id="ProductSizeColorDto" type="ProductSizeColorDto">
+        <result column="product_size_color_number" property="product_size_color_number"/>
+        <result column="product_size_color_amount" property="product_size_color_amount"/>
+        <result column="product_number" property="product_number"/>
+        <result column="size_code_number" property="size_code_number"/>
+        <result column="color_code_number" property="color_code_number"/>
+
+        <collection property="productDto" resultMap="ProductDto"/>
+        <collection property="sizeCodeDto" resultMap="SizeCodeDto"/>
+        <collection property="colorCodeDto" resultMap="ColorCodeDto"/>
+    </resultMap>
 <!--    상품 등록    -->
     <insert id="insert" parameterType="ProductDto">
         INSERT INTO product
@@ -45,64 +95,25 @@
         DELETE FROM product WHERE product_number=#{product_number}
     </delete>
 
-    <resultMap id="ProductDto" type="ProductDto">
-        <result column="product_number" property="product_number"/>
-        <result column="product_name" property="product_name"/>
-        <result column="product_price" property="product_price"/>
-        <result column="product_content" property="product_content"/>
-        <result column="product_class" property="product_class"/>
-    </resultMap>
-    <resultMap id="CateSizeDto" type="CateSizeDto">
-        <result column="size_code_number" property="size_code_number"/>
-    </resultMap>
-    <resultMap id="SizeCodeDto" type="SizeCodeDto">
-        <result column="size_code_name" property="size_code_name"/>
-        <collection property="cateSizeDto" resultMap="CateSizeDto"/>
-        <collection property="productDto" resultMap="ProductDto"/>
-    </resultMap>
-    <!--    상품의 사이즈 정보 가져오기-->
-    <select id="selectSize" parameterType="int" resultType="SizeCodeDto">
-        SELECT product_number,
-        product_name,
-        product_price,
-        product_content,
-        cs.size_code_number,
+<!--    상품의 사이즈 정보 가져오기    -->
+    <select id="selectSize" parameterType="int" resultMap="CateSizeDto">
+        SELECT
         size_code_name
-        FROM product p
-        JOIN category_size cs on p.category_code_number = cs.category_code_number
-        JOIN size_code sc on cs.size_code_number = sc.size_code_number
-        WHERE product_number =#{product_number}
+        FROM category_size
+        JOIN product p on category_size.category_code_number = p.category_code_number
+        JOIN size_code sc on category_size.size_code_number = sc.size_code_number
+        WHERE product_number = #{product_number} ;
     </select>
-    <resultMap id="ColorCodeDto" type="ColorCodeDto">
-        <result column="color_code_number" property="color_code_number"/>
-        <result column="color_code_name" property="color_code_name"/>
-    </resultMap>
 
-    <resultMap id="ProductSizeColorDto" type="ProductSizeColorDto">
-        <result column="product_size_color_number" property="product_size_color_number"/>
-        <result column="product_size_color_amount" property="product_size_color_amount"/>
-        <result column="product_number" property="product_number"/>
-        <result column="size_code_number" property="size_code_number"/>
-        <result column="color_code_number" property="color_code_number"/>
-
-        <collection property="colorCodeDto" resultMap="ColorCodeDto"/>
-        <collection property="sizeCodeDto" resultMap="SizeCodeDto"/>
-    </resultMap>
 <!--    상품의 사이즈에 맞는 컬러 가져오기-->
     <select id="selectSizeColor" parameterType="map" resultMap="ProductSizeColorDto">
-        SELECT product.product_number,
-        product_name,
-        product_price,
-        product_content,
-        product_status,
-        product_class,
-        product_size_color_amount,
-        color_code_name,
-        size_code_name
-        FROM product
-        JOIN product_size_color psc on product.product_number = psc.product_number
-        JOIN color_code cc on psc.color_code_number = cc.color_code_number
+        SELECT color_code_name,
+               color_code_code,
+               size_code_name
+        FROM product_size_color psc
+        JOIN product p on psc.product_number = p.product_number
         JOIN size_code sc on psc.size_code_number = sc.size_code_number
-        WHERE product.product_number = #{product_number}  and size_code_name = #{size_code_name};
+        JOIN color_code cc on psc.color_code_number = cc.color_code_number
+        WHERE p.product_number = #{product_number} and size_code_name= #{size_code_name}
     </select>
 </mapper>

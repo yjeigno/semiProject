@@ -8,18 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인페이지 초안</title>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script defer src="js/header.js"></script>
-    <script defer src="js/main.js"></script>
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/main.css">
+    <script defer src="./js/header.js"></script>
+    <script defer src="./js/main.js"></script>
+    <script defer src="./js/main_cart.js"></script>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
 <div id="wrap">
     <div class="basket_box">
-
         <div class="basket_min">
-            <div class="basket_icon"><img src="img/main/cart_img.png" alt=""></div>
+            <div class="basket_icon"><img src="./img/main/cart_img.png" class="cart_img" alt=""></div>
             <div class="basket_total_quentity">(1)</div>
         </div>
 
@@ -64,8 +64,8 @@
     <!-- 팝업배너 -->
     <input type="checkbox" value="close" id="close">
     <div class="event_banner">
-        <a href="#"><img src="img/main/event_banner.png" alt="" id="event_img"></a>
-        <label for="close" class="close_img"><img src="img/main/X.png" alt=""></label>
+        <a href="/specialPrice"><img src="./img/main/event_banner.png " alt="" id="event_img"></a>
+        <label for="close" class="close_img"><img src="./img/main/X.png"  alt=""></label>
     </div>
 
 
@@ -93,7 +93,7 @@
                 </form>
             </div>
             <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="#"><div class="logo"><img src="img/headerImg/logo_black.png" alt=""></div></a>
+            <a href="#"><div class="logo"><img src="./img/headerImg/logo_black.png" alt=""></div></a>
         </div>
 
         <div class="header_bottom">
@@ -116,35 +116,35 @@
                     <li class="li_content">
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn1.png"></li>
+                            <li class="ca_img"><img src="./img/headerImg/Furn1.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table & Dining</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn2.png"></li>
+                            <li class="ca_img"><img src="./img/headerImg/Furn2.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Chair</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn3.png"></li>
+                            <li class="ca_img"><img src="./img/headerImg/Furn3.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Sofa</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn4.png"></li>
+                            <li class="ca_img"><img src="./img/headerImg/Furn4.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Desk</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn5.png"></li>
+                            <li class="ca_img"><img src="./img/headerImg/Furn5.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">TV Stand & Storage</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn6.png"></li>
+                            <li class="ca_img"><img src="./img/headerImg/Furn6.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Small Furniture</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn7.png"></li>
+                            <li class="ca_img"><img src="./img/headerImg/Furn7.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Bed</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn8.png"></li>
+                            <li class="ca_img"><img src="./img/headerImg/Furn8.png"></li>
                         </ul>
                     </li>
 
@@ -192,9 +192,9 @@
 
 
     <div class="main_banner">
-        <a href="#" class="banner"><img src="./img/mainpage_img/mainbanner_img1.png" alt=""></a>
-        <a href="#" class="banner"><img src="./img/mainpage_img/mainbanner_img2.png" alt=""></a>
-        <a href="#" class="banner"><img src="./img/mainpage_img/mainbanner_img3.png" alt=""></a>
+        <a href="#" class="banner"><img src="./img/main/mainbanner_img1.png" alt=""></a>
+        <a href="#" class="banner"><img src="./img/main/mainbanner_img2.png" alt=""></a>
+        <a href="#" class="banner"><img src="./img/main/mainbanner_img3.png" alt=""></a>
 
 
         <input type="button" class="btn_slide" id="btn_slide_L">
@@ -211,17 +211,18 @@
 
 
 
-    <div class="main_sec">
+    <div class="main_sec main_sec_new">
         <div class="sec_title">
             <div class="main_title">NEW ARRIVALS</div>
             <br>
             <h4 class="sub_title">한샘의 새로운 상품을 구경하세요.</h4>
-            <a href="#_new"><div class="more"><u>More</u></div></a>
+              <a href="#_new"><div class="more new">More</div></a>
         </div>
 
         <div class="items_area">
+
             <div class="item">
-                <div class="img_box"><img src="./img/mainpage_img/new1.png" alt="" id="new_img" ></div>
+                <div class="img_box"><img src="./img/main/new1.png" alt="" id="new_img1" ></div>
                 <div class="item_txt">
                     <h4>SAMPLE</h4>
                     <h5>상품요약 설명</h5>
@@ -231,7 +232,7 @@
             </div>
 
             <div class="item">
-                <div class="img_box"><img src="./img/mainpage_img/new2.png" alt="" id="new_img" ></div>
+                <div class="img_box"><img src="./img/main/new2.png" alt="" id="new_img2" ></div>
                 <div class="item_txt">
                     <h4>SAMPLE</h4>
                     <h5>상품요약 설명</h5>
@@ -241,7 +242,7 @@
             </div>
 
             <div class="item">
-                <div class="img_box"><img src="./img/mainpage_img/new3.png" alt="" id="new_img" ></div>
+                <div class="img_box"><img src="./img/main/new3.png" alt="" id="new_img3" ></div>
                 <div class="item_txt">
                     <h4>SAMPLE</h4>
                     <h5>상품요약 설명</h5>
@@ -251,7 +252,7 @@
             </div>
 
             <div class="item">
-                <div class="img_box"><img src="./img/mainpage_img/new4.png" alt="" id="new_img" ></div>
+                <div class="img_box"><img src="./img/main/new4.png" alt="" id="new_img4" ></div>
                 <div class="item_txt">
                     <a href="#">
                         <h4>SAMPLE</h4>
@@ -265,17 +266,18 @@
         </div>
 
 
-        <div class="main_sec">
+        <div class="main_sec main_sec_best">
             <div class="sec_title">
                 <div class="main_title">BEST PRODUCTS</div>
                 <br>
                 <h4 class="sub_title">한샘의 인기 상품을 구경하세요.</h4>
-                <a href="#_new"><div class="more">More</div></a>
+                <a href="#_best"><div class="more best">More</div></a>
+
             </div>
 
             <div class="items_area">
                 <div class="item">
-                    <div class="img_box"><img src="./img/mainpage_img/new1.png" alt="" id="new_img" ></div>
+                    <div class="img_box"><img src="./img/main/best1.png" alt="" id="best3_img1" ></div>
                     <div class="item_txt">
                         <h4>SAMPLE</h4>
                         <h5>상품요약 설명</h5>
@@ -285,7 +287,7 @@
                 </div>
 
                 <div class="item">
-                    <div class="img_box"><img src="./img/mainpage_img/new2.png" alt="" id="new_img" ></div>
+                    <div class="img_box"><img src="./img/main/best2.png" alt="" id="best_img2" ></div>
                     <div class="item_txt">
                         <h4>SAMPLE</h4>
                         <h5>상품요약 설명</h5>
@@ -295,7 +297,7 @@
                 </div>
 
                 <div class="item">
-                    <div class="img_box"><img src="./img/mainpage_img/new3.png" alt="" id="new_img" ></div>
+                    <div class="img_box"><img src="./img/main/best3.png" alt="" id="best_img3" ></div>
                     <div class="item_txt">
                         <h4>SAMPLE</h4>
                         <h5>상품요약 설명</h5>
@@ -305,7 +307,7 @@
                 </div>
 
                 <div class="item">
-                    <div class="img_box"><img src="./img/mainpage_img/new4.png" alt="" id="new_img" ></div>
+                    <div class="img_box"><img src="./img/main/best4.png" alt="" id="best_img4" ></div>
                     <div class="item_txt">
                         <a href="#">
                             <h4>SAMPLE</h4>
@@ -323,12 +325,12 @@
                     <div class="main_title">HANSAM INTERIORS</div>
                     <br>
                     <h4 class="sub_title">한샘제품으로 꾸민 인테리어를 구경하세요.</h4>
-                    <a href="#_new"><div class="more"><u>More</u></div></a>
+                    <a href="#_new"><div class="more interior"><u>More</u></div></a>
                 </div>
 
                 <div class="items_area">
                     <div class="item">
-                        <div class="img_box"><img src="./img/mainpage_img/interior1.png" alt="" id="new_img" ></div>
+                        <div class="img_box"><img src="./img/main/interior1.png" alt="" id="interior_img1" ></div>
                         <div class="item_txt">
                             <h4>SAMPLE</h4>
                             <h5>24평형 인테리어</h5>
@@ -336,16 +338,7 @@
                     </div>
 
                     <div class="item">
-                        <div class="img_box"><img src="./img/mainpage_img/interior2.png" alt="" id="new_img" ></div>
-                        <div class="item_txt">
-                            <h4>SAMPLE</h4>
-                            <h5>24평형 인테리어</h5>
-
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="img_box"><img src="./img/mainpage_img/interior3.png" alt="" id="new_img" ></div>
+                        <div class="img_box"><img src="./img/main/interior2.png" alt="" id="interior_img2" ></div>
                         <div class="item_txt">
                             <h4>SAMPLE</h4>
                             <h5>24평형 인테리어</h5>
@@ -354,7 +347,16 @@
                     </div>
 
                     <div class="item">
-                        <div class="img_box"><img src="./img/mainpage_img/interior4.png" alt="" id="new_img" ></div>
+                        <div class="img_box"><img src="./img/main/interior3.png" alt="" id="interior_img3" ></div>
+                        <div class="item_txt">
+                            <h4>SAMPLE</h4>
+                            <h5>24평형 인테리어</h5>
+
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="img_box"><img src="./img/main/interior4.png" alt="" id="interior_img4" ></div>
                         <div class="item_txt">
                             <a href="#">
                                 <h4>SAMPLE</h4>
@@ -372,6 +374,7 @@
     </div>
     <footer class="footer"></footer>
 
+</div>
 
 </body>
 </html>
