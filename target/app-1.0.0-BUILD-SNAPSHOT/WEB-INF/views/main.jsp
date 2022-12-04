@@ -1,5 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
+<c:set var="logInOutLink" value="${ pageContext.request.getSession(false).getAttribute('member_id')==null ? '/login':'/login' }" />
+<c:set var="logInOutTxt" value="${ pageContext.request.getSession(false).getAttribute('member_id')==null ? 'LOGIN':'LOGOUT' }" />
+<c:set var="memberId" value="${ pageContext.request.getSession(false).getAttribute('member_id')==null ? '':pageContext.request.getSession(false).getAttribute('member_id') }" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +19,7 @@
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/main.css">
+
 </head>
 <body>
 <div id="wrap">
@@ -73,9 +79,21 @@
         <div class="content_area header_top">
             <ul class="top_nav_ul">
                 <!-- 회원가입 페이지로 이동 -->
-                <li><a href="register">JOIN</a></li>
+                <c:choose>
+                <c:when test="${memberId==null || memberId.equals('') }">
+                <li><a href="<c:url value='/register'/>">JOIN</a></li>
+                </c:when>
+                    <c:otherwise>
+                        <li>
+                            ${memberId} 님
+                        </li>
+                    </c:otherwise>
+                </c:choose>
                 <!-- 로그인 페이지로 이동 -->
-                <li><a href="login">LOGIN</a></li>
+                <li>
+                    <a href="<c:url value='${logInOutLink} '/>">${logInOutTxt}</a>
+                </li>
+
                 <!-- 위시리스트 내역 페이지로 이동 -->
                 <li><a href="#">WISHLIST</a></li>
                 <!-- 본인인증 후 / 마이페이지로 이동 -->
@@ -93,7 +111,7 @@
                 </form>
             </div>
             <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="#"><div class="logo"><img src="./img/headerImg/logo_black.png" alt=""></div></a>
+            <a href="<c:url value='/'/>"><div class="logo"><img src="./img/headerImg/logo_black.png" alt=""></div></a>
         </div>
 
         <div class="header_bottom">

@@ -1,5 +1,7 @@
 package com.hanssem.app.dto;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.sql.Timestamp;
 
 public class MemberDto {
@@ -15,6 +17,8 @@ public class MemberDto {
     private Integer member_status;
     private Timestamp member_register_date;
     private Timestamp  member_login_date;
+
+    private Boolean rememberId;
 
 
 
@@ -34,6 +38,8 @@ public class MemberDto {
         this.member_register_date = member_register_date;
         this.member_login_date = member_login_date;
     }
+
+
 
     public String getMember_id() {
         return member_id;
@@ -91,7 +97,7 @@ public class MemberDto {
         this.member_address = member_address;
     }
 
-    public Integer getMember_gender() {
+    public Integer getMember_gender(int anInt) {
         return member_gender;
     }
 
@@ -131,6 +137,14 @@ public class MemberDto {
         this.member_login_date = member_login_date;
     }
 
+    public Boolean getRememberId() {
+        return rememberId;
+    }
+
+    public void setRememberId(Boolean rememberId) {
+        this.rememberId = rememberId;
+    }
+
     @Override
     public String toString() {
         return "MemberDto{" +
@@ -146,6 +160,8 @@ public class MemberDto {
                 ", member_status=" + member_status +
                 ", member_register_date=" + member_register_date +
                 ", member_login_date=" + member_login_date +
+                ", rememberId=" + rememberId +
                 '}';
     }
 }
+

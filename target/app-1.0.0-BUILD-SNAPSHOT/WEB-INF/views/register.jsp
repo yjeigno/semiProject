@@ -1,10 +1,12 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>로그인페이지</title>
+  <title>회원가입</title>
   <link rel="stylesheet" href="./css/common.css">
   <link rel="stylesheet" href="./css/header.css">
   <link rel="stylesheet" href="./css/register.css">
@@ -17,31 +19,14 @@
 <body>
 <div id="wrap">
 
-  <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인페이지 초안</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script defer src="./js/header.js"></script>
-    <script defer src="./js/main.js"></script>
-    <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/main.css">
-  </head>
 
-  <div>
   <header class="header">
     <div class="content_area header_top">
       <ul class="top_nav_ul">
         <!-- 회원가입 페이지로 이동 -->
         <li><a href="#">JOIN</a></li>
         <!-- 로그인 페이지로 이동 -->
-        <li><a href="#">LOGIN</a></li>
+        <li><a href="login">LOGIN</a></li>
         <!-- 위시리스트 내역 페이지로 이동 -->
         <li><a href="#">WISHLIST</a></li>
         <!-- 본인인증 후 / 마이페이지로 이동 -->
@@ -157,50 +142,12 @@
   <div class="h_100"></div>
   </div>
 
-<input type="radio" name="member_btn" id="login_btn" checked>
-<input type="radio" name="member_btn" id="regi_btn">
-
 <div class="member_sec">
   <div class="tap_btn">
-    <label for="login_btn" class="m_btn_line"><h2>Login</h2></label>
-    <label for="regi_btn" class="m_btn_line"><h2>Join</h2></label>
+    <a href="login"><div class="m_btn_line"><h2>Login</h2></div></a>
+    <a href="register"><div class="m_btn_line tap_checked"><h2>Join</h2></div></a>
   </div>
-
-
-  <!-- //////////////////////////////////////////////////////// -->
-  <!-- 로그인 탭 -->
   <div class="pan_box">
-    <!-- 로그인 폼 -->
-    <div class="login_pan">
-      <div class="login_title">
-        <div class="t1">
-          <h1>HANSAM</h1><h3>로그인</h3>
-        </div>
-        <div class="t2">한샘몰 회원가입을 통해 많은 혜택을 누리세요.</div>
-      </div>
-
-      <form action="#" method="POST" id="login_form">
-        <!-- 아이디 입력 -->
-        <div class="login_id">ID<input type="text" id="member_id" placeholder="아이디를 입력하세요."></div>
-        <!-- 비밀번호 입력 -->
-        <div class="login_pw">PW<input type="text" id="member_pw" placeholder="비밀번호를 입력하세요."></div>
-
-        <div class="login_footer">
-          <!-- 아이디 기억하기 -->
-          <label for="rememberId">
-            <input type="checkbox" id="rememberId" name="rememberId" ${empty cookie.id.value?"":"checked"}>
-            <h5>아이디 기억하기</h5>
-          </label>
-          <!-- 아이디/비번 찾기 -->
-          <span>
-                <a href="#"> <h5>아이디 / 비밀번호 찾기</h5></a>
-            </span>
-        </div>
-        <!-- 로그인 확인 아니면 아이디 또는 비밀번호가 틀립니다 -->
-        <button class="log_btn">로그인</button>
-      </form>
-    </div>
-
     <!-- ////////////////////회원가입 폼////////////////////// -->
     <div class="regi_pan">
       <div class="regi_title">
@@ -210,17 +157,16 @@
         <div class="t2">한샘몰 회원가입을 통해 많은 혜택을 누리세요.</div>
       </div>
 
-      <form action="#" method="POST" id="regi_form" onsubmit="return formCheck(this)">
+      <form action="<c:url value='/register/add'/>" method="POST" id="regi_form" onsubmit="return formCheck(this)">
 
         <table class="regi_form_table">
-
 
 
           <tr class="regi_row_sec">
             <td class="regi_col1">아이디</td>
             <td class="regi_col2 colSpace">
               <input type="text" name="regi_id" value="" minlength="6" maxlength="12">
-              <input type="button"name='regi_id_chk' value="중복확인" onclick="">
+              <input type="button"name='regi_id_chk' type="button" value="중복확인" onclick="">
               <br>
               <span class="min_txt">최소 6자 이상 최대 12자 이내로 입력 해주세요.</span>
               <!-- <div class="regi_msg" id="regi_msg">${URLDecoder.decode(param.msg, "utf-8")}</div> -->
@@ -294,7 +240,7 @@
               <input type="text" class="regi_post_code" id="regi_post_code" value="" readonly>
               <input type="button" class="regi_address_search" id="regi_address_search" value="주소검색" onclick="search_post_code()">
               <br>
-              <input type="text" name="regi_general_address" id="regi_general_address" value="" readonly>
+              <input type="text" name="regi_general_address" id="regi_general_address" value=""readonly>
               <br>
               <input type="text" name="regi_address_detail" id="regi_address_detail" value="" minlength="6" maxlength="12">
             </td>
@@ -303,10 +249,10 @@
           <tr class="regi_row_sec">
             <td class="regi_col1">sms 수신동의</td>
             <td class="regi_col2 colSpace">
-              <input type ="radio" name="sms_chk" id="sms_y" checked>
+              <input type ="radio" name="sms_chk" id="sms_y" checked/>
               <label for="sms_y" class="regi_sms_y">예, 이벤트 정보를 수신 하겠습니다.</label>
               <br>
-              <input type="radio" name="sms_chk" id="sms_n">
+              <input type="radio" name="sms_chk" id="sms_n"/>
               <label for="sms_n" class="regi_sms_n">아니오, 이벤트 정보를 수신하지 않겠습니다.</label>
             </td>
           </tr>
@@ -315,10 +261,9 @@
           <!-- 이용약관 -->
           <tr class="regi_row_sec">
             <td class="regi_col1">이용약관</td>
-
             <td class="regi_col2 colSpace">
 
-                        <textarea class="agree_form"  wrap="hard" disabled>
+                        <textarea class="agree_form" wrap="off" disabled value>
 가. 개인정보의 수집 및 이용 목적
 국가공간정보포털은 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는 경우에는 개인정보 보호법 제18조에 따라 별도의 동의를 받는 등 필요한 조치를 이행할 예정입니다.
 
@@ -344,39 +289,20 @@
 위 개인정보의 수집 및 이용에 대한 동의를 거부할 수 있으나, 동의를 거부할 경우 회원 가입이 제한됩니다.
                         </textarea>
               <br>
-              <input type ="checkbox" name="agree_y" id="agree_y">
-              <label for="agree_y" class="regi_agree"><span>(필수)예, 정보이용에 동의합니다.</span></label>
+              <input type ="checkbox" name="gree_y" id="gree_y"/>
+              <label for="gree_y" class="regi_agree">(필수)예, 정보이용에 동의합니다.</label>
             </td>
           </tr>
 
-
-
-
-
         </table>
-
-
         <button class="regi_btn">가입하기</button>
       </form>
 
     </div>
-
   </div>
-  <!-- 회원가입 탭 -->
-  <!-- <div class="join_pan">
-      <div class="login_title">
-          <div class="t1">
-          <h1>HANSAM</h1><h3>members</h3>
-          </div>
-          <div class="t2">한샘몰 회원이 아니시라면 회원가입을 통해 많은 혜택을 누리세요.</div>
-          </div>
 
-  </div> -->
+  <footer class="footer"></footer>
+
 </div>
-</div>
-
-<footer class="footer"></footer>
-
-
 </body>
 </html>

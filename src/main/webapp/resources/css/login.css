@@ -30,7 +30,7 @@ h2, h1, h3,h5{margin: 0;}
     height: 100%;
     border-bottom: 3px solid gray;
     color: gray;
-    border-width: 1px,4px;
+    border-width:1px 4px;
     border-spacing: 2px;
     text-align: center;
 }
@@ -47,6 +47,13 @@ h2, h1, h3,h5{margin: 0;}
     border-bottom: 3px solid black;
 }
 
+#msg {
+    height: 30px;
+    text-align:center;
+    font-size:16px;
+    color:red;
+    margin-bottom: 20px;
+}
 
 
 /* 하단 폼  */

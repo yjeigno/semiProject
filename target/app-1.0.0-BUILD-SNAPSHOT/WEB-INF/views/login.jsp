@@ -1,10 +1,14 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.net.URLDecoder" %>
+<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>로그인페이지</title>
+  <title>로그인</title>
   <link rel="stylesheet" href="./css/common.css">
   <link rel="stylesheet" href="./css/header.css">
   <link rel="stylesheet" href="./css/login.css">
@@ -17,29 +21,11 @@
 <body>
 <div id="wrap">
 
-  <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인페이지 초안</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script defer src="./js/header.js"></script>
-    <script defer src="./js/main.js"></script>
-    <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/main.css">
-  </head>
-
-  <div>
   <header class="header">
     <div class="content_area header_top">
       <ul class="top_nav_ul">
         <!-- 회원가입 페이지로 이동 -->
-        <li><a href="#">JOIN</a></li>
+        <li><a href="join">JOIN</a></li>
         <!-- 로그인 페이지로 이동 -->
         <li><a href="#">LOGIN</a></li>
         <!-- 위시리스트 내역 페이지로 이동 -->
@@ -176,14 +162,22 @@
           <div class="t2">한샘몰 회원으로 많은 혜택을 누리세요.</div>
         </div>
 
-        <form action="#" method="POST" id="login_form">
+        <form action="<c:url value='/login/login'/>" method="post" id="login_form" onsubmit="return formCheck(this);">
+        <div id="msg">
+            <c:if test="${not empty param.msg}">
+              <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(param.msg)}</i>
+            </c:if>
+          </div>
           <!-- 아이디 입력 -->
-          <div class="login_id">ID<input type="text" id="member_id" placeholder="아이디를 입력하세요."></div>
+          <div class="login_id">ID</div>
+          <input type="text" id="member_id" name="member_id" value="${ cookie.id.value }" placeholder="아이디를 입력하세요.">
           <!-- 비밀번호 입력 -->
-          <div class="login_pw">PW<input type="text" id="member_pw" placeholder="비밀번호를 입력하세요."></div>
+          <div class="login_pw">PW</div>
+          <input type="text" id="member_pw" name="member_pw" placeholder="비밀번호를 입력하세요.">
 
           <div class="login_footer">
             <!-- 아이디 기억하기 -->
+
             <label for="rememberId">
               <input type="checkbox" id="rememberId" name="rememberId" ${empty cookie.id.value?"":"checked"}>
               <h5>아이디 기억하기</h5>
@@ -194,7 +188,7 @@
             </span>
           </div>
           <!-- 로그인 확인 아니면 아이디 또는 비밀번호가 틀립니다 -->
-          <button class="log_btn">로그인</button>
+          <button type="submit" class="log_btn">로그인</button>
         </form>
       </div>
 
