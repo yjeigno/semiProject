@@ -44,7 +44,7 @@ function clickDibs(elem, loginId, product_number, isWishlist) {
     } else {
         $.ajax({
             type:'POST',       // 요청 메서드
-            url: '/semiProject/wishlist/',  // 요청 URI
+            url: '/wishlist/',  // 요청 URI
             data: JSON.stringify({"productNumber":product_number,"isWishlist":isWishlist}),
             headers : { "Content-Type": "application/json"}, // 요청 헤더
             success : function (res) {
@@ -66,6 +66,7 @@ $(document).ready(function () {
 
     // 하트 찜하기
     $(".sprc_wish").on("click", function() {
+        alert("11");
         const targetData = $(this).attr("target-data").split(",");
         const loginId = targetData[0];
         const productNumber = targetData[1];

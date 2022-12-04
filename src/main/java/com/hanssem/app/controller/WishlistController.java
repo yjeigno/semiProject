@@ -38,7 +38,7 @@ public class WishlistController {
         wishlistDto.setProduct_number(product_number);
         wishlistDto.setMember_number(member_number);
 
-        model.addAttribute("pn", wishlistService.select(wishlistDto));
+        model.addAttribute("list", wishlistService.select(wishlistDto));
 
         return "wishlist";
     }

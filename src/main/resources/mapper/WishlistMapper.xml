@@ -37,6 +37,9 @@
              inner join image im
              ON p.product_number = im.product_number
         WHERE w.member_number = #{member_number}
+        <if test="product_number != null">
+            and   p.product_number = #{product_number}
+        </if>
         and   p.product_number = im.product_number
     </select>
 

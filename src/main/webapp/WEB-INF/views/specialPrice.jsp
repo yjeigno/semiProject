@@ -147,7 +147,7 @@
               <img src="${li.imageDto.image_path}" class="sprc_img" class="sprc_img" alt="">
             </div>
           </a>
-          <div class="sprc_wish" id="dibs" target-data="<%=(String)session.getAttribute("id")%>,${li.productDto.product_number}"></div>
+          <div class="${li.wishFlag ? "sprc_wish_on" : "sprc_wish"}" id="dibs" target-data="<%=(String)session.getAttribute("id")%>,${li.productDto.product_number}"></div>
           <div class="sprc_timer">
             <div class="time_obj" id="s_days">
               <span class="unit"></span>

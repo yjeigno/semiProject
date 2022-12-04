@@ -19,6 +19,7 @@ public class SpecialPriceDto {
 
 
 
+
     public SpecialPriceDto() {
 
     }
@@ -40,13 +41,15 @@ public class SpecialPriceDto {
                 '}';
     }
 
-    public Integer getWishFlag() {
-        return wishFlag;
+    public boolean getWishFlag() {
+        return wishFlag == 1;
     }
 
     public void setWishFlag(Integer wishFlag) {
         this.wishFlag = wishFlag;
     }
+
+
     public Integer getSpecial_product_number() {
         return special_product_number;
     }
