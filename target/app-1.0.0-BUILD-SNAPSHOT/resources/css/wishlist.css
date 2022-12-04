@@ -1,0 +1,54 @@
+.wish_container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.wl_title {
+    width: 100%;
+    background: #333333;
+    color: #fff;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+.wl_title > h1 {
+    padding: 20px 0 ;
+    font-size: 25px;
+}
+.wish_list {
+    padding: 0 30px;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin-bottom: 100px;
+}
+.wish_item {
+    width: calc((100% - (15px * 2 * 4)) / 4);
+    padding: 15px;
+    float: left;
+    position: relative;
+}
+.wish_img_box {
+    /* width: 270px; */
+    height: 270px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.wish_img {
+    width: 100%;
+    height: 100%;
+}
+.wish_wish {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 6%;
+    right: 6%;
+    background: url(../img/etc/heart2.png) no-repeat center 100% / cover;
+}
+.footer {
+    width: 100%;
+    height: 300px;
+    background-color: #333333;
+}

@@ -17,4 +17,6 @@ public class SpecialPriceDao {
     public List<SpecialPriceDto> selectSpecial(Integer product_number) {
         return session.selectList(namespace + "selectSpecialProduct", product_number);
     }
+
+
 }

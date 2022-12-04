@@ -20,8 +20,7 @@ public class DealService {
     public ProductDto show(Integer product_number) {
         return dealDao.select(product_number);
     }
-    public ImageDto show2(Integer product_number) {
-        return dealDao.selectImg(product_number);
+    public ImageDto show2(Integer product_number) { return dealDao.selectImg(product_number);
     }
     public List<SizeCodeDto> show3(Integer product_number) {
         return dealDao.selectSize(product_number);

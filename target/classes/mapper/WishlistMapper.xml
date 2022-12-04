@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hanssem.app.dao.WishlistMapper">
+
+    <resultMap id="ImageDto" type="ImageDto">
+        <result column="image_number" property="image_number"/>
+        <result column="image_path" property="image_path"/>
+        <result column="image_file_name" property="image_file_name"/>
+        <result column="image_rename_file_name" property="image_rename_file_name"/>
+        <result column="image_code_number" property="image_code_number"/>
+        <result column="image_register_date" property="image_register_date"/>
+        <result column="product_number" property="product_number"/>
+    </resultMap>
+<!--
+    <select id="select" parameterType="WishlistDto">
+        SELECT p.*, w.*
+        FROM product p inner join wishlist w ON p.product_number = w.product_number
+        WHERE
+        w.member_number = #{member_number}
+    </select>-->
+
+    <select id="select" parameterType="WishlistDto" resultType="Integer">
+        SELECT p.*, w.*, im.*
+        FROM product p
+             inner join wishlist w
+             ON p.product_number = w.product_number
+             inner join image im
+             ON p.product_number = im.product_number
+        WHERE w.member_number = #{member_number}
+        and   p.product_number = im.product_number
+    </select>
+
+    <select id="selectWishlist" parameterType="WishlistDto" resultType="Integer">
+        SELECT COUNT(*)
+        FROM wishlist w
+        WHERE w.product_number = #{product_number}
+        AND w.member_number = #{member_number}
+    </select>
+
+    <insert id="insertWishlist" parameterType="WishlistDto">
+        INSERT INTO wishlist(member_number, product_number)
+        VALUES (#{member_number},  #{product_number})
+    </insert>
+
+    <delete id="deleteWishlist" parameterType="WishlistDto">
+        DELETE FROM wishlist w
+        WHERE w.product_number = #{product_number}
+        AND w.member_number = #{member_number}
+    </delete>
+
+</mapper>

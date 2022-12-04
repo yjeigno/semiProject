@@ -16,6 +16,7 @@
         <typeAlias alias="SearchResult" type="com.hanssem.app.dto.SearchResult" />
         <typeAlias alias="SizeDto" type="com.hanssem.app.dto.SizeDto" />
         <typeAlias alias="SpecialPriceDto" type="com.hanssem.app.dto.SpecialPriceDto"/>
+        <typeAlias alias="WishlistDto" type="com.hanssem.app.dto.WishlistDto"/>
 
 
     </typeAliases>
