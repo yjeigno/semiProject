@@ -1,19 +1,3 @@
-// 타이머에 사용할 전역변수 선언
-/*let ref = new Date();
-ref.setHours(0);
-ref.setMinutes(0);
-ref.setSeconds(0);
-ref.setMilliseconds(0);
-ref.setDate(ref.getDate() + 3); */
-
-// // 생성시간을 3 - (현재시간 - 생성시간)
-// // 만일 마이너스면 플러스가 될 떄까지 +3
-
-// let timer = 3- (Date.now - Data.createTime);
-// while (timer < 0) {
-//     timer+=3;
-// }
-// // 타이머 로직 실행
 
 function setGoodsTimer() { //상품 타이머
     const items = document.getElementsByClassName("sprc_item");
@@ -64,9 +48,9 @@ function clickDibs(elem, loginId, product_number, isWishlist) {
 
 $(document).ready(function () {
 
+
     // 하트 찜하기
-    $(".sprc_wish").on("click", function() {
-        alert("11");
+    $(".sprc_wish, .sprc_wish_on").on("click", function() {
         const targetData = $(this).attr("target-data").split(",");
         const loginId = targetData[0];
         const productNumber = targetData[1];
@@ -79,6 +63,8 @@ $(document).ready(function () {
 
             if(result) clickDibs(this,loginId,productNumber,true);
         }
+
+        location.reload()
     })
 
     // 네비 변경

@@ -62,9 +62,5 @@ public class SpecialPriceController {
 
     }
 
-/*     private boolean loginChk(HttpServletRequest request) {
-        ttpSession session = request.getSession();
-        return session.getAttribute("id") != null;
 
-    }*/
 }

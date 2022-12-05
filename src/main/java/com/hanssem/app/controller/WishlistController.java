@@ -1,6 +1,5 @@
 package com.hanssem.app.controller;
 
-import com.hanssem.app.dto.ImageDto;
 import com.hanssem.app.dto.WishlistDto;
 import com.hanssem.app.dto.WishlistPostDto;
 import com.hanssem.app.service.WishlistService;

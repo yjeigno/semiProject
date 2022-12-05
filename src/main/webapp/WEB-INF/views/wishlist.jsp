@@ -133,6 +133,10 @@
                             <div class="wish_img_box">
                                 <img src="${li.imageDto.image_path}" class="wish_img" alt="">
                             </div>
+                            <div class="wish_title">
+                                <div class="wish_item_name">${li.productDto.product_name}</div>
+                                <div class="wish_item_prd">${li.productDto.product_content}</div>
+                            </div>
                         </a>
                         <div class="wish_wish"></div>
                     </div>

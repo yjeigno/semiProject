@@ -4,6 +4,17 @@
 
 <mapper namespace="com.hanssem.app.dao.WishlistMapper">
 
+    <resultMap id="ProductDto" type="ProductDto">
+        <result column="product_number" property="product_number"/>
+        <result column="product_name" property="product_name"/>
+        <result column="product_price" property="product_price"/>
+        <result column="product_content" property="product_content"/>
+        <result column="product_register_date" property="product_register_date"/>
+        <result column="product_status" property="product_status"/>
+        <result column="product_class" property="product_class"/>
+        <result column="category_code_number" property="category_code_number"/>
+    </resultMap>
+
     <resultMap id="ImageDto" type="ImageDto">
         <result column="image_number" property="image_number"/>
         <result column="image_path" property="image_path"/>

@@ -18,8 +18,6 @@ public class SpecialPriceDto {
     private Integer wishFlag;
 
 
-
-
     public SpecialPriceDto() {
 
     }
