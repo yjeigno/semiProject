@@ -27,8 +27,8 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public List<SizeDto> getSizeList(Integer category_code_number){
-        return searchDao.searchSizeList(category_code_number);
+    public List<SizeFilterDto> getSizeList(SearchCondition sc){
+        return searchDao.searchSizeList(sc);
     }
 
     @Override
@@ -36,5 +36,11 @@ public class SearchServiceImpl implements SearchService {
         return searchDao.searchCateInfoList(sc);
     };
 
+    public List<ColorFilterDto> getColorList(SearchCondition sc){
+        return searchDao.searchColorList(sc);
+    };
+    public int getPriceAmount(SearchCondition sc) {
+        return searchDao.searchPriceAmount(sc);
+    };
 
 }

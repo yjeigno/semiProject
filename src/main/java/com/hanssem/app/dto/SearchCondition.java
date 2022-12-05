@@ -10,16 +10,36 @@ public class SearchCondition {
     private Integer category;
     private Integer size;
     private Integer color;
+    private Integer minPrice;
+    private Integer maxPrice;
 
     public SearchCondition() {}
 
-    public SearchCondition(Integer page, String search, String sort, Integer category, Integer size, Integer color) {
+    public SearchCondition(Integer page, String search, String sort, Integer category, Integer size, Integer color, Integer minPrice, Integer maxPrice) {
         this.page = page;
         this.search = search;
         this.sort = sort;
         this.category = category;
         this.size = size;
         this.color = color;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
+    }
+
+    public Integer getMinPrice() {
+        return minPrice;
+    }
+
+    public void setMinPrice(Integer minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public Integer getMaxPrice() {
+        return maxPrice;
+    }
+
+    public void setMaxPrice(Integer maxPrice) {
+        this.maxPrice = maxPrice;
     }
 
     public Integer getCategory() {
@@ -106,6 +126,8 @@ public class SearchCondition {
                 ", category=" + category +
                 ", size=" + size +
                 ", color=" + color +
+                ", minPrice=" + minPrice +
+                ", maxPrice=" + maxPrice +
                 '}';
     }
 }
