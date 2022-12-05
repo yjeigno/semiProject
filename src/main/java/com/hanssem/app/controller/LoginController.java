@@ -20,7 +20,7 @@ import java.net.http.HttpResponse;
 import java.sql.SQLException;
 
 @Controller
-//@RequestMapping("/login")
+@RequestMapping("/login")
 public class LoginController {
 
     @Autowired
