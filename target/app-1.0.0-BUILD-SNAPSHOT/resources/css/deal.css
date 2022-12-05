@@ -1,6 +1,6 @@
 img {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
 }
 
 .d_sub_nav {
@@ -218,11 +218,11 @@ strong {
     display: block;
 }
 .h1000{
-    width: 100%;
+    /*width: 100%;*/
     min-height: 1000px;
     /*height: 1000px;*/
-    border: 2px solid;
-    box-sizing: border-box;
+    /*border: 2px solid;*/
+    /*box-sizing: border-box;*/
     /*font-size: 40px;*/
 }
 .btn_top {
@@ -310,4 +310,10 @@ strong {
 #sec2{
     padding: 20px;
     box-sizing: border-box;
+}
+.d_refund_txt{
+    font-size: 28px;
+    margin: 10px auto;
+    color: #333;
+    font-weight: 500;
 }

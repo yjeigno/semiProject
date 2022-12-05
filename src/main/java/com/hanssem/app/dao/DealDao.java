@@ -17,6 +17,7 @@ public class DealDao {
         private String productPath="com.hanssem.app.dao.productMapper.";
         private String imagePath="com.hanssem.app.dao.imageMapper.";
         private String ReviewPath="com.hanssem.app.dao.reviewMapper.";
+        private String SpecialPath="com.hanssem.app.dao.specialPriceMapper.";
         // 특정 상품 불러오기
         public ProductDto select(Integer product_number) {
             return session.selectOne(productPath+"select",product_number);
@@ -30,6 +31,10 @@ public class DealDao {
             return session.selectList(imagePath+"selectImgColor",product_number);
         }
 
+        // 특정 상품의 상세이미지 경로 불러오기
+        public List<ImageDto> selectImgDetail(Integer product_number){
+            return session.selectList(imagePath+"selectImgDetail",product_number);
+        }
         // 특정 상품의 사이즈 불러오기
         public List<CateSizeDto> selectSize(Integer product_number){
             return session.selectList(productPath+"selectSize",product_number);
@@ -46,4 +51,9 @@ public class DealDao {
         public  Double avgReview(Integer product_number){
             return session.selectOne(ReviewPath+"avgReview",product_number);
         }
+        // 특정 상품이 특가일 때 할인율 불러오기
+        public SpecialPriceDto selectDiscount(Integer product_number){
+            return session.selectOne(SpecialPath+"selectSpeDiscount",product_number);
+        }
+
 }

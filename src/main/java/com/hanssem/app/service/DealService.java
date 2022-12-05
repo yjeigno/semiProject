@@ -5,6 +5,7 @@ import com.hanssem.app.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,11 @@ public class DealService {
         return dealDao.selectImgColor(product_number);
     }
 
+    // 특정 상품의 상세이미지 불러오기
+    public List<ImageDto> getImgDetail(Integer product_number) {
+        return dealDao.selectImgDetail(product_number);
+    }
+
     // 특정 상품의 사이즈 불러오기
     public List<CateSizeDto> showSize(Integer product_number) {
         return dealDao.selectSize(product_number);
@@ -43,5 +49,10 @@ public class DealService {
     // 특정 상품에 맞는 리뷰 평점 불러오기
     public Double getAvgReview(Integer product_number){
         return dealDao.avgReview(product_number);
+    }
+
+    // 특정 상품이 특가일 때 할인율 불러오기
+    public SpecialPriceDto getDiscount(Integer product_number){
+        return dealDao.selectDiscount(product_number);
     }
 }
