@@ -276,7 +276,7 @@
 
 
         <div class="Interior_box2">
-          <img src="img/Interior/interior_5(0).png">
+          <img class="Interior_wimg" src="img/Interior/interior_5(0).png">
         </div>
 
 
