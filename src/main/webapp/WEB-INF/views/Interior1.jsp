@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 이준환
@@ -24,10 +26,10 @@
     <header class="header">
         <div class="content_area header_top">
             <ul class="top_nav_ul">
-                <!-- 회원가입 페이지로 이동 -->
-                <li><a href="#">JOIN</a></li>
                 <!-- 로그인 페이지로 이동 -->
                 <li><a href="#">LOGIN</a></li>
+                <!-- 회원가입 페이지로 이동 -->
+                <li><a href="#">JOIN</a></li>
                 <!-- 위시리스트 내역 페이지로 이동 -->
                 <li><a href="#">WISHLIST</a></li>
                 <!-- 본인인증 후 / 마이페이지로 이동 -->
@@ -45,19 +47,17 @@
                 </form>
             </div>
             <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="#"><div class="logo"><img src="img/headerImg/logo_black.png" alt=""></div></a>
+            <a href="#"><div class="logo"><img src="img/logo_black.png" alt=""></div></a>
         </div>
 
         <div class="header_bottom">
             <div class="content_area">
                 <ul class="bottom_nav_ul">
-                    <li class="box">Furniture</li>
-                    <li class="box">Lighting</li>
-                    <li class="box">Fabric</li>
-                    <!-- 홈데코 클릭시 인테리어 페이지 이동 -->
-                    <li><a href="">Home Deco</a></li>
-                    <!-- 특가페이지 이동 -->
-                    <li><a href="">Hot Deal</a></li>
+                    <li>Furniture</li>
+                    <li>Lighting</li>
+                    <li>Kitchen</li>
+                    <li>Home Deco</li>
+                    <li>Hot Deal</li>
                 </ul>
             </div>
         </div>
@@ -67,66 +67,51 @@
                     <li class="li_Title">Furniture</li>
                     <li class="li_content">
                         <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Table</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn1.png"></li>
+                            <li class="ca_txt">Boutique Furniture</li>
+                            <li class="ca_img"><img src="img/Furn1.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table & Dining</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn2.png"></li>
+                            <li class="ca_img"><img src="img/Furn2.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Chair</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn3.png"></li>
+                            <li class="ca_img"><img src="img/Furn3.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Sofa</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn4.png"></li>
+                            <li class="ca_img"><img src="img/Furn4.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Desk</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn5.png"></li>
+                            <li class="ca_txt">Global Furniture</li>
+                            <li class="ca_img"><img src="img/Furn5.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">TV Stand & Storage</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn6.png"></li>
+                            <li class="ca_img"><img src="img/Furn6.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Small Furniture</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn7.png"></li>
+                            <li class="ca_img"><img src="img/Furn7.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Bed</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn8.png"></li>
+                            <li class="ca_img"><img src="img/Furn8.png"></li>
                         </ul>
                     </li>
+
                 </ul>
                 <ul class="ul_category_box">
                     <li class="li_Title">Lighting</li>
-                    <li>
-                        <ul class="li_content str">
-                            <li class="l_txt">pendant</li>
-                            <li class="l_txt">table</li>
-                            <li class="l_txt">floor lamp</li>
-                            <li class="l_txt">wall</li>
-                            <li class="l_txt">ceiling</li>
-                        </ul>
-                    </li>
+                    <li class="li_content"></li>
 
                 </ul>
                 <ul class="ul_category_box">
-                    <li class="li_Title">Fabric</li>
-                    <li>
-                        <ul class="li_content str right">
-                            <li class="l_txt">Curtain</li>
-                            <li class="l_txt">Rug</li>
-                            <li class="l_txt">blind</li>
-                            <li class="l_txt">mat</li>
-                            <li></li>
-                        </ul>
-                    </li>
+                    <li class="li_Title">Kitchen</li>
+                    <li class="li_content"></li>
 
                 </ul>
-                <!-- <ul class="ul_category_box">
+                <ul class="ul_category_box">
                     <li class="li_Title">Home Deco</li>
                     <li class="li_content"></li>
 
@@ -135,7 +120,7 @@
                     <li class="li_Title">Hot Deal</li>
                     <li class="li_content"></li>
 
-                </ul> -->
+                </ul>
             </div>
         </div>
     </header>
@@ -218,6 +203,7 @@
             </div>
 
             <div class="Interior_menu_item" id="work01">
+       <c:forEach var="item" items="${list}" varStatus="vs">
                 <div class="Interior_item">
                     <ul class="Interior_item_img">
                         <li>
@@ -227,8 +213,8 @@
 
                         <div class="txt_box">
                             <a href="Interior_detail" target="_blank">
-                                <p>모던&빈티지</p>
-                                <p >670,000원~</p>
+                                <p><!--모던&빈티지--></p>
+                                <p ><!--670,000원~--></p>
                             </a>
                         </div>
 
@@ -491,4 +477,5 @@
 
 
 </body>
+</c:forEach>
 </html>
