@@ -13,7 +13,7 @@ $(document).ready(function(){
                 color: '#000'
             })
             in_di.css({
-                display: 'flex',
+                display: 'block',
             })
             non_cl.css({
                 border: 'solid #000' ,

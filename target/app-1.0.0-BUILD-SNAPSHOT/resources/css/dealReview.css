@@ -24,6 +24,7 @@
     margin-top: 20px;
     /* border: 2px solid; */
     box-sizing: border-box;
+    height: 100%;
 }
 .review_title_font{
     font-size: 30px;
@@ -64,10 +65,10 @@
 
 }
 .list_photo{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    gap: 30px;
+    display: block;
+    /*justify-content: space-evenly;*/
+    /*flex-wrap: wrap;*/
+    /*gap: 30px;*/
 }
 .photo_review{
     width: calc((100% / 4) - 60px);
@@ -76,6 +77,8 @@
     /* background-color: aqua; */
     text-align: center;
     text-overflow: ellipsis;
+    float: left;
+    margin-right: 60px;
 }
 .photo_review_img{
     width: 100%;
@@ -188,7 +191,7 @@
 
 }
 .list_text{
-    flex-direction: column;
-    gap: 10px;
+    /*flex-direction: column;*/
+    /*gap: 10px;*/
     display: none;
 }

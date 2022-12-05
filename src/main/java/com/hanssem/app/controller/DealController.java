@@ -21,25 +21,25 @@ public class DealController {
     @GetMapping("/deal")
     public String deal( Model m) {
 
-            ProductDto productDto = dealService.getInfo(2);
+            ProductDto productDto = dealService.getInfo(1);
             m.addAttribute("pInfo",productDto);
 
-            List<ImageColorDto> imageColorDto = dealService.showImgColor(2);
+            List<ImageColorDto> imageColorDto = dealService.showImgColor(1);
             m.addAttribute("imgList",imageColorDto);
 
-            List<CateSizeDto> sizeList = dealService.showSize(2);
+            List<CateSizeDto> sizeList = dealService.showSize(1);
             m.addAttribute("sizeList",sizeList);
 
-            List<ReviewDto> reviewList = dealService.getReview(2);
+            List<ReviewDto> reviewList = dealService.getReview(1);
             m.addAttribute("reviewList",reviewList);
 
-            Double review = dealService.getAvgReview(2);
+            Double review = dealService.getAvgReview(1);
             m.addAttribute("avgReview",review);
 
-            List<ImageDto> imgDetailList = dealService.getImgDetail(2);
+            List<ImageDto> imgDetailList = dealService.getImgDetail(1);
             m.addAttribute("imgDetail",imgDetailList);
 
-            SpecialPriceDto specialPriceDto = dealService.getDiscount(2);
+            SpecialPriceDto specialPriceDto = dealService.getDiscount(1);
             m.addAttribute("SpeDiscount",specialPriceDto);
 
 

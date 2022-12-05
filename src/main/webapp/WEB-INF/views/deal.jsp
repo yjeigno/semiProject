@@ -407,8 +407,9 @@
                 <img src="<c:url value='/img/dealImg/refund.jpg'/> ">
             </div>
         </div>
-        <div class="btn_top"><a href="#wrap">TOP</a></div>
 
+        <div class="btn_top"><a href="#wrap">TOP</a></div>
+        <footer class="footer">푸터입니당</footer>
         </html>
     </main>
 </div>
