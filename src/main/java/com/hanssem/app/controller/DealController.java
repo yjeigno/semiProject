@@ -21,21 +21,28 @@ public class DealController {
     @GetMapping("/deal")
     public String deal( Model m) {
 
-            ProductDto productDto = dealService.getInfo(1);
+            ProductDto productDto = dealService.getInfo(2);
             m.addAttribute("pInfo",productDto);
 
-            List<ImageColorDto> imageColorDto = dealService.showImgColor(1);
+            List<ImageColorDto> imageColorDto = dealService.showImgColor(2);
             m.addAttribute("imgList",imageColorDto);
 
-            List<CateSizeDto> sizeList = dealService.showSize(1);
+            List<CateSizeDto> sizeList = dealService.showSize(2);
             m.addAttribute("sizeList",sizeList);
 
-            List<ReviewDto> reviewList = dealService.getReview(1);
+            List<ReviewDto> reviewList = dealService.getReview(2);
             m.addAttribute("reviewList",reviewList);
 
-            Double review = dealService.getAvgReview(1);
+            Double review = dealService.getAvgReview(2);
             m.addAttribute("avgReview",review);
-            System.out.println(review);
+
+            List<ImageDto> imgDetailList = dealService.getImgDetail(2);
+            m.addAttribute("imgDetail",imgDetailList);
+
+            SpecialPriceDto specialPriceDto = dealService.getDiscount(2);
+            m.addAttribute("SpeDiscount",specialPriceDto);
+
+
 //            Map map = new HashMap();
 //            map.put("product_number",1);
 //            map.put("size_code_name",'Q');

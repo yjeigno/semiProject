@@ -2,6 +2,7 @@ package com.hanssem.app.service;
 
 import com.hanssem.app.dto.*;
 
+import java.awt.*;
 import java.util.List;
 
 public interface SearchService {
@@ -11,8 +12,11 @@ public interface SearchService {
 
     List<SearchResult> getSearchResultList(SearchCondition sc);
 
-    List<SizeDto> getSizeList(Integer category_code_number);
+    List<SizeFilterDto> getSizeList(SearchCondition sc);
 
     List<CateFilterDto> getCateInfo(SearchCondition sc);
 //    String[] getSearchCateList(SearchCondition sc); //검색대상 카테고리 리스트
+    List<ColorFilterDto> getColorList(SearchCondition sc);
+
+    int getPriceAmount(SearchCondition sc);
 }

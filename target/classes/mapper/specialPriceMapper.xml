@@ -58,4 +58,13 @@
         Limit 20;
     </select>
 
+<!--    특정상품에 특가 할인율 불러오기-->
+    <select id="selectSpeDiscount" parameterType="int" resultType="SpecialPriceDto">
+        SELECT  special_product_end_date,
+                special_product_discount,
+                sp.product_number
+        FROM product p
+        JOIN special_product sp on p.product_number = sp.product_number
+        WHERE p.product_number = #{product_number}
+    </select>
 </mapper>

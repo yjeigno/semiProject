@@ -28,12 +28,18 @@ public class SearchDao {
     }
 
     /** 사이즈 가져오기*/
-    public List<SizeDto> searchSizeList(Integer category_code_number) {
-        return session.selectList(namespace+"selectSizeList", category_code_number);
+    public List<SizeFilterDto> searchSizeList(SearchCondition sc) {
+        return session.selectList(namespace+"selectSizeList", sc);
     }
 
     public List<CateFilterDto> searchCateInfoList(SearchCondition sc) {
         return session.selectList(namespace+"getCateInfo", sc);
     }
+    public List<ColorFilterDto> searchColorList(SearchCondition sc) {
+        return session.selectList(namespace+"selectColorList", sc);
+    }
 
+    public int searchPriceAmount(SearchCondition sc) {
+        return session.selectOne(namespace+"selectPriceAmount", sc);
+    }
 }
