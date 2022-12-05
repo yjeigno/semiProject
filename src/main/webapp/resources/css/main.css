@@ -69,18 +69,22 @@
 
 
 /* 가로간격 적용 */
-/* 번호 */
-.basket_title > .row:nth-child(1){width:8%;}
+/* 선택 */
+.basket_title > .row:nth-child(1){width:5%;}
 /* 이미지 */
-.basket_title > .row:nth-child(2){width:20%;}
+.basket_title > .row:nth-child(2){width:15%;}
 /* 상품명 */
-.basket_title > .row:nth-child(3){width:30%;}
+.basket_title > .row:nth-child(3){width:15%;}
+/* 사이즈 */
+.basket_title > .row:nth-child(4){width:15%;}
+/* 색상 */
+.basket_title > .row:nth-child(5){width:10%;}
 /* 가격 */
-.basket_title > .row:nth-child(4){width:20%;}
+.basket_title > .row:nth-child(6){width:20%;}
 /* 수량 */
-.basket_title > .row:nth-child(5){width:12%;}
+.basket_title > .row:nth-child(7){width:10%;}
 /* 삭제 */
-.basket_title > .row:nth-child(6){width:10%;}
+.basket_title > .row:nth-child(8){width:10%;}
 
 /* 장바구니 상품정보 영역(한줄)*/
 .basket_items{
@@ -97,38 +101,44 @@
     border-style: none;
 
 }
-.basket_item_check{
-    width: 8%;
-    height: 100px;
+input[namne="item_check"]{
+    accent-color: black;
 
 }
+.basket_item_check{
+    width: 5%;
+    height: 100px;
+}
 .basket_product_img{
-    width: 20%;
+    width: 15%;
     height: 100px;
     /* background: red; */
 }
 .basket_product_name{
-    width: 30%;
+    width: 15%;
     height: 100px;
 }
+.basket_product_size{
+    width: 15%;
+    height: 100px;
+}
+.basket_product_color{
+    width: 10%;
+    height: 100px;
+}
+
 .basket_product_price{
     width: 20%;
     height: 100px;
 }
 .basket_product_quentity{
-    width: 12%;
+    width: 10%;
     height: 100px;
 }
 .basket_product_delete{
     width: 10%;
     height: 100px;
 }
-.basket_x{
-    width: 10px;
-    height: 10px;
-    background: gray;
-}
-
 
 /* //////////////////////////////// */
 
@@ -185,6 +195,10 @@
     font-weight: 900;
     text-align: center;
 }
+.banner > img{
+    width: 1200px;
+    height: 600px;
+}
 
 .btn_slide {
     width: 50px;
@@ -198,6 +212,20 @@
     /* display: flex;
     justify-content: space-between; */
 }
+.main_banner_img1{
+    background: url(../img/main/mainbanner_1.png);
+}
+.main_banner_img2{
+
+    background: url(../img/main/mainbanner_2.png);
+}
+
+.main_banner_img3{
+
+    background: url(../img/main/mainbanner_3.png);
+}
+
+
 
 #btn_slide_L {
     left: 0;
@@ -213,8 +241,6 @@
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-
-    /* background-color: skyblue; */
     display: flex;
     gap: 10px;
 }

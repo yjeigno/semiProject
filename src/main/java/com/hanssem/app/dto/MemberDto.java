@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.sql.Timestamp;
 
 public class MemberDto {
+
+    private Integer member_number;
+
     private String member_id;
     private String member_pw;
     private String member_name;
@@ -20,11 +23,10 @@ public class MemberDto {
 
     private Boolean rememberId;
 
-
-
     public MemberDto(){}
 
-    public MemberDto(String member_id, String member_pw, String member_name, String member_email, String member_phone, Integer member_birth, String member_address, Integer member_gender, Integer member_sns, Integer member_status, Timestamp member_register_date, Timestamp member_login_date) {
+    public MemberDto(Integer member_number, String member_id, String member_pw, String member_name, String member_email, String member_phone, Integer member_birth, String member_address, Integer member_gender, Integer member_sns, Integer member_status, Timestamp member_register_date, Timestamp member_login_date) {
+        this.member_number = member_number;
         this.member_id = member_id;
         this.member_pw = member_pw;
         this.member_name = member_name;
@@ -39,7 +41,12 @@ public class MemberDto {
         this.member_login_date = member_login_date;
     }
 
-
+    public Integer getMember_number() {
+        return member_number;
+    }
+    public Integer getMember_gender() {
+        return member_gender;
+    }
 
     public String getMember_id() {
         return member_id;

@@ -79,7 +79,7 @@ public class LoginController {
     }
 
     private boolean loginChk(String member_id, String member_pw) throws Exception{
-        MemberDto member = memberDao.selectMember(member_id, member_pw);
+        MemberDto member = memberDao.LoginMember(member_id, member_pw);
         if(member == null) return false;
         return member.getMember_pw().equals(member_pw);
 

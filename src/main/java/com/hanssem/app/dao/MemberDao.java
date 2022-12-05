@@ -13,7 +13,7 @@ public class MemberDao {
     @Autowired
     DataSource ds;
 
-    public MemberDto selectMember(String member_id, String member_pw) throws SQLException {
+    public MemberDto LoginMember(String member_id, String member_pw) throws SQLException {
 
 
         Connection conn = ds.getConnection();
@@ -45,6 +45,37 @@ public class MemberDao {
             return member;
         }
             return null;
+
+    }
+
+    public MemberDto selectMember(String member_id) throws SQLException {
+        Connection conn = ds.getConnection();
+
+        String sql="select * from member where member_id =?";
+
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, member_id);
+
+        ResultSet rs = pstmt.executeQuery();
+
+        if(rs.next()){
+            MemberDto member = new MemberDto();
+            member.setMember_id(rs.getString(2));
+            member.setMember_pw(rs.getString(3));
+            member.setMember_name(rs.getString(4));
+            member.setMember_email(rs.getString(5));
+            member.setMember_phone(rs.getString(6));
+            member.setMember_birth(rs.getInt(7));
+            member.setMember_address(rs.getString(8));
+            member.getMember_gender(rs.getInt(9));
+            member.setMember_sns(rs.getInt(10));
+            member.setMember_status(rs.getInt(11));
+            member.setMember_register_date(rs.getTimestamp(12));
+            member.setMember_login_date(rs.getTimestamp(13));
+
+            return member;
+        }
+        return null;
 
     }
 

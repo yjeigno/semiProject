@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hanssem.app.dao.cartMapper">
+    <!-- CartDto resultMap -->
+    <resultMap id="CartDto" type="CartDto">
+        <result column="cart_number" property="product_number"/>
+        <result column="member_number" property="member_number"/>
+        <result column="count" property="count"/>
+    </resultMap>
+
+    <!-- CartItemDto resultMap -->
+    <resultMap id="CartItemDto" type="CartItemDto">
+        <result column="cart_item_number" property="cart_item_number"/>
+        <result column="cart_number" property="cart_number"/>
+        <result column="product_number" property="product_number"/>
+        <result column="count" property="count"/>
+    </resultMap>
+
+    <!--    장바구니 등록    -->
+    <insert id="insertCart" parameterType="CartDto">
+        INSERT INTO cart
+        (member_number, count)
+        VALUES
+        (#{member_number},#{count})
+    </insert>
+
+    <!--    장바구니 상품 등록    -->
+    <insert id="insertCartItem" parameterType="CartItemDto">
+        INSERT INTO cart_item
+        (cart_number, product_number, count, image_number, size_code_number, color_code_number)
+        VALUES
+        (#{cart_number},#{product_number},#{count},#{image_number},#{size_code_number},#{color_code_number})
+    </insert>
+
+    <!--    장바구니 조회    -->
+    <select id="cart" resultType="CartDto">
+        SELECT * FROM cart
+    </select>
+
+    <!--    카트가 존재 여부 체크    -->
+    <select id="selectCart" parameterType="String" resultType="CartDto">
+        SELECT * FROM cart WHERE member_id = ${member_id}
+    </select>
+
+<!--    &lt;!&ndash;    특정 장바구니에 담겨있는 아이템들 가져오기    &ndash;&gt;-->
+<!--    <select id="select" parameterType="int" resultType="CartItemDto">-->
+<!--        SELECT * FROM cart_item WHERE cart_number = #{cart_number}-->
+<!--    </select>-->
+
+    <!--   cart_item_number 를 이용해서 특정 아이템 한개 가져오기     -->
+    <select id="selectCartItem" resultMap="CartItemDto">
+        SELECT image_path,
+        product_name,
+        size_code_name,
+        color_code_name,
+        product_price
+        FROM cart_item
+        JOIN image on cart_item.image_number = image.image_number
+        JOIN product on cart_item.product_number = product.product_number
+        JOIN size_code on cart_item.size_code_number = size_code.size_code_number
+        JOIN color_code on cart_item.color_code_number = color_code.color_code_number
+        WHERE cart_item_number = #{cart_item_number}
+    </select>
+
+    <!--   cart_number 를 이용하여 여러개의 cart_item 아이템들 가져오기 일대다 관계   -->
+    <select id="selectCartItemList" resultMap="CartItemDto">
+        SELECT image_path,
+        product_name,
+        size_code_name,
+        color_code_name,
+        product_price
+        FROM cart_item
+        JOIN image on cart_item.image_number = image.image_number
+        JOIN product on cart_item.product_number = product.product_number
+        JOIN size_code on cart_item.size_code_number = size_code.size_code_number
+        JOIN color_code on cart_item.color_code_number = color_code.color_code_number
+        WHERE cart_number = ${cart_number}
+    </select>
+
+    <!--    장바구니 아이템 삭제    int 안되면 바꾸기-->
+    <delete id="cartDelete" parameterType="int">
+        DELETE FROM cart_item WHERE cart_item_number = #{cart_item_number}
+    </delete>
+</mapper>

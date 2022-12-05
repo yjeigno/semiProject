@@ -36,6 +36,8 @@
                 <div class="row bkt_check">선택</div>
                 <div class="row bkt_img">이미지</div>
                 <div class="row bkt_product_name">상품명</div>
+                <div class="row bkt_product_size">사이즈</div>
+                <div class="row bkt_product_color">색상</div>
                 <div class="row bkt_product_price">가격</div>
                 <div class="row bkt_product_quentity">수량</div>
                 <div class="row bkt_product_delete">삭제</div>
@@ -53,6 +55,10 @@
                     </div>
                     <!-- 상품 상세 페이지 이동 생각 할것(product 테이블 > product_name(image_numberPK)) -->
                     <div class="row basket_product_name"><a href="">상품명</a></div>
+
+                    <div class="row basket_product_size"><a href="">사이즈</a></div>
+
+                    <div class="row basket_product_color"><a href="">색상</a></div>
 
                     <div class="row basket_product_price"><a href="">100.000원</a></div>
 
@@ -210,10 +216,12 @@
 
 
     <div class="main_banner">
-        <a href="#" class="banner"><img src="./img/main/mainbanner_img1.png" alt=""></a>
-        <a href="#" class="banner"><img src="./img/main/mainbanner_img2.png" alt=""></a>
-        <a href="#" class="banner"><img src="./img/main/mainbanner_img3.png" alt=""></a>
-
+        <a href="#" class="banner"><img src="img/main/mainbanner_1.png" alt=""></a>
+        <a href="#" class="banner"><img src="img/main/mainbanner_2.png" alt=""></a>
+        <a href="#" class="banner"><img src="img/main/mainbanner_3.png" alt=""></a>
+<%--    <a href="#" class="banner"><div class="main_banner_img1"></div></a>--%>
+<%--    <a href="#" class="banner"><div class="main_banner_img2"></div></a>--%>
+<%--    <a href="#" class="banner"><div class="main_banner_img3"></div></a>--%>
 
         <input type="button" class="btn_slide" id="btn_slide_L">
         <input type="button" class="btn_slide" id="btn_slide_R">
