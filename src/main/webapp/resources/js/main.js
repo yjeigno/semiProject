@@ -13,12 +13,18 @@ $(document).ready(function(){
     let timer = 1000;
 
     // 메인 베너이미지 좌우 버튼
+    // $('#btn_slide_R').click(function(){
+    //     slide(index_no % 3, '-100%', (index_no + 1) % 3, '100%',(index_no+1)%3);
+    // });
     $('#btn_slide_R').click(function(){
-        slide(index_no % 3, '-100%', (index_no + 1) % 3, '100%',(index_no+1)%3);
+        slide(index_no % b_length, (index_no + 1) % b_length,(index_no+1) % b_length);
     });
 
+    // $('#btn_slide_L').click(function(){
+    //     slide(index_no % 3, '100%', (index_no - 1) % 3, '-100%',(index_no-1)%3 );
+    // });
     $('#btn_slide_L').click(function(){
-        slide(index_no % 3, '100%', (index_no - 1) % 3, '-100%',(index_no-1)%3 );
+        slide(index_no % b_length, (index_no - 1) % b_length,(index_no-1) % b_length);
     });
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -83,9 +89,11 @@ $(document).ready(function(){
             $('.event_banner').addClass('close_active')
 
     })
+    
 
 
 
+    /////////////////////////////////////////////////////////////////////////////////////
 
     let count=1;
     // 신상품 더보기
