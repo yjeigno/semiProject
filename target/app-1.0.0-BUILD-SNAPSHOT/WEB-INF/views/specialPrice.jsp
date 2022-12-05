@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="css/special_price.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="js/header.js"></script>
-<script src="js/special_price.js"></script>
+<script defer src="js/special_price.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -148,42 +148,31 @@
             </div>
           </a>
           <div class="${li.wishFlag ? "sprc_wish_on" : "sprc_wish"}" id="dibs" target-data="<%=(String)session.getAttribute("id")%>,${li.productDto.product_number}"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
+          <div class="sprc_timer"></div>
           <a href="/deal">
-            <div class="sprc_title">
-              <div class="sprc_item_name">${li.productDto.product_name}</div>
-              <div class="sprc_item_prd">${li.productDto.product_content}</div>
+            <div class="sprc_info">
+              <div class="sprc_title">
+                <div class="sprc_item_name">${li.productDto.product_name}</div>
+                <div class="sprc_item_prd">${li.productDto.product_content}</div>
+              </div>
+              <div class="sprc_item_prc">
+                <div class="sprc_item_cur">
+                <c:set var="s_price" value="${li.productDto.product_price * (li.special_product_discount * 0.01)}" />
+                <fmt:formatNumber value="${s_price}" type="number" />
+                </div>
+                <span class="sprc_item_rate">${li.special_product_discount}<span>%</span></span>
+                <div class="sprc_item_sale">${li.productDto.product_price}</div>
+              </div>
+              <div class="sprc_item_user">
+                <div class="user_score">
+                  <span class="num">${li.review_rank_average}</span>
+                </div>
+                <div class="user_review">
+                  <span class="num">${li.review_count}</span>
+                </div>
+              </div>
             </div>
           </a>
-         <div class="sprc_item_prc">
-            <div class="sprc_item_cur">
-              <c:set var="s_price" value="${li.productDto.product_price * (li.special_product_discount * 0.01)}" />
-              <fmt:formatNumber value="${s_price}" type="number" />
-            </div>
-            <div class="sprc_item_sale">${li.productDto.product_price}</div>
-            <span class="sprc_item_rate">${li.special_product_discount}<span>%</span></span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">${li.review_rank_average}</span>
-              </div>
-              <div class="user_review">
-                <span class="num">${li.review_count}</span>
-              </div>
-            </div>
-          </div>
         </div>
         </c:forEach>
         </div>

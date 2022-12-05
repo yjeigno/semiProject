@@ -97,77 +97,68 @@
     display: flex;
     justify-content: center;
 }
-.time_obj {
-    float: left;
+.sprc_item_name {
+    max-height: 4rem;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+.sprc_item_prd {
+    max-height: 4rem;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 .sprc_item_prc {
-    position: relative;
-    margin: 10px 0;
+    margin: 8px 0;
     font-family: 'Montserrat';
 }
 .sprc_item_cur {
-    position: absolute;
-    top: 0;
-    left: 0;
     font-size: 20px;
     font-weight: bold;
+    margin-bottom: 2px;
 }
 .sprc_item_sale {
-    position: absolute;
-    top: 25px;
-    left: 35px;
+    display: inline-block;
     color: #999;
     text-decoration: line-through;
 }
 .sprc_item_rate {
-    position: absolute;
-    top: 25px;
-    left: 0;
     font-weight: bold;
     color: #ff3a69;
+    margin-right: 2px;
 }
 .sprc_item_user {
     width: 100%;
-    height: 80px;
-    display: inline-block;
-    position: relative;
+    display: flex;
+    gap: 10px;
 }
 .user_score {
-    position: absolute;
-    top: 50px;
-    left: 0px;
-    padding: 0 0 0 19px;
     align-items:center;
-    display: flex;
-    justify-content:center;
 }
 .user_review {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    padding: 0 0 0 22px;
     align-items:center;
-    display: flex;
-    justify-content:center;
 }
 .sprc_item_user .num {
     font-size: 12px;
     align-items: center;
+    display: flex;
+    gap: 5px;
 }
 .sprc_item_user .user_score .num::before {
     content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 16px;
     height: 15px;
     background: url(../img/etc/sprite-common.png) no-repeat -925px 0;
 }
 .sprc_item_user .user_review .num::before {
     content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 18px;
     height: 15px;
     background: url(../img/etc/sprite-common.png) no-repeat -945px 0;

@@ -26,6 +26,7 @@
         <result column="product_status" property="product_status"/>
         <result column="product_class" property="product_class"/>
         <result column="category_code_number" property="category_code_number"/>
+        <result column="product_tag" property="product_tag" />
     </resultMap>
 
     <resultMap id="ImageDto" type="ImageDto">

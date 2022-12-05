@@ -13,10 +13,24 @@ function setGoodsTimer() { //상품 타이머
         const hours = negative ? '00' : Math.floor( (total / (1000 * 60 * 60)) % 24 ).toString().padStart(2, '0');
         const days = negative ? '00' : Math.floor( total / (1000 * 60 * 60 * 24) ).toString();
 
-        timer.innerHTML = days + "일 : " + hours + "시 : " + minutes + "분 : " + seconds + "초";
+        if(endDate>now) {
+            timer.innerHTML = days + "일 : " + hours + "시 : " + minutes + "분 : " + seconds + "초";
+        }
+        if(endDate<=now) {
+            timer.innerHTML = "해당 특가가 종료되었습니다.";
+
+            let el = document.getElementsByClassName('sprc_item_sale');
+            let cur = document.getElementsByClassName('sprc_item_cur');
+
+            for(let i=0; i<el.length; i++) {
+                cur[i].innerHTML=el[i].innerText.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+                document.getElementsByClassName('sprc_item_rate')[i].style.display="none";
+                document.getElementsByClassName('sprc_item_sale')[i].style.display="none";
+            }
+        }
     }
 }
-
 
 function clickDibs(elem, loginId, product_number, isWishlist) {
     if (loginId != "null") {
