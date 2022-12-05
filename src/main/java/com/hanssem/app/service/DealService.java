@@ -5,6 +5,7 @@ import com.hanssem.app.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,11 @@ public class DealService {
     // 특정 상품의 이미지와 색상 불러오기
     public List<ImageColorDto> showImgColor(Integer product_number) {
         return dealDao.selectImgColor(product_number);
+    }
+
+    // 특정 상품의 상세이미지 불러오기
+    public List<ImageDto> getImgDetail(Integer product_number) {
+        return dealDao.selectImgDetail(product_number);
     }
 
     // 특정 상품의 사이즈 불러오기

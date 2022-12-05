@@ -30,6 +30,10 @@ public class DealDao {
             return session.selectList(imagePath+"selectImgColor",product_number);
         }
 
+        // 특정 상품의 상세이미지 경로 불러오기
+        public List<ImageDto> selectImgDetail(Integer product_number){
+            return session.selectList(imagePath+"selectImgDetail",product_number);
+        }
         // 특정 상품의 사이즈 불러오기
         public List<CateSizeDto> selectSize(Integer product_number){
             return session.selectList(productPath+"selectSize",product_number);

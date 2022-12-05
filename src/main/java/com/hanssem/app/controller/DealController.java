@@ -35,7 +35,10 @@ public class DealController {
 
             Double review = dealService.getAvgReview(1);
             m.addAttribute("avgReview",review);
-            System.out.println(review);
+
+//            List<ImageDto> imgDetailList = dealService.getImgDetail(1);
+//            m.addAttribute("imgDetail",imgDetailList);
+
 //            Map map = new HashMap();
 //            map.put("product_number",1);
 //            map.put("size_code_name",'Q');

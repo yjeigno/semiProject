@@ -328,7 +328,11 @@
                 <li class="small_btn"> <a href="#sec4">배송안내</a> </li>
                 <li class="small_btn"> <a href="#sec5">교환/반품정책</a> </li>
             </ul>
-            <div class="h1000" id="sec1" >sec1</div>
+            <div class="h1000" id="sec1" >
+<%--                <c:forEach items="${i}">--%>
+<%--                <img src="<c:url value='${}'/>" alt="">--%>
+<%--                </c:forEach>--%>
+            </div>
             <div class="h1000" id="sec2" >
                 <div class="avg_review_box">
                     <div class="avg_box">
@@ -346,17 +350,20 @@
                     </div>
                     <div class="review_list list_photo">
                         <c:forEach items="${reviewList}" var="re">
+<%--                            <c:if test="${re.review_image != null}" >--%>
                         <div class="photo_review">
                             <div class="id_Photo_txt">${re.memberDto.member_id}</div>
                             <div class="photo_review_img"><img src="<c:url value='${re.review_image}'/>" alt=""></div>
                             <div class="review_star">★ ★ ★ ★ ★</div><span class="review_date">${re.review_register_date}</span> <!-- 리뷰쓴 날짜 출력  -->
                             <div class="photo_review_txt">${re.review_content}</div>
                         </div>
+<%--                            </c:if>--%>
                         </c:forEach>
                     </div>
 
                     <div class="review_list list_text">
                         <c:forEach items="${reviewList}" var="re">
+<%--                            <c:if test="${re.review_image == null}">--%>
                         <div class="text_review">
                             <div class="id_txt_txt">${re.memberDto.member_id}</div>
                             <div class="star_date">
@@ -373,6 +380,7 @@
                             </div>
                             <div class="review_text_content">${re.review_content}</div>
                         </div>
+<%--                            </c:if>--%>
                         </c:forEach>
                     </div>
                 </div>
