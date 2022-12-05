@@ -169,11 +169,11 @@
             </c:if>
           </div>
           <!-- 아이디 입력 -->
-          <div class="login_id">ID</div>
-          <input type="text" id="member_id" name="member_id" value="${ cookie.id.value }" placeholder="아이디를 입력하세요.">
+          <div class="login_id">ID<input type="text" id="member_id" name="member_id" value="${ cookie.id.value }" placeholder="아이디를 입력하세요."></div>
+
           <!-- 비밀번호 입력 -->
-          <div class="login_pw">PW</div>
-          <input type="text" id="member_pw" name="member_pw" placeholder="비밀번호를 입력하세요.">
+          <div class="login_pw">PW<input type="text" id="member_pw" name="member_pw" placeholder="비밀번호를 입력하세요."></div>
+
 
           <div class="login_footer">
             <!-- 아이디 기억하기 -->
