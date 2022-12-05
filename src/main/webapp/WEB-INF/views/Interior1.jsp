@@ -99,7 +99,6 @@
                             <li class="ca_img"><img src="img/headerImg/Furn8.png"></li>
                         </ul>
                     </li>
-
                 </ul>
                 <ul class="ul_category_box">
                     <li class="li_Title">Lighting</li>

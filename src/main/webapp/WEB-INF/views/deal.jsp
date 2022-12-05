@@ -30,8 +30,11 @@
     // 소비자가, 가격에 원 하고 , 표시
     let oPrice = ${pInfo.product_price};
     <%--여기에 ${pdto.product_price}--%>
-    let sPrice = ${pInfo.product_status==2?"":pInfo.product_price};
+    let sPrice = ${pInfo.product_status==2 && SpeDiscount.special_product_end_date>now()
+    ?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price};
     <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
+    console.log( ${pInfo.product_price*(SpeDiscount.special_product_discount / 100)}  );
+
     let logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
     let logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
     let deleteBtn = "<c:url value='/img/dealImg/btn_price_delete.gif'/>"
@@ -106,6 +109,9 @@
 </head>
 <body>
 <div id="wrap">
+<%--=================================================================================--%>
+<%--=================================================================================--%>
+<%--================================HEADER===========================================--%>
     <header class="header">
         <div class="content_area header_top">
             <ul class="top_nav_ul">
@@ -227,6 +233,13 @@
         </div>
     </header>
     <div class="h_100"></div>
+<%--================================HEADER===========================================--%>
+<%--=================================================================================--%>
+<%--=================================================================================--%>
+
+<%--=================================================================================--%>
+<%--=================================================================================--%>
+<%--=================================MAIN============================================--%>
     <main class="main">
         <div class="content_area">
             <div class="d_sub_nav"></div>
@@ -329,9 +342,9 @@
                 <li class="small_btn"> <a href="#sec5">교환/반품정책</a> </li>
             </ul>
             <div class="h1000" id="sec1" >
-<%--                <c:forEach items="${i}">--%>
-<%--                <img src="<c:url value='${}'/>" alt="">--%>
-<%--                </c:forEach>--%>
+                <c:forEach items="${imgDetail}" var="de">
+                <img src="<c:url value='${de.image_path}'/>" alt="">
+                </c:forEach>
             </div>
             <div class="h1000" id="sec2" >
                 <div class="avg_review_box">
@@ -350,20 +363,20 @@
                     </div>
                     <div class="review_list list_photo">
                         <c:forEach items="${reviewList}" var="re">
-<%--                            <c:if test="${re.review_image != null}" >--%>
+                            <c:if test="${!re.review_image.equals('-1')}" >
                         <div class="photo_review">
                             <div class="id_Photo_txt">${re.memberDto.member_id}</div>
                             <div class="photo_review_img"><img src="<c:url value='${re.review_image}'/>" alt=""></div>
                             <div class="review_star">★ ★ ★ ★ ★</div><span class="review_date">${re.review_register_date}</span> <!-- 리뷰쓴 날짜 출력  -->
                             <div class="photo_review_txt">${re.review_content}</div>
                         </div>
-<%--                            </c:if>--%>
+                            </c:if>
                         </c:forEach>
                     </div>
 
                     <div class="review_list list_text">
                         <c:forEach items="${reviewList}" var="re">
-<%--                            <c:if test="${re.review_image == null}">--%>
+                            <c:if test="${re.review_image.equals('-1')}">
                         <div class="text_review">
                             <div class="id_txt_txt">${re.memberDto.member_id}</div>
                             <div class="star_date">
@@ -380,14 +393,19 @@
                             </div>
                             <div class="review_text_content">${re.review_content}</div>
                         </div>
-<%--                            </c:if>--%>
+                            </c:if>
                         </c:forEach>
                     </div>
                 </div>
             </div>
             <div class="h1000" id="sec3" >sec3</div>
-            <div class="h1000" id="sec4" >sec4</div>
-            <div class="h1000" id="sec5" >sec5</div>
+            <div class="h1000" id="sec4" >
+                <img src="<c:url value='/img/dealImg/delivery.jpg'/> ">
+            </div>
+            <div class="h1000" id="sec5" >
+                <div class="d_refund_txt"> 교환/반품정책 </div>
+                <img src="<c:url value='/img/dealImg/refund.jpg'/> ">
+            </div>
         </div>
         <div class="btn_top"><a href="#wrap">TOP</a></div>
 

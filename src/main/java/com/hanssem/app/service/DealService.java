@@ -50,4 +50,9 @@ public class DealService {
     public Double getAvgReview(Integer product_number){
         return dealDao.avgReview(product_number);
     }
+
+    // 특정 상품이 특가일 때 할인율 불러오기
+    public SpecialPriceDto getDiscount(Integer product_number){
+        return dealDao.selectDiscount(product_number);
+    }
 }
