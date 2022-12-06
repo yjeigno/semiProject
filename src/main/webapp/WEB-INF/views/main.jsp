@@ -1,9 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page session="false" %>
-<c:set var="logInOutLink" value="${ pageContext.request.getSession(false).getAttribute('member_id')==null ? '/login':'/login' }" />
+<c:set var="logInOutLink" value="${ pageContext.request.getSession(false).getAttribute('member_id')==null ? '/login/login':'/login/logout' }" />
 <c:set var="logInOutTxt" value="${ pageContext.request.getSession(false).getAttribute('member_id')==null ? 'LOGIN':'LOGOUT' }" />
-<c:set var="memberId" value="${ pageContext.request.getSession(false).getAttribute('member_id')==null ? '':pageContext.request.getSession(false).getAttribute('member_id') }" />
+<%--<c:set var="logInOutLink" value="${sessionScope.member_id==null?'/login/login':'/login/logout' }"/>--%>
+<%--<c:set var="logInOutTxt" value="${sessionScope.member_id==null?'/login':'logout'}"/>--%>
+<c:set var="memberId" value="${ pageContext.request.getSession(false).getAttribute('member_id')==null ? '' : pageContext.request.getSession(false).getAttribute('member_id') }" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,13 +15,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인페이지</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script defer src="./js/header.js"></script>
-    <script defer src="./js/main.js"></script>
-    <script defer src="./js/main_cart.js"></script>
-    <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/main.css">
+    <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/>"></script>
+
+    <script defer src="<c:url value='/js/header.js'/>"></script>
+    <script defer src="<c:url value='/js/main.js'/>"></script>
+    <script defer src="<c:url value='/js/main_cart.js'/>"></script>
+
+    <link rel="stylesheet" href="<c:url value='/css/common.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/main.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
+
 
 </head>
 <body>

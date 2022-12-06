@@ -25,21 +25,21 @@ public class CartController {
 //    }
 
     //아이템 하나 가져오기
-    @PostMapping ("/get/cartItem")
-    public CartItemDto getCartItem(Integer cart_item_number){
-        CartItemDto find = cartService.selectCartItem(cart_item_number);
-        return find;
-    }
-    //아이템 전부 가져오기
-    @PostMapping ("/get/cartItemList")
-    public List<CartItemDto> getCartItemList(Integer cart_number){
-        List<CartItemDto> findAll = cartService.selectCartItemList(cart_number);
-        return findAll;
-    }
-    @PostMapping("/delete/cartItem")
-    public int deleteCartItem (Integer cart_item_number){
-        int delete = cartService.deleteCartItem(cart_item_number);
-        return delete;
-    }
+//    @PostMapping ("/get/cartItem")
+//    public CartItemDto getCartItem(Integer cart_item_number){
+//        CartItemDto find = cartService.selectCartItem(cart_item_number);
+//        return find;
+//    }
+//    //아이템 전부 가져오기
+//    @PostMapping ("/get/cartItemList")
+//    public List<CartItemDto> getCartItemList(Integer cart_number){
+//        List<CartItemDto> findAll = cartService.selectCartItemList(cart_number);
+//        return findAll;
+//    }
+//    @PostMapping("/delete/cartItem")
+//    public int deleteCartItem (Integer cart_item_number){
+//        int delete = cartService.deleteCartItem(cart_item_number);
+//        return delete;
+//    }
 
 }

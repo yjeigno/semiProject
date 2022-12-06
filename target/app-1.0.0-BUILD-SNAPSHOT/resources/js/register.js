@@ -1,6 +1,55 @@
 $(document).ready(function(){
+////////////////////////아이디 중복체크///////////////////////
+    function regi_id_check(){
+        $.ajax({
+            URL : "/register/registerIdCheck",
+            type : "post",
+            dataType:"json",
+            data:{"member_id " : $("#regi_id").val()},
+            success : function(data){
+                if(data == 1){
+                    alert("중복된 아이디입니다.");
 
-//////////////////연락처 자동으로 하이픈//////////////////////////
+                }else if(data == 0){
+                    $("#regi_id").attr("value","Y");
+                    alert("사용 가능한 아이디입니다.")
+                }
+            }
+        })
+    }
+
+////////////////////////생년월일 자동으로 하이픈///////////////////////
+    function brith_auto(birthNum) {
+        birthNum = birthNum.replace(/[^0-9]/g, '');
+        var tmp = '';
+        if( birthNum.length < 4){
+            return birthNum;
+
+        }else if(birthNum.length < 6){
+            tmp += birthNum.substring(0,4);
+            tmp += "-";
+            tmp += birthNum.substring(4);
+        }else{
+            tmp += birthNum.substring(0,4);
+            tmp += "-";
+            tmp += birthNum.substring(4,2);
+            tmp += "-";
+            tmp += birthNum.substring(6);
+            return tmp;
+        }
+        return birthNum;
+
+    }
+    var regiBirth = document.getElementById('birth_date');
+// input 에 값이 입력되었을때를 위해 key up
+    regiBirth.onkeyup = function(event){
+        event = event || window.Event;
+        var _val = this.value.trim();
+        this.value = brith_auto(_val) ;
+    }
+
+
+    //////////////////연락처 자동으로 하이픈//////////////////////////
     function phone_auto(phoneNum){
         phoneNum = phoneNum.replace(/[^0-9]/g, '');
         var tmp = '';
@@ -33,14 +82,14 @@ $(document).ready(function(){
     }
 
     var regiPhone = document.getElementById('regi_phone');
-// input에 값이 입력되었을때를 위해 key up
+    // input 에 값이 입력되었을때를 위해 key up
     regiPhone.onkeyup = function(event){
         event = event || window.Event;
         var _val = this.value.trim();
         this.value = phone_auto(_val) ;
     }
 
-//////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////
 
 
 
@@ -63,22 +112,23 @@ $(document).ready(function(){
 
     /////////////////////////////////////////////////////
     // 주소 검색 -보류*****************
-    // function search_post_code(){
-    //     new daum.Postcode({
-    //         oncomplete: function(data){
-    //             //사용자 주소 변수 정의하는 명령어
-    //             var addr ='';
-    //
-    //             //사용자가 선택한
-    //             if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우(R)
-    //                 addr = data.roadAddress;
-    //             } else { // 사용자가 지번 주소를 선택했을 경우(J)
-    //                 addr = data.jibunAddress;
-    //             }
-    //
-    //             $("#regi_general_address").val(addr);
-    //         }
-    //     }).open();
-    // }
+    function search_post_code(){
+        new daum.Postcode({
+            oncomplete: function(data){
+                //사용자 주소 변수 정의하는 명령어
+                var addr ='';
+
+                //사용자가 선택한
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우(R)
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                $("#regi_general_address").val(addr);
+            }
+        }).open();
+    }
 
 })
+    

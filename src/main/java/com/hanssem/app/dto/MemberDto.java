@@ -1,7 +1,6 @@
 package com.hanssem.app.dto;
 
-import org.springframework.web.bind.annotation.RequestBody;
-
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class MemberDto {
@@ -20,6 +19,51 @@ public class MemberDto {
     private Integer member_status;
     private Timestamp member_register_date;
     private Timestamp  member_login_date;
+
+    private String regi_mail_id;
+
+    private String regi_mail_domain;
+
+    private String regi_address;
+
+    private String regi_address_detail;
+
+
+    public void setMember_number(Integer member_number) {
+        this.member_number = member_number;
+    }
+
+    public String getRegi_mail_id() {
+        return regi_mail_id;
+    }
+
+    public void setRegi_mail_id(String regi_mail_id) {
+        this.regi_mail_id = regi_mail_id;
+    }
+
+    public String getRegi_mail_domain() {
+        return regi_mail_domain;
+    }
+
+    public void setRegi_mail_domain(String regi_mail_domain) {
+        this.regi_mail_domain = regi_mail_domain;
+    }
+
+    public String getRegi_address() {
+        return regi_address;
+    }
+
+    public void setRegi_address(String regi_address) {
+        this.regi_address = regi_address;
+    }
+
+    public String getRegi_address_detail() {
+        return regi_address_detail;
+    }
+
+    public void setRegi_address_detail(String regi_address_detail) {
+        this.regi_address_detail = regi_address_detail;
+    }
 
     private Boolean rememberId;
 

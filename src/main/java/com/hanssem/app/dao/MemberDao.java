@@ -13,7 +13,11 @@ public class MemberDao {
     @Autowired
     DataSource ds;
 
-    public MemberDto LoginMember(String member_id, String member_pw) throws SQLException {
+//    MemberDao selectMember(String member_id) {
+//        return null;
+//    }
+
+    public MemberDto LoginMember(String member_id, String member_pw) throws Exception {
 
 
         Connection conn = ds.getConnection();
@@ -23,10 +27,10 @@ public class MemberDao {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, member_id);
         pstmt.setString(2, member_pw);
-//        pstmt.setString(2, member_pw);
+        pstmt.setString(2, member_pw);
 
         ResultSet rs = pstmt.executeQuery();
-
+//
         if(rs.next()){
             MemberDto member = new MemberDto();
             member.setMember_id(rs.getString(2));
@@ -47,8 +51,8 @@ public class MemberDao {
             return null;
 
     }
-
-    public MemberDto selectMember(String member_id) throws SQLException {
+//      아이디 정보 가져오기
+    public MemberDto selectMember(String member_id) throws Exception {
         Connection conn = ds.getConnection();
 
         String sql="select * from member where member_id =?";
@@ -76,7 +80,9 @@ public class MemberDao {
             return member;
         }
         return null;
-
+//
     }
+
+
 
 }

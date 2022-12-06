@@ -9,13 +9,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>로그인</title>
-  <link rel="stylesheet" href="./css/common.css">
-  <link rel="stylesheet" href="./css/header.css">
-  <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<%--  <link rel="stylesheet" href="./css/common.css">--%>
+<%--  <link rel="stylesheet" href="./css/header.css">--%>
+<%--  <link rel="stylesheet" href="./css/login.css">--%>
+  <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
+  <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
+  <link rel="stylesheet" href="<c:url value='/css/common.css'/>">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <!-- <script defer src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
-  <script src=".js/header.js"></script>
-  <script src=".js/login.js"></script>
+<%--  <script src=".js/header.js"></script>--%>
+<%--  <script src=".js/login.js"></script>--%>
+  <link rel="stylesheet" href="<c:url value='/js/login.js'/>">
+  <link rel="stylesheet" href="<c:url value='/js/header.js'/>">
 
 </head>
 <body>
@@ -45,7 +51,7 @@
         </form>
       </div>
       <!-- 로고 클릭시 메인페이지로 이동 -->
-      <a href="#"><div class="logo"><img src="img/headerImg/logo_black.png" alt=""></div></a>
+      <a href="#"><div class="logo"><img src="/img/headerImg/logo_black.png" alt=""></div></a>
     </div>
 
     <div class="header_bottom">
@@ -68,35 +74,35 @@
           <li class="li_content">
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Table</li>
-              <li class="ca_img"><img src="img/headerImg/Furn1.png"></li>
+              <li class="ca_img"><img src="/img/headerImg/Furn1.png"></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Table & Dining</li>
-              <li class="ca_img"><img src="img/headerImg/Furn2.png"></li>
+              <li class="ca_img"><img src="/img/headerImg/Furn2.png"></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Chair</li>
-              <li class="ca_img"><img src="img/headerImg/Furn3.png"></li>
+              <li class="ca_img"><img src="/img/headerImg/Furn3.png"></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Sofa</li>
-              <li class="ca_img"><img src="img/headerImg/Furn4.png"></li>
+              <li class="ca_img"><img src="/img/headerImg/Furn4.png"></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Desk</li>
-              <li class="ca_img"><img src="img/headerImg/Furn5.png"></li>
+              <li class="ca_img"><img src="/img/headerImg/Furn5.png"></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">TV Stand & Storage</li>
-              <li class="ca_img"><img src="img/headerImg/Furn6.png"></li>
+              <li class="ca_img"><img src="/img/headerImg/Furn6.png"></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Small Furniture</li>
-              <li class="ca_img"><img src="img/headerImg/Furn7.png"></li>
+              <li class="ca_img"><img src="/img/headerImg/Furn7.png"></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Bed</li>
-              <li class="ca_img"><img src="img/headerImg/Furn8.png"></li>
+              <li class="ca_img"><img src="/img/headerImg/Furn8.png"></li>
             </ul>
           </li>
 
@@ -172,7 +178,7 @@
           <div class="login_id">ID<input type="text" id="member_id" name="member_id" value="${ cookie.id.value }" placeholder="아이디를 입력하세요."></div>
 
           <!-- 비밀번호 입력 -->
-          <div class="login_pw">PW<input type="text" id="member_pw" name="member_pw" placeholder="비밀번호를 입력하세요."></div>
+          <div class="login_pw">PW<input type="password" id="member_pw" name="member_pw" placeholder="비밀번호를 입력하세요."></div>
 
 
           <div class="login_footer">

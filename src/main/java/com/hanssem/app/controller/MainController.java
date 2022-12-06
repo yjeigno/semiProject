@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
     @Autowired
     @RequestMapping("/main")
-    public String main(){return "main";}
+    public String main(){
+        return "main";
+    }
 
 
 

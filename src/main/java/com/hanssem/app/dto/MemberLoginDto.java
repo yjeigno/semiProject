@@ -24,7 +24,7 @@ public class MemberLoginDto {
         this.member_pw = member_pw;
     }
 
-public boolean isRememberId(){ return rememberId;}
+    public boolean isRememberId(){ return rememberId;}
 
     public void setRememberId(boolean rememberId) {
         this.rememberId = rememberId;
