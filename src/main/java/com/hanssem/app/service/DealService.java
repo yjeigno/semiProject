@@ -55,4 +55,19 @@ public class DealService {
     public SpecialPriceDto getDiscount(Integer product_number){
         return dealDao.selectDiscount(product_number);
     }
+
+    // 특정 상품의 리뷰 개수 구하기 (사진 유무)
+    public int getReviewCount(Integer product_number) {
+        return dealDao.selectReviewCount(product_number);
+    }
+    public int getReviewTxtCount(Integer product_number) {
+        return dealDao.selectReviewTxtCount(product_number);
+    }
+    //특정 상품의 리뷰 8개 불러오기 (사진 유무)
+    public List<ReviewDto> getReviewPage(Map map){
+        return dealDao.selectReviewList(map);
+    }
+    public List<ReviewDto> getReviewTxtPage(Map map){
+        return dealDao.selectReviewTxtList(map);
+    }
 }

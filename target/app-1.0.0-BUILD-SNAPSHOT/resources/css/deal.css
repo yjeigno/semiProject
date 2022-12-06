@@ -317,3 +317,47 @@ strong {
     color: #333;
     font-weight: 500;
 }
+.d_pagination {
+    width: 100%;
+    text-align: center;
+    /*padding-bottom: 50px;*/
+    display: flex;
+    justify-content: center;
+    /*margin-bottom: 30px;*/
+}
+.d_pagination_a {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    overflow: hidden;
+    margin: 0 0 0 -1px;
+    font-size: 15px;
+    color: #73777B;
+    /*cursor: pointer;*/
+}
+.d_on {
+    background-color: rgba(200, 200, 200, 0.5);
+    color: black;
+    font-weight: 900;
+}
+.d_pnum {
+    border: 1px solid #e1e1e1;
+    box-sizing: border-box;
+}
+.d_pp{
+    background: url(../img/etc/sprite-common.png) no-repeat -280px -60px;
+    text-indent: -50000px;
+}
+.d_pre {
+    background: url(../img/etc/sprite-common.png) no-repeat -309px -60px;
+    text-indent: -50000px;
+}
+.d_next {
+    background: url(../img/etc/sprite-common.png) no-repeat -338px -60px;
+    text-indent: -50000px;
+}
+.d_nn {
+    background: url(../img/etc/sprite-common.png) no-repeat -367px -60px;
+    text-indent: -50000px;
+}

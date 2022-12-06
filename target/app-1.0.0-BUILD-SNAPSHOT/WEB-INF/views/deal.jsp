@@ -49,7 +49,7 @@
             // console.log(jsonData)
             $.ajax({
                 type : 'POST',
-                url : '/semiProject/deal/color',
+                url : '/deal/color',
                 data: JSON.stringify(jsonData),
                 dataType : 'json',
                 contentType: "application/json; charset=utf-8",
@@ -362,21 +362,35 @@
                         <div id="non_btn"></div>
                     </div>
                     <div class="review_list list_photo">
-                        <c:forEach items="${reviewList}" var="re">
-                            <c:if test="${!re.review_image.equals('-1')}" >
+                        <c:forEach items="${reviewPageList}" var="re">
                         <div class="photo_review">
                             <div class="id_Photo_txt">${re.memberDto.member_id}</div>
                             <div class="photo_review_img"><img src="<c:url value='${re.review_image}'/>" alt=""></div>
                             <div class="review_star">★ ★ ★ ★ ★</div><span class="review_date">${re.review_register_date}</span> <!-- 리뷰쓴 날짜 출력  -->
                             <div class="photo_review_txt">${re.review_content}</div>
                         </div>
-                            </c:if>
                         </c:forEach>
+                        <div class="d_pagination">
+                            <c:if test="${pageHandler.showFirst}">
+                                <a href="<c:url value='/deal?page=1&pageSize=${pageHandler.pageSize}' />" class="d_pp d_pagination_a">[처음]</a>
+                            </c:if>
+                            <c:if test="${pageHandler.showPrev}">
+                                <a href="<c:url value='/deal?page=${pageHandler.beginPage-1}&pageSize=${pageHandler.pageSize}' />" class="d_pre d_pagination_a">[이전]</a>
+                            </c:if>
+                            <c:forEach var="i" begin="${pageHandler.beginPage}" end="${pageHandler.endPage}">
+                                <a href="<c:url value='/deal?page=${i}&pageSize=${pageHandler.pageSize}' /> " class="d_pagination_a d_pnum ${i==pageHandler.page?"d_on":""}"> ${i}</a>
+                            </c:forEach>
+                            <c:if test="${pageHandler.showNext}">
+                                <a href="<c:url value='/deal?page=${pageHandler.endPage+1}&pageSize=${pageHandler.pageSize}' />" class="d_pagination_a d_next">[다음]</a>
+                            </c:if>
+                            <c:if test="${pageHandler.showLast}">
+                                <a href="<c:url value='/deal?page=${pageHandler.totalPage}&pageSize=${pageHandler.pageSize}' />" class="d_pagination_a d_next">[마지막]</a>
+                            </c:if>
+                        </div>
                     </div>
 
                     <div class="review_list list_text">
-                        <c:forEach items="${reviewList}" var="re">
-                            <c:if test="${re.review_image.equals('-1')}">
+                        <c:forEach items="${reviewPageTxtList}" var="re">
                         <div class="text_review">
                             <div class="id_txt_txt">${re.memberDto.member_id}</div>
                             <div class="star_date">
@@ -393,10 +407,37 @@
                             </div>
                             <div class="review_text_content">${re.review_content}</div>
                         </div>
-                            </c:if>
                         </c:forEach>
+                        <div class="d_pagination">
+                            <c:if test="${pageHandlerTxt.showFirst}">
+                                <a href="<c:url value='/deal?page=1&pageSize=${pageHandlerTxt.pageSize}' />" class="d_pp d_pagination_a">[처음]</a>
+                            </c:if>
+                            <c:if test="${pageHandlerTxt.showPrev}">
+                                <a href="<c:url value='/deal?page=${pageHandlerTxt.beginPage-1}&pageSize=${pageHandlerTxt.pageSize}' />" class="d_pre d_pagination_a">[이전]</a>
+                            </c:if>
+                            <c:forEach var="i" begin="${pageHandlerTxt.beginPage}" end="${pageHandlerTxt.endPage}">
+                                <a href="<c:url value='/deal?page=${i}&pageSize=${pageHandlerTxt.pageSize}' /> " class="d_pagination_a d_pnum ${i==pageHandlerTxt.page?"d_on":""}"> ${i}</a>
+                            </c:forEach>
+                            <c:if test="${pageHandlerTxt.showNext}">
+                                <a href="<c:url value='/deal?page=${pageHandlerTxt.endPage+1}&pageSize=${pageHandlerTxt.pageSize}' />" class="d_pagination_a d_next">[다음]</a>
+                            </c:if>
+                            <c:if test="${pageHandler.showLast}">
+                                <a href="<c:url value='/deal?page=${pageHandlerTxt.totalPage}&pageSize=${pageHandlerTxt.pageSize}' />" class="d_pagination_a d_next">[마지막]</a>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
+<%--                <div class="pagination">--%>
+<%--                    <c:if test="${pageHandler.showPrev}">--%>
+<%--                        <a href="<c:url value='/deal?page=${pageHandler.beginPage-1}&pageSize=${pageHandler.pageSize}' />" class="beginPage">[이전]</a>--%>
+<%--                    </c:if>--%>
+<%--                    <c:forEach var="i" begin="${pageHandler.beginPage}" end="${pageHandler.endPage}">--%>
+<%--                        <a href="<c:url value='/deal?page=${i}&pageSize=${pageHandler.pageSize}' /> " class="page ${i==ph.page?"pageActive":""}"> ${i}</a>--%>
+<%--                    </c:forEach>--%>
+<%--                    <c:if test="${pageHandler.showNext}">--%>
+<%--                        <a href="<c:url value='/deal?page=${pageHandler.endPage+1}&pageSize=${pageHandler.pageSize}' />" class="endPage">[다음]</a>--%>
+<%--                    </c:if>--%>
+<%--                </div>--%>
             </div>
             <div class="h1000" id="sec3" >sec3</div>
             <div class="h1000" id="sec4" >
