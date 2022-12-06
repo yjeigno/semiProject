@@ -55,5 +55,20 @@ public class DealDao {
         public SpecialPriceDto selectDiscount(Integer product_number){
             return session.selectOne(SpecialPath+"selectSpeDiscount",product_number);
         }
+        // 특정 상품의 리뷰 개수 구하기 (사진 유무)
+        public int selectReviewCount(Integer product_number){
+            return session.selectOne(ReviewPath+"reviewCount",product_number);
+        }
+        public int selectReviewTxtCount(Integer product_number){
+            return session.selectOne(ReviewPath+"reviewTxtCount",product_number);
+        }
+        // 특정 상품의 이미지가 있는 리뷰 8개 불러오기
 
+        public List<ReviewDto> selectReviewList(Map map){
+            return session.selectList(ReviewPath+"selectReviewPage",map);
+        }
+        // 특정 상품의 이미지가 없는 리뷰 8개 불러오기
+        public List<ReviewDto> selectReviewTxtList(Map map){
+            return session.selectList(ReviewPath+"selectReviewTxtPage",map);
+        }
 }

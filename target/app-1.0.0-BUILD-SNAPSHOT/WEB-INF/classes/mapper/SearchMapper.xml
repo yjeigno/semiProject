@@ -23,10 +23,29 @@
         LEFT OUTER JOIN category_code c ON c.category_code_number = p.category_code_number
         LEFT OUTER JOIN (SELECT DISTINCT(product_number) product_number, MIN(image_path) image_path FROM image GROUP BY product_number) AS i ON i.product_number = p.product_number
         LEFT OUTER JOIN special_product sp ON sp.product_number = p.product_number
-        LEFT OUTER JOIN (SELECT product_number, SUM(purchase_amount) AS product_sales FROM purchase GROUP BY product_number) AS sales
+        LEFT OUTER JOIN (SELECT product_number, SUM(purchase_amount) AS product_sales
+        FROM purchase GROUP BY product_number) AS sales
         ON p.product_number = sales.product_number
+        <include refid="size" />
+        <include refid="color"/>
         WHERE p.product_tag LIKE CONCAT('%',#{search},'%')
         <include refid="category"/>
+        <if test="size != null">
+            AND psc.size_code_number = #{size}
+        </if>
+        <if test="color != null">
+            AND pcolor.color_code_number = #{color}
+        </if>
+        <if test="minPrice != null">
+            <![CDATA[
+            AND p.product_price >= #{minPrice}
+            ]]>
+        </if>
+        <if test="maxPrice != null">
+            <![CDATA[
+            AND p.product_price <= #{maxPrice}
+            ]]>
+        </if>
         <include refid="sort" />
         LIMIT #{offset}, #{pageSize}
     </select>
@@ -44,6 +63,7 @@
         SELECT DISTINCT category_code_number FROM product
         WHERE product_tag LIKE CONCAT('%', #{search}, '%')
     </select>
+    <!--    검색대상 카테고리 필터시 정보 가져오기-->
     <select id="getCateInfo" resultType="com.hanssem.app.dto.CateFilterDto">
         SELECT DISTINCT count(*) category_amount, p.category_code_number, c.category_code_name FROM product p
         LEFT JOIN category_code c ON p.category_code_number = c.category_code_number
@@ -52,14 +72,60 @@
     </select>
 
     <!--    사이즈 목록 가져오기-->
-    <select id="selectSizeList" parameterType="int" resultType="SizeDto">
-        SELECT cc.category_code_number, cs.size_code_number, size_code_name FROM category_code cc
-        LEFT OUTER JOIN category_size cs
-        ON cs.category_code_number = cc.category_code_number
-        LEFT OUTER JOIN size_code sc
-        ON sc.size_code_number = cs.size_code_number
-        WHERE cc.category_code_number = #{category_code_number};
+    <select id="selectSizeList" parameterType="SearchCondition" resultType="com.hanssem.app.dto.SizeFilterDto">
+        SELECT DISTINCT psc.size_code_number, count(*) size_amount, p.category_code_number, sc.size_code_name
+        FROM product_size_color psc
+        LEFT OUTER JOIN product p ON p.product_number = psc.product_number
+        LEFT OUTER JOIN size_code sc ON psc.size_code_number = sc.size_code_number
+        WHERE p.product_tag LIKE CONCAT('%', #{search}, '%')
+        AND p.category_code_number = #{category}
+        <if test="color != null">
+            AND psc.color_code_number = #{color}
+        </if>
+        GROUP BY psc.size_code_number, p.category_code_number
+        ORDER BY psc.size_code_number ASC
     </select>
+    <!--    컬러 목록 가져오기-->
+    <select id="selectColorList" parameterType="SearchCondition" resultType="com.hanssem.app.dto.ColorFilterDto">
+        SELECT DISTINCT psc.color_code_number, count(*) color_amount, p.category_code_number, c.color_code_name
+        FROM product_size_color psc
+        LEFT OUTER JOIN product p ON p.product_number = psc.product_number
+        LEFT OUTER JOIN color_code c ON psc.color_code_number = c.color_code_number
+        WHERE p.product_tag LIKE CONCAT('%', #{search}, '%')
+        AND p.category_code_number = #{category}
+        <if test="size != null">
+            AND psc.size_code_number = #{size}
+        </if>
+        GROUP BY psc.color_code_number, p.category_code_number
+        ORDER BY psc.color_code_number ASC
+    </select>
+
+    <!--    가격 필터 적용시 총 개수 가져오기-->
+    <select id="selectPriceAmount" parameterType="SearchCondition" resultType="int">
+        SELECT COUNT(*) FROM product p
+        <include refid="size" />
+        <include refid="color"/>
+        WHERE p.product_tag LIKE CONCAT('%', #{search}, '%')
+        <include refid="category"/>
+        <if test="size != null">
+            AND psc.size_code_number = #{size}
+        </if>
+        <if test="color != null">
+            AND pcolor.color_code_number = #{color}
+        </if>
+        <if test="minPrice != null">
+            <![CDATA[
+            AND p.product_price >= #{minPrice}
+            ]]>
+        </if>
+        <if test="maxPrice != null">
+            <![CDATA[
+            AND p.product_price <= #{maxPrice}
+            ]]>
+        </if>
+
+    </select>
+
 
     <sql id="sort">
         <if test="sort == null">
@@ -84,6 +150,20 @@
     <sql id="category">
         <if test="category != null">
             AND p.category_code_number = #{category}
+        </if>
+    </sql>
+    <sql id="size">
+        <if test="size != null">
+            LEFT OUTER JOIN (SELECT product_number, size_code_number FROM product_size_color) psc
+            ON psc.product_number = p.product_number
+            LEFT OUTER JOIN size_code sc ON sc.size_code_number = psc.size_code_number
+        </if>
+    </sql>
+    <sql id="color">
+        <if test="color != null">
+            LEFT OUTER JOIN (SELECT product_number, color_code_number FROM product_size_color) pcolor
+            ON pcolor.product_number = p.product_number
+            LEFT OUTER JOIN color_code cc ON cc.color_code_number = pcolor.color_code_number
         </if>
     </sql>
 </mapper>

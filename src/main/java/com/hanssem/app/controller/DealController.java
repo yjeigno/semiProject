@@ -19,36 +19,51 @@ public class DealController {
 
 
     @GetMapping("/deal")
-    public String deal( Model m) {
+    public String deal(Integer page, Integer pageSize, Model m) {
 
-            ProductDto productDto = dealService.getInfo(2);
+            ProductDto productDto = dealService.getInfo(1);
             m.addAttribute("pInfo",productDto);
 
-            List<ImageColorDto> imageColorDto = dealService.showImgColor(2);
+            List<ImageColorDto> imageColorDto = dealService.showImgColor(1);
             m.addAttribute("imgList",imageColorDto);
 
-            List<CateSizeDto> sizeList = dealService.showSize(2);
+            List<CateSizeDto> sizeList = dealService.showSize(1);
             m.addAttribute("sizeList",sizeList);
 
-            List<ReviewDto> reviewList = dealService.getReview(2);
+            List<ReviewDto> reviewList = dealService.getReview(1);
             m.addAttribute("reviewList",reviewList);
 
-            Double review = dealService.getAvgReview(2);
+            Double review = dealService.getAvgReview(1);
             m.addAttribute("avgReview",review);
 
-            List<ImageDto> imgDetailList = dealService.getImgDetail(2);
+            List<ImageDto> imgDetailList = dealService.getImgDetail(1);
             m.addAttribute("imgDetail",imgDetailList);
 
-            SpecialPriceDto specialPriceDto = dealService.getDiscount(2);
+            SpecialPriceDto specialPriceDto = dealService.getDiscount(1);
             m.addAttribute("SpeDiscount",specialPriceDto);
 
 
-//            Map map = new HashMap();
-//            map.put("product_number",1);
-//            map.put("size_code_name",'Q');
-//            List<ProductSizeColorDto> sizeColorList = dealService.getColor(map);
-//            m.addAttribute("colorList",sizeColorList);
+            //pageNation
+            if(page==null) page =1;
+            if(pageSize==null) pageSize=8;
+            //리뷰의 총 게시물 개수 구하기 사진유무
+            int totalCount = dealService.getReviewCount(1);
+            int totalTxtCount = dealService.getReviewTxtCount(1);
+            // 페이징 계산
+            PageHandler pageHandler = new PageHandler(totalCount,page,pageSize);
+            PageHandler pageHandlerTxt = new PageHandler(totalTxtCount,page,pageSize);
 
+            Map map = new HashMap();
+            map.put("product_number",1);
+            map.put("offset",(page-1)*pageSize);
+            map.put("pageSize",pageSize);
+
+            List<ReviewDto> reviewPageList = dealService.getReviewPage(map);
+            List<ReviewDto> reviewPageTxtList = dealService.getReviewTxtPage(map);
+            m.addAttribute("reviewPageList",reviewPageList);
+            m.addAttribute("reviewPageTxtList",reviewPageTxtList);
+            m.addAttribute("pageHandler",pageHandler);
+            m.addAttribute("pageHandlerTxt",pageHandlerTxt);
             return "/deal";
 
     }

@@ -23,6 +23,10 @@
 
         <typeAlias alias="SpecialPriceDto" type="com.hanssem.app.dto.SpecialPriceDto"/>
 
+        <typeAlias alias="InteriorDto" type="com.hanssem.app.dto.InteriorDto"/>
+
+
+
 
     </typeAliases>
 </configuration>
