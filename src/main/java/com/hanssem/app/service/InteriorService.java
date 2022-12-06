@@ -14,8 +14,8 @@ public class InteriorService {
     @Autowired
     private InteriorDao interiorDao;
 
-    public List<InteriorDto> selectInterior(Integer interior_number){
-        return interiorDao.selectInterior(interior_number);
+    public List<InteriorDto> selectInterior(Integer interior_category_number){
+        return interiorDao.selectInterior(interior_category_number);
     }
 
 }

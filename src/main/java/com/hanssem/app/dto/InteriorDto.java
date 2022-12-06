@@ -14,14 +14,37 @@ public class InteriorDto {
 
     private String interior_image_path;
 
+    private Integer interior_category_number;
+
+    private String interior_cash;
+
+    public InteriorDto(String interior_cash) {
+        this.interior_cash = interior_cash;
+    }
+
+    public String getInterior_cash() {
+        return interior_cash;
+    }
+
+    public Integer getInterior_category_number() {
+        return interior_category_number;
+    }
+
+    public void setInterior_category_number(Integer interior_category_number) {
+        this.interior_category_number = interior_category_number;
+    }
+
     public InteriorDto(){}
 
-    public InteriorDto(Integer interior_number, String interior_name, String interior_content, Timestamp interior_register_date,String interior_image_path){
+
+    public InteriorDto(Integer interior_number, String interior_name, String interior_content, Timestamp interior_register_date, String interior_image_path, Integer interior_category_number,String interior_cash) {
         this.interior_number = interior_number;
         this.interior_name = interior_name;
         this.interior_content = interior_content;
         this.interior_register_date = interior_register_date;
         this.interior_image_path = interior_image_path;
+        this.interior_category_number = interior_category_number;
+        this.interior_cash = interior_cash;
 
     }
 
