@@ -81,19 +81,7 @@ $(document).ready(function () {
         location.reload()
     })
 
-    // 네비 변경
     const sprc_tab_nav = $('.sprc_tab_nav');
-
-    sprc_tab_nav.click(function(){
-        sprc_tab_nav.css({
-            backgroundColor: '#fff',
-            color: '#000'
-        })
-        $(this).css({
-            background: '#000',
-            color: '#fff'
-        })
-    })
 
     // 네비 호버 이벤트
     sprc_tab_nav.hover(function() {
@@ -107,6 +95,19 @@ $(document).ready(function () {
     },  function() {
         $(this).css("color", "#000");
     })
+
+    // 네비 변경
+    sprc_tab_nav.click(function(){
+        sprc_tab_nav.css({
+            backgroundColor: '#fff',
+            color: '#000'
+        })
+        $(this).css({
+            background: '#000',
+            color: '#fff'
+        })
+    })
+
 
     setGoodsTimer(); //상품 타이머 최초 실행
     setInterval(setGoodsTimer, 1000);    //상품 타이머 1초 후부터, 1초 간격으로 실행
