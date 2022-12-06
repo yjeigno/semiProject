@@ -31,4 +31,8 @@ public class WishlistDao {
     public Integer deleteWishlist(WishlistDto wishlistDto) {
         return session.delete(namespace+"deleteWishlist", wishlistDto);
     }
+
+    public Integer deleteAllWishlist(Integer memberNumber){
+        return session.delete(namespace+"deleteAllWishlist",memberNumber);
+    }
 }

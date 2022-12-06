@@ -29,7 +29,7 @@ public class WishlistService {
         wishlistDto.setProduct_number(wishlistPostDto.getProductNumber());
         wishlistDto.setMember_number(memberNumber);
 
-        // 객체생성할때부터 값을 넣는방법은 없을까요??
+        // 객체생성할 때부터 값을 넣는 방법은??
 
         if(!wishlistPostDto.getIsWishlist()){
             return wishlistDao.insertWishlist(wishlistDto);
@@ -46,5 +46,7 @@ public class WishlistService {
         return wishlistDao.deleteWishlist(wishlistDto);
     }
 
-
+    public Integer deleteAllWishlist(Integer memberNumber){
+        return wishlistDao.deleteAllWishlist(memberNumber);
+    }
 }

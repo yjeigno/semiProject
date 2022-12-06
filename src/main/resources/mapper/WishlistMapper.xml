@@ -74,6 +74,11 @@
         AND w.member_number = #{member_number}
     </delete>
 
+    <delete id="deleteAllWishlist" parameterType="int">
+        DELETE FROM wishlist w
+        WHERE w.member_number = #{memberNumber}
+    </delete>
+
     <!--DELETE FROM wishlist WHERE w.member_number = 1;-->
 
 </mapper>

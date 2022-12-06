@@ -145,7 +145,7 @@
                                 <div class="wish_price">${li.productDto.product_price}원</div>
                             </div>
                         </a>
-                        <div class="wish_wish"  target-data="<%=(String)session.getAttribute("id")%>,${li.productDto.product_number}"></div>
+                        <div class="wish_wish" target-data="<%=(String)session.getAttribute("id")%>,${li.productDto.product_number}"></div>
                     </div>
                     </c:forEach>
                 </div>

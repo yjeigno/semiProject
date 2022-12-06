@@ -30,7 +30,7 @@ public class WishlistController {
         Integer member_number = (Integer) session.getAttribute("member_number");
         // 임시로 1번
         if (member_number == null) {
-/*            PrintWriter out = response.getWriter();
+/*          PrintWriter out = response.getWriter();
             out.println("<script>");
             out.println("alert('로그인 후 이용 가능 합니다.')");
             out.println("history.back()");
@@ -63,4 +63,18 @@ public class WishlistController {
        return new ResponseEntity<>("", HttpStatus.OK);
     }
 
+    @DeleteMapping("/flush")
+    public ResponseEntity<String> flush(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Integer memberNumber = (Integer) session.getAttribute("member_number");
+        // 임시로 1번
+        if (memberNumber == null) {
+            memberNumber = 1;
+        }
+
+        wishlistService.deleteAllWishlist(memberNumber);
+
+
+        return new ResponseEntity<>("", HttpStatus.OK);
+    }
 }
