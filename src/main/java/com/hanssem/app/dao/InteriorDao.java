@@ -14,9 +14,9 @@ public class InteriorDao {
     @Autowired
     SqlSession session;
 
-    private String namespace = "com.hanssem.app.dao.specialPriceMapper.";
+    private String namespace = "com.hanssem.app.dao.InteriorMapper.";
 
-    public List<InteriorDto> selectInterior(Integer interior_number){
-        return session.selectList(namespace+"selectInterior", interior_number);
+    public List<InteriorDto> selectInterior(Integer interior_category_number){
+        return session.selectList(namespace+"selectInterior",interior_category_number);
     }
 }
