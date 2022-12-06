@@ -29,7 +29,7 @@
                 <!-- 회원가입 페이지로 이동 -->
                 <li><a href="#">JOIN</a></li>
                 <!-- 위시리스트 내역 페이지로 이동 -->
-                <li><a href="#">WISHLIST</a></li>
+                <li><a href="/wishlist">WISHLIST</a></li>
                 <!-- 본인인증 후 / 마이페이지로 이동 -->
                 <li><a href="#">MYPAGE</a></li>
                 <li id="search_icon">
@@ -66,35 +66,35 @@
                     <li class="li_content">
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Boutique Furniture</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn1.png"></li>
+                            <li class="ca_img"><img src="img/headerImg/Furn1.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table & Dining</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn2.png"></li>
+                            <li class="ca_img"><img src="img/headerImg/Furn2.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Chair</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn3.png"></li>
+                            <li class="ca_img"><img src="img/headerImg/Furn3.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Sofa</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn4.png"></li>
+                            <li class="ca_img"><img src="img/headerImg/Furn4.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Global Furniture</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn5.png"></li>
+                            <li class="ca_img"><img src="img/headerImg/Furn5.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">TV Stand & Storage</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn6.png"></li>
+                            <li class="ca_img"><img src="img/headerImg/Furn6.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Small Furniture</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn7.png"></li>
+                            <li class="ca_img"><img src="img/headerImg/Furn7.png"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Bed</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn8.png"></li>
+                            <li class="ca_img"><img src="img/headerImg/Furn8.png"></li>
                         </ul>
                     </li>
                 </ul>
@@ -125,10 +125,14 @@
                 <div class="wl_title">
                     <h1>Wishlist</h1>
                 </div>
+                <div class="wish_btn">
+                    <button class="ch">선택삭제</button>
+                    <button class="all">전체삭제</button>
+                </div>
                 <form action="<c:url value="/wishlist/" />" method="POST">
                 <div class="wish_list">
                     <c:forEach var="li" items="${list}" varStatus="status">
-                    <div class="wish_item">
+                    <div class="wish_item" id="pr+${li.productDto.product_number}">
                         <a href="/deal">
                             <div class="wish_sec">
                                 <div class="wish_img_box">
@@ -138,10 +142,10 @@
                                     <div class="wish_item_name">${li.productDto.product_name}</div>
                                     <div class="wish_item_prd">${li.productDto.product_content}</div>
                                 </div>
-                                <div class="wish_price">${li.productDto.product_price}<span>원</span></div>
+                                <div class="wish_price">${li.productDto.product_price}원</div>
                             </div>
                         </a>
-                        <div class="wish_wish"></div>
+                        <div class="wish_wish"  target-data="<%=(String)session.getAttribute("id")%>,${li.productDto.product_number}"></div>
                     </div>
                     </c:forEach>
                 </div>

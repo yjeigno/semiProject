@@ -11,7 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 
 @Controller
@@ -22,14 +25,17 @@ public class WishlistController {
     private WishlistService wishlistService;
 
     @GetMapping("")
-    public String wishlist(
-            HttpServletRequest request,
-            Model model, Integer product_number
-    ) {
+    public String wishlist(HttpServletRequest request, HttpServletResponse response, Model model, Integer product_number) throws IOException {
         HttpSession session = request.getSession();
         Integer member_number = (Integer) session.getAttribute("member_number");
         // 임시로 1번
         if (member_number == null) {
+/*            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert('로그인 후 이용 가능 합니다.')");
+            out.println("history.back()");
+            out.println("</script>");
+            out.flush();*/
             member_number = 1;
         }
 

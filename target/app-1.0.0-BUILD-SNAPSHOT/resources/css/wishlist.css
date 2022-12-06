@@ -17,6 +17,22 @@
     padding: 20px 0 ;
     font-size: 25px;
 }
+.wish_btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 10px 30px;
+}
+.wish_btn > button {
+    width: 100px;
+    height: 40px;
+    background-color: #EAEAEA;
+    border: 0px solid #EFEFEF;
+    color: #999;
+    font-weight: 999;
+    font-size: 14px;
+    cursor: pointer;
+}
 .wish_list {
     padding: 0 30px;
     overflow: hidden;
@@ -55,17 +71,18 @@
 }
 .wish_title {
     width: 100%;
-    margin: 10px 0;
+    margin-top: 10px;
 }
 .wish_item_name {
     margin-bottom: 3px;
 }
 .wish_item_prd {
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
 .wish_price {
     font-size: 20px;
     font-weight: bold;
+    margin-top: 2px;
 }
 .footer {
     width: 100%;

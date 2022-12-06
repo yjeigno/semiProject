@@ -25,10 +25,10 @@
   <header class="header">
     <div class="content_area header_top">
       <ul class="top_nav_ul">
-        <!-- 로그인 페이지로 이동 -->
-        <li><a href="#">LOGIN</a></li>
         <!-- 회원가입 페이지로 이동 -->
         <li><a href="#">JOIN</a></li>
+        <!-- 로그인 페이지로 이동 -->
+        <li><a href="#">LOGIN</a></li>
         <!-- 위시리스트 내역 페이지로 이동 -->
         <li><a href="#">WISHLIST</a></li>
         <!-- 본인인증 후 / 마이페이지로 이동 -->
@@ -46,17 +46,20 @@
         </form>
       </div>
       <!-- 로고 클릭시 메인페이지로 이동 -->
-      <a href="#"><div class="logo"><img src="img/headerImg/logo_black.png" alt=""></div></a>
+      <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/> " alt=""></div></a>
     </div>
-
+    <%--        src="img/headerImg/logo_black.png"--%>
+    <%--        href="<c:url value='img/headerImg/logo_black.png'/> "--%>
     <div class="header_bottom">
       <div class="content_area">
         <ul class="bottom_nav_ul">
-          <li>Furniture</li>
-          <li>Lighting</li>
-          <li>Kitchen</li>
-          <li>Home Deco</li>
-          <li>Hot Deal</li>
+          <li class="box">Furniture</li>
+          <li class="box">Lighting</li>
+          <li class="box">Fabric</li>
+          <!-- 홈데코 클릭시 인테리어 페이지 이동 -->
+          <li><a href="">Home Deco</a></li>
+          <!-- 특가페이지 이동 -->
+          <li><a href="">Hot Deal</a></li>
         </ul>
       </div>
     </div>
@@ -66,71 +69,94 @@
           <li class="li_Title">Furniture</li>
           <li class="li_content">
             <ul class="ca_box" onclick="location.href='#';">
-              <li class="ca_txt">Boutique Furniture</li>
-              <li class="ca_img"><img src="img/Furn1.png"></li>
+              <li class="ca_txt">Table</li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Table & Dining</li>
-              <li class="ca_img"><img src="img/Furn2.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Chair</li>
-              <li class="ca_img"><img src="img/Furn3.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Sofa</li>
-              <li class="ca_img"><img src="img/Furn4.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
-              <li class="ca_txt">Global Furniture</li>
-              <li class="ca_img"><img src="img/Furn5.png"></li>
+              <li class="ca_txt">Desk</li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">TV Stand & Storage</li>
-              <li class="ca_img"><img src="img/Furn6.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Small Furniture</li>
-              <li class="ca_img"><img src="img/Furn7.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Bed</li>
-              <li class="ca_img"><img src="img/Furn8.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/> "></li>
             </ul>
           </li>
 
         </ul>
         <ul class="ul_category_box">
           <li class="li_Title">Lighting</li>
-          <li class="li_content"></li>
+          <li>
+            <ul class="li_content str">
+              <li class="l_txt">pendant</li>
+              <li class="l_txt">table</li>
+              <li class="l_txt">floor lamp</li>
+              <li class="l_txt">wall</li>
+              <li class="l_txt">ceiling</li>
+            </ul>
+          </li>
 
         </ul>
         <ul class="ul_category_box">
-          <li class="li_Title">Kitchen</li>
-          <li class="li_content"></li>
+          <li class="li_Title">Fabric</li>
+          <li>
+            <ul class="li_content str right">
+              <li class="l_txt">Curtain</li>
+              <li class="l_txt">Rug</li>
+              <li class="l_txt">blind</li>
+              <li class="l_txt">mat</li>
+              <li></li>
+            </ul>
+          </li>
+
+        </ul>
+        <!-- <ul class="ul_category_box">
+            <li class="li_Title">Home Deco</li>
+            <li class="li_content"></li>
 
         </ul>
         <ul class="ul_category_box">
-          <li class="li_Title">Home Deco</li>
-          <li class="li_content"></li>
+            <li class="li_Title">Hot Deal</li>
+            <li class="li_content"></li>
 
-        </ul>
-        <ul class="ul_category_box">
-          <li class="li_Title">Hot Deal</li>
-          <li class="li_content"></li>
-
-        </ul>
+        </ul> -->
       </div>
     </div>
   </header>
   <div class="h_100"></div>
+  <%--================================HEADER===========================================--%>
+  <%--=================================================================================--%>
+  <%--=================================================================================--%>
+
+  <%--=================================================================================--%>
+  <%--=================================================================================--%>
+  <%--=================================MAIN============================================--%>
 
   <div class="sprc_main content_area">
       <div class="sprc_nav">
-        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav1">타임특가</a>
-        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav2">쌤딜특가</a>
-        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav3">리빙특가</a>
-        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav4">마진특가</a>
+        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav1"><span>타임특가</span></a>
+        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav2"><span>쌤딜특가</span></a>
+        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav3"><span>리빙특가</span></a>
+        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav4"><span>마진특가</span></a>
       </div>
     </div>
 
@@ -138,43 +164,45 @@
       <div class="sprc_banner"></div>
     </div>
     <div class="sprc_sec">
-      <div class="sprc_list contents_area">
-        <c:forEach var="li" items="${list}" varStatus="status">
-        <div class="sprc_item">
-          <input type="hidden" class="h-sprc-end-date" value="${li.special_product_end_date}">
-          <a href="/deal">
-            <div class="sprc_img_box">
-              <img src="${li.imageDto.image_path}" class="sprc_img" class="sprc_img" alt="">
+      <div class="contents_area">
+        <div class="sprc_list">
+            <c:forEach var="li" items="${list}" varStatus="status">
+            <div class="sprc_item">
+              <input type="hidden" class="h-sprc-end-date" value="${li.special_product_end_date}">
+              <a href="/deal">
+                <div class="sprc_img_box">
+                  <img src="${li.imageDto.image_path}" class="sprc_img" class="sprc_img" alt="">
+                </div>
+              </a>
+              <div class="${li.wishFlag ? "sprc_wish_on" : "sprc_wish"}" id="dibs" target-data="<%=(String)session.getAttribute("id")%>,${li.productDto.product_number}"></div>
+              <div class="sprc_timer"></div>
+              <a href="/deal/${li.productDto.product_number}">
+                <div class="sprc_info">
+                  <div class="sprc_title">
+                    <div class="sprc_item_name">${li.productDto.product_name}</div>
+                    <div class="sprc_item_prd">${li.productDto.product_content}</div>
+                  </div>
+                  <div class="sprc_item_prc">
+                    <div class="sprc_item_cur">
+                    <c:set var="s_price" value="${li.productDto.product_price * (li.special_product_discount * 0.01)}" />
+                    <fmt:formatNumber value="${s_price}" type="number" />원
+                    </div>
+                    <span class="sprc_item_rate">${li.special_product_discount}<span>%</span></span>
+                    <div class="sprc_item_sale">${li.productDto.product_price}원</div>
+                  </div>
+                  <div class="sprc_item_user">
+                    <div class="user_score">
+                      <span class="num">${li.review_rank_average}</span>
+                    </div>
+                    <div class="user_review">
+                      <span class="num">${li.review_count}</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
             </div>
-          </a>
-          <div class="${li.wishFlag ? "sprc_wish_on" : "sprc_wish"}" id="dibs" target-data="<%=(String)session.getAttribute("id")%>,${li.productDto.product_number}"></div>
-          <div class="sprc_timer"></div>
-          <a href="/deal">
-            <div class="sprc_info">
-              <div class="sprc_title">
-                <div class="sprc_item_name">${li.productDto.product_name}</div>
-                <div class="sprc_item_prd">${li.productDto.product_content}</div>
-              </div>
-              <div class="sprc_item_prc">
-                <div class="sprc_item_cur">
-                <c:set var="s_price" value="${li.productDto.product_price * (li.special_product_discount * 0.01)}" />
-                <fmt:formatNumber value="${s_price}" type="number" />
-                </div>
-                <span class="sprc_item_rate">${li.special_product_discount}<span>%</span></span>
-                <div class="sprc_item_sale">${li.productDto.product_price}</div>
-              </div>
-              <div class="sprc_item_user">
-                <div class="user_score">
-                  <span class="num">${li.review_rank_average}</span>
-                </div>
-                <div class="user_review">
-                  <span class="num">${li.review_count}</span>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        </c:forEach>
+            </c:forEach>
+          </div>
         </div>
       </div>
     </div>

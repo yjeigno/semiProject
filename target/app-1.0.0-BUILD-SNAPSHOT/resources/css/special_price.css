@@ -18,6 +18,7 @@
     border: 1px solid #d1d1d1;
     border-radius: 8px;
     box-sizing: border-box;
+    transition: all 0.5s;
 }
 .sprc_main_banner {
     position: relative;
@@ -35,8 +36,6 @@
     top: 0;
 }
 .sprc_sec {
-    /* overflow-x: auto;
-    overflow-y: hidden; */
     margin: 100px 0;
 }
 .sprc_list {
@@ -116,7 +115,7 @@
     white-space: normal;
 }
 .sprc_item_prc {
-    margin: 8px 0;
+    margin: 7px 0;
     font-family: 'Montserrat';
 }
 .sprc_item_cur {
