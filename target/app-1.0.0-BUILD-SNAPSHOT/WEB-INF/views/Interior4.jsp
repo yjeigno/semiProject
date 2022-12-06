@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 이준환
@@ -220,258 +222,263 @@
       </div>
 
       <div class="Interior_menu_item" id="work01">
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(1).jpg" width="400" height="330" alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>주방인테리어</p>
-                <p >400,000원~</p>
-              </a>
+
+        <c:forEach items="${list}" var="li">
+          <div class="Interior_item">
+            <ul class="Interior_item_img">
+              <li>
+                <a><img src= ${li.interior_image_path} width="400" alt=""></a>
+              </li>
+              <div class="txt_box">
+                <a href="Interior_detail" target="_blank">
+
+                  <p>${li.interior_name}</p>
+                  <p >${li.interior_cash}</p>
+                </a>
+              </div>
+
+            </ul>
+
+            <div class="q">
+              <p>${li.interior_content}</p>
             </div>
 
-          </ul>
-
-          <div class="q">
-            <p>주방인테리어</p>
           </div>
 
-        </div>
+        </c:forEach>
 
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(2).jpg" width="400" height="330" alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>식탁인테리어</p>
-                <p>200,000원~</p>
-              </a>
-            </div>
-          </ul>
+<%--        <div class="Interior_item">--%>
+<%--          <ul class="Interior_item_img">--%>
+<%--            <li>--%>
+<%--              <a><img src="img/Interior/interior_4(2).jpg" width="400" height="330" alt=""></a>--%>
+<%--            </li>--%>
+<%--            <div class="txt_box">--%>
+<%--              <a href="Interior_detail" target="_blank">--%>
+<%--                <p>식탁인테리어</p>--%>
+<%--                <p>200,000원~</p>--%>
+<%--              </a>--%>
+<%--            </div>--%>
+<%--          </ul>--%>
 
-          <div class="q">
-            <p>포레스트빌리지</p>
-          </div>
+<%--          <div class="q">--%>
+<%--            <p>포레스트빌리지</p>--%>
+<%--          </div>--%>
 
-        </div>
+<%--        </div>--%>
 
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(3).jpg" width="400" height="330" alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>E0300 싱크대</p>
-                <p>400,000원~</p>
-              </a>
-            </div>
-          </ul>
-          <div class="q">
-            <p>다양한 컬러를 활용한 주방 인테리어</p>
-          </div>
-        </div>
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(4).jpg" width="400" height="330"alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>베이지</p>
-                <p>400,000원~</p>
-              </a>
-            </div>
-          </ul>
-          <div class="q">
-            <p>반셀프 주방 인테리어</p>
-          </div>
-        </div>
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(5).jpg" width="400" height="330" alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>심플한 주방</p>
-                <p>200,000원~</p>
-              </a>
-            </div>
-          </ul>
-          <div class="q">
-            <p>4가지 방법으로 꾸며본 행복주택</p>
-          </div>
-        </div>
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(6).jpg" width="400" height="330" alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>E0900 유로 베이지</p>
-                <p>400,000원~</p>
-              </a>
-            </div>
-          </ul>
-          <div class="q">
-            <p>베스트 주방</p>
-          </div>
-        </div>
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(7).jpg" width="400" height="330" alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>E0300 심플 베이지</p>
-                <p>800,000원~</p>
-              </a>
-            </div>
-          </ul>
-          <div class="q">
-            <p>행복주택 인테리어</p>
-          </div>
-        </div>
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(8).jpg" width="400" height="330" alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>E0200 베이지</p>
-                <p>400,000원~</p>
-              </a>
-            </div>
-          </ul>
-          <div class="q">
-            <p>맛 좋은 주방</p>
-          </div>
-        </div>
+<%--        <div class="Interior_item">--%>
+<%--          <ul class="Interior_item_img">--%>
+<%--            <li>--%>
+<%--              <a><img src="img/Interior/interior_4(3).jpg" width="400" height="330" alt=""></a>--%>
+<%--            </li>--%>
+<%--            <div class="txt_box">--%>
+<%--              <a href="Interior_detail" target="_blank">--%>
+<%--                <p>E0300 싱크대</p>--%>
+<%--                <p>400,000원~</p>--%>
+<%--              </a>--%>
+<%--            </div>--%>
+<%--          </ul>--%>
+<%--          <div class="q">--%>
+<%--            <p>다양한 컬러를 활용한 주방 인테리어</p>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--        <div class="Interior_item">--%>
+<%--          <ul class="Interior_item_img">--%>
+<%--            <li>--%>
+<%--              <a><img src="img/Interior/interior_4(4).jpg" width="400" height="330"alt=""></a>--%>
+<%--            </li>--%>
+<%--            <div class="txt_box">--%>
+<%--              <a href="Interior_detail" target="_blank">--%>
+<%--                <p>베이지</p>--%>
+<%--                <p>400,000원~</p>--%>
+<%--              </a>--%>
+<%--            </div>--%>
+<%--          </ul>--%>
+<%--          <div class="q">--%>
+<%--            <p>반셀프 주방 인테리어</p>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--        <div class="Interior_item">--%>
+<%--          <ul class="Interior_item_img">--%>
+<%--            <li>--%>
+<%--              <a><img src="img/Interior/interior_4(5).jpg" width="400" height="330" alt=""></a>--%>
+<%--            </li>--%>
+<%--            <div class="txt_box">--%>
+<%--              <a href="Interior_detail" target="_blank">--%>
+<%--                <p>심플한 주방</p>--%>
+<%--                <p>200,000원~</p>--%>
+<%--              </a>--%>
+<%--            </div>--%>
+<%--          </ul>--%>
+<%--          <div class="q">--%>
+<%--            <p>4가지 방법으로 꾸며본 행복주택</p>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--        <div class="Interior_item">--%>
+<%--          <ul class="Interior_item_img">--%>
+<%--            <li>--%>
+<%--              <a><img src="img/Interior/interior_4(6).jpg" width="400" height="330" alt=""></a>--%>
+<%--            </li>--%>
+<%--            <div class="txt_box">--%>
+<%--              <a href="Interior_detail" target="_blank">--%>
+<%--                <p>E0900 유로 베이지</p>--%>
+<%--                <p>400,000원~</p>--%>
+<%--              </a>--%>
+<%--            </div>--%>
+<%--          </ul>--%>
+<%--          <div class="q">--%>
+<%--            <p>베스트 주방</p>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--        <div class="Interior_item">--%>
+<%--          <ul class="Interior_item_img">--%>
+<%--            <li>--%>
+<%--              <a><img src="img/Interior/interior_4(7).jpg" width="400" height="330" alt=""></a>--%>
+<%--            </li>--%>
+<%--            <div class="txt_box">--%>
+<%--              <a href="Interior_detail" target="_blank">--%>
+<%--                <p>E0300 심플 베이지</p>--%>
+<%--                <p>800,000원~</p>--%>
+<%--              </a>--%>
+<%--            </div>--%>
+<%--          </ul>--%>
+<%--          <div class="q">--%>
+<%--            <p>행복주택 인테리어</p>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--        <div class="Interior_item">--%>
+<%--          <ul class="Interior_item_img">--%>
+<%--            <li>--%>
+<%--              <a><img src="img/Interior/interior_4(8).jpg" width="400" height="330" alt=""></a>--%>
+<%--            </li>--%>
+<%--            <div class="txt_box">--%>
+<%--              <a href="Interior_detail" target="_blank">--%>
+<%--                <p>E0200 베이지</p>--%>
+<%--                <p>400,000원~</p>--%>
+<%--              </a>--%>
+<%--            </div>--%>
+<%--          </ul>--%>
+<%--          <div class="q">--%>
+<%--            <p>맛 좋은 주방</p>--%>
+<%--          </div>--%>
+<%--        </div>--%>
 
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(9).jpg" width="400" height="330" alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>E0300 유로 화이트</p>
-                <p>400,000원~</p>
-              </a>
-            </div>
-          </ul>
-          <div class="q">
-            <p>차분한 우드톤 주방</p>
-          </div>
-        </div>
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(10).jpg" width="400" height="330" alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>유로 화이트</p>
-                <p>300,000원~</p>
-              </a>
-            </div>
-          </ul>
-          <div class="q">
-            <p>싱글라이프 인테리어</p>
-          </div>
-        </div>
+<%--        <div class="Interior_item">--%>
+<%--          <ul class="Interior_item_img">--%>
+<%--            <li>--%>
+<%--              <a><img src="img/Interior/interior_4(9).jpg" width="400" height="330" alt=""></a>--%>
+<%--            </li>--%>
+<%--            <div class="txt_box">--%>
+<%--              <a href="Interior_detail" target="_blank">--%>
+<%--                <p>E0300 유로 화이트</p>--%>
+<%--                <p>400,000원~</p>--%>
+<%--              </a>--%>
+<%--            </div>--%>
+<%--          </ul>--%>
+<%--          <div class="q">--%>
+<%--            <p>차분한 우드톤 주방</p>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--        <div class="Interior_item">--%>
+<%--          <ul class="Interior_item_img">--%>
+<%--            <li>--%>
+<%--              <a><img src="img/Interior/interior_4(10).jpg" width="400" height="330" alt=""></a>--%>
+<%--            </li>--%>
+<%--            <div class="txt_box">--%>
+<%--              <a href="Interior_detail" target="_blank">--%>
+<%--                <p>유로 화이트</p>--%>
+<%--                <p>300,000원~</p>--%>
+<%--              </a>--%>
+<%--            </div>--%>
+<%--          </ul>--%>
+<%--          <div class="q">--%>
+<%--            <p>싱글라이프 인테리어</p>--%>
+<%--          </div>--%>
+<%--        </div>--%>
 
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(11).jpg" width="400" height="330" alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>달콤한 주방</p>
-                <p>300,000원~</p>
-              </a>
-            </div>
-          </ul>
-          <div class="q">
-            <p>다움홈</p>
-          </div>
-        </div>
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(12).jpg" width="400" height="330" alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>E0300 유로 베이지</p>
-                <p>500,000원~</p>
-              </a>
-            </div>
-          </ul>
-          <div class="q">
-            <p>빈티지 감성과 로망이 담긴 주방</p>
-          </div>
-        </div>
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(13).jpg" width="400" height="330" alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>300 유로 화이트</p>
-                <p>800,000원~</p>
-              </a>
-            </div>
-          </ul>
-          <div class="q">
-            <p>곳곳이 갤러리같은 주방</p>
-          </div>
-        </div>
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(14).jpg" width="400" height="330"  alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>심플 베이지 주방</p>
-                <p>300,000원~</p>
-              </a>
-            </div>
-          </ul>
-          <div class="q">
-            <p>우드톤으로 고급스러운 부엌</p>
-          </div>
-        </div>
-        <div class="Interior_item">
-          <ul class="Interior_item_img">
-            <li>
-              <a><img src="img/Interior/interior_4(15).jpg" width="400" height="330" alt=""></a>
-            </li>
-            <div class="txt_box">
-              <a href="Interior_detail" target="_blank">
-                <p>E0300 심플 화이트</p>
-                <p>800,000원~</p>
-              </a>
-            </div>
-          </ul>
-          <div class="q">
-            <p>심플하고 화려한 부엌</p>
-          </div>
-        </div>
+<%--        <div class="Interior_item">--%>
+<%--          <ul class="Interior_item_img">--%>
+<%--            <li>--%>
+<%--              <a><img src="img/Interior/interior_4(11).jpg" width="400" height="330" alt=""></a>--%>
+<%--            </li>--%>
+<%--            <div class="txt_box">--%>
+<%--              <a href="Interior_detail" target="_blank">--%>
+<%--                <p>달콤한 주방</p>--%>
+<%--                <p>300,000원~</p>--%>
+<%--              </a>--%>
+<%--            </div>--%>
+<%--          </ul>--%>
+<%--          <div class="q">--%>
+<%--            <p>다움홈</p>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--        <div class="Interior_item">--%>
+<%--          <ul class="Interior_item_img">--%>
+<%--            <li>--%>
+<%--              <a><img src="img/Interior/interior_4(12).jpg" width="400" height="330" alt=""></a>--%>
+<%--            </li>--%>
+<%--            <div class="txt_box">--%>
+<%--              <a href="Interior_detail" target="_blank">--%>
+<%--                <p>E0300 유로 베이지</p>--%>
+<%--                <p>500,000원~</p>--%>
+<%--              </a>--%>
+<%--            </div>--%>
+<%--          </ul>--%>
+<%--          <div class="q">--%>
+<%--            <p>빈티지 감성과 로망이 담긴 주방</p>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--        <div class="Interior_item">--%>
+<%--          <ul class="Interior_item_img">--%>
+<%--            <li>--%>
+<%--              <a><img src="img/Interior/interior_4(13).jpg" width="400" height="330" alt=""></a>--%>
+<%--            </li>--%>
+<%--            <div class="txt_box">--%>
+<%--              <a href="Interior_detail" target="_blank">--%>
+<%--                <p>300 유로 화이트</p>--%>
+<%--                <p>800,000원~</p>--%>
+<%--              </a>--%>
+<%--            </div>--%>
+<%--          </ul>--%>
+<%--          <div class="q">--%>
+<%--            <p>곳곳이 갤러리같은 주방</p>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--        <div class="Interior_item">--%>
+<%--          <ul class="Interior_item_img">--%>
+<%--            <li>--%>
+<%--              <a><img src="img/Interior/interior_4(14).jpg" width="400" height="330"  alt=""></a>--%>
+<%--            </li>--%>
+<%--            <div class="txt_box">--%>
+<%--              <a href="Interior_detail" target="_blank">--%>
+<%--                <p>심플 베이지 주방</p>--%>
+<%--                <p>300,000원~</p>--%>
+<%--              </a>--%>
+<%--            </div>--%>
+<%--          </ul>--%>
+<%--          <div class="q">--%>
+<%--            <p>우드톤으로 고급스러운 부엌</p>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--        <div class="Interior_item">--%>
+<%--          <ul class="Interior_item_img">--%>
+<%--            <li>--%>
+<%--              <a><img src="img/Interior/interior_4(15).jpg" width="400" height="330" alt=""></a>--%>
+<%--            </li>--%>
+<%--            <div class="txt_box">--%>
+<%--              <a href="Interior_detail" target="_blank">--%>
+<%--                <p>E0300 심플 화이트</p>--%>
+<%--                <p>800,000원~</p>--%>
+<%--              </a>--%>
+<%--            </div>--%>
+<%--          </ul>--%>
+<%--          <div class="q">--%>
+<%--            <p>심플하고 화려한 부엌</p>--%>
+<%--          </div>--%>
+<%--        </div>--%>
 
 
-      </div>  b
+      </div>
 
 
 

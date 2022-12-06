@@ -33,3 +33,10 @@ $(function () {
   })
 });
 
+function getProduct(e){
+  location.href = '/deal?product='+e.dataset.prd;
+}
+$('.product_name').on('click', function (){
+  $(this).parents('.product').children('.product_img').trigger('click');
+})
+

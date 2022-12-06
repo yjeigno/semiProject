@@ -30,8 +30,11 @@
     // 소비자가, 가격에 원 하고 , 표시
     let oPrice = ${pInfo.product_price};
     <%--여기에 ${pdto.product_price}--%>
-    let sPrice = ${pInfo.product_status==2?"":pInfo.product_price};
+    let sPrice = ${pInfo.product_status==2 && SpeDiscount.special_product_end_date>now()
+    ?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price};
     <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
+    console.log( ${pInfo.product_price*(SpeDiscount.special_product_discount / 100)}  );
+
     let logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
     let logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
     let deleteBtn = "<c:url value='/img/dealImg/btn_price_delete.gif'/>"
@@ -46,7 +49,7 @@
             // console.log(jsonData)
             $.ajax({
                 type : 'POST',
-                url : '/semiProject/deal/color',
+                url : '/deal/color',
                 data: JSON.stringify(jsonData),
                 dataType : 'json',
                 contentType: "application/json; charset=utf-8",
@@ -106,6 +109,9 @@
 </head>
 <body>
 <div id="wrap">
+<%--=================================================================================--%>
+<%--=================================================================================--%>
+<%--================================HEADER===========================================--%>
     <header class="header">
         <div class="content_area header_top">
             <ul class="top_nav_ul">
@@ -227,6 +233,13 @@
         </div>
     </header>
     <div class="h_100"></div>
+<%--================================HEADER===========================================--%>
+<%--=================================================================================--%>
+<%--=================================================================================--%>
+
+<%--=================================================================================--%>
+<%--=================================================================================--%>
+<%--=================================MAIN============================================--%>
     <main class="main">
         <div class="content_area">
             <div class="d_sub_nav"></div>
@@ -328,7 +341,11 @@
                 <li class="small_btn"> <a href="#sec4">배송안내</a> </li>
                 <li class="small_btn"> <a href="#sec5">교환/반품정책</a> </li>
             </ul>
-            <div class="h1000" id="sec1" >sec1</div>
+            <div class="h1000" id="sec1" >
+                <c:forEach items="${imgDetail}" var="de">
+                <img src="<c:url value='${de.image_path}'/>" alt="">
+                </c:forEach>
+            </div>
             <div class="h1000" id="sec2" >
                 <div class="avg_review_box">
                     <div class="avg_box">
@@ -345,7 +362,7 @@
                         <div id="non_btn"></div>
                     </div>
                     <div class="review_list list_photo">
-                        <c:forEach items="${reviewList}" var="re">
+                        <c:forEach items="${reviewPageList}" var="re">
                         <div class="photo_review">
                             <div class="id_Photo_txt">${re.memberDto.member_id}</div>
                             <div class="photo_review_img"><img src="<c:url value='${re.review_image}'/>" alt=""></div>
@@ -353,10 +370,27 @@
                             <div class="photo_review_txt">${re.review_content}</div>
                         </div>
                         </c:forEach>
+                        <div class="d_pagination">
+                            <c:if test="${pageHandler.showFirst}">
+                                <a href="<c:url value='/deal?page=1&pageSize=${pageHandler.pageSize}' />" class="d_pp d_pagination_a">[처음]</a>
+                            </c:if>
+                            <c:if test="${pageHandler.showPrev}">
+                                <a href="<c:url value='/deal?page=${pageHandler.beginPage-1}&pageSize=${pageHandler.pageSize}' />" class="d_pre d_pagination_a">[이전]</a>
+                            </c:if>
+                            <c:forEach var="i" begin="${pageHandler.beginPage}" end="${pageHandler.endPage}">
+                                <a href="<c:url value='/deal?page=${i}&pageSize=${pageHandler.pageSize}' /> " class="d_pagination_a d_pnum ${i==pageHandler.page?"d_on":""}"> ${i}</a>
+                            </c:forEach>
+                            <c:if test="${pageHandler.showNext}">
+                                <a href="<c:url value='/deal?page=${pageHandler.endPage+1}&pageSize=${pageHandler.pageSize}' />" class="d_pagination_a d_next">[다음]</a>
+                            </c:if>
+                            <c:if test="${pageHandler.showLast}">
+                                <a href="<c:url value='/deal?page=${pageHandler.totalPage}&pageSize=${pageHandler.pageSize}' />" class="d_pagination_a d_next">[마지막]</a>
+                            </c:if>
+                        </div>
                     </div>
 
                     <div class="review_list list_text">
-                        <c:forEach items="${reviewList}" var="re">
+                        <c:forEach items="${reviewPageTxtList}" var="re">
                         <div class="text_review">
                             <div class="id_txt_txt">${re.memberDto.member_id}</div>
                             <div class="star_date">
@@ -374,15 +408,49 @@
                             <div class="review_text_content">${re.review_content}</div>
                         </div>
                         </c:forEach>
+                        <div class="d_pagination">
+                            <c:if test="${pageHandlerTxt.showFirst}">
+                                <a href="<c:url value='/deal?page=1&pageSize=${pageHandlerTxt.pageSize}' />" class="d_pp d_pagination_a">[처음]</a>
+                            </c:if>
+                            <c:if test="${pageHandlerTxt.showPrev}">
+                                <a href="<c:url value='/deal?page=${pageHandlerTxt.beginPage-1}&pageSize=${pageHandlerTxt.pageSize}' />" class="d_pre d_pagination_a">[이전]</a>
+                            </c:if>
+                            <c:forEach var="i" begin="${pageHandlerTxt.beginPage}" end="${pageHandlerTxt.endPage}">
+                                <a href="<c:url value='/deal?page=${i}&pageSize=${pageHandlerTxt.pageSize}' /> " class="d_pagination_a d_pnum ${i==pageHandlerTxt.page?"d_on":""}"> ${i}</a>
+                            </c:forEach>
+                            <c:if test="${pageHandlerTxt.showNext}">
+                                <a href="<c:url value='/deal?page=${pageHandlerTxt.endPage+1}&pageSize=${pageHandlerTxt.pageSize}' />" class="d_pagination_a d_next">[다음]</a>
+                            </c:if>
+                            <c:if test="${pageHandler.showLast}">
+                                <a href="<c:url value='/deal?page=${pageHandlerTxt.totalPage}&pageSize=${pageHandlerTxt.pageSize}' />" class="d_pagination_a d_next">[마지막]</a>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
+<%--                <div class="pagination">--%>
+<%--                    <c:if test="${pageHandler.showPrev}">--%>
+<%--                        <a href="<c:url value='/deal?page=${pageHandler.beginPage-1}&pageSize=${pageHandler.pageSize}' />" class="beginPage">[이전]</a>--%>
+<%--                    </c:if>--%>
+<%--                    <c:forEach var="i" begin="${pageHandler.beginPage}" end="${pageHandler.endPage}">--%>
+<%--                        <a href="<c:url value='/deal?page=${i}&pageSize=${pageHandler.pageSize}' /> " class="page ${i==ph.page?"pageActive":""}"> ${i}</a>--%>
+<%--                    </c:forEach>--%>
+<%--                    <c:if test="${pageHandler.showNext}">--%>
+<%--                        <a href="<c:url value='/deal?page=${pageHandler.endPage+1}&pageSize=${pageHandler.pageSize}' />" class="endPage">[다음]</a>--%>
+<%--                    </c:if>--%>
+<%--                </div>--%>
             </div>
             <div class="h1000" id="sec3" >sec3</div>
-            <div class="h1000" id="sec4" >sec4</div>
-            <div class="h1000" id="sec5" >sec5</div>
+            <div class="h1000" id="sec4" >
+                <img src="<c:url value='/img/dealImg/delivery.jpg'/> ">
+            </div>
+            <div class="h1000" id="sec5" >
+                <div class="d_refund_txt"> 교환/반품정책 </div>
+                <img src="<c:url value='/img/dealImg/refund.jpg'/> ">
+            </div>
         </div>
-        <div class="btn_top"><a href="#wrap">TOP</a></div>
 
+        <div class="btn_top"><a href="#wrap">TOP</a></div>
+        <footer class="footer">푸터입니당</footer>
         </html>
     </main>
 </div>

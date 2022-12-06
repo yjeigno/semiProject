@@ -24,6 +24,7 @@ $(document).ready(function(){
         if(h_top <= s_top){
             $('.d_tab_btn').css({
                 position: 'fixed',
+                zIndex: 999999999,
                 left: 25,
                 top: 150,
                 flexDirection: 'column',

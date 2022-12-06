@@ -52,4 +52,56 @@
         FROM review
         WHERE product_number= #{product_number}
     </select>
+<!--    상품에 맞는 이미지가 있는 리뷰 개수 구하기-->
+    <select id="reviewCount" parameterType="int" resultType="int">
+        SELECT count(*) FROM review
+        WHERE product_number= #{product_number} and review_image!='-1';
+    </select>
+<!--    상품에 맞는 이미지가 없는 리뷰 개수 구하기-->
+    <select id="reviewTxtCount" parameterType="int" resultType="int">
+        SELECT count(*) FROM review
+        WHERE product_number= #{product_number} and review_image='-1';
+    </select>
+
+<!--    상품에 맞는 이미지가 있는 리뷰 8개 구하기-->
+    <select id="selectReviewPage" parameterType="map" resultType="ReviewDto">
+        SELECT review_number,
+        review_content,
+        review_rank,
+        review_status,
+        review_register_date,
+        review_image,
+        review_size,
+        review_color,
+        p.product_number,
+        product_name,
+        member_id
+        FROM review r
+        JOIN product p on r.product_number = p.product_number
+        JOIN member m on r.member_number = m.member_number
+        WHERE p.product_number = #{product_number} and review_image !='-1'
+        ORDER BY review_register_date desc
+        LIMIT #{offset},#{pageSize}
+    </select>
+<!--    상품에 맞는 이미지가 없는 리뷰 8개 구하기-->
+    <select id="selectReviewTxtPage" parameterType="map" resultType="ReviewDto">
+        SELECT review_number,
+        review_content,
+        review_rank,
+        review_status,
+        review_register_date,
+        review_image,
+        review_size,
+        review_color,
+        p.product_number,
+        product_name,
+        member_id
+        FROM review r
+        JOIN product p on r.product_number = p.product_number
+        JOIN member m on r.member_number = m.member_number
+        WHERE p.product_number = #{product_number} and review_image ='-1'
+        ORDER BY review_register_date desc
+        LIMIT #{offset},#{pageSize}
+    </select>
+
 </mapper>
