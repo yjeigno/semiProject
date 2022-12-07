@@ -14,11 +14,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인페이지</title>
     <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/>"></script>
-
     <script src="<c:url value='/js/header.js'/>"></script>
     <script src="<c:url value='/js/main.js'/>"></script>
     <script src="<c:url value='/js/main_cart.js'/>"></script>
-
     <link rel="stylesheet" href="<c:url value='/css/common.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/main.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/header.css'/>">

@@ -110,4 +110,18 @@ public class MainDto {
         this.interior_image_path = interior_image_path;
     }
 
+    @Override
+    public String toString() {
+        return "MainDto{" +
+                "product_number=" + product_number +
+                ", product_name='" + product_name + '\'' +
+                ", product_content='" + product_content + '\'' +
+                ", product_price=" + product_price +
+                ", product_register_date=" + product_register_date +
+                ", interior_number=" + interior_number +
+                ", interior_name='" + interior_name + '\'' +
+                ", interior_content='" + interior_content + '\'' +
+                ", interior_image_path='" + interior_image_path + '\'' +
+                '}';
+    }
 }

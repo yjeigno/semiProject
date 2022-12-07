@@ -6,6 +6,7 @@ import com.hanssem.app.dto.MemberDto;
 import com.hanssem.app.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -16,10 +17,19 @@ public class RegisterController {
     private RegisterService registerService;
 
     @Autowired
+    RegisterDao registerDao; //07일 입력함
+    @InitBinder
+    public void initBinder(WebDataBinder binder){
+
+    }
+
+
+
     @RequestMapping("/register")
     public String registerForm(){
         return "registerForm";
     }
+
 
 //    메인페이지에서 JOIN 카테고리 클릭 할 경우
 //    @GetMapping("/register")
@@ -35,7 +45,6 @@ public class RegisterController {
             return "redirect:/";
         }
 
-//        중복체크
 
 
 

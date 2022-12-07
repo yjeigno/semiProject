@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page import="java.net.URLDecoder" %>
 <%@ page session="false" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,38 +11,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>로그인</title>
+  <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/>"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-  <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
-  <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
   <link rel="stylesheet" href="<c:url value='/css/common.css'/>">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
+  <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
+<%--  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>--%>
   <!-- <script defer src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
-  <link rel="stylesheet" href="<c:url value='/js/login.js'/>">
   <link rel="stylesheet" href="<c:url value='/js/header.js'/>">
+  <link rel="stylesheet" href="<c:url value='/js/login.js'/>">
+
 
 </head>
 <body>
 <div id="wrap">
+
   <header class="header">
     <div class="content_area header_top">
       <ul class="top_nav_ul">
-
         <!-- 회원가입 페이지로 이동 -->
-        <c:choose>
-          <c:when test="${memberId==null || memberId.equals('') }">
-            <li><a href="<c:url value='/register'/>">JOIN</a></li>
-          </c:when>
-          <c:otherwise>
-            <li>
-                ${memberId} 님 환영합니다.
-            </li>
-          </c:otherwise>
-        </c:choose>
+        <li><a href="<c:url value='/register'/>">JOIN</a></li>
         <!-- 로그인 페이지로 이동 -->
-        <li>
-          <a href="<c:url value='${logInOutLink} '/>">${logInOutTxt}</a>
-        </li>
-
+        <li><a href="login">LOGIN</a></li>
         <!-- 위시리스트 내역 페이지로 이동 -->
         <li><a href="#">WISHLIST</a></li>
         <!-- 본인인증 후 / 마이페이지로 이동 -->
@@ -58,7 +50,7 @@
         </form>
       </div>
       <!-- 로고 클릭시 메인페이지로 이동 -->
-      <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/> " alt=""></div></a>
+      <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/>" alt=""></div></a>
     </div>
 
     <div class="header_bottom">
@@ -81,35 +73,35 @@
           <li class="li_content">
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Table</li>
-              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/>"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Table & Dining</li>
-              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/>"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Chair</li>
-              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/>"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Sofa</li>
-              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/>"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Desk</li>
-              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/>"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">TV Stand & Storage</li>
-              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/>"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Small Furniture</li>
-              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/>"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Bed</li>
-              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/>"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/> "></li>
             </ul>
           </li>
 
@@ -154,6 +146,7 @@
     </div>
   </header>
   <div class="h_100"></div>
+</div>
 
 
   <div class="member_sec">
