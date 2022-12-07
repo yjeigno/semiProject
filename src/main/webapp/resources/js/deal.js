@@ -230,4 +230,20 @@ $(document).ready(function(){
             $('.d_total_price').html(`<div>TOTAL: <span id="p_tot">0원</span> (0개)</div>`)
         }
     }
+    // 상품문의 슬라이드
+    $('.d_qna_faq_box').click(function(){
+        let faq_view = $(this).parent('.d_qna_top').next('.d_qna_faq_view').children('.d_qna_faq_view_qa')
+        if(faq_view.children('.d_qna_faq_q').css("display") == "block"){
+            $(this).children('.d_qna_faq').children('.d_qna_faq_tit').removeClass('on')
+            faq_view.children('.d_qna_faq_q').slideUp(400);
+            faq_view.children('.d_qna_faq_a').slideUp(400);
+        }
+        else{
+            $(this).children('.d_qna_faq').children('.d_qna_faq_tit').addClass('on')
+            faq_view.children('.d_qna_faq_q').slideDown(400);
+            faq_view.children('.d_qna_faq_a').slideDown(400);
+        }
+    })
+
+
 });

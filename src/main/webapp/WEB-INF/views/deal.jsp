@@ -366,7 +366,7 @@
                         <div class="photo_review">
                             <div class="id_Photo_txt">${re.memberDto.member_id}</div>
                             <div class="photo_review_img"><img src="<c:url value='${re.review_image}'/>" alt=""></div>
-                            <div class="review_star">★ ★ ★ ★ ★</div><span class="review_date">${re.review_register_date}</span> <!-- 리뷰쓴 날짜 출력  -->
+                            <div class="review_star">★ ★ ★ ★ ★</div><span class="review_date"><fmt:formatDate value="${re.review_register_date}" pattern="yyyy-MM-dd" type="date"/></span> <!-- 리뷰쓴 날짜 출력  -->
                             <div class="photo_review_txt">${re.review_content}</div>
                         </div>
                         </c:forEach>
@@ -395,7 +395,7 @@
                             <div class="id_txt_txt">${re.memberDto.member_id}</div>
                             <div class="star_date">
                                 <div class="review_text_star">★ ★ ★ ★ ★</div>
-                                <div>${re.review_register_date}</div>
+                                <div><fmt:formatDate value="${re.review_register_date}" pattern="yyyy-MM-dd" type="date"/></div>
                             </div>
                             <div class="review_product_info">
                                 <div class="product_img"><img src="<c:url value='${imgList.get(1).imageDto.image_path}'/>" alt=""></div>
@@ -439,7 +439,71 @@
 <%--                    </c:if>--%>
 <%--                </div>--%>
             </div>
-            <div class="h1000" id="sec3" >sec3</div>
+            <div class="h1000" id="sec3" >
+                <div class="d_qna_title">
+                    <div class="d_qna_title_txt">상품문의</div>
+                    <div class="d_qna_title_noti">
+                        상품에 관한 문의가 아닌 배송 / 결제 / 취소 / 교환 / 반품에 대한 문의는 고객센터 &gt; 1:1문의 &gt; 문의하기를 이용해 주시기 바랍니다.
+                        비방 / 욕설 / 명예훼손 같은 <span class="point">부적절한 게시물</span> 등록 시 <span class="point">ID 이용 제한</span> 및 <span class="point">게시물이 삭제</span>될 수 있습니다.
+                        본인 외 타인이 볼 수 있는 공간으로 <span class="point">개인정보 유출의 위험</span>이 있으므로 <span class="point">개인정보보호</span>로 인해 <span class="point">개인정보가 기재된 게시글은 통보 없이 삭제될 수 있습니다.</span>
+                    </div>
+                </div>
+                <table class="d_qna_box">
+                    <tr class="d_qna_top d_q_t">
+                        <td class="d_qna_top_list">문의유형</td>
+                        <td class="d_qna_top_list">문의/답변</td>
+                        <td class="d_qna_top_list">작성자</td>
+                        <td class="d_qna_top_list">작성일</td>
+                    </tr>
+                    <c:forEach items="${qnaList}" var="qna">
+                    <tr class="d_qna_top">
+                        <td class="d_qna_top_list cell_type">${qna.qna_category}</td>
+                        <td class="d_qna_top_list d_qna_faq_box cell_quest">
+                            <c:if test="${qna.qna_answer_status==1}">
+                                <div class="d_qna_tag_mark d_qna_tag_active">답변완료</div>
+                            </c:if>
+                            <c:if test="${qna.qna_answer_status==0}">
+                                <div class="d_qna_tag_mark">답변대기</div>
+                            </c:if>
+                            <div class="d_qna_faq">
+                                <div class="d_qna_faq_tit">${qna.qna_title}</div>
+                                <div class="d_qna_faq_que">${qna.qna_content}</div>
+                                <!-- <div class="d_qna_faq_ans">3일 걸립니다.</div> -->
+                            </div>
+                        </td>
+                        <td class="d_qna_top_list cell_writer">${qna.member_id}</td>
+                        <td class="d_qna_top_list cell_date"><fmt:formatDate value="${qna.qna_register_date}" pattern="yyyy-MM-dd" type="date"/></td>
+                    </tr>
+                    <tr class="d_qna_faq_view">
+                        <td colspan="4" class="d_qna_faq_view_qa">
+                            <div class="d_qna_faq_q">${qna.qna_content}</div>
+
+                            <div class="d_qna_faq_a">
+                                <i></i>
+                                ${qna.qna_answer=="-1"?"답변 준비중입니다.":qna.qna_answer}</div>
+                        </td>
+                    </tr>
+                    </c:forEach>
+                    <!-- ////////////////////////////////////////////////////// -->
+                </table>
+                <div class="d_pagination">
+                    <c:if test="${phQna.showFirst}">
+                        <a href="<c:url value='/deal?page=1&pageSize=${phQna.pageSize}' />" class="d_pp d_pagination_a">[처음]</a>
+                    </c:if>
+                    <c:if test="${phQna.showPrev}">
+                        <a href="<c:url value='/deal?page=${phQna.beginPage-1}&pageSize=${phQna.pageSize}' />" class="d_pre d_pagination_a">[이전]</a>
+                    </c:if>
+                    <c:forEach var="i" begin="${phQna.beginPage}" end="${phQna.endPage}">
+                        <a href="<c:url value='/deal?page=${i}&pageSize=${phQna.pageSize}' /> " class="d_pagination_a d_pnum ${i==phQna.page?"d_on":""}"> ${i}</a>
+                    </c:forEach>
+                    <c:if test="${phQna.showNext}">
+                        <a href="<c:url value='/deal?page=${phQna.endPage+1}&pageSize=${phQna.pageSize}' />" class="d_pagination_a d_next">[다음]</a>
+                    </c:if>
+                    <c:if test="${pageHandler.showLast}">
+                        <a href="<c:url value='/deal?page=${phQna.totalPage}&pageSize=${phQna.pageSize}' />" class="d_pagination_a d_next">[마지막]</a>
+                    </c:if>
+                </div>
+            </div>
             <div class="h1000" id="sec4" >
                 <img src="<c:url value='/img/dealImg/delivery.jpg'/> ">
             </div>
