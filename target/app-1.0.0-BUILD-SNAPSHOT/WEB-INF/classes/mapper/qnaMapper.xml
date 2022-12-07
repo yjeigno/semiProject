@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanssem.app.dao.qnaMapper">
+<!--    문의글 총개수 구하기-->
+    <select id="count" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM qna
+        WHERE product_number = #{product_number} and qna_status =1;
+    </select>
+<!--    문의글 특정 개수만큼 불러오기-->
+    <select id="selectQna" parameterType="map" resultType="QnaDto">
+        SELECT qna_number,
+        qna_title,
+        qna_content,
+        qna_answer,
+        qna_answer_status,
+        qna_status,
+        qna_register_date,
+        product_number,
+        qna_category,
+        member_id
+        FROM qna
+        JOIN member m on qna.member_number = m.member_number
+        WHERE product_number = #{product_number} and qna_status = 1
+        LIMIT #{offset},#{pageSize}
+    </select>
+</mapper>
