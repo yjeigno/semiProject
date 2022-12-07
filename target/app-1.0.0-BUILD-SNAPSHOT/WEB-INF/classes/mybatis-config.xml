@@ -28,6 +28,10 @@
 
 
 
+        <typeAlias alias="InteriorDto" type="com.hanssem.app.dto.InteriorDto"/>
+
+
+
 
     </typeAliases>
 </configuration>

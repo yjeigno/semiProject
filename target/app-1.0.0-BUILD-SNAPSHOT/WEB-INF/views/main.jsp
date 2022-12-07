@@ -1,19 +1,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page session="false" %>
+<c:set var="logInOutLink" value="${ pageContext.request.getSession(false).getAttribute('member_id')==null ? '/login/login':'/login/logout' }" />
+<c:set var="logInOutTxt" value="${ pageContext.request.getSession(false).getAttribute('member_id')==null ? 'LOGIN':'LOGOUT' }" />
+<%--<c:set var="logInOutLink" value="${sessionScope.member_id==null?'/login/login':'/login/logout' }"/>--%>
+<%--<c:set var="logInOutTxt" value="${sessionScope.member_id==null?'/login':'logout'}"/>--%>
+<c:set var="memberId" value="${ pageContext.request.getSession(false).getAttribute('member_id')==null ? '' : pageContext.request.getSession(false).getAttribute('member_id') }" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인페이지 초안</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script defer src="./js/header.js"></script>
-    <script defer src="./js/main.js"></script>
-    <script defer src="./js/main_cart.js"></script>
-    <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/main.css">
+    <title>메인페이지</title>
+    <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/>"></script>
+
+    <script defer src="<c:url value='/js/header.js'/>"></script>
+    <script defer src="<c:url value='/js/main.js'/>"></script>
+    <script defer src="<c:url value='/js/main_cart.js'/>"></script>
+
+    <link rel="stylesheet" href="<c:url value='/css/common.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/main.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
+
+
 </head>
 <body>
 <div id="wrap">
@@ -30,6 +42,8 @@
                 <div class="row bkt_check">선택</div>
                 <div class="row bkt_img">이미지</div>
                 <div class="row bkt_product_name">상품명</div>
+                <div class="row bkt_product_size">사이즈</div>
+                <div class="row bkt_product_color">색상</div>
                 <div class="row bkt_product_price">가격</div>
                 <div class="row bkt_product_quentity">수량</div>
                 <div class="row bkt_product_delete">삭제</div>
@@ -48,6 +62,10 @@
                     <!-- 상품 상세 페이지 이동 생각 할것(product 테이블 > product_name(image_numberPK)) -->
                     <div class="row basket_product_name"><a href="">상품명</a></div>
 
+                    <div class="row basket_product_size"><a href="">사이즈</a></div>
+
+                    <div class="row basket_product_color"><a href="">색상</a></div>
+
                     <div class="row basket_product_price"><a href="">100.000원</a></div>
 
                     <div class="row basket_product_quentity">1</div>
@@ -64,7 +82,7 @@
     <!-- 팝업배너 -->
     <input type="checkbox" value="close" id="close">
     <div class="event_banner">
-        <a href="/specialPrice"><img src="./img/main/event_banner.png " alt="" id="event_img"></a>
+        <a href="specialPrice"><img src="./img/main/event_banner.png " alt="" id="event_img"></a>
         <label for="close" class="close_img"><img src="./img/main/X.png"  alt=""></label>
     </div>
 
@@ -73,9 +91,21 @@
         <div class="content_area header_top">
             <ul class="top_nav_ul">
                 <!-- 회원가입 페이지로 이동 -->
-                <li><a href="/login_register">JOIN</a></li>
+                <c:choose>
+                <c:when test="${memberId==null || memberId.equals('') }">
+                <li><a href="<c:url value='/register'/>">JOIN</a></li>
+                </c:when>
+                    <c:otherwise>
+                        <li>
+                            ${memberId} 님
+                        </li>
+                    </c:otherwise>
+                </c:choose>
                 <!-- 로그인 페이지로 이동 -->
-                <li><a href="/login_register">LOGIN</a></li>
+                <li>
+                    <a href="<c:url value='${logInOutLink} '/>">${logInOutTxt}</a>
+                </li>
+
                 <!-- 위시리스트 내역 페이지로 이동 -->
                 <li><a href="#">WISHLIST</a></li>
                 <!-- 본인인증 후 / 마이페이지로 이동 -->
@@ -93,7 +123,7 @@
                 </form>
             </div>
             <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="#"><div class="logo"><img src="./img/headerImg/logo_black.png" alt=""></div></a>
+            <a href="<c:url value='/'/>"><div class="logo"><img src="./img/headerImg/logo_black.png" alt=""></div></a>
         </div>
 
         <div class="header_bottom">
@@ -192,10 +222,12 @@
 
 
     <div class="main_banner">
-        <a href="#" class="banner"><img src="./img/main/mainbanner_img1.png" alt=""></a>
-        <a href="#" class="banner"><img src="./img/main/mainbanner_img2.png" alt=""></a>
-        <a href="#" class="banner"><img src="./img/main/mainbanner_img3.png" alt=""></a>
-
+        <a href="#" class="banner"><img src="img/main/mainbanner_1.png" alt=""></a>
+        <a href="#" class="banner"><img src="img/main/mainbanner_2.png" alt=""></a>
+        <a href="#" class="banner"><img src="img/main/mainbanner_3.png" alt=""></a>
+<%--    <a href="#" class="banner"><div class="main_banner_img1"></div></a>--%>
+<%--    <a href="#" class="banner"><div class="main_banner_img2"></div></a>--%>
+<%--    <a href="#" class="banner"><div class="main_banner_img3"></div></a>--%>
 
         <input type="button" class="btn_slide" id="btn_slide_L">
         <input type="button" class="btn_slide" id="btn_slide_R">
