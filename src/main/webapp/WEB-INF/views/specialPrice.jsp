@@ -1,5 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 고예진
@@ -15,7 +16,6 @@
 <script defer src="js/special_price.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
   <title>hot deal</title>
@@ -153,7 +153,7 @@
 
   <div class="sprc_main content_area">
       <div class="sprc_nav">
-        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav1"><span>타임특가</span></a>
+        <a href="#" class="sprc_tab_nav nav_on" id="sprc_tab_nav1"><span>타임특가</span></a>
         <a href="#" class="sprc_tab_nav" id="sprc_tab_nav2"><span>쌤딜특가</span></a>
         <a href="#" class="sprc_tab_nav" id="sprc_tab_nav3"><span>리빙특가</span></a>
         <a href="#" class="sprc_tab_nav" id="sprc_tab_nav4"><span>마진특가</span></a>

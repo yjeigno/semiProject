@@ -78,23 +78,10 @@ $(document).ready(function () {
             if(result) clickDibs(this,loginId,productNumber,true);
         }
 
-        location.reload()
+        // location.reload()
     })
 
     const sprc_tab_nav = $('.sprc_tab_nav');
-
-    // 네비 호버 이벤트
-    sprc_tab_nav.hover(function() {
-        $(this).css("background-color", "#333");
-    },  function() {
-        $(this).css("background-color", "#fff");
-    })
-
-    sprc_tab_nav.hover(function() {
-        $(this).css("color", "#fff");
-    },  function() {
-        $(this).css("color", "#000");
-    })
 
     // 네비 변경
     sprc_tab_nav.click(function(){

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 
 @Controller
@@ -43,7 +44,8 @@ public class WishlistController {
         wishlistDto.setProduct_number(product_number);
         wishlistDto.setMember_number(member_number);
 
-        model.addAttribute("list", wishlistService.select(wishlistDto));
+        List<WishlistDto> list = wishlistService.select(wishlistDto);
+        model.addAttribute("list", list);
 
         return "wishlist";
     }
@@ -57,8 +59,11 @@ public class WishlistController {
             memberNumber = 1;
         }
 
-        wishlistService.wishlistWork(memberNumber,dto);
+        int resultNumber = wishlistService.wishlistWork(memberNumber,dto);
 
+//        if(resultNumber == 0){
+//            return new ResponseEntity<>("이미 위시리스트에 존재하는 상품입니다. ", HttpStatus.BAD_REQUEST);
+//        }
 
        return new ResponseEntity<>("", HttpStatus.OK);
     }

@@ -14,6 +14,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="<c:url value='/js/header.js'/>"></script>
 <script src="<c:url value='/js/wishlist.js'/>"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
 
 <html>
 <head>
@@ -131,22 +132,57 @@
                 </div>
                 <form action="<c:url value="/wishlist/" />" method="POST">
                 <div class="wish_list">
+
+                    <c:if test="${list.size() eq 0}" >
+                        <div class="wish_none">
+                            <h2>위시리스트에 담은 상품이 없습니다.</h2>
+                            <h2>하트를 눌러 마음에 드는 상품을 찜해보세요.</h2>
+                        </div>
+                    </c:if>
+
+
                     <c:forEach var="li" items="${list}" varStatus="status">
-                    <div class="wish_item" id="pr+${li.productDto.product_number}">
-                        <a href="/deal">
-                            <div class="wish_sec">
-                                <div class="wish_img_box">
-                                    <img src="${li.imageDto.image_path}" class="wish_img" alt="">
+                    <c:if test="${li.productDto.product_status eq 1}">
+                        <div class="wish_item" id="pr+${li.productDto.product_number}">
+                            <a href="/deal/${li.productDto.product_number}">
+                                <div class="wish_sec">
+                                    <div class="wish_img_box">
+                                        <img src="${li.imageDto.image_path}" class="wish_img" alt="">
+                                    </div>
+                                    <div class="wish_title">
+                                        <div class="wish_item_name">${li.productDto.product_name}</div>
+                                        <div class="wish_item_prd">${li.productDto.product_content}</div>
+                                    </div>
+                                    <div class="wish_price"><fmt:formatNumber value="${li.productDto.product_price}" pattern="#,###"/>원</div>
                                 </div>
-                                <div class="wish_title">
-                                    <div class="wish_item_name">${li.productDto.product_name}</div>
-                                    <div class="wish_item_prd">${li.productDto.product_content}</div>
+                            </a>
+                            <div class="wish_wish" target-data="<%=(String)session.getAttribute("id")%>,${li.productDto.product_number}"></div>
+                        </div>
+                    </c:if>
+                    <c:if test="${li.productDto.product_status eq 2}">
+                        <div class="wish_item">
+                            <a href="/deal/${li.productDto.product_number}">
+                                <div class="wish_sec">
+                                    <div class="wish_img_box">
+                                        <img src="${li.imageDto.image_path}" class="wish_img" alt="">
+                                    </div>
+                                    <div class="wish_title">
+                                        <div class="wish_item_name">${li.productDto.product_name}</div>
+                                        <div class="wish_item_prd">${li.productDto.product_content}</div>
+                                    </div>
+                                    <div class="sprc_item_prc">
+                                        <div class="sprc_item_cur">
+                                            <c:set var="s_price" value="${li.productDto.product_price * (li.specialPriceDto.special_product_discount * 0.01)}" />
+                                            <fmt:formatNumber value="${s_price}" type="number" />원
+                                        </div>
+                                        <span class="sprc_item_rate">${li.specialPriceDto.special_product_discount}<span>%</span></span>
+                                        <div class="sprc_item_sale">${li.productDto.product_price}원</div>
+                                    </div>
                                 </div>
-                                <div class="wish_price">${li.productDto.product_price}원</div>
-                            </div>
-                        </a>
-                        <div class="wish_wish" target-data="<%=(String)session.getAttribute("id")%>,${li.productDto.product_number}"></div>
-                    </div>
+                            </a>
+                            <div class="wish_wish" target-data="<%=(String)session.getAttribute("id")%>,${li.productDto.product_number}"></div>
+                        </div>
+                    </c:if>
                     </c:forEach>
                 </div>
                 </form>

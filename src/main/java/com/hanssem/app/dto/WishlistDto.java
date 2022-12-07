@@ -13,6 +13,15 @@ public class WishlistDto {
 
     private ImageDto imageDto;
 
+    private SpecialPriceDto specialPriceDto;
+
+    public SpecialPriceDto getSpecialPriceDto() {
+        return specialPriceDto;
+    }
+
+    public void setSpecialPriceDto(SpecialPriceDto specialPriceDto) {
+        this.specialPriceDto = specialPriceDto;
+    }
 
     public ImageDto getImageDto() {
         return imageDto;

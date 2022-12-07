@@ -32,12 +32,21 @@
     font-weight: 999;
     font-size: 14px;
     cursor: pointer;
+    transition: all 0.5s;
+}
+.wish_btn > button:hover {
+    color: #EFEFEF;
+    background-color: #999;
 }
 .wish_list {
     padding: 0 30px;
     overflow: hidden;
     box-sizing: border-box;
     margin-bottom: 100px;
+}
+.wish_none {
+    text-align: center;
+    color: #dddddd;
 }
 .wish_item {
     width: calc((100% - (15px * 2 * 4)) / 4);
@@ -83,6 +92,26 @@
     font-size: 20px;
     font-weight: bold;
     margin-top: 2px;
+    font-family: 'Montserrat';
+}
+.sprc_item_prc {
+    margin: 7px 0;
+    font-family: 'Montserrat';
+}
+.sprc_item_cur {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+.sprc_item_sale {
+    display: inline-block;
+    color: #999;
+    text-decoration: line-through;
+}
+.sprc_item_rate {
+    font-weight: bold;
+    color: #ff3a69;
+    margin-right: 2px;
 }
 .footer {
     width: 100%;

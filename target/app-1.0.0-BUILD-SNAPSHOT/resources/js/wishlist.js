@@ -32,17 +32,19 @@ function clickDibs(elem, loginId, product_number, isWishlist) {
     });
 }
 
-    function clickAll(elem, loginId, product_number, isWishlist) {
-        $.ajax({
-            type: 'DELETE',       // 요청 메서드
-            url: '/wishlist/flush',  // 요청 URI
-            headers: {"Content-Type": "application/json"}, // 요청 헤더
-            success: function (res) {
-                console.log(res);
+function clickAll() {
+    $.ajax({
+        type: 'DELETE',       // 요청 메서드
+        url: '/wishlist/flush',  // 요청 URI
+        headers: {"Content-Type": "application/json"}, // 요청 헤더
+        success: function (res) {
 
-            },
-            error: function (xhr, err) {
-                console.log(err)
-            }
-        });
+            alert("삭제가 완료되었습니다.");
+            location.reload();
+
+        },
+        error: function (xhr, err) {
+            console.log(err)
+        }
+    });
 }
