@@ -10,11 +10,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hanssem</title>
-    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-    <script defer src="<c:url value="./js/search.js"><c:param name="dt" value="${nowDate}"/></c:url>"></script>
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script defer src="<c:url value="./js/search(WIP).js"><c:param name="dt" value="${nowDate}"/></c:url>"></script>
     <link rel="stylesheet" type="text/css" href="./css/common.css">
-    <link rel="stylesheet" type="text/css" href="<c:url value="./css/search.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="./css/search(WIP).css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
     
 </head>
 <body>
@@ -99,7 +99,24 @@
                                     <option value="60" ${ph.pageSize==60?"selected":""}>60개씩 보기</option>
                                 </select>
 <%--                            </c:if>--%>
-
+                            <script>
+                                $('#page_size').on('change', function() {
+                                    switch (Number($('#page_size').val())){
+                                        case 20 :
+                                            getSearch(1, 20, '${sc.sort}');
+                                            break;
+                                        case 40:
+                                            getSearch(1, 40, '${sc.sort}');
+                                            break;
+                                        case 60 :
+                                            getSearch(1, 60, '${sc.sort}');
+                                            break;
+                                        default :
+                                            getSearch(1, 20, '${sc.sort}');
+                                            break;
+                                    }
+                                })
+                            </script>
                         </div>
                         <div class="product_box">
                             <ul class="product_li">
@@ -121,12 +138,14 @@
                                             </div>
                                         </div>
                                         <p class="dc_rate">${searchResult.discount_rate}%</p>
-                                        <div class="wish_mark <c:forEach var="wish" items="${wishList}">${wish.product_number==searchResult.product_number?"added_wishlist":""}</c:forEach> "></div>
+                                        <div class="wish_mark"></div>
                                     </li>
                                 </c:forEach>
                             </ul>
                         </div>
+                        <script>
 
+                        </script>
                         <div class="pagination">
                             <c:if test="${ph.showFirst}">
                                 <div onclick="getSearch(1, ${ph.pageSize}, '${sc.sort}')" class="pp">최초페이지</div>
@@ -189,82 +208,6 @@
             location.href = '/search?search=${sc.search}${sc.category==null?"":"&category="}${sc.category}&sort=${sc.sort}&pageSize=${ph.pageSize}${sc.size==null?"":"&size="}${sc.size}${sc.color==null?"":"&color="}${sc.color}';
             </c:if>
         })
-        $('#page_size').on('change', function() {
-            switch (Number($('#page_size').val())){
-                case 20 :
-                    getSearch(1, 20, '${sc.sort}');
-                    break;
-                case 40:
-                    getSearch(1, 40, '${sc.sort}');
-                    break;
-                case 60 :
-                    getSearch(1, 60, '${sc.sort}');
-                    break;
-                default :
-                    getSearch(1, 20, '${sc.sort}');
-                    break;
-            }
-        })
-
-        $(".wish_mark").on('click', function (){
-            // if(sessionStorage.getItem("id")==null){
-            //     if(confirm("로그인이 필요한 기능입니다. 로그인하시겠습니까?")){
-            //         location.href = "/login_register";
-            //     } else {
-            //         return;
-            //     }
-            // }
-            let wishNum = $(this).parent().children('.product_img').data("prd");
-            if($(this).hasClass('added_wishlist')) {
-                $(this).removeClass('added_wishlist');
-
-                let wishProduct = {};
-                wishProduct["product_number"] = wishNum;
-                $.ajax({
-                    url: "/removeWish.do",
-                    type: "POST",
-                    data: JSON.stringify(wishProduct),
-                    dataType: "json",
-                    contentType: "application/json",
-                    success: function (data) {
-                        if(data){
-                            alert("성공")
-                        }else{
-                            alert("전송값없음")
-                        }
-                    },
-                    error: function (){
-                        console.log("에러");
-                    }
-                })
-            }
-            else {
-                $(this).addClass('added_wishlist');
-                let wishProduct = {};
-                wishProduct["product_number"] = wishNum;
-                $.ajax({
-                    url: "/addWish.do",
-                    type: "POST",
-                    data: JSON.stringify({
-                        "product_number":wishNum
-                    }),
-                    dataType: "json",
-                    contentType: "application/json",
-                    success: function (data) {
-                        if(data){
-                            alert("성공")
-                        }else{
-                            alert("전송값없음")
-                        }
-                    },
-                    error: function (){
-                        console.log("에러");
-                    }
-                })
-            }
-        })
-
-
     </script>
 </div>
 </body>

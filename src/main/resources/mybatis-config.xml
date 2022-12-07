@@ -18,8 +18,14 @@
         <typeAlias alias="CategoryDto" type="com.hanssem.app.dto.CategoryDto" />
         <typeAlias alias="SearchResult" type="com.hanssem.app.dto.SearchResult" />
         <typeAlias alias="SizeDto" type="com.hanssem.app.dto.SizeDto" />
+        <typeAlias alias="ReviewDto" type="com.hanssem.app.dto.ReviewDto" />
+        <typeAlias alias="MemberDto" type="com.hanssem.app.dto.MemberDto" />
 
         <typeAlias alias="SpecialPriceDto" type="com.hanssem.app.dto.SpecialPriceDto"/>
+
+        <typeAlias alias="InteriorDto" type="com.hanssem.app.dto.InteriorDto"/>
+
+
 
 
     </typeAliases>

@@ -21,8 +21,7 @@
         LEFT OUTER JOIN (SELECT product_number, ROUND(AVG(review_rank), 1) AS review_rank, COUNT(product_number) as review_count FROM review GROUP BY product_number) AS r
         ON p.product_number = r.product_number
         LEFT OUTER JOIN category_code c ON c.category_code_number = p.category_code_number
-        LEFT OUTER JOIN (SELECT DISTINCT(product_number) AS product_number, i.image_path
-        FROM (SELECT product_number, image_path, ROW_NUMBER() over (PARTITION BY product_number ORDER BY image_number ASC) AS rn FROM image) AS i WHERE rn=1) AS i ON i.product_number = p.product_number
+        LEFT OUTER JOIN (SELECT DISTINCT(product_number) product_number, MIN(image_path) image_path FROM image GROUP BY product_number) AS i ON i.product_number = p.product_number
         LEFT OUTER JOIN special_product sp ON sp.product_number = p.product_number
         LEFT OUTER JOIN (SELECT product_number, SUM(purchase_amount) AS product_sales
         FROM purchase GROUP BY product_number) AS sales
