@@ -14,7 +14,7 @@ public class MemberDto {
     private Integer member_birth;
     private String member_address;
     private Integer member_gender;
-    private Integer member_sns;
+    private Integer member_sms;
     private Integer member_status;
     private Timestamp member_register_date;
     private Timestamp  member_login_date;
@@ -68,7 +68,7 @@ public class MemberDto {
 
     public MemberDto(){}
 
-    public MemberDto(Integer member_number, String member_id, String member_pw, String member_name, String member_email, String member_phone, Integer member_birth, String member_address, Integer member_gender, Integer member_sns, Integer member_status, Timestamp member_register_date, Timestamp member_login_date) {
+    public MemberDto(Integer member_number, String member_id, String member_pw, String member_name, String member_email, String member_phone, Integer member_birth, String member_address, Integer member_gender, Integer member_sms, Integer member_status, Timestamp member_register_date, Timestamp member_login_date) {
         this.member_number = member_number;
         this.member_id = member_id;
         this.member_pw = member_pw;
@@ -78,7 +78,7 @@ public class MemberDto {
         this.member_birth = member_birth;
         this.member_address = member_address;
         this.member_gender = member_gender;
-        this.member_sns = member_sns;
+        this.member_sms = member_sms;
         this.member_status = member_status;
         this.member_register_date = member_register_date;
         this.member_login_date = member_login_date;
@@ -155,12 +155,12 @@ public class MemberDto {
         this.member_gender = member_gender;
     }
 
-    public Integer getMember_sns() {
-        return member_sns;
+    public Integer getMember_sms() {
+        return member_sms;
     }
 
-    public void setMember_sns(Integer member_sns) {
-        this.member_sns = member_sns;
+    public void setMember_sms(Integer member_sms) {
+        this.member_sms = member_sms;
     }
 
     public Integer getMember_status() {
@@ -206,7 +206,7 @@ public class MemberDto {
                 ", member_birth=" + member_birth +
                 ", member_address='" + member_address + '\'' +
                 ", member_gender=" + member_gender +
-                ", member_sns=" + member_sns +
+                ", member_sms=" + member_sms +
                 ", member_status=" + member_status +
                 ", member_register_date=" + member_register_date +
                 ", member_login_date=" + member_login_date +
