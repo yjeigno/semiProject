@@ -21,15 +21,13 @@ public class MyPageController {
     UserManageService userManager;
 
     @GetMapping("/pwchecker")
-    public String myPagePasswordCheck(MemberDto member, HttpServletRequest request,
-                                      HttpServletResponse response, HttpSession session) throws Exception{
+    public String myPagePasswordCheck(MemberDto member, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
 
 
         return "ChkUserPw";
     }
     @PostMapping("/pwchecker")
-    public String afterPwCheck(MemberDto member, HttpServletRequest request,
-                               HttpServletResponse response, HttpSession session){
+    public String afterPwCheck(MemberDto member, HttpServletRequest request, HttpServletResponse response, HttpSession session){
 //        String id = (String) session.getAttribute("id");
         String id = "akrclsek1";
         String pw = member.getMember_pw();
