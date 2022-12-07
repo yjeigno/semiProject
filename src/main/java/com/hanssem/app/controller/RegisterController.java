@@ -27,13 +27,18 @@ public class RegisterController {
 //
 //        return"register";
 //    }
-
+//    회원가입 완료
     @PostMapping("/register/add")
         public String addMember(MemberDto memberDto) throws Exception {
         registerService.registerMember(memberDto);
 
             return "redirect:/";
         }
+
+//        중복체크
+
+
+
     }
 //
 //    @ResponseBody

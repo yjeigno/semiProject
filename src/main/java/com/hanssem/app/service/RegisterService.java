@@ -2,6 +2,7 @@ package com.hanssem.app.service;
 
 import com.hanssem.app.dao.RegisterDao;
 import com.hanssem.app.dto.MemberDto;
+import org.apache.ibatis.javassist.compiler.ast.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +28,10 @@ public class RegisterService {
 
         return registerDao.insertMember(memberDto);
     }
+
+//    private void registerMemberIdChk(Member member){
+//        Member findMember = registerDao.
+//    }
 
 
 }

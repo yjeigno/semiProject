@@ -13,11 +13,52 @@
   <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
   <link rel="stylesheet" href="<c:url value='/css/register.css'/>">
 
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <!-- <script defer src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
-  <script src="../../resources/js/header.js"></script>
-  <script src="../../resources/js/register.js"></script>
 
+  <script type="text/javascript" src="<c:url value='/js/header.js'/>"></script>
+  <script type="text/javascript" src="<c:url value='/js/register.js'/>"></script>
+
+<script>
+  $(document).ready(function() {
+
+
+    function inputPhoneNumber(obj) {
+
+      var number = obj.value.replace(/[^0-9]/g, "");
+      var phone = "";
+
+      if (number.length < 4) {
+        return number;
+      } else if (number.length < 7) {
+        phone += number.substring(0, 3);
+        phone += "-";
+        phone += number.substring(3);
+      } else if (number.length < 11) {
+        phone += number.substring(0, 3);
+        phone += "-";
+        phone += number.substring(3, 3);
+        phone += "-";
+        phone += number.substring(6);
+      } else {
+        phone += number.substring(0, 3);
+        phone += "-";
+        phone += number.substring(3, 4);
+        phone += "-";
+        phone += number.substring(7);
+      }
+      obj.value = phone;
+    }
+
+    var cellPhone = document.getElementById('regi_phone');
+
+    cellPhone.onkeyup = function (event) {
+      event = event || window.Event;
+      var _val = this.value.trim();
+      this.value = inputPhoneNumber(_val);
+
+    }
+  })
+</script>
 </head>
 <body>
 <div id="wrap">
@@ -147,7 +188,7 @@
 
 <div class="member_sec">
   <div class="tap_btn">
-    <a href="login"><div class="m_btn_line"><h2>Login</h2></div></a>
+    <a href="<c:url value='/login/login'/>"><div class="m_btn_line"><h2>Login</h2></div></a>
     <a href="register"><div class="m_btn_line tap_checked"><h2>Join</h2></div></a>
   </div>
   <div class="pan_box">
@@ -161,7 +202,8 @@
       </div>
 
       <form action="<c:url value='/register/add'/>" method="POST" id="regi_form" onsubmit="return formCheck(this)">
-
+<%--        아이디 중복확인 --%>
+        <input type="hidden" name="memberIdChk" value="0">
         <table class="regi_form_table">
 
 
@@ -179,7 +221,7 @@
           <tr class="regi_row_sec">
             <td class="regi_col1">비밀번호</td>
             <td class="regi_col2 colSpace">
-              <input type="password" name="member_pw" minlength="6" value="" maxlength="12">
+              <input type="password" name="member_pw" id="regi_pw" minlength="6" value="" maxlength="12">
               <br>
               <span class="min_txt">영문/숫자/특수기호를 포함해주세요.(6자~12자)</span>
             </td>
@@ -192,12 +234,11 @@
               <br>
               <span class="min_txt">영문/숫자/특수기호를 포함해주세요.(6자~12자)</span>
             </td>
-
           </tr>
 
           <tr class="regi_row_sec">
             <td class="regi_col1">이름</td>
-            <td class="regi_col2 colSpace"><input type="text" name="member_name" value="" maxlength="10"></td>
+            <td class="regi_col2 colSpace"><input type="text" name="member_name" id="member_name" value="" maxlength="10"></td>
           </tr>
 
           <tr class="regi_row_sec">
@@ -218,7 +259,7 @@
             <td class="regi_col1">연락처</td>
             <!-- 000-000-0000 형식 -->
             <td class="regi_col2 colSpace">
-              <input type="text" name="member_phone" id="regi_phone"value="" maxlength="13">
+              <input type="text" name="member_phone" id="regi_phone"value="" maxlength="13" onkeyup="inputPhoneNumber(this)">
               <br>
               <span class="min_txt">연락처를 입력해주세요.</span>
             </td>
@@ -302,7 +343,7 @@
           </tr>
 
         </table>
-        <button class="regi_btn">가입하기</button>
+        <button class="regi_btn" id="regi_btn">가입하기</button>
       </form>
 
     </div>
