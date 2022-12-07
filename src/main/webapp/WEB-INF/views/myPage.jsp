@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<c:set var="userId" value="${pageContext.request.getSession(false).getAttribute('id')==null?'':pageContext.request.getSession(false).getAttribute('id')}" />
+<c:set var="userId" value="${pageContext.request.getSession(false).getAttribute('member_id')==null?'':pageContext.request.getSession(false).getAttribute('member_id')}" />
 <jsp:useBean id="today" class="java.util.Date" />
 <fmt:formatDate value="${today}" pattern="yyyyMMddHHmm" var="nowDate"/>
 <html>
@@ -70,7 +70,7 @@
       location.href = "/mypage/withdraw";
     })
     $('#user_info > .btn_moveSection').on('click', function (){
-      location.href = "mypage/userInfo";
+      location.href = "/mypage/userInfo";
     })
   })
 </script>
