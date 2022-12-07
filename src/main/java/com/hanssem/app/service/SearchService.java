@@ -1,27 +1,22 @@
 package com.hanssem.app.service;
 
-import com.hanssem.app.dao.SearchDao;
-import com.hanssem.app.dto.CategoryDto;
-import com.hanssem.app.dto.SearchCondition;
-import com.hanssem.app.dto.SearchResult;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.hanssem.app.dto.*;
 
+import java.awt.*;
 import java.util.List;
 
-@Service
-public class SearchService {
-    @Autowired
-    SearchDao searchDao;
+public interface SearchService {
+    List<CategoryDto> getCateList();
 
-    public List<CategoryDto> getCateList() {
-        return searchDao.categoryList();
-    }
+    Integer getSearchResultCount(SearchCondition sc);
 
-    public Integer getSearchResultCount(SearchCondition sc) {
-        return searchDao.searchSelectCount(sc);
-    }
-    public List<SearchResult> getSearchResultList(SearchCondition sc) {
-        return searchDao.searchSelectList(sc);
-    }
+    List<SearchResult> getSearchResultList(SearchCondition sc);
+
+    List<SizeFilterDto> getSizeList(SearchCondition sc);
+
+    List<CateFilterDto> getCateInfo(SearchCondition sc);
+//    String[] getSearchCateList(SearchCondition sc); //검색대상 카테고리 리스트
+    List<ColorFilterDto> getColorList(SearchCondition sc);
+
+    int getPriceAmount(SearchCondition sc);
 }

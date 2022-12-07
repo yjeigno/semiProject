@@ -1,6 +1,6 @@
 img {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
 }
 
 .d_sub_nav {
@@ -207,12 +207,10 @@ strong {
     left: 0;
     top: 0;
 }
-.d_tab_btn > li {
+.small_btn {
     width: calc(100% /5);
     line-height: 50px;
     border: 2px solid #222;
-
-
 }
 .d_tab_btn > li > a,.btn_top > li > a {
     width: 100%;
@@ -220,12 +218,12 @@ strong {
     display: block;
 }
 .h1000{
-    width: 100%;
-
-    height: 1000px;
+    /*width: 100%;*/
+    min-height: 1000px;
+    /*height: 1000px;*/
     border: 2px solid;
-    box-sizing: border-box;
-    font-size: 40px;
+    /*box-sizing: border-box;*/
+    /*font-size: 40px;*/
 }
 .btn_top {
     width: 60px;
@@ -256,4 +254,110 @@ strong {
     box-sizing: border-box;
     line-height: 40px;
     text-align: center;
+}
+.sel_color_box {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #dddddd;
+    color: #757575;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.x_btn{
+    width: 11px;
+    height: 11px;
+    display: inline-block;
+}
+.opt_name {
+    width: 200px;
+}
+.opt_name > div:nth-child(2) {
+    font-size: 12px;
+    margin-top: 3px;
+}
+.opt_qty {
+     width: 110px;
+ }
+.btn_qty {
+    background: #fff;
+    border: 1px solid #ddd;
+    width: 25px;
+    height: 25px;
+    float: left;
+    outline: none;
+    cursor: pointer;
+}
+.txt_minus { border-right: none}
+.txt_plus { border-left: none}
+.txt_qty {
+    background: #fff;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    width: 30px;
+    height: 25px;
+    float: left;
+    outline: none;
+    text-align: center;
+}
+.chk_item_order{
+    display: none;
+}
+#p_tot {
+    font-size: 28px;
+}
+#sec2{
+    padding: 20px;
+    box-sizing: border-box;
+}
+.d_refund_txt{
+    font-size: 28px;
+    margin: 10px auto;
+    color: #333;
+    font-weight: 500;
+}
+.d_pagination {
+    width: 100%;
+    text-align: center;
+    /*padding-bottom: 50px;*/
+    display: flex;
+    justify-content: center;
+    /*margin-bottom: 30px;*/
+}
+.d_pagination_a {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    overflow: hidden;
+    margin: 0 0 0 -1px;
+    font-size: 15px;
+    color: #73777B;
+    /*cursor: pointer;*/
+}
+.d_on {
+    background-color: rgba(200, 200, 200, 0.5);
+    color: black;
+    font-weight: 900;
+}
+.d_pnum {
+    border: 1px solid #e1e1e1;
+    box-sizing: border-box;
+}
+.d_pp{
+    background: url(../img/etc/sprite-common.png) no-repeat -280px -60px;
+    text-indent: -50000px;
+}
+.d_pre {
+    background: url(../img/etc/sprite-common.png) no-repeat -309px -60px;
+    text-indent: -50000px;
+}
+.d_next {
+    background: url(../img/etc/sprite-common.png) no-repeat -338px -60px;
+    text-indent: -50000px;
+}
+.d_nn {
+    background: url(../img/etc/sprite-common.png) no-repeat -367px -60px;
+    text-indent: -50000px;
 }

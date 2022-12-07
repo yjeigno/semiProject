@@ -13,26 +13,35 @@
 <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
 <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
 <link rel="stylesheet" href="<c:url value='/css/deal.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/dealReview.css'/> ">
 <%--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--%>
 <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/> "></script>
 <script src="<c:url value='/js/header.js'/> "></script>
 <script src="<c:url value='/js/deal.js'/> "></script>
+<script src="<c:url value='/js/dealReview.js'/> "></script>
 
 <%--<script src="/js/header.js"></script>--%>
 
 <script>
+    let colorCodeText = [];
+    let colorSizeText = [];
+    let colorNameText = [];
 
     // 소비자가, 가격에 원 하고 , 표시
-    var oPrice = ${pInfo.product_price};
+    let oPrice = ${pInfo.product_price};
     <%--여기에 ${pdto.product_price}--%>
-    var sPrice = ${pInfo.product_status==2?"":pInfo.product_price};
+    let sPrice = ${pInfo.product_status==2 && SpeDiscount.special_product_end_date>now()
+    ?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price};
     <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
-    var logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
-    var logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
-    var colorLength = ${imgList.size()}
-        // 사이즈 클릭하면 맞는 색상 나오게 하기.. 개힘들었따
+    console.log( ${pInfo.product_price*(SpeDiscount.special_product_discount / 100)}  );
+
+    let logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
+    let logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
+    let deleteBtn = "<c:url value='/img/dealImg/btn_price_delete.gif'/>"
+    let optTitle = "${pInfo.product_name}";
+    <%--var colorLength = ${imgList.size()}--%>
+        // 사이즈 클릭하면 맞는 색상 나오게 하기..
         function ajax(size_code_name,product_number){
-            let colorText = "";
             let jsonData = {
                 "size_code_name" : size_code_name,
                 "product_number" : product_number
@@ -40,25 +49,45 @@
             // console.log(jsonData)
             $.ajax({
                 type : 'POST',
-                url : '/semiProject/deal/color',
+                url : '/deal/color',
                 data: JSON.stringify(jsonData),
                 dataType : 'json',
                 contentType: "application/json; charset=utf-8",
                 success : function(data){
+                    //var
+                    //
                     $('#sizeColor').empty();
                     let JsonColorList = JSON.stringify(data);
-                    // console.log(JsonColorList);
+                    console.log(JsonColorList);
                     let ParseColorList = JSON.parse(JsonColorList);
-                    // console.log(ParseColorList);
+                    console.log(ParseColorList);
                     for(let i = 0 ; i < ParseColorList.length ; i++){
                         let colorInfo = ParseColorList[i];
-                        // console.log(colorInfo.colorCodeDto.color_code_code)
+                        console.log(colorInfo)
                         if(colorInfo.colorCodeDto.color_code_code != 'noneColorCode'){
-                            colorText += colorInfo.colorCodeDto.color_code_code;
+                            colorCodeText[i] = colorInfo.colorCodeDto.color_code_code;
+                            colorSizeText[i] = colorInfo.sizeCodeDto.size_code_name;
+                            colorNameText[i] = colorInfo.colorCodeDto.color_code_name;
+                            let colorId = colorCodeText[i].split("#")[1];
+                            console.log("id : " + colorId);
+                            console.log("1 : "+ colorCodeText[i]) ;
+                            console.log("2 : "+ colorNameText[i]) ;
+                            console.log("3 : "+ colorSizeText[i]) ;
+
+                            /*
+                            *  받아온 값을 리스트로 담는다
+                            *  클릭할때 리스트 번호로 불러온다
+                            **/
+
+
                             $('#sizeColor').append(
-                                "<div class='sc_btn cclick' style='background-color:" + colorInfo.colorCodeDto.color_code_code + ";'>"
-                                + "</div>"
+                                "<div class='sc_btn cClick' id='"+ colorId +","+ i +
+                                 "' style='background-color:" + colorCodeText[i] +
+                                ";'>" + "</div>"
+                                + "<input class='colorIndex"+i+"' type='hidden' value='"+ i +"'>"
                             )
+                               <%-- `  <div class='sc_btn cClick' id='${colorId}' style='background-color:${colorCodeText};'></div>`--%>
+
                         }
                     }
                 },
@@ -80,6 +109,9 @@
 </head>
 <body>
 <div id="wrap">
+<%--=================================================================================--%>
+<%--=================================================================================--%>
+<%--================================HEADER===========================================--%>
     <header class="header">
         <div class="content_area header_top">
             <ul class="top_nav_ul">
@@ -201,6 +233,13 @@
         </div>
     </header>
     <div class="h_100"></div>
+<%--================================HEADER===========================================--%>
+<%--=================================================================================--%>
+<%--=================================================================================--%>
+
+<%--=================================================================================--%>
+<%--=================================================================================--%>
+<%--=================================MAIN============================================--%>
     <main class="main">
         <div class="content_area">
             <div class="d_sub_nav"></div>
@@ -282,10 +321,11 @@
                     </table>
                     <p class="d_p">(최소주문수량 1개 이상 / 최대주문수량 100개 이하)</p>
                     <p class="d_p2">위 옵션선택 박스를 선택하시면 아래에 상품이 추가됩니다.</p>
+                    <div class="opt_selected"></div>
                     <div class="d_total_price d_b_bw2">
-                        <strong>총 상품금액</strong>
-                        "(수량) : "
-                        <span class="d_total"><strong><em>0</em></strong>" (0개)"</span>
+                        <div>TOTAL: <span id="p_tot">0 원</span> (0개)</div>
+
+<%--                        <span class="d_total"><strong><em>0</em></strong>" (0개)"</span>--%>
                     </div>
                     <div class="d_btn_box">
                         <div>BUY NOW</div>
@@ -295,20 +335,122 @@
                 </div>
             </div>
             <ul class="d_tab_btn">
-                <li> <a href="#sec1">상품상세</a> </li>
-                <li> <a href="#sec2">상품후기</a> </li>
-                <li> <a href="#sec3">상품문의</a> </li>
-                <li> <a href="#sec4">배송안내</a> </li>
-                <li> <a href="#sec5">교환/반품정책</a> </li>
+                <li class="small_btn"> <a href="#sec1">상품상세</a> </li>
+                <li class="small_btn"> <a href="#sec2">상품후기</a> </li>
+                <li class="small_btn"> <a href="#sec3">상품문의</a> </li>
+                <li class="small_btn"> <a href="#sec4">배송안내</a> </li>
+                <li class="small_btn"> <a href="#sec5">교환/반품정책</a> </li>
             </ul>
-            <div class="h1000" id="sec1" >sec1</div>
-            <div class="h1000" id="sec2" >sec2</div>
-            <div class="h1000" id="sec3" >sec3</div>
-            <div class="h1000" id="sec4" >sec4</div>
-            <div class="h1000" id="sec5" >sec5</div>
-        </div>
-        <div class="btn_top"><a href="#wrap">TOP</a></div>
+            <div class="h1000" id="sec1" >
+                <c:forEach items="${imgDetail}" var="de">
+                <img src="<c:url value='${de.image_path}'/>" alt="">
+                </c:forEach>
+            </div>
+            <div class="h1000" id="sec2" >
+                <div class="avg_review_box">
+                    <div class="avg_box">
+                        <span>상품 만족도</span>
+                        <span class="star">★ ★ ★ ★ ★</span>  <!-- 별 플러그인 사용 -->
+                        <span>${avgReview}</span>  <!-- 리뷰총점수  / 리뷰개수  -->
+                    </div>
+                </div>
+                <div class="review_box"> <!-- 포토버튼 클릭하면 포토리뷰 나오게 탭형식 -->
+                    <h2 class="review_title_font">상품 후기</h2>
+                    <div class="review_tap_btn_box">
+                        <div class="review_tap_btn" id="photo_btn">포토</div>
+                        <div class="review_tap_btn" id="text_btn">텍스트</div>
+                        <div id="non_btn"></div>
+                    </div>
+                    <div class="review_list list_photo">
+                        <c:forEach items="${reviewPageList}" var="re">
+                        <div class="photo_review">
+                            <div class="id_Photo_txt">${re.memberDto.member_id}</div>
+                            <div class="photo_review_img"><img src="<c:url value='${re.review_image}'/>" alt=""></div>
+                            <div class="review_star">★ ★ ★ ★ ★</div><span class="review_date">${re.review_register_date}</span> <!-- 리뷰쓴 날짜 출력  -->
+                            <div class="photo_review_txt">${re.review_content}</div>
+                        </div>
+                        </c:forEach>
+                        <div class="d_pagination">
+                            <c:if test="${pageHandler.showFirst}">
+                                <a href="<c:url value='/deal?page=1&pageSize=${pageHandler.pageSize}' />" class="d_pp d_pagination_a">[처음]</a>
+                            </c:if>
+                            <c:if test="${pageHandler.showPrev}">
+                                <a href="<c:url value='/deal?page=${pageHandler.beginPage-1}&pageSize=${pageHandler.pageSize}' />" class="d_pre d_pagination_a">[이전]</a>
+                            </c:if>
+                            <c:forEach var="i" begin="${pageHandler.beginPage}" end="${pageHandler.endPage}">
+                                <a href="<c:url value='/deal?page=${i}&pageSize=${pageHandler.pageSize}' /> " class="d_pagination_a d_pnum ${i==pageHandler.page?"d_on":""}"> ${i}</a>
+                            </c:forEach>
+                            <c:if test="${pageHandler.showNext}">
+                                <a href="<c:url value='/deal?page=${pageHandler.endPage+1}&pageSize=${pageHandler.pageSize}' />" class="d_pagination_a d_next">[다음]</a>
+                            </c:if>
+                            <c:if test="${pageHandler.showLast}">
+                                <a href="<c:url value='/deal?page=${pageHandler.totalPage}&pageSize=${pageHandler.pageSize}' />" class="d_pagination_a d_next">[마지막]</a>
+                            </c:if>
+                        </div>
+                    </div>
 
+                    <div class="review_list list_text">
+                        <c:forEach items="${reviewPageTxtList}" var="re">
+                        <div class="text_review">
+                            <div class="id_txt_txt">${re.memberDto.member_id}</div>
+                            <div class="star_date">
+                                <div class="review_text_star">★ ★ ★ ★ ★</div>
+                                <div>${re.review_register_date}</div>
+                            </div>
+                            <div class="review_product_info">
+                                <div class="product_img"><img src="<c:url value='${imgList.get(1).imageDto.image_path}'/>" alt=""></div>
+                                <div>
+                                    <div class="review_product_name">${re.productDto.product_name}</div>
+                                    <div class="review_product_size_color">${re.review_size} / ${re.review_color}</div>
+                                </div>
+
+                            </div>
+                            <div class="review_text_content">${re.review_content}</div>
+                        </div>
+                        </c:forEach>
+                        <div class="d_pagination">
+                            <c:if test="${pageHandlerTxt.showFirst}">
+                                <a href="<c:url value='/deal?page=1&pageSize=${pageHandlerTxt.pageSize}' />" class="d_pp d_pagination_a">[처음]</a>
+                            </c:if>
+                            <c:if test="${pageHandlerTxt.showPrev}">
+                                <a href="<c:url value='/deal?page=${pageHandlerTxt.beginPage-1}&pageSize=${pageHandlerTxt.pageSize}' />" class="d_pre d_pagination_a">[이전]</a>
+                            </c:if>
+                            <c:forEach var="i" begin="${pageHandlerTxt.beginPage}" end="${pageHandlerTxt.endPage}">
+                                <a href="<c:url value='/deal?page=${i}&pageSize=${pageHandlerTxt.pageSize}' /> " class="d_pagination_a d_pnum ${i==pageHandlerTxt.page?"d_on":""}"> ${i}</a>
+                            </c:forEach>
+                            <c:if test="${pageHandlerTxt.showNext}">
+                                <a href="<c:url value='/deal?page=${pageHandlerTxt.endPage+1}&pageSize=${pageHandlerTxt.pageSize}' />" class="d_pagination_a d_next">[다음]</a>
+                            </c:if>
+                            <c:if test="${pageHandler.showLast}">
+                                <a href="<c:url value='/deal?page=${pageHandlerTxt.totalPage}&pageSize=${pageHandlerTxt.pageSize}' />" class="d_pagination_a d_next">[마지막]</a>
+                            </c:if>
+                        </div>
+                    </div>
+                </div>
+<%--                <div class="pagination">--%>
+<%--                    <c:if test="${pageHandler.showPrev}">--%>
+<%--                        <a href="<c:url value='/deal?page=${pageHandler.beginPage-1}&pageSize=${pageHandler.pageSize}' />" class="beginPage">[이전]</a>--%>
+<%--                    </c:if>--%>
+<%--                    <c:forEach var="i" begin="${pageHandler.beginPage}" end="${pageHandler.endPage}">--%>
+<%--                        <a href="<c:url value='/deal?page=${i}&pageSize=${pageHandler.pageSize}' /> " class="page ${i==ph.page?"pageActive":""}"> ${i}</a>--%>
+<%--                    </c:forEach>--%>
+<%--                    <c:if test="${pageHandler.showNext}">--%>
+<%--                        <a href="<c:url value='/deal?page=${pageHandler.endPage+1}&pageSize=${pageHandler.pageSize}' />" class="endPage">[다음]</a>--%>
+<%--                    </c:if>--%>
+<%--                </div>--%>
+            </div>
+            <div class="h1000" id="sec3" >sec3</div>
+            <div class="h1000" id="sec4" >
+                <img src="<c:url value='/img/dealImg/delivery.jpg'/> ">
+            </div>
+            <div class="h1000" id="sec5" >
+                <div class="d_refund_txt"> 교환/반품정책 </div>
+                <img src="<c:url value='/img/dealImg/refund.jpg'/> ">
+            </div>
+        </div>
+
+        <div class="btn_top"><a href="#wrap">TOP</a></div>
+        <footer class="footer">푸터입니당</footer>
         </html>
     </main>
 </div>

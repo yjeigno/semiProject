@@ -227,6 +227,10 @@ body{
     border: 2px rgba(0,0,0,0.3) solid;
 }
 
+.Interior_wimg{
+    width: 100%;
+}
+
 .Interior_title_box{
     width: 100%;
     height: 55px;

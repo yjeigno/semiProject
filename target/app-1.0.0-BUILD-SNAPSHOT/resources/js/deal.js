@@ -24,6 +24,7 @@ $(document).ready(function(){
         if(h_top <= s_top){
             $('.d_tab_btn').css({
                 position: 'fixed',
+                zIndex: 999999999,
                 left: 25,
                 top: 150,
                 flexDirection: 'column',
@@ -41,6 +42,7 @@ $(document).ready(function(){
                 flexDirection: 'row',
                 width:'100%'
             });
+            bg_reSet(tab_btn,'#ddd','#000')
         }
     })
 
@@ -97,21 +99,135 @@ $(document).ready(function(){
         }
     });
 
-    // 사이즈 클릭하면 선택한 사이즈에 테두리 넣어주기 ( 보류 )
-    // function bg_rb(){
-    //     for(let i =0; i<$('sclick').length ; i++){
-    //         $('sclick').eq(i).css({
-    //             background: '#ddd'
-    //         })
-    //     }
-    // }
-    // $('sclick').click(function (){
-    //     let sc = this.style.background
-    //     bg_rb()
-    //     if(sc != 'gray') {
-    //         $(this).css({
-    //             background:'gray'
-    //         })
-    //     }
-    // })
+    // 사이즈버튼 클릭하면 클릭된 사이즈 배경색,글씨색 바뀜 다른거 선택하면 초기화
+
+    let SizeClick = $('.sclick')
+
+
+    SizeClick.click(function (){
+        let sc = this.style.background
+        bg_reSet(SizeClick,'#ddd','#777')
+        if(sc != 'gray') {
+            $(this).css({
+                background:'gray',
+                color: '#fff'
+            })
+        }
+    })
+    let tab_btn = $('.small_btn')
+
+    tab_btn.click(function (){
+        let sc = this.style.background
+        bg_reSet(tab_btn,'#ddd','#000')
+        if(sc != 'gray') {
+            $(this).css({
+                background:'gray',
+                color: '#fff'
+            })
+        }
+    })
+
+    // 색상 초기화
+    function bg_reSet(name,bg,font){
+        console.log(name.length)
+        for(let i =0; i<name.length ; i++){
+            name.eq(i).css({
+                background: bg,
+                color: font
+            })
+        }
+    }
+    $(document).on("click", ".cClick", function (e) {
+        //console.log("test")
+        let list_count = $('.opt_selected').children().length;
+        let color_id =$(this).attr("id");
+        let index_no = $(this).attr("id").split(",")[1];
+
+        console.log("index : " + index_no);
+        if(list_count > 0) {
+            let class_dupl_chk = false;
+
+            for(let i=0; i<list_count; i++) {
+                class_dupl_chk = $('.opt_selected').children('.sel_color_box').eq(i).hasClass(color_id);
+                if(class_dupl_chk) break;
+            }
+            if(class_dupl_chk) {
+                alert("이미 선택한 옵션 입니다.")
+            }
+            else {
+                make_opt_list(color_id,index_no)
+
+            }
+        }
+        else {
+            make_opt_list(color_id,index_no)
+        }
+        total();
+    })
+    function make_opt_list(color_id,index_no) {
+        $('.opt_selected').append(
+            `<div class="sel_color_box ${color_id}">
+                <div class="opt_name">
+                    <div>${optTitle}</div>
+                    <div>${colorSizeText[index_no]} / ${colorNameText[index_no]}</div>
+                </div>
+                <div class="opt_qty">
+                    <input type="button" class="btn_qty txt_minus" value="-">
+                    <input type="text" class="txt_qty" value="1" readonly>
+                    <input type="button" class="btn_qty txt_plus" value="+">
+                    <div class="x_btn"><img src=${deleteBtn} alt="" class="btn_price_delete"></div>
+                    <input type="text" value="${$(this).index()}" title="해당 아이템 방번호" class="chk_item_order">
+                </div>
+                <div class="opt_price">
+                    <div>${sPrice.toLocaleString('ko')}원</div>
+                </div>
+            </div>`
+        );
+        console.log("hi : " + index_no);
+    }
+    // 버튼 클릭하면 + - 되는 기능
+    $(document).on('click','.btn_qty', function(){
+        qty_chg($(this).val(), $(this));
+        total();
+    })
+    function qty_chg(tmp_mark, el) {
+        if(tmp_mark=="+") {
+            // console.log(el.prev());
+            let curr_qty= +el.prev().val();
+            el.prev().val(curr_qty+1)
+        }
+        else if(tmp_mark=="-") {
+            // console.log(el.next())
+            let curr_qty= +el.next().val();
+            if(curr_qty - 1 <1) {
+                alert("최소 주문 수량은 1개 입니다.");
+            }
+            else {
+                el.next().val(curr_qty-1)
+            }
+        }
+    }
+    // 버튼 클릭하면 삭제
+    $(document).on('click','.btn_price_delete', function(){
+        $(this).parent().parent().parent('.sel_color_box').remove();
+        total();
+    })
+
+    function total() {
+        let final_total = 0;
+        let final_qty=0;
+        let list_count = $('.opt_selected').children().length;
+
+        if(list_count > 0) {
+            for(let i=0; i<list_count; i++) {
+                final_qty += +$('.opt_selected').children('.sel_color_box').eq(i).children('.opt_qty').children('.txt_qty').val();
+                final_total += +$('.opt_selected').children('.sel_color_box').eq(i).children('.opt_qty').children('.txt_qty').val() * sPrice;
+            }
+            let p_tot = final_total.toLocaleString('ko');
+            $('.d_total_price').html(`<div>TOTAL: <span id="p_tot">${p_tot} 원</span> (${final_qty}개)</div>`)
+        }
+        else {
+            $('.d_total_price').html(`<div>TOTAL: <span id="p_tot">0원</span> (0개)</div>`)
+        }
+    }
 });

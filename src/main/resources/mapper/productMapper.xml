@@ -107,8 +107,9 @@
 
 <!--    상품의 사이즈에 맞는 컬러 가져오기-->
     <select id="selectSizeColor" parameterType="map" resultMap="ProductSizeColorDto">
-        SELECT color_code_name,
-        color_code_code
+        SELECT color_code_name, <!--ColorCodeDto-->
+               color_code_code, <!--ColorCodeDto-->
+               size_code_name  <!--SizeCodeDto-->
         FROM product_size_color psc
         JOIN product p on psc.product_number = p.product_number
         JOIN size_code sc on psc.size_code_number = sc.size_code_number

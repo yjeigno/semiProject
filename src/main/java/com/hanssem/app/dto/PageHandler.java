@@ -1,7 +1,7 @@
 package com.hanssem.app.dto;
 
 public class PageHandler {
-    private String search; //검색어
+
     private Integer totalCount; // 전체 검색결과
     private Integer naviSize = 10; //한번에 보여질 페이지개수
     private Integer pageSize; // 한번에 보여줄 게시글 개수
@@ -16,11 +16,11 @@ public class PageHandler {
 
     public PageHandler(){}
 
-    public PageHandler(Integer totalCount, Integer page, Integer pageSize, String search) {
+    public PageHandler(Integer totalCount, Integer page, Integer pageSize) {
         this.totalCount = totalCount;
         this.page = page;
         this.pageSize = pageSize;
-        this.search = search;
+
         totalPage = (int)Math.ceil((double) totalCount / pageSize);
         beginPage = (page - 1) / naviSize * naviSize + 1;
         endPage = Math.min(beginPage + naviSize - 1, totalPage);
@@ -28,14 +28,6 @@ public class PageHandler {
         showFirst = beginPage != 1;
         showNext = endPage != totalPage;
         showLast = endPage != totalPage;
-    }
-
-    public String getSearch() {
-        return search;
-    }
-
-    public void setSearch(String search) {
-        this.search = search;
     }
 
     public Integer getTotalCount() {
@@ -129,7 +121,7 @@ public class PageHandler {
     @Override
     public String toString() {
         return "PageHandler{" +
-                "totalCount=" + totalCount +
+                ", totalCount=" + totalCount +
                 ", naviSize=" + naviSize +
                 ", pageSize=" + pageSize +
                 ", totalPage=" + totalPage +
@@ -140,7 +132,6 @@ public class PageHandler {
                 ", showFirst=" + showFirst +
                 ", showNext=" + showNext +
                 ", showLast=" + showLast +
-                ", search=" + search +
                 '}';
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,14 +23,20 @@ public class DealRestController {
         System.out.println("product_number : " + map.get("product_number"));
         System.out.println("map :" + map);
         List<ProductSizeColorDto> sizeColorList = dealService.getColor(map);
+        System.out.println("결과값 : "+sizeColorList.size());
+        System.out.println(sizeColorList);
+
 
 //        Map noColor = new HashMap();
-//        if(sizeColorList.size() == 0){
-//            noColor.put("color_code_name", "noneColor");
-//            noColor.put("color_code_code", "noneColorCode");
+        if(sizeColorList.size() == 0){
+
+//            noColor.put("color_code.color_code_name", "noneColor");
+//            noColor.put("color_code.color_code_code", "noneColorCode");
 //            sizeColorList.add(0, (ProductSizeColorDto) noColor);
-//        }
+        }
 
         return sizeColorList;
     }
+
+
 }
