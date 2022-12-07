@@ -18,6 +18,7 @@ public class DealDao {
         private String imagePath="com.hanssem.app.dao.imageMapper.";
         private String ReviewPath="com.hanssem.app.dao.reviewMapper.";
         private String SpecialPath="com.hanssem.app.dao.specialPriceMapper.";
+        private String QnaPath="com.hanssem.app.dao.qnaMapper.";
         // 특정 상품 불러오기
         public ProductDto select(Integer product_number) {
             return session.selectOne(productPath+"select",product_number);
@@ -70,5 +71,14 @@ public class DealDao {
         // 특정 상품의 이미지가 없는 리뷰 8개 불러오기
         public List<ReviewDto> selectReviewTxtList(Map map){
             return session.selectList(ReviewPath+"selectReviewTxtPage",map);
+        }
+
+        // 특정 상품의 상품 문의 내역 개수 구하기
+        public int selectQnaCount(Integer product_number){
+            return session.selectOne(QnaPath+"count",product_number);
+        }
+        // 특정 상품의 상품 문의 내역 특정 개수만큼 불러오기
+        public List<QnaDto> selectQnaList(Map map){
+            return session.selectList(QnaPath+"selectQna",map);
         }
 }

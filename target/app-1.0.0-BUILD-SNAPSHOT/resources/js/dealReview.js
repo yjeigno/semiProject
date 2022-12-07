@@ -33,7 +33,7 @@ $(document).ready(function(){
         $('.photo_review_img > img').mouseenter(function(){
             $(this).css({
                 transition: 'all 0.3s',
-                transform: 'scale(1.2)'
+                transform: 'scale(1.1)'
             })
         });
         $('.photo_review_img > img').mouseleave(function(){

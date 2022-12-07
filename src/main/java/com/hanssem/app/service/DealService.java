@@ -70,4 +70,12 @@ public class DealService {
     public List<ReviewDto> getReviewTxtPage(Map map){
         return dealDao.selectReviewTxtList(map);
     }
+    // 특정 상품의 상품 문의 내역 개수 구하기
+    public int getQnaCount(Integer product_number){
+        return dealDao.selectQnaCount(product_number);
+    }
+    // 특정 상품의 상품 문의 내역 특정 개수만큼 불러오기
+    public List<QnaDto> getQna(Map map){
+        return dealDao.selectQnaList(map);
+    }
 }
