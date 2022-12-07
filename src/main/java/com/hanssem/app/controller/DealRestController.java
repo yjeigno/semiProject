@@ -37,6 +37,7 @@ public class DealRestController {
 
         return sizeColorList;
     }
-
+//    @PostMapping("/deal/qna/{pageSize}/{page}")
+//    public List<>
 
 }

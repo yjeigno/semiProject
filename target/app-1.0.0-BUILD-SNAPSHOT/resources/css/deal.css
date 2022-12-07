@@ -243,6 +243,12 @@ strong {
 }
 
 .sc_contents{
+    margin: 5px;
+    display: flex;
+    gap: 5px;
+}
+.cc_contents{
+    margin: 0 5px 5px;
     display: flex;
     gap: 5px;
 }
@@ -467,6 +473,12 @@ th, td{
     -webkit-line-clamp:1;
     -webkit-box-orient:vertical;
 
+}
+.cClick{
+    /*margin: 0 5px 5px;*/
+}
+.sClick{
+    /*margin: 5px;*/
 }
 .d_qna_faq_ans{
     line-height: 30px;

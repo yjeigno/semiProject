@@ -41,7 +41,7 @@
     let optTitle = "${pInfo.product_name}";
     <%--var colorLength = ${imgList.size()}--%>
         // 사이즈 클릭하면 맞는 색상 나오게 하기..
-        function ajax(size_code_name,product_number){
+        function ajaxColor(size_code_name,product_number){
             let jsonData = {
                 "size_code_name" : size_code_name,
                 "product_number" : product_number
@@ -303,7 +303,7 @@
                                 <c:forEach items="${sizeList}" var="size">
 <%--                                   <div class="sc_btn"><c:out value="${size.sizeCodeDto.size_code_name}"/>--%>
 <%--                                   </div>--%>
-                                    <a href="#" class="sc_btn sclick" onclick="ajax('${size.sizeCodeDto.size_code_name}',${pInfo.product_number})">
+                                    <a href="#" class="sc_btn sclick" onclick="ajaxColor('${size.sizeCodeDto.size_code_name}',${pInfo.product_number})">
                                         ${size.sizeCodeDto.size_code_name}
                                     </a>
                                 </c:forEach>
@@ -311,7 +311,7 @@
                         </tr>
                         <tr>
                             <td class="d_title">색상</td>
-                            <td class="d_contents sc_contents" id="sizeColor">
+                            <td class="d_contents cc_contents" id="sizeColor">
 <%--                                <c:forEach items="${colorList}" var="color">--%>
 <%--                                    <div class="sc_btn"style="background-color:${color.colorCodeDto.color_code_code}" >--%>
 <%--                                            </div>--%>

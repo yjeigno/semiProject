@@ -64,13 +64,13 @@ public class DealController {
             List<ReviewDto> reviewPageTxtList = dealService.getReviewTxtPage(map);
             List<QnaDto> qnaList = dealService.getQna(map);
 //            System.out.println("qnaList : "+qnaList);
-            m.addAttribute("qnaList",qnaList);
-            m.addAttribute("phQna",pageHandlerQna);
 
             m.addAttribute("reviewPageList",reviewPageList);
             m.addAttribute("reviewPageTxtList",reviewPageTxtList);
             m.addAttribute("pageHandler",pageHandler);
             m.addAttribute("pageHandlerTxt",pageHandlerTxt);
+            m.addAttribute("qnaList",qnaList);
+            m.addAttribute("phQna",pageHandlerQna);
 
 
 //            if(page==null) page =1;
