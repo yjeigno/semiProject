@@ -41,7 +41,7 @@ public class MemberDao {
             member.setMember_birth(rs.getInt(7));
             member.setMember_address(rs.getString(8));
             member.getMember_gender(rs.getInt(9));
-            member.setMember_sns(rs.getInt(10));
+            member.setMember_sms(rs.getInt(10));
             member.setMember_status(rs.getInt(11));
             member.setMember_register_date(rs.getTimestamp(12));
             member.setMember_login_date(rs.getTimestamp(13));
@@ -72,7 +72,7 @@ public class MemberDao {
             member.setMember_birth(rs.getInt(7));
             member.setMember_address(rs.getString(8));
             member.getMember_gender(rs.getInt(9));
-            member.setMember_sns(rs.getInt(10));
+            member.setMember_sms(rs.getInt(10));
             member.setMember_status(rs.getInt(11));
             member.setMember_register_date(rs.getTimestamp(12));
             member.setMember_login_date(rs.getTimestamp(13));
