@@ -34,4 +34,12 @@ public class UserManageService {
     public int addWish(Map map){
         return manageDao.addWish(map);
     }
+
+    public MemberDto getUserInfo(String member_id) {
+        return manageDao.getUserInfo(member_id);
+    }
+
+    public int renewUserInfo(MemberDto member_info) {
+        return manageDao.renewUserInfo(member_info);
+    }
 }

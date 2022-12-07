@@ -2,10 +2,10 @@ package com.hanssem.app.dto;
 
 public class SearchCondition {
     private Integer page = 1;
-    private Integer pageSize = 1;
+    private Integer pageSize = 20;
     private String search = "";
     private Integer offset = 0;
-//    private String option = "";
+
     private String sort;
     private Integer category;
     private Integer size;

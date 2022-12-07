@@ -39,6 +39,7 @@
     font-size: 20px;
     line-height: 50px;
     border-radius: 5px;
+    cursor: pointer;
 }
 .btn_cancel {
     background: #eee;

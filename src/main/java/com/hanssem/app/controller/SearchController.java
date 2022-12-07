@@ -25,7 +25,7 @@ public class SearchController {
     SearchService searchService;
     @Autowired
     UserManageService userManager;
-    @RequestMapping(value = "/search", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/search.do", method = {RequestMethod.GET, RequestMethod.POST})
     public String search(SearchCondition sc, Model m, HttpSession session) {
 
         try {
@@ -105,15 +105,15 @@ public class SearchController {
                 m.addAttribute("cateSize", cateSize);
                 m.addAttribute("cateColor", cateColor);
             }
-//            if(session.getAttribute("id")!=null){
-//                String member_id = (String) session.getAttribute("id");
-                String member_id = "akrclsek1";
+            if(session.getAttribute("member_id")!=null){
+                String member_id = (String) session.getAttribute("member_id");
+//                String member_id = "akrclsek1";
                 MemberDto member = new MemberDto();
                 member.setMember_id(member_id);
                 Integer member_number = userManager.getUserNo(member_id);
                 List<WishProduct> wishList = userManager.getUserWishList(member_id);
                 m.addAttribute("wishList", wishList);
-//            }
+            }
             m.addAttribute("totalAmount", totalProduct);
             m.addAttribute("sc", sc);
             m.addAttribute("cate", cateList);
@@ -132,8 +132,8 @@ public class SearchController {
 
     @RequestMapping(value = "/removeWish.do", method = {RequestMethod.POST})
     public @ResponseBody Long removeWish(@RequestBody WishProduct wishNum, HttpSession session){
-//        String id = (String) session.getAttribute("id");
-        String member_id = "akrclsek1";
+        String member_id = (String) session.getAttribute("member_id");
+//        String member_id = "akrclsek1";
         Integer member_number = userManager.getUserNo(member_id);
         Integer product_number = wishNum.getProduct_number();
         Map map = new HashMap();
@@ -145,7 +145,7 @@ public class SearchController {
     }
     @RequestMapping(value = "/addWish.do", method = {RequestMethod.POST})
     public @ResponseBody Long addWish(@RequestBody WishProduct wishNum, HttpSession session){
-        String member_id = "akrclsek1";
+        String member_id = (String) session.getAttribute("member_id");
         Integer member_number = userManager.getUserNo(member_id);
         System.out.println("member_number = " + member_number);
         Integer product_number = wishNum.getProduct_number();
