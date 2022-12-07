@@ -36,7 +36,7 @@ public class RegisterDao {
             pstmt.setInt(6, memberDto.getMember_birth());
             pstmt.setString(7, memberDto.getMember_address());
             pstmt.setInt(8, memberDto.getMember_gender());
-            pstmt.setInt(9, memberDto.getMember_sns());
+            pstmt.setInt(9, memberDto.getMember_sms());
             pstmt.setInt(10, 1);
             pstmt.setTimestamp(11, memberDto.getMember_register_date());
             pstmt.setTimestamp(12, memberDto.getMember_login_date());
