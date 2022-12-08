@@ -36,4 +36,23 @@
         WHERE NOT EXISTS (SELECT * FROM wishlist WHERE member_number = #{member_number}
         AND product_number = #{product_number})
     </insert>
+
+    <!--    회원 아이디로 회원정보 받아오기-->
+    <select id="getUserInfo" parameterType="String" resultType="MemberDto">
+        SELECT member_id, member_name, member_email, member_phone, member_birth, member_address, member_sms FROM member WHERE
+        member_id = #{member_id}
+    </select>
+
+    <!--    수정된 정보 받아 회원정보 갱신-->
+    <update id="renewUserInfo" parameterType="MemberDto">
+        UPDATE member SET
+        <if test="member_pw != null">
+            member_pw = #{member_pw},
+        </if>
+        member_email = #{member_email}
+        , member_phone = #{member_phone}
+        , member_address = #{member_address}
+        , member_sms = #{member_sms}
+        WHERE member_id = #{member_id}
+    </update>
 </mapper>

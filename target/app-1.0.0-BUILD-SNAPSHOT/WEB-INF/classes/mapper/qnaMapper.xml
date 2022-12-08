@@ -5,7 +5,7 @@
 <!--    문의글 총개수 구하기-->
     <select id="count" parameterType="int" resultType="int">
         SELECT COUNT(*) FROM qna
-        WHERE product_number = #{product_number} and qna_status =1;
+        WHERE product_number = #{product_number} and qna_status =1
     </select>
 <!--    문의글 특정 개수만큼 불러오기-->
     <select id="selectQna" parameterType="map" resultType="QnaDto">
@@ -21,7 +21,9 @@
         member_id
         FROM qna
         JOIN member m on qna.member_number = m.member_number
-        WHERE product_number = #{product_number} and qna_status = 1
-        LIMIT #{offset},#{pageSize}
+        WHERE 1=1
+            AND product_number = #{product_number}
+            AND qna_status = 1
+        LIMIT #{offset}, 10
     </select>
 </mapper>

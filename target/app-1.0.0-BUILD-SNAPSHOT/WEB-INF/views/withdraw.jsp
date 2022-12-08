@@ -33,16 +33,38 @@
               회원 탈퇴를 원하시면 비밀번호를 기입 후<br>
               탈퇴 버튼을 클릭해주세요
             </p>
+            <form id="withdrawForm">
             <input type="password" name="member_pw" id="pw" placeholder="비밀번호를 기입해 주세요.">
             <div class="btn_box">
               <div class="btn btn_cancel">취소</div>
               <div class="btn btn_confirm">탈퇴</div>
             </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </main>
 </div>
+<script>
+  $('.btn_cancel').on('click', function (){
+    history.back();
+  })
+  $('.btn_confirm').on('click', function (){
+    if(confirm("확인을 누르시면 탈퇴가 진행됩니다. 정말 탈퇴하시겠습니까?")){
+      $('#withdrawForm').attr("method", "POST");
+      $('#withdrawForm').attr("action", "/mypage/withdraw");
+      $('#withdrawForm').submit();
+    } else {
+      history.back();
+    }
+  })
+  $("#pw").on('keydown', function (){
+    if(window.event.keyCode == 13){
+      event.preventDefault();
+      $(".btn_confirm").trigger('click');
+    }
+  })
+</script>
 </body>
 </html>
