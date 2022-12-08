@@ -23,7 +23,7 @@ public class RegisterDao {
 
         try{                                  // 아이디, 비번, 이름, 생년월일, 연락처, 주소, 이메일, sms동의, 가입일
             String sql = "Insert Into member(member_id, member_pw, member_name, member_email, member_phone, " +
-                    "member_birth, member_address, member_gender, member_sns, member_status, " +
+                    "member_birth, member_address, member_gender, member_sms, member_status, " +
                     "member_register_date, member_login_date) " +
                     "values (?,?,?,?,?,?,?,?,?,?,?,?)";
             conn = ds.getConnection();

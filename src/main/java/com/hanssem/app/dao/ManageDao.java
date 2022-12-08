@@ -33,13 +33,23 @@ public class ManageDao {
     public List<WishProduct> getUserWishList(String member_id){
         return session.selectList(namespace+"getUserWishlist", member_id);
     }
-
+    /** 로그인회원의 위시리스트에서 해당상품 삭제*/
     public int removeWish(Map map) {
         return session.delete(namespace+"removeFromWishlist", map);
     }
 
+    /** 로그인회원의 위시리스트에 해당상품 추가*/
     public int addWish(Map map) {
         return session.insert(namespace+"addWishlist", map);
     }
 
+    /** 마이페이지 내정보 불러오기*/
+    public MemberDto getUserInfo(String member_id) {
+        return session.selectOne(namespace+"getUserInfo", member_id);
+    }
+
+    /** 마이페이지 내정보 수정하기*/
+    public int renewUserInfo(MemberDto member_info){
+        return session.update(namespace+"renewUserInfo", member_info);
+    }
 }
