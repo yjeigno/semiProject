@@ -80,6 +80,15 @@
         AND w.member_number = #{member_number}
     </delete>
 
+    <delete id="partialDelete" parameterType="WishPartialDeleteDto">
+        DELETE FROM wishlist w
+        WHERE  w.member_number = #{memberNumber}
+        AND w.product_number IN
+        <foreach collection="productNumbers" item="productNumber" open="(" close=")" separator=",">
+            #{productNumber}
+        </foreach>
+    </delete>
+
     <delete id="deleteAllWishlist" parameterType="int">
         DELETE FROM wishlist w
         WHERE w.member_number = #{memberNumber}

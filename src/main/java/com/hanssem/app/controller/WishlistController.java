@@ -2,6 +2,7 @@ package com.hanssem.app.controller;
 
 import com.hanssem.app.dto.WishlistDto;
 import com.hanssem.app.dto.WishlistPostDto;
+import com.hanssem.app.service.UserManageService;
 import com.hanssem.app.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,29 +25,15 @@ public class WishlistController {
     @Autowired
     private WishlistService wishlistService;
 
+    @Autowired
+    private UserManageService userService;
+
+
     @GetMapping("")
     public String wishlist(HttpServletRequest request, HttpServletResponse response, Model model, Integer product_number) throws IOException {
         HttpSession session = request.getSession();
-//        Integer member_number = (Integer) session.getAttribute("member_number");
         String member_id = (String)session.getAttribute("member_id");
         Integer member_number = wishlistService.getMemberNumber(member_id);
-System.out.println("member_id: " + member_id);
-        // 임시로 1번
-/*        if (member_id == null) {
-            String tmp_msg = URLEncoder.encode("로그인 후 이용 가능 합니다.", "utf-8");
-            String msg = "loginError";
-            return "redirect:/?msg="+tmp_msg;
-
-System.out.println("tmp_msg: " + tmp_msg);
-            PrintWriter out = response.getWriter();
-            out.println("<script>");
-            out.println("alert(\"로그인 후 이용 가능 합니다.\")");
-            out.println("alert('"+tmp_msg+"')");
-            out.println("history.back()");
-            out.println("</script>");
-            out.flush();
-
-        }*/
 
         WishlistDto wishlistDto = new WishlistDto();
         wishlistDto.setProduct_number(product_number);
@@ -61,16 +48,9 @@ System.out.println("tmp_msg: " + tmp_msg);
     @PostMapping("/")
     public ResponseEntity<String> wishPost(HttpServletRequest request, @RequestBody WishlistPostDto dto) {
         HttpSession session = request.getSession();
-//        Integer memberNumber = (Integer) session.getAttribute("member_number");
         String member_id = (String) session.getAttribute("member_id");
         Integer member_number = wishlistService.getMemberNumber(member_id);
 
-//       int resultNumber = wishlistService.wishlistWork(memberNumber,dto);
-
-       /*
-        if(resultNumber == 0){
-            return new ResponseEntity<>("이미 위시리스트에 존재하는 상품입니다. ", HttpStatus.BAD_REQUEST);
-        }*/
 
         wishlistService.wishlistWork(member_number, dto);
 
@@ -81,13 +61,25 @@ System.out.println("tmp_msg: " + tmp_msg);
     @DeleteMapping("/flush")
     public ResponseEntity<String> flush(HttpServletRequest request) {
         HttpSession session = request.getSession();
-//        Integer member_number = (Integer) session.getAttribute("member_number");
-        String member_id = (String) session.getAttribute("member_id");
-        Integer member_number = wishlistService.getMemberNumber(member_id);
+        String memberId = (String) session.getAttribute("member_id");
+        Integer memberNumber = userService.getUserNo(memberId);
 
-        wishlistService.deleteAllWishlist(member_number);
+        wishlistService.deleteAllWishlist(memberNumber);
 
 
         return new ResponseEntity<>("", HttpStatus.OK);
     }
+
+    @DeleteMapping("/partial-delete/{productNumbers}")
+    public ResponseEntity<String> partialDelete(HttpServletRequest request,@PathVariable List<Integer> productNumbers) {
+        HttpSession session = request.getSession();
+        String memberId = (String) session.getAttribute("member_id");
+        Integer memberNumber = userService.getUserNo(memberId);
+
+        wishlistService.partialDelete(productNumbers,memberNumber);
+
+
+        return new ResponseEntity<>("", HttpStatus.OK);
+    }
+
 }

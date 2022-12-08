@@ -1,5 +1,6 @@
 package com.hanssem.app.dao;
 
+import com.hanssem.app.dto.WishPartialDeleteDto;
 import com.hanssem.app.dto.WishlistDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,10 @@ public class WishlistDao {
 
     public Integer deleteWishlist(WishlistDto wishlistDto) {
         return session.delete(namespace+"deleteWishlist", wishlistDto);
+    }
+
+    public Integer partialDelete(WishPartialDeleteDto dto){
+        return session.delete(namespace+"partialDelete",dto);
     }
 
     public Integer deleteAllWishlist(Integer memberNumber){

@@ -1,6 +1,7 @@
 package com.hanssem.app.service;
 
 import com.hanssem.app.dao.WishlistDao;
+import com.hanssem.app.dto.WishPartialDeleteDto;
 import com.hanssem.app.dto.WishlistDto;
 import com.hanssem.app.dto.WishlistPostDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,14 @@ public class WishlistService {
 
     public Integer deleteWishlist(WishlistDto wishlistDto) {
         return wishlistDao.deleteWishlist(wishlistDto);
+    }
+
+    public Integer partialDelete(List<Integer> productNumbers,Integer memberNumber){
+        WishPartialDeleteDto dto = new WishPartialDeleteDto();
+        dto.setMemberNumber(memberNumber);
+        dto.setProductNumbers(productNumbers);
+
+        return wishlistDao.partialDelete(dto);
     }
 
     public Integer deleteAllWishlist(Integer memberNumber){

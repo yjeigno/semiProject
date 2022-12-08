@@ -36,8 +36,8 @@ function clickDibs(elem, loginId, product_number, isWishlist) {
     if (loginId == "null") {
         const logChk = confirm("로그인 하시겠습니까?")
         if (logChk == true) {
-            location.href="/login/login"
-            return
+            location.href="/login/login";
+            return;
         }
     } else {
         $.ajax({
@@ -47,7 +47,7 @@ function clickDibs(elem, loginId, product_number, isWishlist) {
             headers : { "Content-Type": "application/json"}, // 요청 헤더
             success : function (res) {
                 console.log(res);
-                if(FisWishlist == false) {
+                if(isWishlist == false) {
                     $(elem).attr('class','sprc_wish_on')
                 }else if(isWishlist == true){
                     $(elem).attr('class','sprc_wish');
@@ -78,7 +78,7 @@ $(document).ready(function () {
             if(result) clickDibs(this,loginId,productNumber,true);
         }
 
-        location.reload()
+        /*location.reload()*/
     })
 
     const sprc_tab_nav = $('.sprc_tab_nav');

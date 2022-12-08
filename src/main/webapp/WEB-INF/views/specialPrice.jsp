@@ -1,10 +1,3 @@
-<%
-  response.setHeader("Cache-Control","no-store");
-  response.setHeader("Pragma","no-cache");
-  response.setDateHeader("Expires",0);
-  if (request.getProtocol().equals("HTTP/1.1"))
-    response.setHeader("Cache-Control", "no-cache");
-%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -19,17 +12,21 @@
   Time: 오후 11:56
   To change this template use File | Settings | File Templates.
 --%>
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/header.css">
-<link rel="stylesheet" href="css/special_price.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="js/header.js"></script>
-<script defer src="js/special_price.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>hot deal</title>
+  <title>specialPrice</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
+  <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
+  <link rel="stylesheet" href="<c:url value='/css/special_price.css'/> ">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="<c:url value='/js/header.js'/>" charset="utf-8"></script>
+  <script defer src="<c:url value='/js/special_price.js'/>"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 <div id="wrap">

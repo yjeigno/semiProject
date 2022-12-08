@@ -25,7 +25,6 @@ public class SpecialPriceController {
     @GetMapping("/specialPrice")
     public String specialPrice(Model model, Integer product_number ,HttpServletRequest request) {
         HttpSession session = request.getSession();
-//        Integer member_number = (Integer) session.getAttribute("member_number");
         String member_id = (String) session.getAttribute("member_id");
         Integer member_number = wishlistService.getMemberNumber(member_id);
 
@@ -48,8 +47,6 @@ public class SpecialPriceController {
         model.addAttribute("list", list);
 
         return "specialPrice";
-
-        // session.setA("login", id);
 
     }
 

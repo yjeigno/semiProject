@@ -2,8 +2,8 @@ $(document).ready(function () {
 
     if($('#w_memberId').val() == "") {
         alert("로그인 페이지로 이동합니다.");
-            location.href = "/login/login"
-            return
+        location.href = "/login/login"
+        return
     }
 
     $(".wish_wish").on("click", function () {
@@ -19,10 +19,41 @@ $(document).ready(function () {
         if (result) clickAll();
     });
 
-    $(".ch").on("click", function () {
-        const result = confirm("선택한 상품을 삭제하시겠습니까?");
-        if (result) clickBtn();
-    });
+
+    $("#btn_pro_del").click(function (){
+        // 체크박스를 클릭할 때 마다 전역변수에 해당 상품 아이디를 저장하고 삭제 버튼 누를 때 전역변수를 불러와서
+        // API에 전송한다
+
+        // 삭제 버튼을 눌렀을 때 체크된 상품들의 아이디를 가져와서 API에 전송한다
+        const checkList = $(".w_chk:checked");
+        let url = "/wishlist/partial-delete/";
+
+        if (checkList.length == 0) {
+            alert("삭제할 상품을 선택해 주세요.");
+            return;
+        }
+        if (checkList.length >= 1) {
+            const chkConfirm = confirm("선택한 상품을 삭제하시겠습니까?")
+            if(chkConfirm == true) {
+                checkList.each(function (index, elem) {
+                    url += elem.value+","
+                })
+
+                $.ajax({
+                    type: 'DELETE',       // 요청 메서드
+                    url: url,  // 요청 URI
+                    success: function (res) {
+                        alert("삭제가 완료되었습니다.");
+                        location.reload();
+                    },
+                    error: function (xhr, err) {
+                        console.log(err)
+                    }
+                });
+            }
+        }
+
+    })
 })
 
 function clickDibs(elem, loginId, product_number, isWishlist) {
@@ -58,11 +89,4 @@ function clickAll() {
             console.log(err)
         }
     });
-}
-
-function clickBtn() {
-    $(".w_chk").each(function (index, input) {
-        console.log(index, input.value);
-        clickDibs("", "", input.value, true)
-    })
 }

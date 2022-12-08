@@ -182,7 +182,7 @@
                     <h1>Wishlist</h1>
                 </div>
                 <div class="wish_btn">
-                    <button class="ch">선택삭제</button>
+                    <button class="ch" id="btn_pro_del">선택삭제</button>
                     <button class="all">전체삭제</button>
                 </div>
                 <form action="<c:url value="/wishlist/" />" method="POST" id="wishForm">
@@ -197,27 +197,7 @@
                         </c:if>
 
                         <c:forEach var="li" items="${list}" varStatus="status">
-                            <%------------------------------ 매진 상품일 경우 --------------------------%>
-                            <%--<c:if test="${li.productDto.product_status eq 0}">
-                                <div class="wish_item" id="pr+${li.productDto.product_number}">
-                                    <a href="/deal/${li.productDto.product_number}">
-                                        <div class="wish_sec">
-                                            <div class="wish_img_box">
-                                                <img src="${li.imageDto.image_path}" class="wish_img" alt="">
-                                            </div>
-                                            <div class="wish_title">
-                                                <div class="wish_sold_out"><span>해당 상품은 매진되었습니다.</span></div>
-                                                <div class="wish_item_name">${li.productDto.product_name}</div>
-                                                <div class="wish_item_prd">${li.productDto.product_content}</div>
-                                            </div>
-                                            <div class="wish_price"><fmt:formatNumber value="${li.productDto.product_price}" pattern="#,###"/>원</div>
-                                        </div>
-                                    </a>
-                                       <div class="wish_wish" target-data="<%=(String)session.getAttribute("id")%>,${li.productDto.product_number}"></div>
-                                    <div class="wish_wish" target-data="<%=(String)session.getAttribute("member_id")%>,${li.productDto.product_number}"></div>
-                                    <input type="checkbox" class="w_chk">
-                                </div>
-                            </c:if>--%>
+
                             <%------------------------------ 일반 상품일 경우 --------------------------%>
                             <c:if test="${li.productDto.product_status eq 1}">
                                 <div class="wish_item" id="pr+${li.productDto.product_number}">
