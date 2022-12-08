@@ -5,9 +5,11 @@ import com.hanssem.app.dao.RegisterDao;
 import com.hanssem.app.dto.MemberDto;
 import com.hanssem.app.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 
@@ -44,6 +46,22 @@ public class RegisterController {
 
             return "redirect:/";
         }
+
+//      아이디 중복체크
+//    @RequestMapping(value = "/register/IdCheck", method = RequestMethod.POST)
+//    public @ResponseBody String AjaxView(
+//            @RequestParam("member_id")String member_id){
+//        String str = "";
+//        Integer IdCheck = ???
+//        if(IdCheck == 1){
+//            str="N"; // 아이디 중복
+//
+//        }else {
+//            str="Y"; // 아이디 사용 가능
+//        }
+//        return str;
+//    }
+
 
 
 

@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class RegisterService {
@@ -29,8 +31,11 @@ public class RegisterService {
         return registerDao.insertMember(memberDto);
     }
 
-//    private void registerMemberIdChk(Member member){
-//        Member findMember = registerDao.
+//    아이디 중복체크
+//    public Map<String, Object> IdCheck(RegisterDao registerDao){
+//        Map<String, Object> resultMap = new HashMap<>();
+//        resultMap.put("member_id", memberMapper.IdCheck(registerDao));
+//        return resultMap;
 //    }
 
 

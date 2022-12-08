@@ -1,7 +1,9 @@
 package com.hanssem.app.dao;
 
 import com.hanssem.app.dto.MemberDto;
+import jdk.jfr.DataAmount;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -49,12 +51,7 @@ public class RegisterDao {
             close(pstmt, conn);
         }
     }
-//    //    아이디 중복체크
-//    @Override
-//    public int registerIdCheck(MemberDto memberDto){
-//    int result = sql.selectOne("member.registerIdCheck");
-//    return result;
-//    }
+
 
     public void close(AutoCloseable... acs) {
         for (AutoCloseable ac : acs)
@@ -64,4 +61,5 @@ public class RegisterDao {
                 e.printStackTrace();
             }
     }
+
 }

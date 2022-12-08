@@ -213,5 +213,6 @@ public class MemberDto {
                 ", rememberId=" + rememberId +
                 '}';
     }
+
 }
 

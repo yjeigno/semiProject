@@ -14,9 +14,29 @@
   <link rel="stylesheet" href="<c:url value='/css/common.css'/>">
   <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
   <link rel="stylesheet" href="<c:url value='/css/register.css'/>">
-  <!-- <script defer src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
+  <script defer src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script type="text/javascript" src="<c:url value='/js/header.js'/>"></script>
   <script type="text/javascript" src="<c:url value='/js/register.js'/>"></script>
+<script>
+<%--  주소 검색창 --%>
+  function search_post_code(){
+    new daum.Postcode({
+      oncomplete: function(data){
+        //사용자 주소 변수 정의하는 명령어
+        var addr ='';
+
+        //사용자가 선택한
+        if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우(R)
+          addr = data.roadAddress;
+        } else { // 사용자가 지번 주소를 선택했을 경우(J)
+          addr = data.jibunAddress;
+        }
+        $("#regi_general_address").val(addr);
+        document.getElementById('regi_post_code').value = data.zonecode;
+      }
+    }).open();
+  }
+</script>
 
 </head>
 <body>
@@ -160,7 +180,7 @@
         <div class="t2">한샘몰 회원가입을 통해 많은 혜택을 누리세요.</div>
       </div>
 
-      <form action="<c:url value='/register/add'/>" method="POST" id="regi_form" onsubmit="return formCheck(this)">
+      <form action="<c:url value='/register/add'/>"  method="POST" id="regi_form" name="regi_form"  >
 <%--        아이디 중복확인 --%>
         <input type="hidden" name="memberIdChk" value="0">
         <table class="regi_form_table">
@@ -169,27 +189,35 @@
           <tr class="regi_row_sec">
             <td class="regi_col1">아이디</td>
             <td class="regi_col2 colSpace">
+<%--              아이디 입력--%>
               <input type="text" name="member_id" id="regi_id" value="" minlength="6" maxlength="12">
-              <input type="button" type="button" value="중복확인" onclick="id_check()">
+<%--              아이디 중복확인 버튼--%>
+              <input type="button" type="button" value="중복확인" onclick="id_check(this.form)">
               <br>
               <span class="min_txt">최소 6자 이상 최대 12자 이내로 입력 해주세요.</span>
-              <div class="regi_msg" id="regi_msg">${URLDecoder.decode(param.msg, "utf-8")}</div>
             </td>
           </tr>
 
           <tr class="regi_row_sec">
             <td class="regi_col1">비밀번호</td>
             <td class="regi_col2 colSpace">
-              <input type="password" name="member_pw" id="regi_pw" minlength="6" value="" maxlength="12">
+              <input type="password" name="member_pw" id="regi_pw"  minlength="6" value="" maxlength="12">
               <br>
               <span class="min_txt">영문/숫자/특수기호를 포함해주세요.(6자~12자)</span>
+            </td>
+            <td>
+              <span id="msg">
+                <c:if test="${not empty param.msg}">
+                  <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(param.msg)}</i>
+                </c:if>
+              </span>
             </td>
           </tr>
 
           <tr class="regi_row_sec">
             <td class="regi_col1">비밀번호 확인</td>
             <td class="regi_col2 colSpace">
-              <input type="password" value="" maxlength="16">
+              <input type="password" value="" maxlength="16"  id="member_pw_check" name="member_pw_check">
               <br>
               <span class="min_txt">영문/숫자/특수기호를 포함해주세요.(6자~12자)</span>
             </td>
@@ -203,11 +231,13 @@
           <tr class="regi_row_sec">
             <td class="regi_col1">생년월일 / 성별</td>
             <td class="regi_col2 colSpace">
-              <input type="text" name="member_birth" id="birth_date" value="" maxlength="10">
+              <input type="text" name="member_birth" id="birth_date" value="" maxlength="10" oninput="birth_checker()">
+              <span class="warning">유효하지 않은 날짜입니다.</span>
+<%--              성별--%>
               <input type ="radio" name="member_gender" id="member_gender_male" value=0 checked/>
               <input type="radio" name="member_gender" id="member_gender_female" value=1/>
 
-              <label for="member_gender_male" class="gender_m">남</label>
+              <label for="member_gender_male"  class="gender_m">남</label>
               <label for="member_gender_female" class="gender_f">여</label>
               <br>
               <span class="min_txt">생년월일 8자리 입력해주세요.</span>
@@ -240,11 +270,11 @@
             </td>
           </tr>
 
-          <!-- ////////////////////////현재 보류////////////////////// -->
+          <!-- ////////////////////////주소 입력////////////////////// -->
           <tr class="regi_row_sec colSpace">
             <td class="regi_col1">주소</td>
             <td class="regi_col2 colSpace">
-              <input type="text" class="regi_post_code" id="regi_post_code" value="" readonly>
+              <input type="text" class="regi_post_code" id="regi_post_code" value="" disabled >
               <input type="button" class="regi_address_search" id="regi_address_search" value="주소검색" onclick="search_post_code()">
               <br>
               <input type="text" name="regi_address" id="regi_general_address" value=""readonly>
@@ -296,13 +326,13 @@
 위 개인정보의 수집 및 이용에 대한 동의를 거부할 수 있으나, 동의를 거부할 경우 회원 가입이 제한됩니다.
                         </textarea>
               <br>
-              <input type ="checkbox" id="gree_y"/>
-              <label for="gree_y" class="regi_agree">(필수)예, 정보이용에 동의합니다.</label>
+              <input type ="checkbox" id="agree_y"/>
+              <label for="agree_y" class="regi_agree">(필수)예, 정보이용에 동의합니다.</label>
             </td>
           </tr>
 
         </table>
-        <button class="regi_btn" id="regi_btn">가입하기</button>
+        <button class="regi_btn" id="regi_btn" onclick="regi_btn()">가입하기</button>
       </form>
 
     </div>
