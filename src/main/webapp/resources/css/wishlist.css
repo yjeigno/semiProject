@@ -1,5 +1,6 @@
 .wish_container {
     width: 100%;
+    height: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
@@ -47,6 +48,7 @@
 .wish_none {
     text-align: center;
     color: #dddddd;
+    padding: 300px 0;
 }
 .wish_item {
     width: calc((100% - (15px * 2 * 4)) / 4);
@@ -77,6 +79,13 @@
     right: 7%;
     background: url(../img/etc/heart2.png) no-repeat center 100% / cover;
     cursor: pointer;
+}
+.w_chk {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 4%;
+    left: 7%;
 }
 .wish_title {
     width: 100%;
@@ -112,9 +121,4 @@
     font-weight: bold;
     color: #ff3a69;
     margin-right: 2px;
-}
-.footer {
-    width: 100%;
-    height: 300px;
-    background-color: #333333;
 }

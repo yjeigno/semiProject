@@ -47,4 +47,8 @@ public class WishlistService {
     public Integer deleteAllWishlist(Integer memberNumber){
         return wishlistDao.deleteAllWishlist(memberNumber);
     }
+
+    public Integer getMemberNumber(String member_id){
+        return wishlistDao.getMemberNumber(member_id);
+    }
 }

@@ -1,6 +1,17 @@
+<%
+  response.setHeader("Cache-Control","no-store");
+  response.setHeader("Pragma","no-cache");
+  response.setDateHeader("Expires",0);
+  if (request.getProtocol().equals("HTTP/1.1"))
+    response.setHeader("Cache-Control", "no-cache");
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<c:set var="logInOutLink" value="${sessionScope.member_id==null?'/login/login':'/login/logout' }"/>
+<c:set var="logInOutTxt" value="${sessionScope.member_id==null?'LOGIN':'LOGOUT'}"/>
+<c:set var="memberId" value="${sessionScope.member_id==null?'':sessionScope.member_id}" />
 <%--
   Created by IntelliJ IDEA.
   User: 고예진
@@ -25,12 +36,22 @@
   <header class="header">
     <div class="content_area header_top">
       <ul class="top_nav_ul">
-        <!-- 회원가입 페이지로 이동 -->
-        <li><a href="#">JOIN</a></li>
+        <c:choose>
+          <c:when test="${memberId==null || memberId.equals('') }">
+            <li><a href="<c:url value='/register'/>">JOIN</a></li>
+          </c:when>
+          <c:otherwise>
+            <li>
+                ${memberId} 님
+            </li>
+          </c:otherwise>
+        </c:choose>
         <!-- 로그인 페이지로 이동 -->
-        <li><a href="#">LOGIN</a></li>
+        <li>
+          <a href="<c:url value='${logInOutLink} '/>">${logInOutTxt}</a>
+        </li>
         <!-- 위시리스트 내역 페이지로 이동 -->
-        <li><a href="#">WISHLIST</a></li>
+        <li><a href="/wishlist">WISHLIST</a></li>
         <!-- 본인인증 후 / 마이페이지로 이동 -->
         <li><a href="#">MYPAGE</a></li>
         <li id="search_icon">
@@ -163,18 +184,19 @@
     <div class="sprc_main_banner">
       <div class="sprc_banner"></div>
     </div>
+
     <div class="sprc_sec">
       <div class="contents_area">
         <div class="sprc_list">
             <c:forEach var="li" items="${list}" varStatus="status">
             <div class="sprc_item">
               <input type="hidden" class="h-sprc-end-date" value="${li.special_product_end_date}">
-              <a href="/deal">
+              <a href="/deal/${li.productDto.product_number}">
                 <div class="sprc_img_box">
                   <img src="${li.imageDto.image_path}" class="sprc_img" class="sprc_img" alt="">
                 </div>
               </a>
-              <div class="${li.wishFlag ? "sprc_wish_on" : "sprc_wish"}" id="dibs" target-data="<%=(String)session.getAttribute("id")%>,${li.productDto.product_number}"></div>
+              <div class="${li.wishFlag ? "sprc_wish_on" : "sprc_wish"}" id="dibs" target-data="<%=(String)session.getAttribute("member_id")%>,${li.productDto.product_number}"></div>
               <div class="sprc_timer"></div>
               <a href="/deal/${li.productDto.product_number}">
                 <div class="sprc_info">

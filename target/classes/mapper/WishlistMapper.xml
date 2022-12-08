@@ -82,7 +82,12 @@
 
     <delete id="deleteAllWishlist" parameterType="int">
         DELETE FROM wishlist w
-        WHERE w.member_number = #{memberNumber} and (w.proNo = #{????})
+        WHERE w.member_number = #{memberNumber}
     </delete>
 
+    <select id="getMemberNumber" parameterType="String" resultType="Integer">
+        SELECT member_number
+        FROM member
+        WHERE member_id = #{member_id}
+    </select>
 </mapper>

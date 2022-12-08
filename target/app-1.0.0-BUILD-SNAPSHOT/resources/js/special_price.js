@@ -33,10 +33,10 @@ function setGoodsTimer() { //상품 타이머
 }
 
 function clickDibs(elem, loginId, product_number, isWishlist) {
-    if (loginId != "null") {
+    if (loginId == "null") {
         const logChk = confirm("로그인 하시겠습니까?")
         if (logChk == true) {
-            location.href="/login"
+            location.href="/login/login"
             return
         }
     } else {
@@ -47,7 +47,7 @@ function clickDibs(elem, loginId, product_number, isWishlist) {
             headers : { "Content-Type": "application/json"}, // 요청 헤더
             success : function (res) {
                 console.log(res);
-                if(isWishlist == false) {
+                if(FisWishlist == false) {
                     $(elem).attr('class','sprc_wish_on')
                 }else if(isWishlist == true){
                     $(elem).attr('class','sprc_wish');
@@ -78,7 +78,7 @@ $(document).ready(function () {
             if(result) clickDibs(this,loginId,productNumber,true);
         }
 
-        // location.reload()
+        location.reload()
     })
 
     const sprc_tab_nav = $('.sprc_tab_nav');
@@ -94,7 +94,6 @@ $(document).ready(function () {
             color: '#fff'
         })
     })
-
 
     setGoodsTimer(); //상품 타이머 최초 실행
     setInterval(setGoodsTimer, 1000);    //상품 타이머 1초 후부터, 1초 간격으로 실행

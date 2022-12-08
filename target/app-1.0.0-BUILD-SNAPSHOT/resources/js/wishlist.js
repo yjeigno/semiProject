@@ -1,5 +1,11 @@
 $(document).ready(function () {
 
+    if($('#w_memberId').val() == "") {
+        alert("로그인 페이지로 이동합니다.");
+            location.href = "/login/login"
+            return
+    }
+
     $(".wish_wish").on("click", function () {
         const targetData = $(this).attr("target-data").split(",");
         const loginId = targetData[0];
@@ -11,6 +17,11 @@ $(document).ready(function () {
     $(".all").on("click", function () {
         const result = confirm("찜 목록을 비우시겠습니까?");
         if (result) clickAll();
+    });
+
+    $(".ch").on("click", function () {
+        const result = confirm("선택한 상품을 삭제하시겠습니까?");
+        if (result) clickBtn();
     });
 })
 
@@ -47,4 +58,11 @@ function clickAll() {
             console.log(err)
         }
     });
+}
+
+function clickBtn() {
+    $(".w_chk").each(function (index, input) {
+        console.log(index, input.value);
+        clickDibs("", "", input.value, true)
+    })
 }
