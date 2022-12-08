@@ -118,11 +118,11 @@ $(document).ready(function(){
             success:function(data){	//data : /register/IdCheck 에서 넘겨준 결과값
                 if($.trim(data)=="YES"){
                     if($('#regi_id').val()!=''){
-                        alert("사용가능한 아이디입니다.");
+                        window.open("사용가능한 아이디입니다.");
                     }
                 }else{
                     if($('#regi_id').val()!=''){
-                        alert("중복된 아이디입니다.");
+                        window.open("중복된 아이디입니다.");
                         $('#regi_id').val('');
                         $('#regi_id').focus();
                     }
@@ -138,6 +138,9 @@ $(document).ready(function(){
     let warning = document.querySelector(".warning");
     const birth_checker = () => {
         let val = birth_date.value.replace(/\D/g,"");
+        const reg = /\D/g;
+        EventTarget.value = EventTarget.value.replace(reg, "");
+
         let leng = val.length;
         let result = '';
 

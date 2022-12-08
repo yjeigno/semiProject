@@ -211,7 +211,7 @@ textarea{
     /* vertical-align: auto; */
 
 }
-#gree_y{
+#agree_y{
     accent-color: black;
 }
 .regi_agree{
@@ -219,9 +219,10 @@ textarea{
     font-weight: 600;
     text-align: center;
 }
-input[type="button"]{
+#id_check, #regi_address_search{
     background-color: black;
     color: white;
+    border-radius: 5px;
 }
 /* 이벤트 목록 */
 .warning{

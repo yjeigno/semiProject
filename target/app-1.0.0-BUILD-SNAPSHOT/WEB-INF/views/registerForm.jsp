@@ -192,7 +192,7 @@
 <%--              아이디 입력--%>
               <input type="text" name="member_id" id="regi_id" value="" minlength="6" maxlength="12">
 <%--              아이디 중복확인 버튼--%>
-              <input type="button" type="button" value="중복확인" onclick="id_check(this.form)">
+              <input type="button" type="button" id="id_check" value="중복확인" onclick="id_check(this.form)">
               <br>
               <span class="min_txt">최소 6자 이상 최대 12자 이내로 입력 해주세요.</span>
             </td>
@@ -217,7 +217,7 @@
           <tr class="regi_row_sec">
             <td class="regi_col1">비밀번호 확인</td>
             <td class="regi_col2 colSpace">
-              <input type="password" value="" maxlength="16"  id="member_pw_check" name="member_pw_check">
+              <input type="password" value="" maxlength="16" id="member_pw_check" name="member_pw_check">
               <br>
               <span class="min_txt">영문/숫자/특수기호를 포함해주세요.(6자~12자)</span>
             </td>
@@ -233,6 +233,7 @@
             <td class="regi_col2 colSpace">
               <input type="text" name="member_birth" id="birth_date" value="" maxlength="10" oninput="birth_checker()">
               <span class="warning">유효하지 않은 날짜입니다.</span>
+
 <%--              성별--%>
               <input type ="radio" name="member_gender" id="member_gender_male" value=0 checked/>
               <input type="radio" name="member_gender" id="member_gender_female" value=1/>
@@ -279,7 +280,7 @@
               <br>
               <input type="text" name="regi_address" id="regi_general_address" value=""readonly>
               <br>
-              <input type="text" name="regi_address_detail" id="regi_address_detail" value="" minlength="6" maxlength="12">
+              <input type="text" name="regi_address_detail" id="regi_address_detail" value="" >
             </td>
           </tr>
 
