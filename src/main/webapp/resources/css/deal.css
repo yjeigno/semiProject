@@ -138,7 +138,7 @@ img {
     padding: 1px 0 1px 20px;
     line-height: 1.4;
     font-size: 11px;
-    /*background: url(/img/ico_info.gif) no-repeat 0 2px;*/
+    background: url(../img/dealImg/ico_info.gif) no-repeat 0 2px;
     color: #f76560
 }
 th {
@@ -221,7 +221,7 @@ strong {
     /*width: 100%;*/
     min-height: 1000px;
     /*height: 1000px;*/
-    border: 2px solid;
+    /*border: 2px solid;*/
     /*box-sizing: border-box;*/
     /*font-size: 40px;*/
 }
@@ -320,10 +320,12 @@ strong {
 .d_pagination {
     width: 100%;
     text-align: center;
-    /*padding-bottom: 50px;*/
+
     display: flex;
     justify-content: center;
-    /*margin-bottom: 30px;*/
+
+    margin-top: 10px;
+
 }
 .d_pagination_a {
     width: 30px;
@@ -360,4 +362,177 @@ strong {
 .d_nn {
     background: url(../img/etc/sprite-common.png) no-repeat -367px -60px;
     text-indent: -50000px;
+}
+table{
+    padding:0;
+    border:0;
+    border-spacing:0px;
+    border-collapse:collapse;
+}
+th, td{
+    padding:0;
+}
+.d_qna_title{
+    width: 100%;
+    /*background-color: #bbb;*/
+    margin-bottom: 50px;
+}
+.d_qna_title_txt{
+    font-size: 32px;
+    line-height: 1;
+    color: #333;
+    font-weight: 200;
+    margin: 10px 0 20px;
+}
+.d_qna_title_noti{
+    font-size: 14px;
+    line-height: 160%;
+    color: #666;
+}
+.point{
+    font-size: inherit;
+    line-height: inherit;
+    color: #ff3a69;
+}
+.d_qna_box{
+    width: 100%;
+    border-top: 1px solid #333;
+
+}
+.d_qna_top{
+    /* width: 100%; */
+    border-bottom: 1px solid #e1e1e1;
+    text-align: center;
+}
+.d_qna_top_list{
+    padding-top: 0;
+    padding-bottom: 0;
+    color: #333;
+
+    /* background: #f4f4f4; */
+}
+.d_q_t > .d_qna_top_list{
+    height: 50px;
+    background: #f4f4f4;
+    border-left: 1px solid #d9d9d9;
+}
+.d_qna_tag_mark{
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 13px;
+    text-align: center;
+    letter-spacing: 0;
+    box-sizing: border-box;
+    background-color: #eee;
+
+}
+.d_qna_tag_active{
+    border: 1px solid #41a5eb;
+    background: #e5f5ff;
+    color: #41a5eb;
+}
+.d_qna_faq_box{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.cell_type {
+    width: 180px;
+}
+.cell_quest {
+    width: 690px;
+
+}
+.cell_writer {
+    width: 165px;
+}
+.cell_date {
+    width: 165px;
+}
+.d_qna_faq_que{
+    line-height: 40px;
+    height: 40px;
+    width: 100%;
+    font-size: 16px;
+    color: #666;
+    text-overflow:ellipsis;
+    text-decoration: none;
+    overflow:hidden;
+    display:-webkit-box;
+    word-wrap:break-word;
+    -webkit-line-clamp:1;
+    -webkit-box-orient:vertical;
+
+}
+.d_qna_faq_ans{
+    line-height: 30px;
+    height: 30px;
+    max-width: 100%;
+    font-size: 14px;
+    color: #666;
+}
+.d_qna_faq{
+    height: 100%;
+    text-align: left;
+}
+.d_qna_faq_view{
+    display:table-row;
+    /* height: 300px; */
+}
+.d_qna_faq_view_qa{
+    display: table-cell;
+    /* width: 100%; */
+}
+.d_qna_faq_q{
+    display: none;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0 40px 100px;
+    background: url(../img/dealImg/detail_qna_list_Q.png) no-repeat left top;
+    font-size: 14px;
+    line-height: 160%;
+    color: #666;
+}
+.d_qna_faq_a{
+    display: none;
+    /* clear: both; */
+    position: relative;
+    padding: 20px 20px 20px 100px;
+    border-top: 1px dashed #d9d9d9;
+    background: #f4f4f4 url(../img/dealImg/detail_qna_list_A.png) no-repeat left top;
+    font-size: 14px;
+    line-height: 1.5;
+}
+i{
+    /* display: block; */
+    position: absolute;
+    top: -1px;
+    left: 32px;
+    width: 16px;
+    height: 16px;
+    background: url(../img/dealImg/detail_qna_list_A_arr.png) no-repeat;
+}
+.d_qna_faq_active{
+    display:table-cell;
+}
+.d_qna_faq_tit{
+    overflow: hidden;
+    max-width: 100%;
+    margin: 0 0 8px 0;
+    padding: 0 21px 0 0;
+    font-size: 16px;
+    line-height: 160%;
+    color: #555;
+    font-weight: 500;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+}
+.on{
+    font-weight: 900;
+    color: #222;
 }

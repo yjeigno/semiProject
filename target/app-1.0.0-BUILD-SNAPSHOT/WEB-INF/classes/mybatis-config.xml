@@ -25,6 +25,7 @@
         <typeAlias alias="WishlistDto" type="com.hanssem.app.dto.WishlistDto"/>
 
         <typeAlias alias="InteriorDto" type="com.hanssem.app.dto.InteriorDto"/>
+        <typeAlias alias="QnaDto" type="com.hanssem.app.dto.QnaDto"/>
 
 
 

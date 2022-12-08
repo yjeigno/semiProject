@@ -1,0 +1,189 @@
+.mp_title{
+    width: 700px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.contents_box {
+    width: 696px;
+    margin: 2px auto;
+    box-shadow: 0 0 2px 2px rgba(0,0,0,0.6);
+    padding: 20px;
+    box-sizing: border-box;
+    border: none;
+}
+.user_info {
+    width: 100%;
+    margin: 0;
+}
+.user_info > tbody > tr {
+    width: 100%;
+}
+.user_info > tbody > tr > th{
+    width: 30%;
+    height: 50px;
+    font-size: 18px;
+    font-weight: normal;
+    background: #888;
+    color: #fff;
+
+}
+
+.user_info > tbody > tr > td {
+    width: 70%;
+    padding: 9px 0 9px 20px;
+    box-sizing: border-box;
+}
+.user_info > tbody > tr > td > input {
+    width: 282px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #dae0e9;
+    padding-left: 10px;
+    outline: none;
+}
+
+#user_birth > td > div,
+#user_Tel > td > div,
+#user_email > td > div {
+    width: 280px;
+    height: 36px;
+    border: 1px solid #dae0e9;
+    margin: 0;
+    float: left;
+    font-size: 14px;
+
+}
+#user_Tel > td > div > input[type="number"] {
+    width: 82px;
+}
+.line {
+    width: 5px;
+    height: 1px;
+    background: #222;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+}
+td > div > input {
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    border: none;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: transparent;
+    outline: none;
+}
+#user_birth > td> div {
+    background: #efefef4d;
+}
+#user_birth > td > div > input {
+    width: 90px;
+
+}
+#user_email > td > div > input {
+    width: 125px;
+
+}
+td {
+    position: relative;
+}
+#user_address > td {
+    padding-bottom: 0;
+}
+#user_address2 > td {
+    padding-top: 5px;
+}#user_address2 > td > input {
+     width: 100%;
+ }
+.btn_user_info {
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    padding: 6px 20px 8px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50px;
+    background: #333333;
+    position: absolute;
+    top: 13px;
+    right: 20px;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.toggleSwitch {
+    width: 50px;
+    height: 30px;
+    display: block;
+    position: relative;
+    border-radius: 30px;
+    background-color: #fff;
+    box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+    cursor: pointer;
+}
+
+.toggleSwitch .toggleButton {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: #888888;
+}
+
+#toggle:checked ~ .toggleSwitch {
+    background: #888888;
+}
+
+#toggle:checked ~ .toggleSwitch .toggleButton {
+    left: calc(100% - 24px);
+    background: #fff;
+}
+
+.toggleSwitch, .toggleButton {
+    transition: all 0.2s ease-in;
+}
+
+#btn_change_info {
+    display: block;
+    margin: 20px auto 0;
+    width: 200px;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    background: #333333;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#pwMsg,#pwcMsg {
+    font-size: 12px;
+    color: #f76560;
+}
+#user_pw > td,
+#user_pwchk > td{
+    position: relative;
+}
+#password,
+#passwordChk{
+    position: absolute;
+    top: 9px;
+    left: 20px;
+}
+#user_pw, #user_pwchk {
+    height: 70px;
+}
+#pwMsg, #pwcMsg {
+    position: absolute;
+    bottom: 9px;
+    left: 20px;
+}
