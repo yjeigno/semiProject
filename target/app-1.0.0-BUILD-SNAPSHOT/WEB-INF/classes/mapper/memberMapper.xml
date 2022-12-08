@@ -4,13 +4,13 @@
 
 <mapper namespace="com.hanssem.app.dao.memberMapper">
 <!--    회원가입  -->
-<!--    <insert id="insertRegisterMember" parameterType="MemberDto">-->
-<!--        INSERT INTO member-->
-<!--        (Member_id, Member_pw, Member_name, Member_email, Member_phone, Member_birth,-->
-<!--        Member_address, Member_gender, Member_sns, Member_register_date)-->
-<!--        VALUES-->
-<!--        (#{member_id},#{Member_pw},#{Member_name},#{Member_email},#{Member_phone},#{Member_birth},#{Member_address},#{Member_gender},#{Member_sns},#{Member_register_date})-->
-<!--    </insert>-->
+    <insert id="insertRegisterMember">
+        INSERT INTO member
+        (Member_id, Member_pw, Member_name, Member_email, Member_phone, Member_birth,
+        Member_address, Member_gender, Member_sns, Member_register_date)
+        VALUES
+        (#{member_id},#{Member_pw},#{Member_name},#{Member_email},#{Member_phone},#{Member_birth},#{Member_address},#{Member_gender},#{Member_sns},#{Member_register_date})
+    </insert>
 
 
 <!--    &lt;!&ndash;    register 회원 아이디 중복체크 하기&ndash;&gt;-->
