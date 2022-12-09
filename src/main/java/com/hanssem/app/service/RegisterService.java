@@ -2,15 +2,10 @@ package com.hanssem.app.service;
 
 import com.hanssem.app.dao.RegisterDao;
 import com.hanssem.app.dto.MemberDto;
-import org.apache.ibatis.javassist.compiler.ast.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 
 import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class RegisterService {
@@ -34,7 +29,7 @@ public class RegisterService {
 //    아이디 중복체크
 //    public Map<String, Object> IdCheck(RegisterDao registerDao){
 //        Map<String, Object> resultMap = new HashMap<>();
-//        resultMap.put("member_id", memberMapper.IdCheck(registerDao));
+//        resultMap.put("member_id", MemberDto.IdCheck(registerDao));
 //        return resultMap;
 //    }
 

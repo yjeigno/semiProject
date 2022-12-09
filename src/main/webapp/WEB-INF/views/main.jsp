@@ -25,10 +25,13 @@
 </head>
 <body>
 <div id="wrap">
+
+<%--    ////////////////////////////////////장바구니//////////////////////////////////////////--%>
     <div class="basket_box">
+<%--        장바구니 간소화--%>
         <div class="basket_min">
             <div class="basket_icon"><img src="./img/main/cart_img.png" class="cart_img" alt=""></div>
-            <div class="basket_total_quentity">(1)</div>
+            <div class="basket_total_quentity"></div>
         </div>
 
         <form class="basket_pan">

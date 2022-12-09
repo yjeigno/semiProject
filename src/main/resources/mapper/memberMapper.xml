@@ -4,19 +4,19 @@
 
 <mapper namespace="com.hanssem.app.dao.memberMapper">
     <!--    회원가입  -->
-    <insert id="insertRegisterMember">
+    <insert id="insertMember">
         INSERT INTO member
         (Member_id, Member_pw, Member_name, Member_email, Member_phone, Member_birth,
-        Member_address, Member_gender, Member_sns, Member_register_date)
+        Member_address, Member_gender, Member_sms, Member_register_date)
         VALUES
-        (#{member_id},#{Member_pw},#{Member_name},#{Member_email},#{Member_phone},#{Member_birth},#{Member_address},#{Member_gender},#{Member_sns},#{Member_register_date})
+        (#{member_id},#{Member_pw},#{Member_name},#{Member_email},#{Member_phone},#{Member_birth},#{Member_address},#{Member_gender},#{Member_sms},#{Member_register_date})
     </insert>
 
 
-    <!--       register 회원 아이디 중복체크 하기-->
-    <select id="IdCheck" parameterType="MemberDto" resultType="String">
-        SELECT COUNT(*)
-        FROM member
-        WHERE member_id = ${member_id}
-    </select>
+<!--    &lt;!&ndash;       register 회원 아이디 중복체크 하기&ndash;&gt;-->
+<!--    <select id="IdCheck" parameterType="MemberDto" resultType="String">-->
+<!--        SELECT COUNT(*)-->
+<!--        FROM member-->
+<!--        WHERE member_id = ${member_id}-->
+<!--    </select>-->
 </mapper>

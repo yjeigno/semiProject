@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="java.net.URLDecoder" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,27 +10,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>회원가입</title>
   <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/>"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
   <link rel="stylesheet" href="<c:url value='/css/common.css'/>">
   <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
   <link rel="stylesheet" href="<c:url value='/css/register.css'/>">
+  <script defer src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script type="text/javascript" src="<c:url value='/js/header.js'/>"></script>
+  <script type="text/javascript" src="<c:url value='/js/register.js'/>"></script>
+  <script>
+    <%--  주소 검색창 --%>
+    function search_post_code(){
+      new daum.Postcode({
+        oncomplete: function(data){
+          //사용자 주소 변수 정의하는 명령어
+          var addr ='';
+          //사용자가 선택한
+          if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우(R)
+            addr = data.roadAddress;
+          } else { // 사용자가 지번 주소를 선택했을 경우(J)
+            addr = data.jibunAddress;
+          }
+          $("#regi_general_address").val(addr);
+          document.getElementById('regi_post_code').value = data.zonecode;
+        }
+      }).open();
+    }
+  </script>
+  <script>
+    $(document).ready(function () {
+      // 이메일 관련 리스트 선택 기능
+      $('#mail_list').change(function () {
+        $("#mail_list option:selected").each(function () {
 
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <!-- <script defer src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
-  <script src="../../resources/js/header.js"></script>
-  <script src="../../resources/js/register.js"></script>
+          if ($(this).val() == 'self') { //직접입력
+            $("#mail_domain").val('');//값 초기화
+            $("#mail_domain").attr("disabled", false); //활성화
+          } else { //직접입력이 아닐경우
+            $("#mail_domain").val($(this).text());      //선택값 입력
+            $("#mail_domain").attr("disabled", true); //비활성화
+          }
+        });
+      });
+    });
+  </script>
 
 </head>
 <body>
 <div id="wrap">
-
-
   <header class="header">
     <div class="content_area header_top">
       <ul class="top_nav_ul">
         <!-- 회원가입 페이지로 이동 -->
-        <li><a href="#">JOIN</a></li>
+        <li><a href="register">JOIN</a></li>
         <!-- 로그인 페이지로 이동 -->
-        <li><a href="login">LOGIN</a></li>
+        <li><a href="<c:url value='/login'/>">LOGIN</a></li>
         <!-- 위시리스트 내역 페이지로 이동 -->
         <li><a href="#">WISHLIST</a></li>
         <!-- 본인인증 후 / 마이페이지로 이동 -->
@@ -47,7 +81,7 @@
         </form>
       </div>
       <!-- 로고 클릭시 메인페이지로 이동 -->
-      <a href="#"><div class="logo"><img src="img/headerImg/logo_black.png" alt=""></div></a>
+      <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/>" alt=""></div></a>
     </div>
 
     <div class="header_bottom">
@@ -70,35 +104,35 @@
           <li class="li_content">
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Table</li>
-              <li class="ca_img"><img src="img/headerImg/Furn1.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Table & Dining</li>
-              <li class="ca_img"><img src="img/headerImg/Furn2.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Chair</li>
-              <li class="ca_img"><img src="img/headerImg/Furn3.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Sofa</li>
-              <li class="ca_img"><img src="img/headerImg/Furn4.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Desk</li>
-              <li class="ca_img"><img src="img/headerImg/Furn5.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">TV Stand & Storage</li>
-              <li class="ca_img"><img src="img/headerImg/Furn6.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Small Furniture</li>
-              <li class="ca_img"><img src="img/headerImg/Furn7.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Bed</li>
-              <li class="ca_img"><img src="img/headerImg/Furn8.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/> "></li>
             </ul>
           </li>
 
@@ -143,11 +177,11 @@
     </div>
   </header>
   <div class="h_100"></div>
-  </div>
+
 
 <div class="member_sec">
   <div class="tap_btn">
-    <a href="login"><div class="m_btn_line"><h2>Login</h2></div></a>
+    <a href="<c:url value='/login/login'/>"><div class="m_btn_line"><h2>Login</h2></div></a>
     <a href="register"><div class="m_btn_line tap_checked"><h2>Join</h2></div></a>
   </div>
   <div class="pan_box">
@@ -160,7 +194,8 @@
         <div class="t2">한샘몰 회원가입을 통해 많은 혜택을 누리세요.</div>
       </div>
 
-      <form action="<c:url value='/register/add'/>" method="POST" id="regi_form" onsubmit="return formCheck(this)">
+      <form action="<c:url value='/register/add'/>"  method="POST" id="regi_form" name="regi_form"  >
+        <%--        아이디 중복확인 --%>
 
         <table class="regi_form_table">
 
@@ -168,18 +203,32 @@
           <tr class="regi_row_sec">
             <td class="regi_col1">아이디</td>
             <td class="regi_col2 colSpace">
-              <input type="text" name="member_id" id="regi_id" value="" minlength="6" maxlength="12">
-              <input type="button" type="button" value="중복확인" onclick="regi_id_check()">
-              <br>
-              <span class="min_txt">최소 6자 이상 최대 12자 이내로 입력 해주세요.</span>
-              <div class="regi_msg" id="regi_msg">${URLDecoder.decode(param.msg, "utf-8")}</div>
+              <%--              아이디 입력--%>
+              <input type="text" name="member_id" class="member_id" id="regi_id" value="" onkeyup="id_keyup(this)"onkeydown="id_keyup(this)" minlength="6" maxlength="12">
+
+                <span class="min_txt id_input_re_1">사용 가능한 아이디입니다.</span>
+                <span class="min_txt id_input_re_2">이미 존재하는 아이디입니다.</span>
+                <span class="min_txt final_id_ck">아이디를 입력해주세요.</span>
+                <br>
+              <span class="min_txt">영문/숫자로 최소 6자 이상 최대 12자 이내로 입력 해주세요.</span>
+
             </td>
           </tr>
+          <script>
+            function id_keyup(obj){
+              var replaceNotInt = /[^a-zA-Z0-9]/g;
 
+              if (replaceNotInt.test(obj.value)) {
+                obj.value = obj.value.substring(0, obj.value.length - 2);
+              }
+            }
+
+          </script>
           <tr class="regi_row_sec">
             <td class="regi_col1">비밀번호</td>
             <td class="regi_col2 colSpace">
-              <input type="password" name="member_pw" minlength="6" value="" maxlength="12">
+              <input type="password" name="member_pw" id="regi_pw"  minlength="6" value="" maxlength="12">
+              <span class="min_txt final_pw_ck">비밀번호를 입력해주세요.</span>
               <br>
               <span class="min_txt">영문/숫자/특수기호를 포함해주세요.(6자~12자)</span>
             </td>
@@ -188,41 +237,90 @@
           <tr class="regi_row_sec">
             <td class="regi_col1">비밀번호 확인</td>
             <td class="regi_col2 colSpace">
-              <input type="password" value="" maxlength="16">
+              <input type="password" value="" maxlength="16" id="member_pw_check" name="member_pw_check">
+              <span class="min_txt final_pwck_ck">비밀번호 확인을 입력해주세요.</span>
+              <span class="min_txt pwck_input_re_1">비밀번호가 일치합니다.</span>
+              <span class="min_txt pwck_input_re_2">비밀번호가 일치하지 않습니다.</span>
               <br>
               <span class="min_txt">영문/숫자/특수기호를 포함해주세요.(6자~12자)</span>
             </td>
-
           </tr>
 
           <tr class="regi_row_sec">
             <td class="regi_col1">이름</td>
-            <td class="regi_col2 colSpace"><input type="text" name="member_name" value="" maxlength="10"></td>
+
+            <td class="regi_col2 colSpace">
+              <input type="text" name="member_name" id="member_name" value="" maxlength="10">
+              <span class="min_txt final_name_ck">이름을 입력해주세요.</span>
+            </td>
           </tr>
 
           <tr class="regi_row_sec">
             <td class="regi_col1">생년월일 / 성별</td>
             <td class="regi_col2 colSpace">
-              <input type="text" name="member_birth" id="birth_date" value="" maxlength="10">
+              <input type="text" name="member_birth" id="birth_date" value="" maxlength="10" onkeyup="birth_keyup(this)">
+              <%--              성별--%>
               <input type ="radio" name="member_gender" id="member_gender_male" value=0 checked/>
               <input type="radio" name="member_gender" id="member_gender_female" value=1/>
 
-              <label for="member_gender_male" class="gender_m">남</label>
+              <label for="member_gender_male"  class="gender_m">남</label>
               <label for="member_gender_female" class="gender_f">여</label>
               <br>
-              <span class="min_txt">생년월일 8자리 입력해주세요.</span>
+              <span class="min_txt">생년월일 8자리 입력해주세요. <br>ex) YYYYMMDD</span>
+              <span class="min_txt warning">생년월일 8자리 입력해주세요.</span>
+
+              <span class="min_txt final_birth_ck">생년월일 8자리 입력해주세요.</span>
             </td>
           </tr>
+          <script>
+            ////////////////////////생년월일 자동으로 하이픈///////////////////////
+            // 특수문자 정규식 변수(공백 미포함)
+            function birth_keyup(obj) {
+
+              let birth_len = obj.value.length;
+              if (Event.keyCode == 8) {
+                obj.value = obj.value.slice(0, birth_len)
+                return 0;
+              } else if (birth_len == 4 || birth_len == 7) {
+                obj.value += '-';
+              }
+              var replaceNotInt = /[ \{\}\[\]\/?.,;:|\)*~`!^\_+┼<>@\#$%&\'\"\\\(\=]/gi;
+
+              if (replaceNotInt.test(obj.value)) {
+                obj.value = obj.value.substring(0, obj.value.length - 1);
+              }
+            }
+          </script>
 
           <tr class="regi_row_sec">
             <td class="regi_col1">연락처</td>
             <!-- 000-000-0000 형식 -->
             <td class="regi_col2 colSpace">
-              <input type="text" name="member_phone" id="regi_phone"value="" maxlength="13">
+              <input type="text" name="member_phone" id="regi_phone"value="" maxlength="13" onkeyup="mobile_keyup(this)">
+
               <br>
-              <span class="min_txt">연락처를 입력해주세요.</span>
+              <span class="min_txt final_phone_ck">연락처를 입력해주세요.</span>
             </td>
           </tr>
+          <script>
+            // 하이픈 자동 생성
+            function mobile_keyup(obj){
+              let mobile_len=obj.value.length;
+              console.log(mobile_len)
+              if(Event.keyCode==8){
+                obj.value=obj.value.slice(0,mobile_len);
+                return 0;
+              }else if (mobile_len==3 || mobile_len==8){
+                obj.value += '-';
+              }
+              var replaceNotInt = /[ \{\}\[\]\/?.,;:|\)*~`!^\_+┼<>@\#$%&\'\"\\\(\=]/gi;
+
+              if (replaceNotInt.test(obj.value)) {
+                obj.value = obj.value.substring(0, obj.value.length - 1);
+              }
+
+            }
+          </script>
 
           <tr class="regi_row_sec">
             <td class="regi_col1">이메일</td>
@@ -237,19 +335,23 @@
                 <option value="hanmail">hanmail.net</option>
                 <option value="gmail">gmail.com</option>
               </select>
+              <br>
+              <span class="min_txt final_mail_ck">이메일을 입력해주세요.</span>
             </td>
           </tr>
 
-          <!-- ////////////////////////현재 보류////////////////////// -->
+
+          <!-- ////////////////////////주소 입력////////////////////// -->
           <tr class="regi_row_sec colSpace">
             <td class="regi_col1">주소</td>
             <td class="regi_col2 colSpace">
-              <input type="text" class="regi_post_code" id="regi_post_code" value="" readonly>
+              <input type="text" class="regi_post_code" id="regi_post_code" value="" disabled >
               <input type="button" class="regi_address_search" id="regi_address_search" value="주소검색" onclick="search_post_code()">
               <br>
               <input type="text" name="regi_address" id="regi_general_address" value=""readonly>
               <br>
-              <input type="text" name="regi_address_detail" id="regi_address_detail" value="" minlength="6" maxlength="12">
+              <input type="text" name="regi_address_detail" id="regi_address_detail" value="" >
+              <span class="min_txt final_addr_ck">상세 주소를 입력해주세요.</span>
             </td>
           </tr>
 
@@ -296,20 +398,24 @@
 위 개인정보의 수집 및 이용에 대한 동의를 거부할 수 있으나, 동의를 거부할 경우 회원 가입이 제한됩니다.
                         </textarea>
               <br>
-              <input type ="checkbox" id="gree_y"/>
-              <label for="gree_y" class="regi_agree">(필수)예, 정보이용에 동의합니다.</label>
+              <input type ="checkbox" id="agree_y" class="agree_y"/>
+              <label for="agree_y" class="regi_agree">(필수)예, 정보이용에 동의합니다.</label>
+
+              <span class="min_txt final_agree_ck">약관에 동의 해주세요.</span>
             </td>
           </tr>
 
         </table>
-        <button class="regi_btn">가입하기</button>
+          <br>
+
+        <button class="regi_btn" id="regi_btn" onclick="regi_btn()">가입하기</button>
       </form>
 
     </div>
   </div>
 
-  <footer class="footer"></footer>
 
+</div>
 </div>
 </body>
 </html>

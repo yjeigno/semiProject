@@ -2,7 +2,7 @@ h2, h1, h3,h5{margin: 0;}
 /* 기본 영역 */
 .member_sec{
     width: 700px;
-    height: 1200px;
+    height: 1300px;
     margin: 80px auto;
     position: relative;
     border: 1px solid black;
@@ -11,7 +11,7 @@ h2, h1, h3,h5{margin: 0;}
 }
 /* 각 항목별 높이(아이디/비번 ... */
 .colSpace{
-    height: 55px;
+    height: 60px;
 }
 
 /* 메인 탭(로그인/회원가입) 버튼 */
@@ -224,15 +224,78 @@ textarea{
     color: white;
     border-radius: 5px;
 }
+/* 유효성 검사 문구 */
+.id_input_re_1{
+    color : green;
+    display: none;
+}
+.id_input_re_2{
+    color : red;
+    display: none;
+}
+.final_id_ck{
+    color : red;
+    display: none;
+}
+.final_pw_ck{
+    color : red;
+    display: none;
+}
+.final_pwck_ck{
+    color : red;
+    display: none;
+}
+.final_name_ck{
+    color : red;
+    display: none;
+}
+.final_mail_ck{
+    color : red;
+    display: none;
+}
+.final_addr_ck{
+    color : red;
+    display: none;
+}
+.in_input_re_1{
+    color : green;
+    display: none;
+}
+.in_input_re_2{
+    color : red;
+    display: none;
+}
+.final_birth_ck{
+    color : red;
+    display: none;
+}
+.final_phone_ck{
+    color : red;
+    display: none;
+}
+.pwck_input_re_1{
+    color : green;
+    display : none;
+}
+.pwck_input_re_2{
+    color : red;
+    display : none;
+}
+.final_agree_ck{
+    color : red;
+    display : none;
+}
+
 /* 이벤트 목록 */
 .warning{
     color: red;
     font-size: 12px;
     font-weight: 600;
-    display: none;
+   visibility: hidden;
 }
 .on{
-    display: inline;
+    visibility: visible;
+
 }
 #msg{
     font-size: 12px;

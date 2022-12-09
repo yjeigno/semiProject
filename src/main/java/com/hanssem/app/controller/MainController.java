@@ -4,19 +4,25 @@ import com.hanssem.app.dto.CateSizeDto;
 import com.hanssem.app.dto.ImageColorDto;
 import com.hanssem.app.dto.ProductDto;
 import com.hanssem.app.service.MainService;
+import org.mybatis.logging.Logger;
+import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class MainController {
     @Autowired
     MainService mainService;
-    //
+    // 기존꺼
     @GetMapping("/main")
     public String main(Model model){
 
@@ -32,6 +38,7 @@ public class MainController {
 
         return "main";
     }
+
 
 
 

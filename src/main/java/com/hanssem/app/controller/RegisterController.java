@@ -1,15 +1,12 @@
 package com.hanssem.app.controller;
 
-import com.hanssem.app.dao.MemberDao;
 import com.hanssem.app.dao.RegisterDao;
 import com.hanssem.app.dto.MemberDto;
 import com.hanssem.app.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 
@@ -47,6 +44,8 @@ public class RegisterController {
         return "redirect:/";
     }
 
+
+
 //      아이디 중복체크
 //    @RequestMapping(value = "/register/IdCheck", method = RequestMethod.POST)
 //    public @ResponseBody String AjaxView(
@@ -61,19 +60,16 @@ public class RegisterController {
 //        }
 //        return str;
 //    }
-
-
-
-
+    @ResponseBody
+    @RequestMapping(value = "/registerIdCheck", method = RequestMethod.POST)
+    public int registerIdCheck(MemberDto memberDto){
+        int result = registerIdCheck(memberDto);
+        return result;
+    }
 
 }
 //
-//    @ResponseBody
-//    @RequestMapping(value = "/registerIdCheck", method = RequestMethod.POST)
-//    public int registerIdCheck(MemberDto memberDto){
-//        int result = service.registerIdCheck(memberDto);
-//        return result;
-//    }
+
 //    @RequestMapping(value = "/register", method = RequestMethod.POST)
 //    public String registerPost(MemberDto memberDto){
 //        logger.info

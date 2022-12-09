@@ -4,8 +4,6 @@
 <%@ page session="false" %>
 <c:set var="logInOutLink" value="${ pageContext.request.getSession(false).getAttribute('member_id')==null ? '/login/login':'/login/logout' }" />
 <c:set var="logInOutTxt" value="${ pageContext.request.getSession(false).getAttribute('member_id')==null ? 'LOGIN':'LOGOUT' }" />
-<%--<c:set var="logInOutLink" value="${sessionScope.member_id==null?'/login/login':'/login/logout' }"/>--%>
-<%--<c:set var="logInOutTxt" value="${sessionScope.member_id==null?'/login':'logout'}"/>--%>
 <c:set var="memberId" value="${ pageContext.request.getSession(false).getAttribute('member_id')==null ? '' : pageContext.request.getSession(false).getAttribute('member_id') }" />
 
 <!DOCTYPE html>
@@ -16,11 +14,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인페이지</title>
     <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/>"></script>
-
-    <script defer src="<c:url value='/js/header.js'/>"></script>
-    <script defer src="<c:url value='/js/main.js'/>"></script>
-    <script defer src="<c:url value='/js/main_cart.js'/>"></script>
-
+    <script src="<c:url value='/js/header.js'/>"></script>
+    <script src="<c:url value='/js/main.js'/>"></script>
+    <script src="<c:url value='/js/main_cart.js'/>"></script>
     <link rel="stylesheet" href="<c:url value='/css/common.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/main.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
@@ -29,10 +25,13 @@
 </head>
 <body>
 <div id="wrap">
+
+<%--    ////////////////////////////////////장바구니//////////////////////////////////////////--%>
     <div class="basket_box">
+<%--        장바구니 간소화--%>
         <div class="basket_min">
             <div class="basket_icon"><img src="./img/main/cart_img.png" class="cart_img" alt=""></div>
-            <div class="basket_total_quentity">(1)</div>
+            <div class="basket_total_quentity"></div>
         </div>
 
         <form class="basket_pan">
@@ -92,12 +91,12 @@
             <ul class="top_nav_ul">
                 <!-- 회원가입 페이지로 이동 -->
                 <c:choose>
-                <c:when test="${memberId==null || memberId.equals('') }">
-                <li><a href="<c:url value='/register'/>">JOIN</a></li>
-                </c:when>
+                    <c:when test="${memberId==null || memberId.equals('') }">
+                        <li><a href="<c:url value='/register'/>">JOIN</a></li>
+                    </c:when>
                     <c:otherwise>
                         <li>
-                            ${memberId} 님
+                                ${memberId} 님 환영합니다.
                         </li>
                     </c:otherwise>
                 </c:choose>
@@ -123,7 +122,7 @@
                 </form>
             </div>
             <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="<c:url value='/'/>"><div class="logo"><img src="./img/headerImg/logo_black.png" alt=""></div></a>
+            <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/> " alt=""></div></a>
         </div>
 
         <div class="header_bottom">
@@ -146,35 +145,35 @@
                     <li class="li_content">
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn1.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/>"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table & Dining</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn2.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/>"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Chair</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn3.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/>"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Sofa</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn4.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/>"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Desk</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn5.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/>"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">TV Stand & Storage</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn6.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/>"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Small Furniture</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn7.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/>"></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Bed</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn8.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/>"></li>
                         </ul>
                     </li>
 
@@ -222,21 +221,19 @@
 
 
     <div class="main_banner">
-        <a href="#" class="banner"><img src="img/main/mainbanner_1.png" alt=""></a>
-        <a href="#" class="banner"><img src="img/main/mainbanner_2.png" alt=""></a>
-        <a href="#" class="banner"><img src="img/main/mainbanner_3.png" alt=""></a>
-<%--    <a href="#" class="banner"><div class="main_banner_img1"></div></a>--%>
-<%--    <a href="#" class="banner"><div class="main_banner_img2"></div></a>--%>
-<%--    <a href="#" class="banner"><div class="main_banner_img3"></div></a>--%>
+        <a href="#" class="banner"><img src="<c:url value='/img/main/mainbanner_1.png'/>" alt=""></a>
+        <a href="#" class="banner"><img src="<c:url value='/img/main/mainbanner_2.png'/>" alt=""></a>
+        <a href="#" class="banner"><img src="<c:url value='/img/main/mainbanner_3.png'/>" alt=""></a>
+
 
         <input type="button" class="btn_slide" id="btn_slide_L">
         <input type="button" class="btn_slide" id="btn_slide_R">
 
 
         <div class="circle_indicator">
-            <div class="circle circle_active"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
+            <%--            <div class="circle circle_active"></div>--%>
+            <%--            <div class="circle"></div>--%>
+            <%--            <div class="circle"></div>--%>
         </div>
     </div>
 
@@ -248,16 +245,21 @@
             <div class="main_title">NEW ARRIVALS</div>
             <br>
             <h4 class="sub_title">한샘의 새로운 상품을 구경하세요.</h4>
-              <a href="#_new"><div class="more new">More</div></a>
+            <a href="#_new"><div class="more new">More</div></a>
         </div>
 
         <div class="items_area">
 
             <div class="item">
-                <div class="img_box"><img src="./img/main/new1.png" alt="" id="new_img1" ></div>
+                <div class="img_box">
+                    <c:forEach items="${imgList}" var="img">
+                        <div class="d_img">
+                            <img src="<c:url value='${img.imageDto.image_path}'/>">
+                        </div>
+                    </c:forEach></div>
                 <div class="item_txt">
-                    <h4>SAMPLE</h4>
-                    <h5>상품요약 설명</h5>
+                    <h4>${pInfo.product_name}</h4>
+                    <h5>${pInfo.product_content}</h5>
                     <h5><del>000,000원</del></h5>
                     <h4>000,000원</h4>
                 </div>
@@ -357,7 +359,7 @@
                     <div class="main_title">HANSAM INTERIORS</div>
                     <br>
                     <h4 class="sub_title">한샘제품으로 꾸민 인테리어를 구경하세요.</h4>
-                    <a href="#_new"><div class="more interior"><u>More</u></div></a>
+                    <a href="<c:url value='/Interior'/>"><div class="more interior">More</div></a>
                 </div>
 
                 <div class="items_area">
