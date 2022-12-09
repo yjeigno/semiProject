@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanssem.app.dao.addressMapper">
+
+
+  <select id="selectAddress" parameterType="int" resultType="AddressDto">
+      SELECT * FROM address
+      WHERE address_number = #{address_number}
+
+  </select>
+
+<!-- 주소등록 -->
+    <insert id="setUser" parameterType="String" >
+       INSERT INTO address
+       (address_home, address_name,address_phone,address_adrs)
+       VALUES
+       (#{address_home},#{address_name},#{address_phone},#{address_adrs})
+   </insert>
+
+<!-- 주소수정  -->
+   <update id="update" parameterType="AddressDto">
+       UPDATE address
+       SET address_home=#{address_home},
+           address_name=#{address_name},
+           address_phone=#{address_phone},
+           address_adrs=#{address_adrs}
+       WHERE address_number=#{address_number}
+   </update>
+
+<!-- 주소 삭제 -->
+    <delete id="delete" parameterType="map">
+        DELETE FROM address WHERE address_number=#{address_number}
+    </delete>
+
+</mapper>

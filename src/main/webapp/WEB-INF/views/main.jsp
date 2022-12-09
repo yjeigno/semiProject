@@ -250,7 +250,7 @@
 
             <div class="item">
                 <div class="img_box">
-                    <c:forEach items="${imgList}" var="img">
+                    <c:forEach var="${imgList}" var="img">
                         <div class="d_img">
                             <img src="<c:url value='${img.imageDto.image_path}'/>">
                         </div>
