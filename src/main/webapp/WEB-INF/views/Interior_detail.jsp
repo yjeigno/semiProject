@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 이준환
@@ -201,17 +203,21 @@
 
 
 
-                <ul class="Interior_case">
-                  <li class="Interior_case_box">
-                    <a href="">
+                 <ul class="Interior_case">
+
+
+                     <li class="Interior_case_box">
+                      <div>${product_number} </div>
+                       <a href="">
                       <img class="Interior_case_img" id="Interior_box1" src="img/Interior/interior_5(3).jpg"  alt="">
-                    </a>
+                       </a>
+                     </li>
 
-                  </li>
 
 
-                  <li class="Interior_case_box">
-                    <a href="">
+                   <li class="Interior_case_box">
+                     <div>${product_number} </div>
+                     <a href="">
                       <img class="Interior_case_img" id="Interior_box2" src="img/Interior/interior_5(4).jpg"  alt="">
                     </a>
 
@@ -219,15 +225,16 @@
 
 
 
-
-                  <li class="Interior_case_box">
-                    <a href="">
+                   <li class="Interior_case_box">
+                     <div>${product_number} </div>
+                     <a href="">
                       <img class="Interior_case_img" id="Interior_box3" src="img/Interior/interior_5(5).jpg" width="100%" alt="">
                     </a>
 
                   </li>
 
                   <li class="Interior_case_box" >
+                    <div>${product_number} </div>
                     <a href="">
                       <img class="Interior_case_img" id="Interior_box4" src="img/Interior/interior_5(6).jpg" width="100%" alt="">
                     </a>
@@ -235,6 +242,7 @@
                   </li>
 
                   <li class="Interior_case_box">
+                    <div>${product_number} </div>
                     <a href="">
                       <img class="Interior_case_img" id="Interior_box5" src="img/Interior/interior_5(7).jpg" width="100%" alt="">
                     </a>
@@ -253,9 +261,11 @@
           <p class="Interior_arrow_box" id="arrow1">파스타 2S 렌지대 겸 조리대 185,000원
             <img src="img/Interior/interior_5(3).jpg" width="100%" style="height:80%" alt="">
           </p>
+
           <p class="Interior_arrow_box" id="arrow2">반자동머신 249,000원
             <img src="img/Interior/interior_5(4).jpg" width="100%" style="height:80%" alt="">
           </p>
+
           <p class="Interior_arrow_box" id="arrow3">아이코나 전기주전자 89,000원
             <img src="img/Interior/interior_5(5).jpg" width="100%" style="height:80%" alt="">
           </p>
