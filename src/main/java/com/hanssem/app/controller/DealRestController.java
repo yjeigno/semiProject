@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class DealController {
+public class DealRestController {
 
     @Autowired
     DealService dealService;
