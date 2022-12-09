@@ -8,13 +8,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<link rel="stylesheet" href="./css/common.css">
-<link rel="stylesheet" href="./css/header(ver1.0.2).css">
-<link rel="stylesheet" href="./css/Interior.css">
+<link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/Interior.css'/> ">
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="./js/header(ver1.0.2).js"></script>
-<script src="./js/Interior.js"></script>
+<script src="<c:url value='/js/header.js'/> "></script>
+<script src="<c:url value='/js/Interior.js'/> "></script>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -26,10 +26,10 @@
     <header class="header">
         <div class="content_area header_top">
             <ul class="top_nav_ul">
-                <!-- 로그인 페이지로 이동 -->
-                <li><a href="#">LOGIN</a></li>
                 <!-- 회원가입 페이지로 이동 -->
                 <li><a href="#">JOIN</a></li>
+                <!-- 로그인 페이지로 이동 -->
+                <li><a href="#">LOGIN</a></li>
                 <!-- 위시리스트 내역 페이지로 이동 -->
                 <li><a href="#">WISHLIST</a></li>
                 <!-- 본인인증 후 / 마이페이지로 이동 -->
@@ -47,17 +47,20 @@
                 </form>
             </div>
             <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="#"><div class="logo"><img src="img/logo_black.png" alt=""></div></a>
+            <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/> " alt=""></div></a>
         </div>
-
+        <%--        src="img/headerImg/logo_black.png"--%>
+        <%--        href="<c:url value='img/headerImg/logo_black.png'/> "--%>
         <div class="header_bottom">
             <div class="content_area">
                 <ul class="bottom_nav_ul">
-                    <li>Furniture</li>
-                    <li>Lighting</li>
-                    <li>Kitchen</li>
-                    <li>Home Deco</li>
-                    <li>Hot Deal</li>
+                    <li class="box">Furniture</li>
+                    <li class="box">Lighting</li>
+                    <li class="box">Fabric</li>
+                    <!-- 홈데코 클릭시 인테리어 페이지 이동 -->
+                    <li><a href="">Home Deco</a></li>
+                    <!-- 특가페이지 이동 -->
+                    <li><a href="">Hot Deal</a></li>
                 </ul>
             </div>
         </div>
@@ -67,51 +70,67 @@
                     <li class="li_Title">Furniture</li>
                     <li class="li_content">
                         <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Boutique Furniture</li>
-                            <li class="ca_img"><img src="img/Furn1.png"></li>
+                            <li class="ca_txt">Table</li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table & Dining</li>
-                            <li class="ca_img"><img src="img/Furn2.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Chair</li>
-                            <li class="ca_img"><img src="img/Furn3.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Sofa</li>
-                            <li class="ca_img"><img src="img/Furn4.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Global Furniture</li>
-                            <li class="ca_img"><img src="img/Furn5.png"></li>
+                            <li class="ca_txt">Desk</li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">TV Stand & Storage</li>
-                            <li class="ca_img"><img src="img/Furn6.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Small Furniture</li>
-                            <li class="ca_img"><img src="img/Furn7.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Bed</li>
-                            <li class="ca_img"><img src="img/Furn8.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/> "></li>
                         </ul>
                     </li>
 
                 </ul>
                 <ul class="ul_category_box">
                     <li class="li_Title">Lighting</li>
-                    <li class="li_content"></li>
+                    <li>
+                        <ul class="li_content str">
+                            <li class="l_txt">pendant</li>
+                            <li class="l_txt">table</li>
+                            <li class="l_txt">floor lamp</li>
+                            <li class="l_txt">wall</li>
+                            <li class="l_txt">ceiling</li>
+                        </ul>
+                    </li>
 
                 </ul>
                 <ul class="ul_category_box">
-                    <li class="li_Title">Kitchen</li>
-                    <li class="li_content"></li>
+                    <li class="li_Title">Fabric</li>
+                    <li>
+                        <ul class="li_content str right">
+                            <li class="l_txt">Curtain</li>
+                            <li class="l_txt">Rug</li>
+                            <li class="l_txt">blind</li>
+                            <li class="l_txt">mat</li>
+                            <li></li>
+                        </ul>
+                    </li>
 
                 </ul>
-                <ul class="ul_category_box">
+                <!-- <ul class="ul_category_box">
                     <li class="li_Title">Home Deco</li>
                     <li class="li_content"></li>
 
@@ -120,7 +139,7 @@
                     <li class="li_Title">Hot Deal</li>
                     <li class="li_content"></li>
 
-                </ul>
+                </ul> -->
             </div>
         </div>
     </header>
@@ -470,7 +489,7 @@
 <%--                </div>--%>
                </c:forEach>
 
-                //
+
 
 
             </div>
