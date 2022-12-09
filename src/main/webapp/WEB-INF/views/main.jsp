@@ -88,12 +88,12 @@
             <ul class="top_nav_ul">
                 <!-- 회원가입 페이지로 이동 -->
                 <c:choose>
-                <c:when test="${memberId==null || memberId.equals('') }">
-                <li><a href="<c:url value='/register'/>">JOIN</a></li>
-                </c:when>
+                    <c:when test="${memberId==null || memberId.equals('') }">
+                        <li><a href="<c:url value='/register'/>">JOIN</a></li>
+                    </c:when>
                     <c:otherwise>
                         <li>
-                            ${memberId} 님 환영합니다.
+                                ${memberId} 님 환영합니다.
                         </li>
                     </c:otherwise>
                 </c:choose>
@@ -228,9 +228,9 @@
 
 
         <div class="circle_indicator">
-<%--            <div class="circle circle_active"></div>--%>
-<%--            <div class="circle"></div>--%>
-<%--            <div class="circle"></div>--%>
+            <%--            <div class="circle circle_active"></div>--%>
+            <%--            <div class="circle"></div>--%>
+            <%--            <div class="circle"></div>--%>
         </div>
     </div>
 
@@ -242,7 +242,7 @@
             <div class="main_title">NEW ARRIVALS</div>
             <br>
             <h4 class="sub_title">한샘의 새로운 상품을 구경하세요.</h4>
-              <a href="#_new"><div class="more new">More</div></a>
+            <a href="#_new"><div class="more new">More</div></a>
         </div>
 
         <div class="items_area">
@@ -250,10 +250,10 @@
             <div class="item">
                 <div class="img_box">
                     <c:forEach items="${imgList}" var="img">
-                    <div class="d_img">
-                        <img src="<c:url value='${img.imageDto.image_path}'/>">
-                    </div>
-                </c:forEach></div>
+                        <div class="d_img">
+                            <img src="<c:url value='${img.imageDto.image_path}'/>">
+                        </div>
+                    </c:forEach></div>
                 <div class="item_txt">
                     <h4>${pInfo.product_name}</h4>
                     <h5>${pInfo.product_content}</h5>

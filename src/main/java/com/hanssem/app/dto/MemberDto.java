@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 public class MemberDto {
 
     private Integer member_number;
+
     private String member_id;
     private String member_pw;
     private String member_name;
@@ -213,6 +214,5 @@ public class MemberDto {
                 ", rememberId=" + rememberId +
                 '}';
     }
-
 }
 

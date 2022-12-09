@@ -95,7 +95,7 @@ public class LoginController {
 
 
     }
-//      DB 내 id pw 정보 있는지 확인하는 메서드
+    //      DB 내 id pw 정보 있는지 확인하는 메서드
     private boolean loginChk(String member_id, String member_pw) throws Exception {
         MemberDto memberDto = memberDao.selectMember(member_id);
         if(memberDto == null) return false;
@@ -105,5 +105,5 @@ public class LoginController {
     }
 
 
-    
+
 }

@@ -17,26 +17,26 @@
   <script defer src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script type="text/javascript" src="<c:url value='/js/header.js'/>"></script>
   <script type="text/javascript" src="<c:url value='/js/register.js'/>"></script>
-<script>
-<%--  주소 검색창 --%>
-  function search_post_code(){
-    new daum.Postcode({
-      oncomplete: function(data){
-        //사용자 주소 변수 정의하는 명령어
-        var addr ='';
+  <script>
+    <%--  주소 검색창 --%>
+    function search_post_code(){
+      new daum.Postcode({
+        oncomplete: function(data){
+          //사용자 주소 변수 정의하는 명령어
+          var addr ='';
 
-        //사용자가 선택한
-        if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우(R)
-          addr = data.roadAddress;
-        } else { // 사용자가 지번 주소를 선택했을 경우(J)
-          addr = data.jibunAddress;
+          //사용자가 선택한
+          if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우(R)
+            addr = data.roadAddress;
+          } else { // 사용자가 지번 주소를 선택했을 경우(J)
+            addr = data.jibunAddress;
+          }
+          $("#regi_general_address").val(addr);
+          document.getElementById('regi_post_code').value = data.zonecode;
         }
-        $("#regi_general_address").val(addr);
-        document.getElementById('regi_post_code').value = data.zonecode;
-      }
-    }).open();
-  }
-</script>
+      }).open();
+    }
+  </script>
 
 </head>
 <body>
@@ -163,7 +163,7 @@
     </div>
   </header>
   <div class="h_100"></div>
-  </div>
+</div>
 
 <div class="member_sec">
   <div class="tap_btn">
@@ -181,7 +181,7 @@
       </div>
 
       <form action="<c:url value='/register/add'/>"  method="POST" id="regi_form" name="regi_form"  >
-<%--        아이디 중복확인 --%>
+        <%--        아이디 중복확인 --%>
         <input type="hidden" name="memberIdChk" value="0">
         <table class="regi_form_table">
 
@@ -189,9 +189,9 @@
           <tr class="regi_row_sec">
             <td class="regi_col1">아이디</td>
             <td class="regi_col2 colSpace">
-<%--              아이디 입력--%>
+              <%--              아이디 입력--%>
               <input type="text" name="member_id" id="regi_id" value="" minlength="6" maxlength="12">
-<%--              아이디 중복확인 버튼--%>
+              <%--              아이디 중복확인 버튼--%>
               <input type="button" type="button" id="id_check" value="중복확인" onclick="id_check(this.form)">
               <br>
               <span class="min_txt">최소 6자 이상 최대 12자 이내로 입력 해주세요.</span>
@@ -234,7 +234,7 @@
               <input type="text" name="member_birth" id="birth_date" value="" maxlength="10" oninput="birth_checker()">
               <span class="warning">유효하지 않은 날짜입니다.</span>
 
-<%--              성별--%>
+              <%--              성별--%>
               <input type ="radio" name="member_gender" id="member_gender_male" value=0 checked/>
               <input type="radio" name="member_gender" id="member_gender_female" value=1/>
 

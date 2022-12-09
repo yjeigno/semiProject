@@ -235,42 +235,42 @@ $(document).ready(function(){
         }
         obj.value = phone;
     }
-        //     let tmp = '';
-        //     if(phoneNum.length < 4){
-        //         return phoneNum;
-        //
-        //     }else if(phoneNum.length < 7){
-        //         tmp += phoneNum.substring(0, 3);
-        //         tmp += '-';
-        //         tmp += phoneNum.substring(3);
-        //         return tmp;
-        //
-        //     }else if(phoneNum.length < 11){
-        //         tmp += phoneNum.substring(0, 3);
-        //         tmp += '-';
-        //         tmp += phoneNum.substring(3, 3);
-        //         tmp += '-';
-        //         tmp += phoneNum.substring(6);
-        //         return tmp;
-        //
-        //     }else{
-        //         tmp += phoneNum.substring(0, 3);
-        //         tmp += '-';
-        //         tmp += phoneNum.substring(3, 4);
-        //         tmp += '-';
-        //         tmp += phoneNum.substring(7);
-        //         return tmp;
-        //     }
-        //     return phoneNum;
-        // }
-        //
-        // let regiPhone = document.getElementById('regi_phone');
-        // // input 에 값이 입력되었을때를 위해 key up
-        // regiPhone.onkeyup = function(event){
-        //     event = event || window.Event;
-        //     let _val = this.value.trim();
-        //     this.value = phone_auto(_val) ;
-        // }
+    //     let tmp = '';
+    //     if(phoneNum.length < 4){
+    //         return phoneNum;
+    //
+    //     }else if(phoneNum.length < 7){
+    //         tmp += phoneNum.substring(0, 3);
+    //         tmp += '-';
+    //         tmp += phoneNum.substring(3);
+    //         return tmp;
+    //
+    //     }else if(phoneNum.length < 11){
+    //         tmp += phoneNum.substring(0, 3);
+    //         tmp += '-';
+    //         tmp += phoneNum.substring(3, 3);
+    //         tmp += '-';
+    //         tmp += phoneNum.substring(6);
+    //         return tmp;
+    //
+    //     }else{
+    //         tmp += phoneNum.substring(0, 3);
+    //         tmp += '-';
+    //         tmp += phoneNum.substring(3, 4);
+    //         tmp += '-';
+    //         tmp += phoneNum.substring(7);
+    //         return tmp;
+    //     }
+    //     return phoneNum;
+    // }
+    //
+    // let regiPhone = document.getElementById('regi_phone');
+    // // input 에 값이 입력되었을때를 위해 key up
+    // regiPhone.onkeyup = function(event){
+    //     event = event || window.Event;
+    //     let _val = this.value.trim();
+    //     this.value = phone_auto(_val) ;
+    // }
     //}
     //////////////////////////////////////////////////////
 

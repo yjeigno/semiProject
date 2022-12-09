@@ -2,21 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/schema/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hanssem.app.dao.memberMapper">
-<!--    회원가입  -->
-    <insert id="insertRegisterMember">
-        INSERT INTO member
-        (Member_id, Member_pw, Member_name, Member_email, Member_phone, Member_birth,
-        Member_address, Member_gender, Member_sns, Member_register_date)
-        VALUES
-        (#{member_id},#{Member_pw},#{Member_name},#{Member_email},#{Member_phone},#{Member_birth},#{Member_address},#{Member_gender},#{Member_sns},#{Member_register_date})
-    </insert>
+<mapper namespace="com.hanssem.app.dao.cartMapper">
+<!--    &lt;!&ndash;    register 회원 정보저장 하기    &ndash;&gt;-->
+<!--    <insert id="insertRegisterMember" parameterType="MemberDto">-->
+<!--        INSERT INTO member-->
+<!--        (Member_id, Member_pw, Member_name, Member_email, Member_phone, Member_birth,-->
+<!--        Member_address, Member_gender, Member_sns, Member_register_date)-->
+<!--        VALUES-->
+<!--        (#{member_number},#{count})-->
+<!--    </insert>-->
 
 
-<!--       register 회원 아이디 중복체크 하기-->
-    <select id="IdCheck" parameterType="MemberDto" resultType="String">
-        SELECT COUNT(*)
-        FROM member
-        WHERE member_id = ${member_id}
-    </select>
+<!--    &lt;!&ndash;    register 회원 아이디 중복체크 하기&ndash;&gt;-->
+<!--    <select id="registerIdCheck" parameterType="MemberDto" resultType="int">-->
+<!--        SELECT COUNT(*)-->
+<!--        FROM member-->
+<!--        WHERE member_id = ${member_id}-->
+<!--    </select>-->
 </mapper>

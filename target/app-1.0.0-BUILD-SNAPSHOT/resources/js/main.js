@@ -13,8 +13,6 @@ $(document).ready(function(){
     }
 
     $(document).on('click','#btn_slide_R', function(){
-
-
         // banner들을 다 한칸씩 이동
         $('.banner').animate({ left: `-=${item_width}` }, timer,'linear');
 
@@ -30,9 +28,7 @@ $(document).ready(function(){
 
     });
     $(document).on('click','#btn_slide_L', function(){
-
         // 특정번째(나가있는거/끝번꺼) 반대쪽 끝으로 이동
-
         idx_no-=1;
         $('.banner').eq(idx_no % b_count).animate({
             left: -1*item_width
@@ -45,15 +41,6 @@ $(document).ready(function(){
         $('.circle').removeClass('circle_active')
         $('.circle').eq(idx_no % b_count).addClass('circle_active')
     });
-    function btn_status() {
-        // 버튼 막기
-        $('.btn_slide').css({pointerEvents: 'none'})
-
-        // 일정시간 후에 버튼 다시 살리기
-        setTimeout(() => {
-            $('.btn_slide').css({pointerEvents: 'auto'})
-        }, timer);
-    }
 
     // 자동 슬라이드
     let interval ="";
@@ -100,7 +87,7 @@ $(document).ready(function(){
 
 
     /////////////////////////////////////////////////////////////////////////////////////////
-    //이벤트 배너(특가)
+    //이벤트 배너
     $(document).on('click', '.close_img', function(){
 
         if(!$('.close_img').hasClass('close_active'))
