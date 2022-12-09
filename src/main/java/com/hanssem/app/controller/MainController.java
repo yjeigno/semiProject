@@ -3,6 +3,7 @@ package com.hanssem.app.controller;
 import com.hanssem.app.dto.CateSizeDto;
 import com.hanssem.app.dto.ImageColorDto;
 import com.hanssem.app.dto.ProductDto;
+import com.hanssem.app.dto.SpecialPriceDto;
 import com.hanssem.app.service.MainService;
 import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;
@@ -25,17 +26,15 @@ public class MainController {
     // 기존꺼
     @GetMapping("/main")
     public String main(Model model){
-
+//        상품정보
         ProductDto productDto = mainService.getInfo(1);
         model.addAttribute("pInfo",productDto);
         // 상품 이미지랑 색상 가져오기
         List<ImageColorDto> imageColorDto = mainService.showImgColor(1);
         model.addAttribute("imgList",imageColorDto);
 
-        // 상품 사이즈 가져오기
-        List<CateSizeDto> sizeList = mainService.showSize(1);
-        model.addAttribute("sizeList",sizeList);
-
+        SpecialPriceDto specialPriceDto = mainService.getDiscount(1);
+        model.addAttribute("SpeDiscount", specialPriceDto);
         return "main";
     }
 

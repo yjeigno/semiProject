@@ -251,15 +251,17 @@
             <div class="item">
                 <div class="img_box">
                     <c:forEach items="${imgList}" var="img">
-                        <div class="d_img">
+                        <div class="new_img">
                             <img src="<c:url value='${img.imageDto.image_path}'/>">
                         </div>
-                    </c:forEach></div>
+                    </c:forEach>
+                </div>
                 <div class="item_txt">
                     <h4>${pInfo.product_name}</h4>
                     <h5>${pInfo.product_content}</h5>
-                    <h5><del>000,000원</del></h5>
-                    <h4>000,000원</h4>
+                    <h5><del>${pInfo.product_price}</del></h5>
+                    <h4>${pInfo.product_status==2 && SpeDiscount.special_product_end_date>now()
+                            ?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price};</h4>
                 </div>
             </div>
 

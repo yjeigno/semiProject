@@ -42,5 +42,8 @@ public class MainDao {
     public List<ProductSizeColorDto> selectSizeColor(Map map){
         return session.selectList(productPath+"selectSizeColor",map);
     }
-
+//    할인율
+    public SpecialPriceDto selectDiscount(Integer product_number) {
+        return session.selectOne(SpecialPath+"selectSpeDiscount",product_number);
+    }
 }

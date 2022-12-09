@@ -12,6 +12,7 @@ public class MainService {
     @Autowired
     MainDao mainDao;
 
+
     public ProductDto getInfo(Integer product_number) {
         return mainDao.select(product_number);
     }
@@ -19,14 +20,12 @@ public class MainService {
     public List<ImageColorDto> showImgColor(Integer product_number) {
         return mainDao.selectImgColor(product_number);
     }
-
-    public List<ImageDto> getImgDetail(Integer product_number) {
-        return mainDao.selectImgDetail(product_number);
+    public SpecialPriceDto getDiscount(Integer product_number){
+        return mainDao.selectDiscount(product_number);
     }
 
-    public List<CateSizeDto> showSize(Integer product_number) {
-        return mainDao.selectSize(product_number);
-    }
+
+
 
 
 
