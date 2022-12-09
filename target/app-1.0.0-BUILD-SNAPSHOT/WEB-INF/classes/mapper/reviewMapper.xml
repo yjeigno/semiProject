@@ -81,7 +81,7 @@
         JOIN member m on r.member_number = m.member_number
         WHERE p.product_number = #{product_number} and review_image !='-1'
         ORDER BY review_register_date desc
-        LIMIT #{offset},#{pageSize}
+        LIMIT #{offset},#{page_size}
     </select>
 <!--    상품에 맞는 이미지가 없는 리뷰 8개 구하기-->
     <select id="selectReviewTxtPage" parameterType="map" resultType="ReviewDto">
@@ -101,7 +101,7 @@
         JOIN member m on r.member_number = m.member_number
         WHERE p.product_number = #{product_number} and review_image ='-1'
         ORDER BY review_register_date desc
-        LIMIT #{offset},#{pageSize}
+        LIMIT #{offset},#{page_size}
     </select>
 
 </mapper>
