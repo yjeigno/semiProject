@@ -1,0 +1,195 @@
+.contents_box { border: 0; padding: 0; }
+
+.address_book {
+    height: 900px;
+    margin: 50px 0 ;
+}
+.address_managing_tab {
+    display: flex;
+}
+.adrs_tab {
+    width: 50%;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 15px;
+    border: 1px solid #bbb;
+    border-bottom: 2px solid #999;
+    border-top-right-radius: 30px;
+}
+.adrs_tab > p {
+    margin: 0;
+    padding: 20px;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+.tab_selected {
+    border: 2px solid #999;
+    border-bottom: 0;
+}
+.tab_selected > p {
+    border-bottom: 2px solid #999;
+    z-index: 2;
+}
+.address_manager {
+    width: 100%;
+    height: 85%;
+    border: 2px solid #999;
+    border-top: 0;
+    box-sizing: border-box;
+}
+.address_tag{
+    /* font-size: 20px; 
+    margin: 0px 25px;
+    position: relative;
+    top: 50px; */
+
+    width: 90%;
+    font-size: 20px;
+    margin: 0px 50px;
+    position: relative;
+    bottom: 85%;
+    right: 5px;
+}
+
+.address_tag_D{
+    float: right;
+    width: 65px;
+    height: 30px;
+    background-color: white;
+    color: red;
+    font-weight: 600;
+    border-color: red;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+.address_tag_R{
+    float: right;
+    margin: 0 23px;
+    width: 65px;
+    height: 30px;
+    background-color: white;
+    color: blue;
+    font-weight: 600;
+    border-color: blue;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.address_list{
+    position: relative;
+    bottom: 80%;
+    margin: 0px -50px;
+    z-index: -99999;
+}
+
+.list_box1{
+    width: 600px;
+    height: 195px;
+    position: relative;
+    left: 200px;
+    font-size: 30px;
+    box-shadow: -1px 1px 5px 0px;
+    border-bottom: solid 2px;
+}
+
+.list_box2{
+    padding: 20px 0;
+}
+
+#address_list_txt{
+    margin: 0 10px;
+}
+
+.address_basic{
+    position: relative;
+    bottom: 60%;
+    margin: 50px 0 0 65%;
+    font-size: 18px;
+}
+
+.address_bot{
+    margin: 60px -10px;
+    color: #9f9f9f;
+}
+
+
+.address_In{
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+
+
+}
+
+.address_txt{
+    margin: 0px 70px;
+    padding: 25px 10px;
+    font-size: 40px;
+    border-bottom: 2px solid #999;
+}
+.address_chk{
+    width: 100px;
+    height: 39px;
+    margin: 40px 400px;
+    color: white;
+    background: #3c3434;
+    border-radius: 7px;
+    font-size: 17px;
+    cursor: pointer;
+
+}
+
+.address_txt_box1{
+    width: 58%;
+    height: 50px;
+    border-radius: 6px;
+    border: 1px solid #999;
+    margin: 0px 30px;
+    padding: 0px 15px;
+    font-size: 16px;
+}
+
+.address_txt_box2{
+    width: 58%;
+    height: 50px;
+    border-radius: 6px;
+    border: 1px solid #999;
+    margin: 0px 17px;
+    padding: 0px 15px;
+    font-size: 16px;
+}
+
+
+.address_txt_box3{
+    width: 105px;
+    height: 60px;
+    border-radius: 6px;
+    border: 2px solid #999;
+    margin: 0px 30px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.address_txt_box4{
+    width: 74%;
+    height: 50px;
+    border-radius: 6px;
+    border: 1px solid #999;
+    margin: 0px 30px;
+    padding: 0px 20px;
+    font-size: 16px;
+}
+
+.address_txt_box5{
+    width: 74%;
+    height: 50px;
+    border-radius: 6px;
+    border: 1px solid #999;
+    margin: 0px 109px;
+    padding: 0px 20px;
+    font-size: 16px;
+}
