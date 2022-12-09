@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,53 +21,88 @@ public class DealController {
 
 
     @GetMapping("/deal")
-    public String deal(Integer page, Integer pageSize, Model m) {
+    public String deal(Integer page, Integer page_size, Model m) {
+        // 상품정보 가져오기
+        ProductDto productDto = dealService.getInfo(1);
+        m.addAttribute("pInfo", productDto);
+        // 상품 이미지랑 색상 가져오기
+        List<ImageColorDto> imageColorDto = dealService.showImgColor(1);
+        m.addAttribute("imgList", imageColorDto);
+        // 상품 사이즈 가져오기
+        List<CateSizeDto> sizeList = dealService.showSize(1);
+        m.addAttribute("sizeList", sizeList);
+        // 상품 리뷰 가져오기
+        List<ReviewDto> reviewList = dealService.getReview(1);
+        m.addAttribute("reviewList",reviewList);
+        // 상품 리뷰 평균 가져오기
+        Double review = dealService.getAvgReview(1);
+        m.addAttribute("avgReview",review);
+        // 상품 상세이미지 가져오기
+        List<ImageDto> imgDetailList = dealService.getImgDetail(1);
+        m.addAttribute("imgDetail",imgDetailList);
+        // 상품이 특가면 특가 할인율 가져오기
+        SpecialPriceDto specialPriceDto = dealService.getDiscount(1);
+        m.addAttribute("SpeDiscount", specialPriceDto);
 
-            ProductDto productDto = dealService.getInfo(1);
-            m.addAttribute("pInfo",productDto);
 
-            List<ImageColorDto> imageColorDto = dealService.showImgColor(1);
-            m.addAttribute("imgList",imageColorDto);
+        //pageNation
+        if (page == null) page = 1;
+        if (page_size == null) page_size = 8;
+        //리뷰의 총 게시물 개수 구하기 사진유무
+        int totalCount = dealService.getReviewCount(1);
+        int totalTxtCount = dealService.getReviewTxtCount(1);
+        int totalQnaCount = dealService.getQnaCount(1);
+        // 페이징 계산
+        PageHandler pageHandler = new PageHandler(totalCount, page, page_size);
+        PageHandler pageHandlerTxt = new PageHandler(totalTxtCount, page, page_size);
+        PageHandler pageHandlerQna = new PageHandler(totalQnaCount, page, page_size);
 
-            List<CateSizeDto> sizeList = dealService.showSize(1);
-            m.addAttribute("sizeList",sizeList);
+        Map map = new HashMap();
+        map.put("product_number", 1);
+        map.put("offset", (page - 1) * page_size);
+        map.put("page_size", page_size);
 
-            List<ReviewDto> reviewList = dealService.getReview(1);
-            m.addAttribute("reviewList",reviewList);
+        List<ReviewDto> reviewPageList = dealService.getReviewPage(map);
+        List<ReviewDto> reviewPageTxtList = dealService.getReviewTxtPage(map);
+        List<QnaDto> qnaList = dealService.getQna(map);
+//            System.out.println("qnaList : "+qnaList);
 
-            Double review = dealService.getAvgReview(1);
-            m.addAttribute("avgReview",review);
+        m.addAttribute("reviewPageList", reviewPageList);
+        m.addAttribute("reviewPageTxtList", reviewPageTxtList);
+        m.addAttribute("qnaList", qnaList);
 
-            List<ImageDto> imgDetailList = dealService.getImgDetail(1);
-            m.addAttribute("imgDetail",imgDetailList);
-
-            SpecialPriceDto specialPriceDto = dealService.getDiscount(1);
-            m.addAttribute("SpeDiscount",specialPriceDto);
+        m.addAttribute("pageHandler", pageHandler);
+        m.addAttribute("pageHandlerTxt", pageHandlerTxt);
+        m.addAttribute("phQna", pageHandlerQna);
 
 
-            //pageNation
-            if(page==null) page =1;
-            if(pageSize==null) pageSize=8;
-            //리뷰의 총 게시물 개수 구하기 사진유무
-            int totalCount = dealService.getReviewCount(1);
-            int totalTxtCount = dealService.getReviewTxtCount(1);
-            // 페이징 계산
-            PageHandler pageHandler = new PageHandler(totalCount,page,pageSize);
-            PageHandler pageHandlerTxt = new PageHandler(totalTxtCount,page,pageSize);
+//            if(page==null) page =1;
+//            if(page_size==null) page_size=10;
 
-            Map map = new HashMap();
-            map.put("product_number",1);
-            map.put("offset",(page-1)*pageSize);
-            map.put("pageSize",pageSize);
+//            int totalQnaCount = dealService.getQnaCount(1);
+//            PageHandler pageHandlerQna = new PageHandler(totalQnaCount,page,page_size);
+//            Map map2 = new HashMap();
+//            map2.put("product_number",1);
+//            map2.put("offset",(page-1)*page_size);
+//            map2.put("page_size",page_size);
+        return "/deal";
+    }
 
-            List<ReviewDto> reviewPageList = dealService.getReviewPage(map);
-            List<ReviewDto> reviewPageTxtList = dealService.getReviewTxtPage(map);
-            m.addAttribute("reviewPageList",reviewPageList);
-            m.addAttribute("reviewPageTxtList",reviewPageTxtList);
-            m.addAttribute("pageHandler",pageHandler);
-            m.addAttribute("pageHandlerTxt",pageHandlerTxt);
-            return "/deal";
+    //    @GetMapping("/purchase")
+//        public String purchase(Model m){
+//
+//            return "purchase";
+//    }
+    @PostMapping("/purchase")
+    public String purchaseInfo(Model m, HttpServletRequest request) {
 
+        m.addAttribute("optionTitle_list", request.getParameter("optionTitle_list").split(","));
+        m.addAttribute("size_name_list", request.getParameter("size_name_list").split(","));
+        m.addAttribute("color_name_list", request.getParameter("color_name_list").split(","));
+        m.addAttribute("pa_list", request.getParameter("pa_list").split(","));
+        m.addAttribute("price_list", request.getParameter("price_list").split(","));
+
+        return "purchase";
     }
 }
 

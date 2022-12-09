@@ -1,3 +1,5 @@
+let product_list_number = 0;
+
 $(document).ready(function(){
 
     // 탭버튼,top버튼 클릭시 해당섹션으로 이동
@@ -167,23 +169,29 @@ $(document).ready(function(){
     function make_opt_list(color_id,index_no) {
         $('.opt_selected').append(
             `<div class="sel_color_box ${color_id}">
-                <div class="opt_name">
-                    <div>${optTitle}</div>
-                    <div>${colorSizeText[index_no]} / ${colorNameText[index_no]}</div>
-                </div>
-                <div class="opt_qty">
-                    <input type="button" class="btn_qty txt_minus" value="-">
-                    <input type="text" class="txt_qty" value="1" readonly>
-                    <input type="button" class="btn_qty txt_plus" value="+">
-                    <div class="x_btn"><img src=${deleteBtn} alt="" class="btn_price_delete"></div>
-                    <input type="text" value="${$(this).index()}" title="해당 아이템 방번호" class="chk_item_order">
-                </div>
-                <div class="opt_price">
-                    <div>${sPrice.toLocaleString('ko')}원</div>
-                </div>
+<!--                <form action="/purchase" method="post">-->
+                    <div class="opt_name">                    
+                        <div id='optionTitle${[product_list_number]}'>${optTitle}</div>
+                        <div id='color${[product_list_number]}'>${colorSizeText[index_no]} / ${colorNameText[index_no]}</div>
+                    </div>
+                    <div class="opt_qty">
+                        <input type="button" class="btn_qty txt_minus" value="-">
+                        <input type="text" id="pa${product_list_number}" name="product_amount" class="txt_qty" value="1" readonly>
+                        <input type="button" class="btn_qty txt_plus" value="+">
+                        <div class="x_btn"><img src=${deleteBtn} alt="" class="btn_price_delete"></div>
+                        <input type="text" value="${$(this).index()}" title="${index_no}" class="chk_item_order">
+                    </div>
+                
+                    <div class="opt_price">
+                        <div>${sPrice.toLocaleString('ko')}원</div>
+                        <input type="hidden" value="${sPrice}" id="price${[product_list_number]}">
+                    </div>
+<!--                </form>-->
             </div>`
         );
-        console.log("hi : " + index_no);
+        //console.log("hi : " + index_no);
+        product_list_number ++;
+        console.log("product_list_number : " + product_list_number);
     }
     // 버튼 클릭하면 + - 되는 기능
     $(document).on('click','.btn_qty', function(){
@@ -230,4 +238,20 @@ $(document).ready(function(){
             $('.d_total_price').html(`<div>TOTAL: <span id="p_tot">0원</span> (0개)</div>`)
         }
     }
+    // 상품문의 슬라이드
+    $('.d_qna_faq_box').click(function(){
+        let faq_view = $(this).parent('.d_qna_top').next('.d_qna_faq_view').children('.d_qna_faq_view_qa')
+        if(faq_view.children('.d_qna_faq_q').css("display") == "block"){
+            $(this).children('.d_qna_faq').children('.d_qna_faq_tit').removeClass('on')
+            faq_view.children('.d_qna_faq_q').slideUp(400);
+            faq_view.children('.d_qna_faq_a').slideUp(400);
+        }
+        else{
+            $(this).children('.d_qna_faq').children('.d_qna_faq_tit').addClass('on')
+            faq_view.children('.d_qna_faq_q').slideDown(400);
+            faq_view.children('.d_qna_faq_a').slideDown(400);
+        }
+    })
+
+
 });

@@ -28,8 +28,10 @@
                             비밀번호를 한번 더 입력해주세요<br><br>
                             회원님의 정보를 안전하게 보호하기 위해<br> 비밀번호를 한번 더 확인합니다.
                         </p>
+                        <form id="pwForm">
                         <input type="password" name="member_pw" id="pw" placeholder="비밀번호를 입력해주세요.">
                         <div class="btn_confirm">비밀번호 확인</div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -39,17 +41,10 @@
 <script>
     $(function (){
         $('.btn_confirm').on('click', function (){
-            let pw = $('#pw').val();
-            let member = {
-                "member_pw":pw
-            };
-            $.ajax({
-                url:"/mypage/pwchecker",
-                type:"POST",
-                data:JSON.stringify(member),
-                contentType:"application/json",
-
-            })
+            event.preventDefault();
+            $('#pwForm').attr('method', "POST");
+            $('#pwForm').attr('action', "/mypage/pwchecker");
+            $('#pwForm').submit();
         })
     })
 </script>

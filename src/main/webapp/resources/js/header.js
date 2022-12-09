@@ -133,7 +133,6 @@ $(document).ready(function () {
 
 
   $(".search_btn").on("click", ()=> {
-    console.log("클릭감지");
     let frm = $('form[name="search"]');
     frm.attr('action', "/search?page=${page}&pageSize=${pageSize}&search=" + $('input[name="search"]').val().trim());
     frm.attr('method', 'get');
