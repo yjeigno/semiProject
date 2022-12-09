@@ -8,13 +8,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<link rel="stylesheet" href="./css/common.css">
-<link rel="stylesheet" href="./css/header(ver1.0.2).css">
-<link rel="stylesheet" href="./css/Interior.css">
+<link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/Interior.css'/> ">
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="./js/header(ver1.0.2).js"></script>
-<script src="./js/Interior.js"></script>
+<script src="<c:url value='/js/header.js'/> "></script>
+<script src="<c:url value='/js/Interior.js'/> "></script>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -46,9 +46,10 @@
                 </form>
             </div>
             <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="#"><div class="logo"><img src="img/headerImg/logo_black.png" alt=""></div></a>
+            <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/> " alt=""></div></a>
         </div>
-
+        <%--        src="img/headerImg/logo_black.png"--%>
+        <%--        href="<c:url value='img/headerImg/logo_black.png'/> "--%>
         <div class="header_bottom">
             <div class="content_area">
                 <ul class="bottom_nav_ul">
@@ -69,35 +70,35 @@
                     <li class="li_content">
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn1.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table & Dining</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn2.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Chair</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn3.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Sofa</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn4.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Desk</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn5.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">TV Stand & Storage</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn6.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Small Furniture</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn7.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Bed</li>
-                            <li class="ca_img"><img src="img/headerImg/Furn8.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/> "></li>
                         </ul>
                     </li>
 
