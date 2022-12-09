@@ -231,9 +231,7 @@
 
 
         <div class="circle_indicator">
-            <%--            <div class="circle circle_active"></div>--%>
-            <%--            <div class="circle"></div>--%>
-            <%--            <div class="circle"></div>--%>
+
         </div>
     </div>
 

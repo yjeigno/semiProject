@@ -13,6 +13,12 @@
     </insert>
 
 
+    <!-- 아이디 중복검사 -->
+    <select id="idCheck" resultType="int">
+
+        select count(*) from member where member_id = #{member_id}
+
+    </select>
 <!--    &lt;!&ndash;       register 회원 아이디 중복체크 하기&ndash;&gt;-->
 <!--    <select id="IdCheck" parameterType="MemberDto" resultType="String">-->
 <!--        SELECT COUNT(*)-->

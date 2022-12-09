@@ -105,12 +105,7 @@ $(document).ready(function (){
             return false;
 
 
-
-
         }
-
-
-
     });
 });
         $('#regi_id').on("propertyChange change keyup paste input",function (){

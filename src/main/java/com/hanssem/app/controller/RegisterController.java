@@ -47,31 +47,17 @@ public class RegisterController {
 
 
 //      아이디 중복체크
-//    @RequestMapping(value = "/register/IdCheck", method = RequestMethod.POST)
-//    public @ResponseBody String AjaxView(
-//            @RequestParam("member_id")String member_id){
-//        String str = "";
-//        Integer IdCheck = ???
-//        if(IdCheck == 1){
-//            str="N"; // 아이디 중복
-//
-//        }else {
-//            str="Y"; // 아이디 사용 가능
-//        }
-//        return str;
-//    }
+
+    @RequestMapping(value = "/register/IdCheck", method = RequestMethod.POST)
     @ResponseBody
-    @RequestMapping(value = "/registerIdCheck", method = RequestMethod.POST)
-    public int registerIdCheck(MemberDto memberDto){
-        int result = registerIdCheck(memberDto);
-        return result;
+    public String registerIdCheck(MemberDto memberDto) throws Exception {
+    int result = RegisterService.idCheck(memberDto);
+    if (result !=0){
+        return "fail";
+    }else {
+        return "success";
+    }
     }
 
 }
-//
-
-//    @RequestMapping(value = "/register", method = RequestMethod.POST)
-//    public String registerPost(MemberDto memberDto){
-//        logger.info
-//    }
 

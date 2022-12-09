@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 public class RegisterService {
 
     @Autowired
-    private RegisterDao registerDao;
+    private static RegisterDao registerDao;
 
     public int registerMember(MemberDto memberDto) throws Exception {
 
@@ -27,11 +27,10 @@ public class RegisterService {
     }
 
 //    아이디 중복체크
-//    public Map<String, Object> IdCheck(RegisterDao registerDao){
-//        Map<String, Object> resultMap = new HashMap<>();
-//        resultMap.put("member_id", MemberDto.IdCheck(registerDao));
-//        return resultMap;
-//    }
+
+    public static int idCheck(MemberDto memberDto) throws Exception{
+        return registerDao.selectMember(memberDto);
+    }
 
 
 }

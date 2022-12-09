@@ -61,5 +61,25 @@ public class RegisterDao {
                 e.printStackTrace();
             }
     }
+    public int selectMember(MemberDto memberDto) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try{                                  // 아이디
+            String sql = "select Into member(member_id) " +
+                    "values (?)";
+            conn = ds.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, memberDto.getMember_id());
+
+
+            return pstmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+            return 0;
+        }finally {
+            close(pstmt, conn);
+        }
+    }
 
 }
