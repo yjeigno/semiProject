@@ -58,12 +58,12 @@
                 //
                 $('#sizeColor').empty();
                 let JsonColorList = JSON.stringify(data);
-                console.log(JsonColorList);
+                // console.log("JsonColorList : " +JsonColorList);
                 let ParseColorList = JSON.parse(JsonColorList);
-                console.log(ParseColorList);
+                // console.log("ParseColorList : " +ParseColorList);
                 for (let i = 0; i < ParseColorList.length; i++) {
                     let colorInfo = ParseColorList[i];
-                    // console.log(colorInfo)
+                    // console.log("colorInfo : " +colorInfo)
                     if (colorInfo.colorCodeDto.color_code_code != 'noneColorCode') {
                         colorCodeText[i] = colorInfo.colorCodeDto.color_code_code;
                         colorSizeText[i] = colorInfo.sizeCodeDto.size_code_name;
@@ -118,13 +118,65 @@
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                console.log(data);
-                $('.d_qna_top').empty();
+                var str = '<tr class="d_qna_top d_q_t">'
+                    + '<td class="d_qna_top_list">문의유형</td>'
+                    + '<td class="d_qna_top_list">문의/답변</td>'
+                    + '<td class="d_qna_top_list">작성자</td>'
+                    + '<td class="d_qna_top_list">작성일</td>'
+                    + '</tr>' ;
+                // console.log(data);
+                $('.d_q_d').empty();
                 $('.d_qna_faq_view').empty();
-                // for(int i = 0 ; i < data.length; i++){
-                //     $('.d_qna_top').append()
-                // }
+                let JsonQnaList = JSON.stringify(data);
+                // console.log("JsonQnaList : " +JsonQnaList);
+                let ParseQnaList = JSON.parse(JsonQnaList);
+                // console.log("ParseQnaList : " +ParseQnaList);
+                // console.log("ParseQnaListlength : " +ParseQnaList.length)
+                function Unix_timestamp(t){
+                    var date = new Date(t*1000);
+                    var year = date.getFullYear();
+                    var month = "0" + (date.getMonth()+1);
+                    var day = "0" + date.getDate();
+                    var hour = "0" + date.getHours();
+                    var minute = "0" + date.getMinutes();
+                    var second = "0" + date.getSeconds();
+                    return year + "/" + month.substr(-2) + "/" + day.substr(-2) + " " + hour.substr(-2) + ":" + minute.substr(-2) + ":" + second.substr(-2);
+                }
+                for(let i = 0 ; i< ParseQnaList.length;i++){
+                    let QnaInfo = ParseQnaList[i]
+                    let memberId = QnaInfo.member_id;
+                    let qna_answer = QnaInfo.qna_answer;
+                    let qna_category = QnaInfo.qna_category;
+                    let qna_content = QnaInfo.qna_content;
+                    let qna_register_date = QnaInfo.qna_register_date;
+                    let qna_title = QnaInfo.qna_title;
+                    let qna_answer_status = QnaInfo.qna_answer_status;
+                    console.log(qna_register_date)
+                    let qnastatusIf = (qna_answer_status==1?'<div class="d_qna_tag_mark d_qna_tag_active">답변완료</div>':'<div class="d_qna_tag_mark">답변대기</div>')
+                    let qnaanswerIf = (qna_answer=="-1"?"답변 준비중입니다.":qna_answer)
+                    str += '<tr class="d_qna_top d_q_d">'
+                          +     '<td class="d_qna_top_list cell_type">'+qna_category+'</td>'
+                          +     '<td class="d_qna_top_list d_qna_faq_box cell_quest">'
+                          +     qnastatusIf
+                          +         '<div class="d_qna_faq">'
+                          +             '<div class="d_qna_faq_tit">'+ qna_title +'</div>'
+                          +             '<div class="d_qna_faq_que">'+qna_content+'</div>'
+                          +         '</div>'
+                          +     '</td>'
+                          +     '<td class="d_qna_top_list cell_writer">'+memberId+'</td>'
+                          +     '<td class="d_qna_top_list cell_date">'+Unix_timestamp(qna_register_date)+'</td>'
+                          + '</tr>'
+                          + '<tr class="d_qna_faq_view">'
+                          +     '<td colspan="4" class="d_qna_faq_view_qa">'
+                          +         '<div class="d_qna_faq_q">'+qna_content+'</div>'
+                          +         '<div class="d_qna_faq_a">'
+                          +             '<i></i>'
+                          +          qnaanswerIf + '</div>'
+                          +     '</td>'
+                          + '</tr>'
 
+                }
+                $('.d_qna_box').html(str);
             },
             error: function (err) {
                 console.log("");
@@ -132,6 +184,19 @@
                 console.log("");
             },
             complete: function (data, textStatus) {
+                $('.d_qna_faq_box').click(function(){
+                    let faq_view = $(this).parent('.d_qna_top').next('.d_qna_faq_view').children('.d_qna_faq_view_qa')
+                    if(faq_view.children('.d_qna_faq_q').css("display") == "block"){
+                        $(this).children('.d_qna_faq').children('.d_qna_faq_tit').removeClass('on')
+                        faq_view.children('.d_qna_faq_q').slideUp(400);
+                        faq_view.children('.d_qna_faq_a').slideUp(400);
+                    }
+                    else{
+                        $(this).children('.d_qna_faq').children('.d_qna_faq_tit').addClass('on')
+                        faq_view.children('.d_qna_faq_q').slideDown(400);
+                        faq_view.children('.d_qna_faq_a').slideDown(400);
+                    }
+                })
                 console.log("");
                 console.log("[requestPostBodyJson] : [complete] : " + textStatus);
                 console.log("");
@@ -546,7 +611,7 @@
                         <td class="d_qna_top_list">작성일</td>
                     </tr>
                     <c:forEach items="${qnaList}" var="qna">
-                    <tr class="d_qna_top">
+                    <tr class="d_qna_top d_q_d">
                         <td class="d_qna_top_list cell_type">${qna.qna_category}</td>
                         <td class="d_qna_top_list d_qna_faq_box cell_quest">
                             <c:if test="${qna.qna_answer_status==1}">
