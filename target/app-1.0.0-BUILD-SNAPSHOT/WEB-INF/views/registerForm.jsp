@@ -206,6 +206,7 @@
               <%--              아이디 입력--%>
               <input type="text" name="member_id" class="member_id" id="regi_id" value="" onkeyup="id_keyup(this)"onkeydown="id_keyup(this)" minlength="6" maxlength="12">
 
+<%--                <input type="button" type="button" id="regi_id_chk_btn" value="중복확인">--%>
                 <span class="min_txt id_input_re_1">사용 가능한 아이디입니다.</span>
                 <span class="min_txt id_input_re_2">이미 존재하는 아이디입니다.</span>
                 <span class="min_txt final_id_ck">아이디를 입력해주세요.</span>
@@ -227,7 +228,7 @@
           <tr class="regi_row_sec">
             <td class="regi_col1">비밀번호</td>
             <td class="regi_col2 colSpace">
-              <input type="password" name="member_pw" id="regi_pw"  minlength="6" value="" maxlength="12">
+              <input type="password" name="member_pw" id="member_pw"  minlength="6" value="" maxlength="12">
               <span class="min_txt final_pw_ck">비밀번호를 입력해주세요.</span>
               <br>
               <span class="min_txt">영문/숫자/특수기호를 포함해주세요.(6자~12자)</span>
@@ -237,7 +238,7 @@
           <tr class="regi_row_sec">
             <td class="regi_col1">비밀번호 확인</td>
             <td class="regi_col2 colSpace">
-              <input type="password" value="" maxlength="16" id="member_pw_check" name="member_pw_check">
+              <input type="password" value="" maxlength="16" id="member_pw_check">
               <span class="min_txt final_pwck_ck">비밀번호 확인을 입력해주세요.</span>
               <span class="min_txt pwck_input_re_1">비밀번호가 일치합니다.</span>
               <span class="min_txt pwck_input_re_2">비밀번호가 일치하지 않습니다.</span>
@@ -258,7 +259,7 @@
           <tr class="regi_row_sec">
             <td class="regi_col1">생년월일 / 성별</td>
             <td class="regi_col2 colSpace">
-              <input type="text" name="member_birth" id="birth_date" value="" maxlength="10" onkeyup="birth_keyup(this)">
+              <input type="text" name="member_birth" id="birth_date" value="" maxlength="8" onkeyup="birth_keyup(this)">
               <%--              성별--%>
               <input type ="radio" name="member_gender" id="member_gender_male" value=0 checked/>
               <input type="radio" name="member_gender" id="member_gender_female" value=1/>
@@ -276,14 +277,15 @@
             ////////////////////////생년월일 자동으로 하이픈///////////////////////
             // 특수문자 정규식 변수(공백 미포함)
             function birth_keyup(obj) {
+              //
+              // let birth_len = obj.value.length;
+              // if (Event.keyCode == 8) {
+              //   obj.value = obj.value.slice(0, birth_len)
+              //   return 0;
+              // } else if (birth_len == 4 || birth_len == 7) {
+              //   obj.value += '-';
+              // }
 
-              let birth_len = obj.value.length;
-              if (Event.keyCode == 8) {
-                obj.value = obj.value.slice(0, birth_len)
-                return 0;
-              } else if (birth_len == 4 || birth_len == 7) {
-                obj.value += '-';
-              }
               var replaceNotInt = /[ \{\}\[\]\/?.,;:|\)*~`!^\_+┼<>@\#$%&\'\"\\\(\=]/gi;
 
               if (replaceNotInt.test(obj.value)) {
@@ -306,7 +308,6 @@
             // 하이픈 자동 생성
             function mobile_keyup(obj){
               let mobile_len=obj.value.length;
-              console.log(mobile_len)
               if(Event.keyCode==8){
                 obj.value=obj.value.slice(0,mobile_len);
                 return 0;
@@ -328,12 +329,12 @@
               <input type="text" name="regi_mail_id" id="mail_id">
               <span>@</span>
               <input type="text" name="regi_mail_domain" id="mail_domain" disabled value="---------------------">
-              <select id="mail_list">
+              <select id="mail_list" name="regi_mail_domain">
                 <option value="cover"selected>이메일 목록</option>
                 <option value="self">직접입력</option>
-                <option value="naver">naver.com</option>
-                <option value="hanmail">hanmail.net</option>
-                <option value="gmail">gmail.com</option>
+                <option value="naver.com">naver.com</option>
+                <option value="hanmail.com">hanmail.net</option>
+                <option value="gmail.com">gmail.com</option>
               </select>
               <br>
               <span class="min_txt final_mail_ck">이메일을 입력해주세요.</span>
@@ -358,10 +359,10 @@
           <tr class="regi_row_sec">
             <td class="regi_col1">sms 수신동의</td>
             <td class="regi_col2 colSpace">
-              <input type ="radio" name="member_sns" id="sms_y" value=1 checked/>
+              <input type ="radio" name="member_sms" id="sms_y" value=1 checked/>
               <label for="sms_y" class="regi_sms_y">예, 이벤트 정보를 수신 하겠습니다.</label>
               <br>
-              <input type="radio" name="member_sns" id="sms_n" value=0/>
+              <input type="radio" name="member_sms" id="sms_n" value=0/>
               <label for="sms_n" class="regi_sms_n">아니오, 이벤트 정보를 수신하지 않겠습니다.</label>
             </td>
           </tr>
@@ -408,7 +409,7 @@
         </table>
           <br>
 
-        <button class="regi_btn" id="regi_btn" onclick="regi_btn()">가입하기</button>
+        <button type="submit" class="regi_btn" id="regi_btn">가입하기</button>
       </form>
 
     </div>

@@ -64,16 +64,25 @@ public class RegisterDao {
     public int selectMember(MemberDto memberDto) throws SQLException {
         Connection conn = null;
         PreparedStatement pstmt = null;
+        String memberId = memberDto.getMember_id();
 
         try{                                  // 아이디
-            String sql = "select Into member(member_id) " +
-                    "values (?)";
+            String sql = "select member_id from member where member_id = ?";
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, memberDto.getMember_id());
 
-
-            return pstmt.executeUpdate();
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()) {
+                String findMemberId = rs.getString(1);
+                System.out.println("find member: " + findMemberId);
+                if(findMemberId != "") {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+            return 0;
         }catch (SQLException e){
             e.printStackTrace();
             return 0;

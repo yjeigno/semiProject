@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URLEncoder;
+
 @Controller
 
 public class RegisterController {
@@ -17,15 +19,15 @@ public class RegisterController {
 
     @Autowired
     RegisterDao registerDao; //07일 입력함
+
     @InitBinder
-    public void initBinder(WebDataBinder binder){
+    public void initBinder(WebDataBinder binder) {
 
     }
 
 
-
     @RequestMapping("/register")
-    public String registerForm(){
+    public String registerForm() {
         return "registerForm";
     }
 
@@ -40,23 +42,20 @@ public class RegisterController {
     @PostMapping("/register/add")
     public String addMember(MemberDto memberDto) throws Exception {
         registerService.registerMember(memberDto);
-
-        return "redirect:/";
+        return "loginForm";
     }
-
 
 
 //      아이디 중복체크
 
-    @RequestMapping(value = "/register/IdCheck", method = RequestMethod.POST)
-    @ResponseBody
+    @PostMapping("/register/idChk")
     public String registerIdCheck(MemberDto memberDto) throws Exception {
-    int result = RegisterService.idCheck(memberDto);
-    if (result !=0){
-        return "fail";
-    }else {
-        return "success";
-    }
+        int result = registerService.idCheck(memberDto);
+        if (result == 0) {
+            return "fail";
+        } else {
+            return "success";
+        }
     }
 
 }

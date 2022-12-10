@@ -50,8 +50,6 @@ public class LoginController {
                         HttpServletRequest request,
                         HttpServletResponse response) throws Exception {
 
-        System.out.println(("입력 ID : " + memberLogin.getMember_id() + ", 입력 PW : "+ memberLogin.getMember_pw()));
-
         String id = memberLogin.getMember_id();
         String pw = memberLogin.getMember_pw();
 //        Boolean rememberId = memberLogin.isRememberId();
