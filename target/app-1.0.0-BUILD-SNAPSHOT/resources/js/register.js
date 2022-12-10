@@ -1,134 +1,152 @@
-$(document).ready(function(){
-////////////////////////아이디 중복체크///////////////////////
-    function regi_id_check(){
-        $.ajax({
-            URL : "/register/registerIdCheck",
-            type : "post",
-            dataType:"json",
-            data:{"member_id " : $("#regi_id").val()},
-            success : function(data){
-                if(data == 1){
-                    alert("중복된 아이디입니다.");
+//유효성 검사
+var code = "";
+var idCheck = false;            // 아이디
+var idckCheck = false;            // 아이디 중복 검사
+var pwCheck = false;            // 비번
+var pwckCheck = false;            // 비번 확인
+var pwckcorCheck = false;        // 비번 확인 일치 확인
+var nameCheck = false;            // 이름
+var numberCheck = false;          //연락처
+var mailCheck = false;            // 이메일
+var addressCheck = false;
+var birthCheck = false;
+var agreeCheck = false;
 
-                }else if(data == 0){
-                    $("#regi_id").attr("value","Y");
-                    alert("사용 가능한 아이디입니다.")
-                }
-            }
-        })
-    }
+$(document).ready(function () {
+    $(".regi_btn").click(function () {
 
-////////////////////////생년월일 자동으로 하이픈///////////////////////
-    function brith_auto(birthNum) {
-        birthNum = birthNum.replace(/[^0-9]/g, '');
-        var tmp = '';
-        if( birthNum.length < 4){
-            return birthNum;
+        var id = $('#regi_id').val();
+        var pw = $('#member_pw').val();
+        var pwchk = $('#member_pw_check').val();
+        var name = $('#member_name').val();
+        var birth = $('#birth_date').val();
+        var phone = $('#regi_phone').val();
+        var mail = $('#mail_id').val();
+        var addr = $('#regi_address_detail').val();
+        var agree = $('#agree_y').val();
 
-        }else if(birthNum.length < 6){
-            tmp += birthNum.substring(0,4);
-            tmp += "-";
-            tmp += birthNum.substring(4);
-        }else{
-            tmp += birthNum.substring(0,4);
-            tmp += "-";
-            tmp += birthNum.substring(4,2);
-            tmp += "-";
-            tmp += birthNum.substring(6);
-            return tmp;
+
+        if (id == "") {
+            $('.final_id_ck').css('display', 'inline');
+            idCheck = false;
+        } else {
+            $('.final_id_ck').css('display', 'none');
+            idCheck = true;
         }
-        return birthNum;
-
-    }
-    var regiBirth = document.getElementById('birth_date');
-// input 에 값이 입력되었을때를 위해 key up
-    regiBirth.onkeyup = function(event){
-        event = event || window.Event;
-        var _val = this.value.trim();
-        this.value = brith_auto(_val) ;
-    }
-
-
-    //////////////////연락처 자동으로 하이픈//////////////////////////
-    function phone_auto(phoneNum){
-        phoneNum = phoneNum.replace(/[^0-9]/g, '');
-        var tmp = '';
-        if( phoneNum.length < 4){
-            return phoneNum;
-
-        }else if(phoneNum.length < 7){
-            tmp += phoneNum.substring(0, 3);
-            tmp += '-';
-            tmp += phoneNum.substring(3);
-            return tmp;
-
-        }else if(phoneNum.length < 11){
-            tmp += phoneNum.substring(0, 3);
-            tmp += '-';
-            tmp += phoneNum.substring(3, 3);
-            tmp += '-';
-            tmp += phoneNum.substring(6);
-            return tmp;
-
-        }else{
-            tmp += phoneNum.substring(0, 3);
-            tmp += '-';
-            tmp += phoneNum.substring(3, 4);
-            tmp += '-';
-            tmp += phoneNum.substring(7);
-            return tmp;
+        //비번
+        if (pw == "") {
+            $('.final_pw_ck').css('display', 'inline');
+            pwCheck = false;
+        } else {
+            $('.final_pw_ck').css('display', 'none');
+            pwCheck = true;
         }
-        return phoneNum;
-    }
+        //    비번확인
+        if (pwchk == "") {
+            $('.final_pwck_ck').css('display', 'inline');
+            pwckCheck = false;
+        } else {
+            $('.final_pwck_ck').css('display', 'none');
+            pwckCheck = true;
+        }
+        //이름확인
+        if (name == "") {
+            $('.final_name_ck').css('display', 'inline');
+            nameCheck = false;
+        } else {
+            $('.final_name_ck').css('display', 'none');
+            nameCheck = true;
+        }
+        if (birth == "") {
+            $('.final_birth_ck').css('display', 'inline');
+            birthCheck = false;
+        } else {
+            birthCheck = true;
+        }
+        if (phone == "") {
+            $('.final_phone_ck').css('display', 'inline');
+            numberCheck = false;
+        } else {
+            $('.final_phone_ck').css('display', 'none');
+            numberCheck = true;
+        }
+        //이메일
+        if (mail == "") {
+            $('.final_mail_ck').css('display', 'inline');
+            mailCheck = false;
+        } else {
+            $('.final_mail_ck').css('display', 'none');
+            mailCheck = true;
+        }
+        /* 주소 유효성 검사 */
+        if (addr == "") {
+            $('.final_addr_ck').css('display', 'inline');
+            addressCheck = false;
+        } else {
+            $('.final_addr_ck').css('display', 'none');
+            addressCheck = true;
+        }
+        if (agree == "") {
+            $('.final_agree_ck').css('display', 'inline');
+            agreeCheck = false;
+        } else {
+            $('.final_agree_ck').css('display', 'none');
+            agreeCheck = true;
+        }
 
-    var regiPhone = document.getElementById('regi_phone');
-    // input 에 값이 입력되었을때를 위해 key up
-    regiPhone.onkeyup = function(event){
-        event = event || window.Event;
-        var _val = this.value.trim();
-        this.value = phone_auto(_val) ;
-    }
-
-    //////////////////////////////////////////////////////
-
-
-
-
-
-    // 이메일 관련 리스트 선택 기능
-    $('#mail_list').change(function(){
-        $("#mail_list option:selected").each(function () {
-
-            if($(this).val()== 'self'){ //직접입력
-                $("#mail_domain").val('');                        //값 초기화
-                $("#mail_domain").attr("disabled",false); //활성화
-            }else{ //직접입력이 아닐경우
-                $("#mail_domain").val($(this).text());      //선택값 입력
-                $("#mail_domain").attr("disabled",true); //비활성화
-            }
-        });
+        /* 최종 유효성 검사 */
+        if (idCheck && pwCheck && pwckCheck && pwckcorCheck && nameCheck && mailCheck && numberCheck && birthCheck && addressCheck && agreeCheck) {
+            $("#regi_form").submit();
+            $("#regi_form").attr("action", "register/add");
+        } else {
+            $("#regi_form").submit(alert("가입내용을 다시 확인해주세요."));
+            return false;
+        }
     });
 
+    // $("#regi_id_chk_btn").click(function () {
+    //     var memberId = $('#regi_id').val();
+    //     var data = {member_id: memberId}
+    //
+    //     $.ajax({
+    //         type: "post",
+    //         url: "/hanssem/register/idChk",
+    //         data: data,
+    //         success: function (result) {
+    //
+    //             if (result != 'fail') {
+    //                 $('.in_input_re_1').css("display", "inline");
+    //                 $('.in_input_re_2').css("display", "none");
+    //                 idCheck = true;
+    //             } else {
+    //                 $('.in_input_re_1').css("display", "none");
+    //                 $('.in_input_re_2').css("display", "inline");
+    //                 idCheck = false;
+    //             }
+    //         }
+    //     });
+    // });
 
-    /////////////////////////////////////////////////////
-    // 주소 검색 -보류*****************
-    function search_post_code(){
-        new daum.Postcode({
-            oncomplete: function(data){
-                //사용자 주소 변수 정의하는 명령어
-                var addr ='';
+    $('#member_pw_check').on("propertyChange change keyup paste input", function () {
+        var pw = $('#member_pw').val();
+        var pwck = $('#member_pw_check').val();
+        $('.final_pwck_ck').css('display', 'none');
 
-                //사용자가 선택한
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우(R)
-                    addr = data.roadAddress;
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    addr = data.jibunAddress;
-                }
+        if (pw == pwck) {
+            $('.pwck_input_re_1').css('display', 'inline');
+            $('.pwck_input_re_2').css('display', 'none');
+            pwckcorCheck = true;
+        } else {
+            $('.pwck_input_re_1').css('display', 'none');
+            $('.pwck_input_re_2').css('display', 'inline');
+            pwckcorCheck = false;
+        }
+    });
+});
 
-                $("#regi_general_address").val(addr);
-            }
-        }).open();
-    }
 
-})
+
+
+
+
     
