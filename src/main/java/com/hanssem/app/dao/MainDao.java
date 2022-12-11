@@ -24,7 +24,7 @@ public class MainDao {
 
 
     //전체 상품 불러오기
-    public List<ProductDto> select(){
+    public List<ProductDto> selectAll(){
         return session.selectList(productPath+"selectAll");
     }
 

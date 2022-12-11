@@ -27,9 +27,9 @@ public class MainController {
     public String main(Model model){
 
 //        상품정보
-        List<ProductDto> productDto = mainService.getInfo();
-        model.addAttribute("pInfo",productDto);
-
+        List<ProductDto> productDto = mainService.selectAll();
+        System.out.println("productList : "+ productDto);
+        model.addAttribute("productInfo",productDto);
 
 
         SpecialPriceDto specialPriceDto = mainService.getDiscount(1);
@@ -37,6 +37,7 @@ public class MainController {
 
         List<InteriorDto> interior_category = mainService.selectInterior(1);;
         model.addAttribute("list", interior_category);
+
         return "main";
     }
 

@@ -13,8 +13,8 @@ public class MainService {
     MainDao mainDao;
 
 
-    public List<ProductDto> getInfo() {
-        return mainDao.select();
+    public List<ProductDto> selectAll() {
+        return mainDao.selectAll();
     }
 
 
