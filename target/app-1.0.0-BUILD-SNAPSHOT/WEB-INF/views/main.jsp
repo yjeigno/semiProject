@@ -155,13 +155,13 @@
                 <div class="items_area">
                     <c:forEach items="${list}" var="li" begin="0" end="3">
                     <div class="item">
-                        <a href="<c:url value='/Interior_detail'/>">
+<%--                        <a href="<c:url value='/Interior_detail'/>">--%>
                         <div class="img_box"><img src=${li.interior_image_path} alt="" ></div>
                         <div class="item_txt">
                             <h4>${li.interior_name}</h4>
                             <h5>${li.interior_content}</h5>
                         </div>
-                        </a>
+<%--                        </a>--%>
                     </div>
                     </c:forEach>
                 </div>
