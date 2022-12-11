@@ -21,27 +21,27 @@ public class DealController {
 
 
     @GetMapping("/deal")
-    public String deal(Integer page, Integer page_size, Model m) {
+    public String deal(Integer product_number, Integer page, Integer page_size, Model m) {
         // 상품정보 가져오기
-        ProductDto productDto = dealService.getInfo(1);
+        ProductDto productDto = dealService.getInfo(product_number);
         m.addAttribute("pInfo", productDto);
         // 상품 이미지랑 색상 가져오기
-        List<ImageColorDto> imageColorDto = dealService.showImgColor(1);
+        List<ImageColorDto> imageColorDto = dealService.showImgColor(product_number);
         m.addAttribute("imgList", imageColorDto);
         // 상품 사이즈 가져오기
-        List<CateSizeDto> sizeList = dealService.showSize(1);
+        List<CateSizeDto> sizeList = dealService.showSize(product_number);
         m.addAttribute("sizeList", sizeList);
         // 상품 리뷰 가져오기
-        List<ReviewDto> reviewList = dealService.getReview(1);
+        List<ReviewDto> reviewList = dealService.getReview(product_number);
         m.addAttribute("reviewList",reviewList);
         // 상품 리뷰 평균 가져오기
-        Double review = dealService.getAvgReview(1);
+        Double review = dealService.getAvgReview(product_number);
         m.addAttribute("avgReview",review);
         // 상품 상세이미지 가져오기
-        List<ImageDto> imgDetailList = dealService.getImgDetail(1);
+        List<ImageDto> imgDetailList = dealService.getImgDetail(product_number);
         m.addAttribute("imgDetail",imgDetailList);
         // 상품이 특가면 특가 할인율 가져오기
-        SpecialPriceDto specialPriceDto = dealService.getDiscount(1);
+        SpecialPriceDto specialPriceDto = dealService.getDiscount(product_number);
         m.addAttribute("SpeDiscount", specialPriceDto);
 
 
@@ -49,9 +49,9 @@ public class DealController {
         if (page == null) page = 1;
         if (page_size == null) page_size = 8;
         //리뷰의 총 게시물 개수 구하기 사진유무
-        int totalCount = dealService.getReviewCount(1);
-        int totalTxtCount = dealService.getReviewTxtCount(1);
-        int totalQnaCount = dealService.getQnaCount(1);
+        int totalCount = dealService.getReviewCount(product_number);
+        int totalTxtCount = dealService.getReviewTxtCount(product_number);
+        int totalQnaCount = dealService.getQnaCount(product_number);
         // 페이징 계산
         PageHandler pageHandler = new PageHandler(totalCount, page, page_size);
         PageHandler pageHandlerTxt = new PageHandler(totalTxtCount, page, page_size);
