@@ -17,7 +17,7 @@ public class MainService {
         return mainDao.selectAll();
     }
 
-    public List<ImageDto> selectProductInfo(){
+    public List<MainDto> selectProductInfo(){
         return mainDao.selectProductInfo();
     }
 

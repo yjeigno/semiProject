@@ -109,13 +109,12 @@
 
         <div class="items_area">
 
-            <c:forEach items="${productInfo}" var="p" begin="0" end="3">
+            <c:forEach items="${newImgList}" var="p" begin="2" end="5">
             <div class="item">
-                <div class="img_box"><img src="<c:url value='${newImgList}'/></div>
-
-                <h4 >${p.product_name}</h4>
-                <h5>${p.product_content}</h5>
-                <h5>${p.product_price}</h5>
+                <div class="img_box"><img class="img_resize" width="280px" height="280px" src="<c:url value='${p.image_path}'/>"></div>
+                <h4 class ="p_txt">${p.product_name}</h4>
+                <h5 class ="p_txt">${p.product_content}</h5>
+                <h5 class ="p_txt">${p.product_price}</h5>
             </div>
             </c:forEach>
         </div>
@@ -132,12 +131,12 @@
             </div>
 
             <div class="items_area">
-                <c:forEach items="${productInfo}" var="p" begin="4" end="7">
+                <c:forEach items="${newImgList}" var="p" begin="6" end="9">
                     <div class="item">
-<%--                        <div class="img_box"><img src="<c:url value='${newImgList}'/></div>--%>
-                        <h4 >${p.product_name}</h4>
-                        <h5>${p.product_content}</h5>
-                        <h5>${p.product_price}</h5>
+                        <div class="img_box"><img class="img_resize" width="280px" height="280px" src="<c:url value='${p.image_path}'/>"></div>
+                        <h4 class ="p_txt">${p.product_name}</h4>
+                        <h5 class ="p_txt">${p.product_content}</h5>
+                        <h5 class ="p_txt">${p.product_price}</h5>
                     </div>
                 </c:forEach>
             </div>
@@ -153,15 +152,13 @@
                 </div>
 
                 <div class="items_area">
-                    <c:forEach items="${list}" var="b" begin="0" end="3">
+                    <c:forEach items="${list}" var="b" begin="1" end="4">
                     <div class="item">
-<%--                        <a href="<c:url value='/Interior_detail'/>">--%>
-                        <div class="img_box"><img src=${b.interior_image_path} alt="" ></div>
+                        <div class="img_box"><img class="img_resize" width="280px" height="280px" src=${b.interior_image_path} alt="" ></div>
                         <div class="item_txt">
-                            <h4>${b.interior_name}</h4>
-                            <h5>${b.interior_content}</h5>
+                            <h4 class ="p_txt">${b.interior_name}</h4>
+                            <h5 class ="p_txt">${b.interior_content}</h5>
                         </div>
-<%--                        </a>--%>
                     </div>
                     </c:forEach>
                 </div>

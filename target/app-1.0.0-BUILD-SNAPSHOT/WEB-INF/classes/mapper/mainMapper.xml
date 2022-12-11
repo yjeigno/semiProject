@@ -35,9 +35,9 @@
 <!--        SELECT * FROM product ORDER BY product_register_date desc, product_number desc-->
 <!--    </select>-->
 
-    <select id="selectProductInfo" resultType="mainDto">
+    <select id="selectProductInfo" resultType="MainDto">
         SELECT
-        product_number,
+        p.product_number,
         product_name,
         product_price,
         product_register_date,
@@ -48,8 +48,9 @@
 
         image_path
 
-        FROM product
-        LEFT JOIN image on product.product_number = image.product_number
+        FROM product p
+        LEFT JOIN image i on p.product_number = i.product_number
+        WHERE i.image_code_number = 1
     </select>
 
     <select id="selectInterior" parameterType="int" resultType="InteriorDto">
