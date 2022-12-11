@@ -250,10 +250,11 @@
 
             <div class="item">
                 <div class="img_box">
-                    <c:forEach items="${pInfoList}" var="pInfo">
+                    <c:forEach items="${imgList}" var="img">
                         <div class="new_img">
 
                             <img src="<c:url value='${img.imageDto.image_path}'/>">
+
                         </div>
                     </c:forEach>
                 </div>
@@ -262,7 +263,7 @@
                     <h5>${pInfo.product_content}</h5>
                     <h5><del>${pInfo.product_price}</del></h5>
                     <h4>${pInfo.product_status==2 && SpeDiscount.special_product_end_date>now()
-                            ?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price};</h4>
+                            ?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price}</h4>
                 </div>
             </div>
 
@@ -364,13 +365,17 @@
                 </div>
 
                 <div class="items_area">
+                    <c:forEach items="${list}" var="li">
                     <div class="item">
-                        <div class="img_box"><img src="./img/main/interior1.png" alt="" id="interior_img1" ></div>
+                        <a href="<c:url value='/Interior_detail'/>">
+                        <div class="img_box"><img src=${li.interior_image_path} alt="" ></div>
                         <div class="item_txt">
-                            <h4>SAMPLE</h4>
-                            <h5>24평형 인테리어</h5>
+                            <h4>${li.interior_name}</h4>
+                            <h5>${li.interior_content}</h5>
                         </div>
+                        </a>
                     </div>
+                    </c:forEach>
 
                     <div class="item">
                         <div class="img_box"><img src="./img/main/interior2.png" alt="" id="interior_img2" ></div>
