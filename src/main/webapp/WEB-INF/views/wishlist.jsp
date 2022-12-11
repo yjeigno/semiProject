@@ -23,13 +23,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
-    <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
     <link rel="stylesheet" href="<c:url value='/css/wishlist.css'/> ">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="<c:url value='/js/header.js'/>" charset="utf-8"></script>
     <script defer src="<c:url value='/js/wishlist.js'/>"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
-
 </head>
 <body>
 <input type="hidden" value="${memberId}" id="w_memberId" />

@@ -21,10 +21,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
-  <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
   <link rel="stylesheet" href="<c:url value='/css/special_price.css'/> ">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="<c:url value='/js/header.js'/>" charset="utf-8"></script>
   <script defer src="<c:url value='/js/special_price.js'/>"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
@@ -53,7 +51,7 @@
     </div>
 
     <div class="sprc_sec">
-      <div class="contents_area">
+      <div class="content_area">
         <div class="sprc_list">
             <c:forEach var="li" items="${list}" varStatus="status">
             <div class="sprc_item">
