@@ -35,8 +35,8 @@
     <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
     <%--console.log( ${pInfo.product_price*(SpeDiscount.special_product_discount / 100)}  );--%>
 
-    let logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
-    let logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
+    <%--let logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"--%>
+    <%--let logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"--%>
     let deleteBtn = "<c:url value='/img/dealImg/btn_price_delete.gif'/>"
     let optTitle = "${pInfo.product_name}";
     <%--var colorLength = ${imgList.size()}--%>
