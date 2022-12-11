@@ -31,12 +31,11 @@ public class MainController {
         model.addAttribute("productInfo",productDto);
 
 
-//        List<ProductDto> imageDto = mainService.selectImgAll();
-//        model.addAttribute("newImgList",imageDto);
-
-
-        SpecialPriceDto specialPriceDto = mainService.getDiscount(1);
-        model.addAttribute("SpeDiscount", specialPriceDto);
+        List<MainDto> imageDto = mainService.selectProductInfo();
+        model.addAttribute("newImgList",imageDto);
+        for(MainDto m : imageDto){
+            System.out.println(m);
+        }
 
         List<InteriorDto> interior_category = mainService.selectInterior(1);;
         model.addAttribute("list", interior_category);
