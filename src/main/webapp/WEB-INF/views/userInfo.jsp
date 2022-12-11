@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../css/header.css">
   <script src="../js/header.js"></script>
   <script src="<c:url value="../js/userInfo.js"><c:param name="dt" value="${nowDate}"/></c:url>"></script>
-  <link rel="stylesheet" type="text/css" href="<c:url value="../css/mypage.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
+  <link rel="stylesheet" type="text/css" href="<c:url value="../css/myPage.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
   <link rel="stylesheet" type="text/css" href="<c:url value="../css/userInfo.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
 </head>
 <body>

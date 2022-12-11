@@ -12,7 +12,7 @@
     <title>Hanssem</title>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <link rel="stylesheet" type="text/css" href="../css/common.css">
-  <link rel="stylesheet" type="text/css" href="<c:url value="../css/mypage.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
+  <link rel="stylesheet" type="text/css" href="<c:url value="../css/myPage.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
   <link rel="stylesheet" type="text/css" href="<c:url value="../css/withdraw.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
 </head>
 <body>
