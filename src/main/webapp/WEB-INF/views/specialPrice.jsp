@@ -56,14 +56,14 @@
             <c:forEach var="li" items="${list}" varStatus="status">
             <div class="sprc_item">
               <input type="hidden" class="h-sprc-end-date" value="${li.special_product_end_date}">
-              <a href="/deal/${li.productDto.product_number}">
+              <a href="/deal/?product_number=${li.productDto.product_number}">
                 <div class="sprc_img_box">
                   <img src="${li.imageDto.image_path}" class="sprc_img" class="sprc_img" alt="">
                 </div>
               </a>
               <div class="${li.wishFlag ? "sprc_wish_on" : "sprc_wish"}" id="dibs" target-data="<%=(String)session.getAttribute("member_id")%>,${li.productDto.product_number}"></div>
               <div class="sprc_timer"></div>
-              <a href="/deal/${li.productDto.product_number}">
+              <a href="/deal/?product_number=${li.productDto.product_number}">
                 <div class="sprc_info">
                   <div class="sprc_title">
                     <div class="sprc_item_name">${li.productDto.product_name}</div>
