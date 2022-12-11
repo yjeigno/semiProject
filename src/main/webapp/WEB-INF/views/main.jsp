@@ -104,42 +104,23 @@
             <div class="main_title">NEW ARRIVALS</div>
             <br>
             <h4 class="sub_title">한샘의 새로운 상품을 구경하세요.</h4>
-            <a href="#_new"><div class="more new">More</div></a>
+            <a href="/search.do?search=가구"><div class="more new">More</div></a>
         </div>
 
         <div class="items_area">
-            <c:forEach items="${productInfo}" var="p">
+
+            <c:forEach items="${productInfo}" var="p" begin="0" end="3">
             <div class="item">
-                <h4>${p.product_name}</h4>
+                <div class="img_box">${imgList}</div>
+                <h4 >${p.product_name}</h4>
                 <h5>${p.product_content}</h5>
                 <h5>${p.product_price}</h5>
             </div>
             </c:forEach>
 
-
-<%--            <div class="item">--%>
-<%--                <div class="img_box"><img src="./img/main/new3.png" alt="" id="new_img3" ></div>--%>
-<%--                <div class="item_txt">--%>
-<%--                    <h4>SAMPLE</h4>--%>
-<%--                    <h5>상품요약 설명</h5>--%>
-<%--                    <h5><del>000,000원</del></h5>--%>
-<%--                    <h4>000,000원</h4>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-
-<%--            <div class="item">--%>
-<%--                <div class="img_box"><img src="./img/main/new4.png" alt="" id="new_img4" ></div>--%>
-<%--                <div class="item_txt">--%>
-<%--                    <a href="#">--%>
-<%--                        <h4>SAMPLE</h4>--%>
-<%--                        <h5>상품요약 설명</h5>--%>
-<%--                        <h5><del>000,000원</del></h5>--%>
-<%--                        <h4>000,000원</h4>--%>
-<%--                    </a>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-
         </div>
+
+
 
 
         <div class="main_sec main_sec_best">
@@ -148,53 +129,20 @@
                 <br>
                 <h4 class="sub_title">한샘의 인기 상품을 구경하세요.</h4>
                 <a href="#_best"><div class="more best">More</div></a>
-
             </div>
 
             <div class="items_area">
-                <div class="item">
-                    <div class="img_box"><img src="./img/main/best1.png" alt="" id="best3_img1" ></div>
-                    <div class="item_txt">
-                        <h4>SAMPLE</h4>
-                        <h5>상품요약 설명</h5>
-                        <h5><del>000,000원</del></h5>
-                        <h4>000,000원</h4>
+                <c:forEach items="${productInfo}" var="p" begin="4" end="7">
+                    <div class="item">
+                        <div class="img_box">${imgList}</div>
+                        <h4 >${p.product_name}</h4>
+                        <h5>${p.product_content}</h5>
+                        <h5>${p.product_price}</h5>
                     </div>
-                </div>
-
-                <div class="item">
-                    <div class="img_box"><img src="./img/main/best2.png" alt="" id="best_img2" ></div>
-                    <div class="item_txt">
-                        <h4>SAMPLE</h4>
-                        <h5>상품요약 설명</h5>
-                        <h5><del>000,000원</del></h5>
-                        <h4>000,000원</h4>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="img_box"><img src="./img/main/best3.png" alt="" id="best_img3" ></div>
-                    <div class="item_txt">
-                        <h4>SAMPLE</h4>
-                        <h5>상품요약 설명</h5>
-                        <h5><del>000,000원</del></h5>
-                        <h4>000,000원</h4>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="img_box"><img src="./img/main/best4.png" alt="" id="best_img4" ></div>
-                    <div class="item_txt">
-                        <a href="#">
-                            <h4>SAMPLE</h4>
-                            <h5>상품요약 설명</h5>
-                            <h5><del>000,000원</del></h5>
-                            <h4>000,000원</h4>
-                        </a>
-                    </div>
-                </div>
-
+                </c:forEach>
             </div>
+
+
 
             <div class="main_sec">
                 <div class="sec_title">
@@ -205,7 +153,7 @@
                 </div>
 
                 <div class="items_area">
-                    <c:forEach items="${list}" var="li">
+                    <c:forEach items="${list}" var="li" begin="0" end="3">
                     <div class="item">
                         <a href="<c:url value='/Interior_detail'/>">
                         <div class="img_box"><img src=${li.interior_image_path} alt="" ></div>
@@ -216,35 +164,6 @@
                         </a>
                     </div>
                     </c:forEach>
-
-                    <div class="item">
-                        <div class="img_box"><img src="./img/main/interior2.png" alt="" id="interior_img2" ></div>
-                        <div class="item_txt">
-                            <h4>SAMPLE</h4>
-                            <h5>24평형 인테리어</h5>
-
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="img_box"><img src="./img/main/interior3.png" alt="" id="interior_img3" ></div>
-                        <div class="item_txt">
-                            <h4>SAMPLE</h4>
-                            <h5>24평형 인테리어</h5>
-
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="img_box"><img src="./img/main/interior4.png" alt="" id="interior_img4" ></div>
-                        <div class="item_txt">
-                            <a href="#">
-                                <h4>SAMPLE</h4>
-                                <h5>24평형 인테리어</h5>
-                            </a>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
