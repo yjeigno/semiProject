@@ -14,20 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인페이지</title>
     <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/>"></script>
-<%--    <script src="<c:url value='/js/header.js'/>"></script>--%>
     <script src="<c:url value='/js/main.js'/>"></script>
     <script src="<c:url value='/js/main_cart.js'/>"></script>
-<%--    <link rel="stylesheet" href="<c:url value='/css/common.css'/>">--%>
     <link rel="stylesheet" href="<c:url value='/css/main.css'/>">
-<%--    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">--%>
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/header.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="js/header.js"></script>
-    <script>
-        let logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
-        let logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
-    </script>
+    <link rel="stylesheet" href="<c:url value='/css/common.css'/>">
 </head>
 <body>
 <div id="wrap">
@@ -109,10 +99,6 @@
 
         </div>
     </div>
-
-
-
-
     <div class="main_sec main_sec_new">
         <div class="sec_title">
             <div class="main_title">NEW ARRIVALS</div>
@@ -122,57 +108,36 @@
         </div>
 
         <div class="items_area">
-
+            <c:forEach items="${productInfo}" var="p">
             <div class="item">
-                <div class="img_box">
-                    <c:forEach items="${imgList}" var="img">
-                        <div class="new_img">
-
-                            <img src="<c:url value='${img.imageDto.image_path}'/>">
-
-                        </div>
-                    </c:forEach>
-                </div>
-                <div class="item_txt">
-                    <h4>${pInfo.product_name}</h4>
-                    <h5>${pInfo.product_content}</h5>
-                    <h5><del>${pInfo.product_price}</del></h5>
-                    <h4>${pInfo.product_status==2 && SpeDiscount.special_product_end_date>now()
-                            ?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price}</h4>
-                </div>
+                <h4>${p.product_name}</h4>
+                <h5>${p.product_content}</h5>
+                <h5>${p.product_price}</h5>
             </div>
+            </c:forEach>
 
-            <div class="item">
-                <div class="img_box"><img src="./img/main/new2.png" alt="" id="new_img2" ></div>
-                <div class="item_txt">
-                    <h4>SAMPLE</h4>
-                    <h5>상품요약 설명</h5>
-                    <h5><del>000,000원</del></h5>
-                    <h4>000,000원</h4>
-                </div>
-            </div>
 
-            <div class="item">
-                <div class="img_box"><img src="./img/main/new3.png" alt="" id="new_img3" ></div>
-                <div class="item_txt">
-                    <h4>SAMPLE</h4>
-                    <h5>상품요약 설명</h5>
-                    <h5><del>000,000원</del></h5>
-                    <h4>000,000원</h4>
-                </div>
-            </div>
+<%--            <div class="item">--%>
+<%--                <div class="img_box"><img src="./img/main/new3.png" alt="" id="new_img3" ></div>--%>
+<%--                <div class="item_txt">--%>
+<%--                    <h4>SAMPLE</h4>--%>
+<%--                    <h5>상품요약 설명</h5>--%>
+<%--                    <h5><del>000,000원</del></h5>--%>
+<%--                    <h4>000,000원</h4>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
-            <div class="item">
-                <div class="img_box"><img src="./img/main/new4.png" alt="" id="new_img4" ></div>
-                <div class="item_txt">
-                    <a href="#">
-                        <h4>SAMPLE</h4>
-                        <h5>상품요약 설명</h5>
-                        <h5><del>000,000원</del></h5>
-                        <h4>000,000원</h4>
-                    </a>
-                </div>
-            </div>
+<%--            <div class="item">--%>
+<%--                <div class="img_box"><img src="./img/main/new4.png" alt="" id="new_img4" ></div>--%>
+<%--                <div class="item_txt">--%>
+<%--                    <a href="#">--%>
+<%--                        <h4>SAMPLE</h4>--%>
+<%--                        <h5>상품요약 설명</h5>--%>
+<%--                        <h5><del>000,000원</del></h5>--%>
+<%--                        <h4>000,000원</h4>--%>
+<%--                    </a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
         </div>
 
