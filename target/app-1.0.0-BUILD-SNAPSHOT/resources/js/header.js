@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
   //호버하면 카테고리 나오는 함수
   function ho_slide() {
@@ -54,7 +55,6 @@ $(document).ready(function () {
   // $('.header').mouseleave(function(){
   //     inversion('rgba(0,0,0,0.1)','img/logo_black.png','#000','3px solid #000')
   // })
-
   // 서치 아이콘 클릭하면 아래에 서치바 나오는 함수
   function cl_blockSearchBox() {
     $("#search_icon").click(function () {
@@ -130,11 +130,18 @@ $(document).ready(function () {
   ho_topNavRed();
   scr_fixed();
 
-
-
+  /** 검색버튼 검색바 기능*/
   $(".search_btn").on("click", ()=> {
+    if($('.search_bar').val().length<2||$('.search_bar').val().trim()==""||$('.search_bar').val()==null){
+        modal_popup.alert("검색어는 두 글자 이상이어야 합니다.");
+        $(".modal_close").on("click", function (){
+            modal_popup.close(this)
+        });
+        $('.search_bar').val("");
+        return;
+    };
     let frm = $('form[name="search"]');
-    frm.attr('action', "/search?page=${page}&pageSize=${pageSize}&search=" + $('input[name="search"]').val().trim());
+    frm.attr('action', "/search.do?search=" + $('input[name="search"]').val().trim());
     frm.attr('method', 'get');
     frm.submit();
   });
@@ -145,9 +152,61 @@ $(document).ready(function () {
     }
   });
   });
-
-
-
+/** 모달 */
+let modal_popup = {
+    timer:500,
+    confirm: function (txt, callback){
+        if(txt==null||txt.trim()==""){
+            console.warn("confirm msg is empty");
+            return;
+        } else if(callback ==null||typeof callback != 'function'){
+            console.warn("callback is null or not function");
+            return;
+        } else {
+            $(".type_confirm .btn_ok").on("click", function (){
+                $(this).unbind("click");
+                callback(true);
+                modal_popup.close(this);
+            });
+            this.open("type_confirm", txt);
+        }
+    },
+    alert: function (txt){
+        if(txt == null || txt.trim() == ""){
+            console.log("alert msg is empty");
+            return;
+        } else {
+            this.open("type_alert", txt);
+        }
+    },
+    open: function (type, txt) {
+        let popup = $("."+type);
+        popup.find(".menu_msg").html(txt);
+        $("body").append("<div class='dimLayer'></div>");
+        $(".dimLayer").css('height', $(document).height()).attr("target", type);
+        popup.fadeIn(this.timer);
+    },
+    close: function (target){
+        let modal = $(target).closest(".modal_section");
+        let dimLayer;
+        if(modal.hasClass("type_confirm")){
+            dimLayer = $(".dimLayer[target=type_confirm]");
+            $(".type_confirm .btn_ok").unbind("click");
+        } else if(modal.hasClass("type_alert")){
+            dimLayer = $(".dimLayer[target=type_alert]");
+        } else {
+            console.warn("close unknown target.");
+            return;
+        }
+        modal.fadeOut(this.timer);
+        setTimeout(function (){
+            dimLayer != null?dimLayer.remove():"";
+        }, this.timer);
+    }
+}
+    function modalClose(el){
+        modal_popup.close(el);
+    }
 // function searchPost() {
 //   // let src = $(".search_bar").val();
 //   // let form = document.createElement("form");
