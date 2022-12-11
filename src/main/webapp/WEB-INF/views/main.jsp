@@ -14,14 +14,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인페이지</title>
     <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/>"></script>
-    <script src="<c:url value='/js/header.js'/>"></script>
+<%--    <script src="<c:url value='/js/header.js'/>"></script>--%>
     <script src="<c:url value='/js/main.js'/>"></script>
     <script src="<c:url value='/js/main_cart.js'/>"></script>
-    <link rel="stylesheet" href="<c:url value='/css/common.css'/>">
+<%--    <link rel="stylesheet" href="<c:url value='/css/common.css'/>">--%>
     <link rel="stylesheet" href="<c:url value='/css/main.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
-
-
+<%--    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">--%>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/header.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="js/header.js"></script>
+    <script>
+        let logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
+        let logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
+    </script>
 </head>
 <body>
 <div id="wrap">
@@ -36,7 +42,7 @@
 
         <form class="basket_pan">
             <input type="hidden" name="cmd" value="order">
-            <!-- 장바구니 카테고리  -->
+<%--            <!-- 장바구니 카테고리  -->--%>
             <div class="basket_title">
                 <div class="row bkt_check">선택</div>
                 <div class="row bkt_img">이미지</div>
@@ -78,7 +84,7 @@
 
 
 
-    <!-- 팝업배너 -->
+<%--    <!-- 팝업배너 -->--%>
     <input type="checkbox" value="close" id="close">
     <div class="event_banner">
         <a href="specialPrice"><img src="./img/main/event_banner.png " alt="" id="event_img"></a>
@@ -86,138 +92,7 @@
     </div>
 
 
-    <header class="header">
-        <div class="content_area header_top">
-            <ul class="top_nav_ul">
-                <!-- 회원가입 페이지로 이동 -->
-                <c:choose>
-                    <c:when test="${memberId==null || memberId.equals('') }">
-                        <li><a href="<c:url value='/register'/>">JOIN</a></li>
-                    </c:when>
-                    <c:otherwise>
-                        <li>
-                                ${memberId} 님 환영합니다.
-                        </li>
-                    </c:otherwise>
-                </c:choose>
-                <!-- 로그인 페이지로 이동 -->
-                <li>
-                    <a href="<c:url value='${logInOutLink} '/>">${logInOutTxt}</a>
-                </li>
-
-                <!-- 위시리스트 내역 페이지로 이동 -->
-                <li><a href="#">WISHLIST</a></li>
-                <!-- 본인인증 후 / 마이페이지로 이동 -->
-                <li><a href="#">MYPAGE</a></li>
-                <li id="search_icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48">
-                        <path d="M31 28h-1.59l-.55-.55C30.82 25.18 32 22.23 32 19c0-7.18-5.82-13-13-13S6 11.82 6 19s5.82 13 13 13c3.23 0 6.18-1.18 8.45-3.13l.55.55V31l10 9.98L40.98 38 31 28zm-12 0c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z"/>
-                    </svg>
-                </li>
-            </ul>
-            <div class="search_box">
-                <form action="" method="post"name="search">
-                    <input class="search_bar" type="text" name="search" placeholder="검색어를 입력해주세요.">
-                    <input class="search_btn" type="button" value="검색">
-                </form>
-            </div>
-            <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/> " alt=""></div></a>
-        </div>
-
-        <div class="header_bottom">
-            <div class="content_area">
-                <ul class="bottom_nav_ul">
-                    <li class="box">Furniture</li>
-                    <li class="box">Lighting</li>
-                    <li class="box">Fabric</li>
-                    <!-- 홈데코 클릭시 인테리어 페이지 이동 -->
-                    <li><a href="">Home Deco</a></li>
-                    <!-- 특가페이지 이동 -->
-                    <li><a href="">Hot Deal</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="menu_box">
-            <div class="content_area o_f_hidden">
-                <ul class="ul_category_box">
-                    <li class="li_Title">Furniture</li>
-                    <li class="li_content">
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Table</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/>"></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Table & Dining</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/>"></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Chair</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/>"></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Sofa</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/>"></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Desk</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/>"></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">TV Stand & Storage</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/>"></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Small Furniture</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/>"></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Bed</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/>"></li>
-                        </ul>
-                    </li>
-
-                </ul>
-                <ul class="ul_category_box">
-                    <li class="li_Title">Lighting</li>
-                    <li>
-                        <ul class="li_content str">
-                            <li class="l_txt">pendant</li>
-                            <li class="l_txt">table</li>
-                            <li class="l_txt">floor lamp</li>
-                            <li class="l_txt">wall</li>
-                            <li class="l_txt">ceiling</li>
-                        </ul>
-                    </li>
-
-                </ul>
-                <ul class="ul_category_box">
-                    <li class="li_Title">Fabric</li>
-                    <li>
-                        <ul class="li_content str right">
-                            <li class="l_txt">Curtain</li>
-                            <li class="l_txt">Rug</li>
-                            <li class="l_txt">blind</li>
-                            <li class="l_txt">mat</li>
-                            <li></li>
-                        </ul>
-                    </li>
-
-                </ul>
-                <!-- <ul class="ul_category_box">
-                    <li class="li_Title">Home Deco</li>
-                    <li class="li_content"></li>
-
-                </ul>
-                <ul class="ul_category_box">
-                    <li class="li_Title">Hot Deal</li>
-                    <li class="li_content"></li>
-
-                </ul> -->
-            </div>
-        </div>
-    </header>
-    <div class="h_100"></div>
+    <jsp:include page="header.jsp" />
 
 
     <div class="main_banner">
@@ -250,10 +125,11 @@
 
             <div class="item">
                 <div class="img_box">
-                    <c:forEach items="${pInfoList}" var="pInfo">
+                    <c:forEach items="${imgList}" var="img">
                         <div class="new_img">
 
                             <img src="<c:url value='${img.imageDto.image_path}'/>">
+
                         </div>
                     </c:forEach>
                 </div>
@@ -262,7 +138,7 @@
                     <h5>${pInfo.product_content}</h5>
                     <h5><del>${pInfo.product_price}</del></h5>
                     <h4>${pInfo.product_status==2 && SpeDiscount.special_product_end_date>now()
-                            ?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price};</h4>
+                            ?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price}</h4>
                 </div>
             </div>
 
@@ -364,13 +240,17 @@
                 </div>
 
                 <div class="items_area">
+                    <c:forEach items="${list}" var="li">
                     <div class="item">
-                        <div class="img_box"><img src="./img/main/interior1.png" alt="" id="interior_img1" ></div>
+                        <a href="<c:url value='/Interior_detail'/>">
+                        <div class="img_box"><img src=${li.interior_image_path} alt="" ></div>
                         <div class="item_txt">
-                            <h4>SAMPLE</h4>
-                            <h5>24평형 인테리어</h5>
+                            <h4>${li.interior_name}</h4>
+                            <h5>${li.interior_content}</h5>
                         </div>
+                        </a>
                     </div>
+                    </c:forEach>
 
                     <div class="item">
                         <div class="img_box"><img src="./img/main/interior2.png" alt="" id="interior_img2" ></div>
