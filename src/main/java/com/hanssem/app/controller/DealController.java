@@ -58,7 +58,7 @@ public class DealController {
         PageHandler pageHandlerQna = new PageHandler(totalQnaCount, page, page_size);
 
         Map map = new HashMap();
-        map.put("product_number", 1);
+        map.put("product_number", product_number);
         map.put("offset", (page - 1) * page_size);
         map.put("page_size", page_size);
 
