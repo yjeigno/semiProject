@@ -29,9 +29,9 @@ public class MainDao {
 
 
     //전체 이미지 불러오기
-//    public List<ImageDto> selectProductInfo(){
-//        return session.selectList(imagePath+"selectAll");
-//    }
+    public List<ImageDto> selectProductInfo(){
+        return session.selectList(imagePath+"selectAll");
+    }
 
 
     // 특정 상품의 이미지 불러오기

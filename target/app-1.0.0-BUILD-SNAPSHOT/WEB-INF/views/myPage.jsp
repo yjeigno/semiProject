@@ -77,7 +77,7 @@
       location.href = "/Shipping";
     });
     $('#QnA > .btn_moveSection').on('click', function (){
-      location.href = "/inquiryContents";
+      location.href = "/inquiryContents/list";
     })
   })
 </script>

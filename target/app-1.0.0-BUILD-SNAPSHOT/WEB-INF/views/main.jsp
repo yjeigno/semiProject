@@ -111,7 +111,7 @@
 
             <c:forEach items="${productInfo}" var="p" begin="0" end="3">
             <div class="item">
-<%--                <div class="img_box"><img src="<c:url value='${newImgList}'/></div>--%>
+                <div class="img_box"><img src="<c:url value='${newImgList}'/></div>
 
                 <h4 >${p.product_name}</h4>
                 <h5>${p.product_content}</h5>
