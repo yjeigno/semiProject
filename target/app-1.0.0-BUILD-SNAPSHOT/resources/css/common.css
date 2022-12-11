@@ -22,3 +22,17 @@ h1,h2,h3,h4,h5 {
 
     /* background-color: hotpink; */
 }
+@font-face {
+    font-family: 'Montserrat';
+    src: local('fonts/Montserrat'),
+        url('fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+    font-family: "Noto Sans KR";
+    src: local('fonts/Noto Sans KR'),
+        url("fonts/Noto_Sans_KR/NotoSansKR-Black.otf") format('woff');
+}
+* {
+    font-family: "Montserrat";
+    font-family: "Noto Sans KR";
+}
