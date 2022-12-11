@@ -23,13 +23,17 @@ public class MainController {
     MainService mainService;
 
     // 기존꺼
-    @GetMapping("/main")
+    @GetMapping("/")
     public String main(Model model){
 
 //        상품정보
         List<ProductDto> productDto = mainService.selectAll();
-        System.out.println("productList : "+ productDto);
+        for (ProductDto pd: productDto
+             ) {
+            System.out.println("product:"+ pd);
+        }
         model.addAttribute("productInfo",productDto);
+
 
 
         SpecialPriceDto specialPriceDto = mainService.getDiscount(1);

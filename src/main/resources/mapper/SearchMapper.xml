@@ -47,6 +47,8 @@
             AND p.product_price <= #{maxPrice}
             ]]>
         </if>
+        GROUP BY p.product_number, i.image_path, r.review_rank, r.review_count, sales.product_sales,
+        sp.special_product_discount
         <include refid="sort" />
         LIMIT #{offset}, #{pageSize}
     </select>
@@ -74,8 +76,11 @@
 
     <!--    사이즈 목록 가져오기-->
     <select id="selectSizeList" parameterType="SearchCondition" resultType="com.hanssem.app.dto.SizeFilterDto">
-        SELECT DISTINCT psc.size_code_number, count(*) size_amount, p.category_code_number, sc.size_code_name
-        FROM product_size_color psc
+        SELECT distinct psc.size_code_number, count(psc.size_code_number) size_amount, p.category_code_number, sc.size_code_name FROM (SELECT psc.product_number, psc.size_code_number, count(*) size_amount, p.category_code_number, sc.size_code_name
+        FROM (SELECT product_number, size_code_number, count(*) FROM product_size_color GROUP BY product_number, size_code_number) psc
+        LEFT OUTER JOIN product p ON p.product_number = psc.product_number
+        LEFT OUTER JOIN size_code sc ON psc.size_code_number = sc.size_code_number
+        GROUP BY psc.product_number, psc.size_code_number, p.category_code_number) psc
         LEFT OUTER JOIN product p ON p.product_number = psc.product_number
         LEFT OUTER JOIN size_code sc ON psc.size_code_number = sc.size_code_number
         WHERE p.product_tag LIKE CONCAT('%', #{search}, '%')
@@ -155,7 +160,7 @@
     </sql>
     <sql id="size">
         <if test="size != null">
-            LEFT OUTER JOIN (SELECT product_number, size_code_number FROM product_size_color) psc
+            LEFT OUTER JOIN (SELECT product_number, size_code_number, count(*) FROM product_size_color GROUP BY product_number, size_code_number) psc
             ON psc.product_number = p.product_number
             LEFT OUTER JOIN size_code sc ON sc.size_code_number = psc.size_code_number
         </if>

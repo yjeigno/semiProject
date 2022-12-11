@@ -11,11 +11,13 @@
 <c:set var="logInOutLink" value="${sessionScope.member_id==null?'/login/login':'/login/logout' }"/>
 <c:set var="logInOutTxt" value="${sessionScope.member_id==null?'LOGIN':'LOGOUT'}"/>
 <c:set var="memberId" value="${sessionScope.member_id==null?'':sessionScope.member_id}" />
+<jsp:useBean id="today" class="java.util.Date" />
+<fmt:formatDate value="${today}" pattern="yyyyMMddHHmm" var="nowDate"/>
 <%--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--%>
 <%--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--%>
 <%--@@@@@@@@@@@@@@@@@@@임시파일임 지울예정@@@@@@@@@@@@@@@--%>
 <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
-<link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/header.css'><c:param name="dt" value="${nowDate}"/></c:url>">
 <link rel="stylesheet" href="<c:url value="/css/modal.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
 <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/> "></script>
 <script src="<c:url value='/js/header.js'/> "></script>
