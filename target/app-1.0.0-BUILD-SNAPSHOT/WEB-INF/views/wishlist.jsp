@@ -66,7 +66,7 @@
                             <%------------------------------ 일반 상품일 경우 --------------------------%>
                             <c:if test="${li.productDto.product_status eq 1}">
                                 <div class="wish_item" id="pr${li.productDto.product_number}">
-                                    <a href="/deal/?product_number=${li.productDto.product_number}">
+                                    <a href="/deal?product_number=${li.productDto.product_number}">
                                         <div class="wish_sec">
                                             <div class="wish_img_box">
                                                 <img src="${li.imageDto.image_path}" class="wish_img" alt="">
@@ -87,7 +87,7 @@
                             <%------------------------------ 특가 상품일 경우 --------------------------%>
                             <c:if test="${li.productDto.product_status eq 2}">
                                 <div class="wish_item" id="prs${li.productDto.product_number}">
-                                    <a href="/deal/?product_number=${li.productDto.product_number}">
+                                    <a href="/deal?product_number=${li.productDto.product_number}">
                                         <div class="wish_sec">
                                             <div class="wish_img_box">
                                                 <img src="${li.imageDto.image_path}" class="wish_img" alt="">
