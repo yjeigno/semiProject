@@ -97,7 +97,7 @@
 
                      <li class="Interior_case_box">
                       <div>${product_number} </div>
-                       <a href="">
+                       <a href="deal?product_number=1">
                       <img class="Interior_case_img" id="Interior_box1" src="img/Interior/interior_5(3).jpg"  alt="">
                        </a>
                      </li>
@@ -106,7 +106,7 @@
 
                    <li class="Interior_case_box">
                      <div>${product_number} </div>
-                     <a href="">
+                     <a href="deal?product_number=2">
                       <img class="Interior_case_img" id="Interior_box2" src="img/Interior/interior_5(4).jpg"  alt="">
                     </a>
 
@@ -116,7 +116,7 @@
 
                    <li class="Interior_case_box">
                      <div>${product_number} </div>
-                     <a href="">
+                     <a href="deal?product_number=3">
                       <img class="Interior_case_img" id="Interior_box3" src="img/Interior/interior_5(5).jpg" width="100%" alt="">
                     </a>
 
@@ -124,7 +124,7 @@
 
                   <li class="Interior_case_box" >
                     <div>${product_number} </div>
-                    <a href="">
+                    <a href="deal?product_number=4">
                       <img class="Interior_case_img" id="Interior_box4" src="img/Interior/interior_5(6).jpg" width="100%" alt="">
                     </a>
 
@@ -132,7 +132,7 @@
 
                   <li class="Interior_case_box">
                     <div>${product_number} </div>
-                    <a href="">
+                    <a href="deal?product_number=5">
                       <img class="Interior_case_img" id="Interior_box5" src="img/Interior/interior_5(7).jpg" width="100%" alt="">
                     </a>
 
