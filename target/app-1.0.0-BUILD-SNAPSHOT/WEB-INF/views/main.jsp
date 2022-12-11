@@ -112,7 +112,7 @@
             <c:forEach items="${productInfo}" var="p" begin="0" end="3">
             <div class="item">
                 <c:forEach items="${newImgList}" var="imgNew" begin="0" end="3">
-<%--                <div class="img_box"><img src="<c:url value='${imgNew.imageDto.image_path}'/></div>--%>
+                <div class="img_box"><img src="<c:url value='${imgNew.imageDto.image_path}'/></div>
                 </c:forEach>
                 <h4 >${p.product_name}</h4>
                 <h5>${p.product_content}</h5>
