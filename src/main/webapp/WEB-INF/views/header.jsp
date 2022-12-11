@@ -16,6 +16,7 @@
 <%--@@@@@@@@@@@@@@@@@@@임시파일임 지울예정@@@@@@@@@@@@@@@--%>
 <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
 <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
+<link rel="stylesheet" href="<c:url value="/css/modal.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
 <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/> "></script>
 <script src="<c:url value='/js/header.js'/> "></script>
 <script>
