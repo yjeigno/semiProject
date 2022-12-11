@@ -216,6 +216,28 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
+			<plugin>
+				<groupId>us.hebi.sass</groupId>
+				<artifactId>sass-cli-maven-plugin</artifactId>
+				<version>1.0.1</version>
+				<configuration>
+					<sassVersion>1.54.5</sassVersion>
+					<args> <!-- Any argument that should be forwarded to the sass cli -->
+						<arg>${project.basedir}/src/scss/input.scss:${project.basedir}/target/classes/output.css</arg>
+						<arg>${project.basedir}/src/scss/input2.scss:${project.basedir}/target/classes/output2.css</arg>
+						<arg>--no-source-map</arg>
+					</args>
+				</configuration>
+				<executions>
+					<execution>
+						<id>sass-exec</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
         </plugins>
     </build>
 </project>
