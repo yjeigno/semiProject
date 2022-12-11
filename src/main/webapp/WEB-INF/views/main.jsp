@@ -111,13 +111,14 @@
 
             <c:forEach items="${productInfo}" var="p" begin="0" end="3">
             <div class="item">
-                <div class="img_box">${imgList}</div>
+                <c:forEach items="${newImgList}" var="imgNew" begin="0" end="3">
+<%--                <div class="img_box"><img src="<c:url value='${imgNew.imageDto.image_path}'/></div>--%>
+                </c:forEach>
                 <h4 >${p.product_name}</h4>
                 <h5>${p.product_content}</h5>
                 <h5>${p.product_price}</h5>
             </div>
             </c:forEach>
-
         </div>
 
 
@@ -128,13 +129,13 @@
                 <div class="main_title">BEST PRODUCTS</div>
                 <br>
                 <h4 class="sub_title">한샘의 인기 상품을 구경하세요.</h4>
-                <a href="#_best"><div class="<c:url value='/search.do?search=가구'/>">More</div></a>
+                <a href="<c:url value='/search.do?search=가구'/>"><div class="more new">More</div></a>
             </div>
 
             <div class="items_area">
                 <c:forEach items="${productInfo}" var="p" begin="4" end="7">
                     <div class="item">
-                        <div class="img_box">${imgList}</div>
+                        <div class="img_box"><img src="<c:url value='${imgNew.imageDto.image_path}'/></div>
                         <h4 >${p.product_name}</h4>
                         <h5>${p.product_content}</h5>
                         <h5>${p.product_price}</h5>
@@ -153,13 +154,13 @@
                 </div>
 
                 <div class="items_area">
-                    <c:forEach items="${list}" var="li" begin="0" end="3">
+                    <c:forEach items="${list}" var="b" begin="0" end="3">
                     <div class="item">
 <%--                        <a href="<c:url value='/Interior_detail'/>">--%>
-                        <div class="img_box"><img src=${li.interior_image_path} alt="" ></div>
+                        <div class="img_box"><img src=${b.interior_image_path} alt="" ></div>
                         <div class="item_txt">
-                            <h4>${li.interior_name}</h4>
-                            <h5>${li.interior_content}</h5>
+                            <h4>${b.interior_name}</h4>
+                            <h5>${b.interior_content}</h5>
                         </div>
 <%--                        </a>--%>
                     </div>

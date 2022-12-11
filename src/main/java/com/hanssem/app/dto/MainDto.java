@@ -23,6 +23,8 @@ public class MainDto {
 
     private String product_tag;
 
+    private ImageDto imageDto;
+
 
 
     //      인테리어 상품전용
@@ -63,6 +65,14 @@ public class MainDto {
         this.interior_image_path = interior_image_path;
         this.interior_category_number = interior_category_number;
         this.interior_cash = interior_cash;
+    }
+
+    public ImageDto getImageDto() {
+        return imageDto;
+    }
+
+    public void setImageDto(ImageDto imageDto) {
+        this.imageDto = imageDto;
     }
 
     public Integer getProduct_number() {

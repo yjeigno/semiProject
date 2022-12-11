@@ -16,6 +16,9 @@ public class MainService {
     public List<ProductDto> selectAll() {
         return mainDao.selectAll();
     }
+    public List<ImageDto> selectImgAll(Integer product_number){
+        return mainDao.selectImgAll();
+    }
 
 
     public SpecialPriceDto getDiscount(Integer product_number){
