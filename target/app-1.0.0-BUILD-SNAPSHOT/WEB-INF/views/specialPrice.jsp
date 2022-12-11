@@ -72,7 +72,9 @@
                   </div>
                   <div class="sprc_item_prc">
                     <div class="sprc_item_cur">
-                    <c:set var="s_price" value="${li.productDto.product_price * (li.special_product_discount * 0.01)}" />
+                        <%--${li.productDto.product_status==2?li.productDto.product_price*(li.special_product_discount / 100):li.productDto.product_price}--%>
+                    <%--<c:set var="s_price" value="${li.productDto.product_price * (li.special_product_discount * 0.01)}" />--%>
+                    <c:set var="s_price" value="${li.productDto.product_status==2?li.productDto.product_price*(li.special_product_discount / 100):li.productDto.product_price}" />
                     <fmt:formatNumber value="${s_price}" type="number" />원
                     </div>
                     <span class="sprc_item_rate">${li.special_product_discount}<span>%</span></span>
