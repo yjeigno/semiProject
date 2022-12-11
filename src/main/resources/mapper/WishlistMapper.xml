@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hanssem.app.dao.WishlistMapper">
+
+    <resultMap id="WishlistDto" type="WishlistDto">
+        <result column="wishlist_number" property="wishlist_number"/>
+        <result column="wishlist_register_date" property="wishlist_register_date"/>
+        <result column="member_number" property="member_number"/>
+        <result column="product_number" property="product_number"/>
+        <collection property="productDto" resultMap="ProductDto"/>
+        <collection property="imageDto" resultMap="ImageDto"></collection>
+        <collection property="specialPriceDto" resultMap="SpecialPriceDto"></collection>
+    </resultMap>
+
+    <resultMap id="ProductDto" type="ProductDto">
+        <result column="product_number" property="product_number"/>
+        <result column="product_name" property="product_name"/>
+        <result column="product_price" property="product_price"/>
+        <result column="product_content" property="product_content"/>
+        <result column="product_register_date" property="product_register_date"/>
+        <result column="product_status" property="product_status"/>
+        <result column="product_class" property="product_class"/>
+        <result column="category_code_number" property="category_code_number"/>
+        <result column="product_tag" property="product_tag" />
+    </resultMap>
+
+    <resultMap id="ImageDto" type="ImageDto">
+        <result column="image_number" property="image_number"/>
+        <result column="image_path" property="image_path"/>
+        <result column="image_file_name" property="image_file_name"/>
+        <result column="image_rename_file_name" property="image_rename_file_name"/>
+        <result column="image_code_number" property="image_code_number"/>
+        <result column="image_register_date" property="image_register_date"/>
+        <result column="product_number" property="product_number"/>
+    </resultMap>
+
+    <resultMap id="SpecialPriceDto" type="SpecialPriceDto">
+        <result column="special_product_number" property="special_product_number" />
+        <result column="special_product_end_date" property="special_product_end_date"/>
+        <result column="special_product_discount" property="special_product_discount"/>
+        <result column="product_number" property="product_number"/>
+    </resultMap>
+
+    <select id="select" parameterType="WishlistDto" resultMap="WishlistDto">
+        SELECT
+            sp.special_product_discount,
+            sp.special_product_end_date,
+            p.*, w.*, im.*
+        FROM product p
+        inner join wishlist w
+        ON p.product_number = w.product_number
+        inner join image im
+        ON p.product_number = im.product_number
+        left join special_product sp
+        ON p.product_number = sp.product_number and p.product_status = 2
+        WHERE w.member_number = #{member_number}
+        <if test="product_number != null">
+            and   p.product_number = #{product_number}
+        </if>
+        and   p.product_number = im.product_number
+    </select>
+
+    <select id="selectWishlist" parameterType="WishlistDto" resultType="Integer">
+        SELECT COUNT(*)
+        FROM wishlist w
+        WHERE w.product_number = #{product_number}
+        AND w.member_number = #{member_number}
+    </select>
+
+    <insert id="insertWishlist" parameterType="WishlistDto">
+        INSERT INTO wishlist(member_number, product_number)
+        VALUES (#{member_number},  #{product_number})
+    </insert>
+
+    <delete id="deleteWishlist" parameterType="WishlistDto">
+        DELETE FROM wishlist w
+        WHERE w.product_number = #{product_number}
+        AND w.member_number = #{member_number}
+    </delete>
+
+    <delete id="partialDelete" parameterType="WishPartialDeleteDto">
+        DELETE FROM wishlist w
+        WHERE  w.member_number = #{memberNumber}
+        AND w.product_number IN
+        <foreach collection="productNumbers" item="productNumber" open="(" close=")" separator=",">
+            #{productNumber}
+        </foreach>
+    </delete>
+
+    <delete id="deleteAllWishlist" parameterType="int">
+        DELETE FROM wishlist w
+        WHERE w.member_number = #{memberNumber}
+    </delete>
+
+    <select id="getMemberNumber" parameterType="String" resultType="Integer">
+        SELECT member_number
+        FROM member
+        WHERE member_id = #{member_id}
+    </select>
+</mapper>

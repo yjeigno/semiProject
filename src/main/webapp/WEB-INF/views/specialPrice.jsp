@@ -1,5 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<c:set var="logInOutLink" value="${sessionScope.member_id==null?'/login/login':'/login/logout' }"/>
+<c:set var="logInOutTxt" value="${sessionScope.member_id==null?'LOGIN':'LOGOUT'}"/>
+<c:set var="memberId" value="${sessionScope.member_id==null?'':sessionScope.member_id}" />
 <%--
   Created by IntelliJ IDEA.
   User: 고예진
@@ -7,30 +12,43 @@
   Time: 오후 11:56
   To change this template use File | Settings | File Templates.
 --%>
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/header.css">
-<link rel="stylesheet" href="css/special_price.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="js/header.js"></script>
-<script src="js/special_price.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>hot deal</title>
+  <title>specialPrice</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
+  <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
+  <link rel="stylesheet" href="<c:url value='/css/special_price.css'/> ">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="<c:url value='/js/header.js'/>" charset="utf-8"></script>
+  <script defer src="<c:url value='/js/special_price.js'/>"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 <div id="wrap">
   <header class="header">
     <div class="content_area header_top">
       <ul class="top_nav_ul">
+        <c:choose>
+          <c:when test="${memberId==null || memberId.equals('') }">
+            <li><a href="<c:url value='/register'/>">JOIN</a></li>
+          </c:when>
+          <c:otherwise>
+            <li>
+                ${memberId} 님
+            </li>
+          </c:otherwise>
+        </c:choose>
         <!-- 로그인 페이지로 이동 -->
-        <li><a href="#">LOGIN</a></li>
-        <!-- 회원가입 페이지로 이동 -->
-        <li><a href="#">JOIN</a></li>
+        <li>
+          <a href="<c:url value='${logInOutLink} '/>">${logInOutTxt}</a>
+        </li>
         <!-- 위시리스트 내역 페이지로 이동 -->
-        <li><a href="#">WISHLIST</a></li>
+        <li><a href="/wishlist">WISHLIST</a></li>
         <!-- 본인인증 후 / 마이페이지로 이동 -->
         <li><a href="#">MYPAGE</a></li>
         <li id="search_icon">
@@ -46,17 +64,20 @@
         </form>
       </div>
       <!-- 로고 클릭시 메인페이지로 이동 -->
-      <a href="#"><div class="logo"><img src="img/logo_black.png" alt=""></div></a>
+      <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/> " alt=""></div></a>
     </div>
-
+    <%--        src="img/headerImg/logo_black.png"--%>
+    <%--        href="<c:url value='img/headerImg/logo_black.png'/> "--%>
     <div class="header_bottom">
       <div class="content_area">
         <ul class="bottom_nav_ul">
-          <li>Furniture</li>
-          <li>Lighting</li>
-          <li>Kitchen</li>
-          <li>Home Deco</li>
-          <li>Hot Deal</li>
+          <li class="box">Furniture</li>
+          <li class="box">Lighting</li>
+          <li class="box">Fabric</li>
+          <!-- 홈데코 클릭시 인테리어 페이지 이동 -->
+          <li><a href="">Home Deco</a></li>
+          <!-- 특가페이지 이동 -->
+          <li><a href="">Hot Deal</a></li>
         </ul>
       </div>
     </div>
@@ -66,73 +87,94 @@
           <li class="li_Title">Furniture</li>
           <li class="li_content">
             <ul class="ca_box" onclick="location.href='#';">
-              <li class="ca_txt">Boutique Furniture</li>
-              <li class="ca_img"><img src="img/Furn1.png"></li>
+              <li class="ca_txt">Table</li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Table & Dining</li>
-              <li class="ca_img"><img src="img/Furn2.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Chair</li>
-              <li class="ca_img"><img src="img/Furn3.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Sofa</li>
-              <li class="ca_img"><img src="img/Furn4.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
-              <li class="ca_txt">Global Furniture</li>
-              <li class="ca_img"><img src="img/Furn5.png"></li>
+              <li class="ca_txt">Desk</li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">TV Stand & Storage</li>
-              <li class="ca_img"><img src="img/Furn6.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Small Furniture</li>
-              <li class="ca_img"><img src="img/Furn7.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Bed</li>
-              <li class="ca_img"><img src="img/Furn8.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/> "></li>
             </ul>
           </li>
 
         </ul>
         <ul class="ul_category_box">
           <li class="li_Title">Lighting</li>
-          <li class="li_content"></li>
+          <li>
+            <ul class="li_content str">
+              <li class="l_txt">pendant</li>
+              <li class="l_txt">table</li>
+              <li class="l_txt">floor lamp</li>
+              <li class="l_txt">wall</li>
+              <li class="l_txt">ceiling</li>
+            </ul>
+          </li>
 
         </ul>
         <ul class="ul_category_box">
-          <li class="li_Title">Kitchen</li>
-          <li class="li_content"></li>
+          <li class="li_Title">Fabric</li>
+          <li>
+            <ul class="li_content str right">
+              <li class="l_txt">Curtain</li>
+              <li class="l_txt">Rug</li>
+              <li class="l_txt">blind</li>
+              <li class="l_txt">mat</li>
+              <li></li>
+            </ul>
+          </li>
+
+        </ul>
+        <!-- <ul class="ul_category_box">
+            <li class="li_Title">Home Deco</li>
+            <li class="li_content"></li>
 
         </ul>
         <ul class="ul_category_box">
-          <li class="li_Title">Home Deco</li>
-          <li class="li_content"></li>
+            <li class="li_Title">Hot Deal</li>
+            <li class="li_content"></li>
 
-        </ul>
-        <ul class="ul_category_box">
-          <li class="li_Title">Hot Deal</li>
-          <li class="li_content"></li>
-
-        </ul>
+        </ul> -->
       </div>
     </div>
   </header>
   <div class="h_100"></div>
+  <%--================================HEADER===========================================--%>
+  <%--=================================================================================--%>
+  <%--=================================================================================--%>
 
-  <input type="hidden" id="lc">
+  <%--=================================================================================--%>
+  <%--=================================================================================--%>
+  <%--=================================MAIN============================================--%>
 
   <div class="sprc_main content_area">
       <div class="sprc_nav">
-        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav1">쌤딜특가</a>
-        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav2">타임특가</a>
-        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav3">리빙특가</a>
-        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav4">마진특가</a>
+        <a href="#" class="sprc_tab_nav nav_on" id="sprc_tab_nav1"><span>타임특가</span></a>
+        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav2"><span>쌤딜특가</span></a>
+        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav3"><span>리빙특가</span></a>
+        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav4"><span>마진특가</span></a>
       </div>
     </div>
 
@@ -141,790 +183,45 @@
     </div>
 
     <div class="sprc_sec">
-      <div class="sprc_list contents_area">
-        <c:forEach var="li" items="${list}" varStatus="status">
-        <div class="sprc_item">
-          <a href="/deal">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
+      <div class="contents_area">
+        <div class="sprc_list">
+            <c:forEach var="li" items="${list}" varStatus="status">
+            <div class="sprc_item">
+              <input type="hidden" class="h-sprc-end-date" value="${li.special_product_end_date}">
+              <a href="/deal/${li.productDto.product_number}">
+                <div class="sprc_img_box">
+                  <img src="${li.imageDto.image_path}" class="sprc_img" class="sprc_img" alt="">
+                </div>
+              </a>
+              <div class="${li.wishFlag ? "sprc_wish_on" : "sprc_wish"}" id="dibs" target-data="<%=(String)session.getAttribute("member_id")%>,${li.productDto.product_number}"></div>
+              <div class="sprc_timer"></div>
+              <a href="/deal/${li.productDto.product_number}">
+                <div class="sprc_info">
+                  <div class="sprc_title">
+                    <div class="sprc_item_name">${li.productDto.product_name}</div>
+                    <div class="sprc_item_prd">${li.productDto.product_content}</div>
+                  </div>
+                  <div class="sprc_item_prc">
+                    <div class="sprc_item_cur">
+                    <c:set var="s_price" value="${li.productDto.product_price * (li.special_product_discount * 0.01)}" />
+                    <fmt:formatNumber value="${s_price}" type="number" />원
+                    </div>
+                    <span class="sprc_item_rate">${li.special_product_discount}<span>%</span></span>
+                    <div class="sprc_item_sale">${li.productDto.product_price}원</div>
+                  </div>
+                  <div class="sprc_item_user">
+                    <div class="user_score">
+                      <span class="num">${li.review_rank_average}</span>
+                    </div>
+                    <div class="user_review">
+                      <span class="num">${li.review_count}</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
             </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
+            </c:forEach>
           </div>
-          <a href="/deal">
-            <div class="sprc_item_name">${li.productDto.product_name}</div>
-            <div class="sprc_item_prd">${li.productDto.product_content}</div>
-         <div class="sprc_item_prc">
-            <div class="sprc_item_cur">
-              <c:set var="s_price" value="${li.productDto.product_price * (li.special_product_discount * 0.01)}" />
-              <fmt:formatNumber value="${s_price}" type="number" />
-            </div>
-            <div class="sprc_item_sale">${li.productDto.product_price}</div>
-            <span class="sprc_item_rate">${li.special_product_discount}<span>%</span></span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">${li.review_rank_average}</span>
-              </div>
-              <div class="user_review">
-                <span class="num">${li.review_count}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        </c:forEach>
-        <%--<div class="sprc_item">
-          <a href="/deal">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="/deal">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur2"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur2">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>--%>
-        <%--<div class="sprc_item">
-          <a href="/deal">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="/deal">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur3"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur3">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="/deal">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <!-- <span class="unit"></span> -->
-            </div>
-            <div class="time_obj" id="s_hours">
-              <!-- <span class="unit"></span> -->
-            </div>
-            <div class="time_obj" id="s_mins">
-              <!-- <span class="unit"></span> -->
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <!-- <span class="unit"></span> -->
-            </div>
-          </div>
-          <a href="/deal">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur4"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur4">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur5"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur5">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur6"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur6">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur7"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur7">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur8"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur8">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur9"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur9">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur10"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur10">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur11"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur11">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur12"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur12">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur13"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur13">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur14"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur14">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur15"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur15">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur16"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur16">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur17"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur17">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur18"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur18">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur19"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur19">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sprc_item">
-          <a href="#">
-            <div class="sprc_img_box">
-              <img src="./img/905865_A1.png" class="sprc_img" class="sprc_img" alt="">
-            </div>
-          </a>
-          <div class="sprc_wish"></div>
-          <div class="sprc_timer">
-            <div class="time_obj" id="s_days">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_hours">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_mins">
-              <span class="unit"></span>
-            </div>
-            <div class="time_obj" id="s_seconds">
-              <span class="unit"></span>
-            </div>
-          </div>
-          <a href="#">
-            <div class="sprc_item_name">헤이미쉬홈가구</div>
-            <div class="sprc_item_prd">모아나 아쿠아텍스 이지클린 패브릭 6인용 카우치 모듈 소파</div>
-          </a>
-          <div class="sprc_item_prc">
-            <div class="sprc_item_cur" id="sprc_item_cur20"></div>
-            <div class="sprc_item_sale" rate="50" cur_obj="sprc_item_cur20">1,009,000</div>
-            <span class="sprc_item_rate">50%</span>
-            <div class="sprc_item_user">
-              <div class="user_score">
-                <span class="num">4.7</span>
-              </div>
-              <div class="user_review">
-                <span class="num">28</span>
-              </div>
-            </div>
-          </div>--%>
         </div>
       </div>
     </div>
