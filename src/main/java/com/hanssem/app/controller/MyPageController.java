@@ -47,7 +47,7 @@ public class MyPageController {
         return "redirect:/mypage/mpMain";
     }
     @RequestMapping("/mpMain")
-    public String myPageMain(HttpServletRequest request){
+    public String myPageMain(HttpServletRequest request, HttpSession httpSession, Model m){
         if(!loginChk(request)){
             HttpSession session = request.getSession();
             session.setAttribute("toURL", request.getRequestURL());
@@ -57,6 +57,9 @@ public class MyPageController {
             Cookie[] cookies = request.getCookies();
             for(Cookie cookie:cookies){
                 if(cookie.getName().equals("pwChk")&&cookie.getValue().equals("pass")){
+                    MemberDto user = userManager.getUserInfo((String) httpSession.getAttribute("member_id"));
+                    m.addAttribute("user", user);
+
                     return "myPage";
                 }
             }

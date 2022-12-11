@@ -27,7 +27,7 @@
         <ul class="mypage_list">
           <li class="mypage_section" id="user_info">
             <img src="../img/etc/user.png" class="section_logo">
-            <h2 class="section_title">${userId} 님</h2>
+            <h2 class="section_title">${user.member_name} 님</h2>
             <p class="btn_moveSection">정보 수정</p>
           </li>
           <li class="mypage_section" id="adrs_book">
