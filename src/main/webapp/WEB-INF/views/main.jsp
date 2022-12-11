@@ -24,7 +24,10 @@
     <link rel="stylesheet" href="css/header.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="js/header.js"></script>
-
+    <script>
+        let logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
+        let logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
+    </script>
 </head>
 <body>
 <div id="wrap">
@@ -210,12 +213,10 @@
                 <!-- <ul class="ul_category_box">
                     <li class="li_Title">Home Deco</li>
                     <li class="li_content"></li>
-
                 </ul>
                 <ul class="ul_category_box">
                     <li class="li_Title">Hot Deal</li>
                     <li class="li_content"></li>
-
                 </ul> -->
             </div>
         </div>

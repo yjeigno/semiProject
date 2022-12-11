@@ -11,12 +11,12 @@
 <%--var ProductDto = '<c:out value='${productDto}' />';--%>
 
 <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
-<link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
+<%--<link rel="stylesheet" href="<c:url value='/css/header.css'/> ">--%>
 <link rel="stylesheet" href="<c:url value='/css/deal.css'/> ">
 <link rel="stylesheet" href="<c:url value='/css/dealReview.css'/> ">
 <%--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--%>
 <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/> "></script>
-<script src="<c:url value='/js/header.js'/> "></script>
+<%--<script src="<c:url value='/js/header.js'/> "></script>--%>
 <script src="<c:url value='/js/deal.js'/> "></script>
 <script src="<c:url value='/js/dealReview.js'/> "></script>
 
@@ -26,7 +26,6 @@
     let colorCodeText = [];
     let colorSizeText = [];
     let colorNameText = [];
-
     // 소비자가, 가격에 원 하고 , 표시
     let oPrice = ${pInfo.product_price};
     <%--여기에 ${pdto.product_price}--%>
@@ -34,13 +33,12 @@
     ?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price};
     <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
     <%--console.log( ${pInfo.product_price*(SpeDiscount.special_product_discount / 100)}  );--%>
-
-    let logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
-    let logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
+    <%--let logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"--%>
+    <%--let logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"--%>
     let deleteBtn = "<c:url value='/img/dealImg/btn_price_delete.gif'/>"
     let optTitle = "${pInfo.product_name}";
     <%--var colorLength = ${imgList.size()}--%>
-        // 사이즈 클릭하면 맞는 색상 나오게 하기..
+    // 사이즈 클릭하면 맞는 색상 나오게 하기..
     function ajaxColor(size_code_name, product_number) {
         let jsonData = {
             "size_code_name": size_code_name,
@@ -73,13 +71,10 @@
                         // console.log("1 : " + colorCodeText[i]);
                         // console.log("2 : " + colorNameText[i]);
                         // console.log("3 : " + colorSizeText[i]);
-
                         /*
                         *  받아온 값을 리스트로 담는다
                         *  클릭할때 리스트 번호로 불러온다
                         **/
-
-
                         $('#sizeColor').append(
                             "<div class='sc_btn cClick' id='" + colorId + "," + i +
                             "' style='background-color:" + colorCodeText[i] +
@@ -87,7 +82,6 @@
                             + "<input class='colorIndex" + i + "' type='hidden' value='" + i + "'>"
                         )
                         <%-- `  <div class='sc_btn cClick' id='${colorId}' style='background-color:${colorCodeText};'></div>`--%>
-
                     }
                 }
             },
@@ -103,7 +97,6 @@
             }
         })
     }
-
     function ajaxPagination(page, pageSize, product_number) {
         let jsonData = {
             "page" : page,
@@ -156,28 +149,26 @@
                     console.log(qna_register_date)
                     let qnastatusIf = (qna_answer_status==1?'<div class="d_qna_tag_mark d_qna_tag_active">답변완료</div>':'<div class="d_qna_tag_mark">답변대기</div>')
                     let qnaanswerIf = (qna_answer=="-1"?"답변 준비중입니다.":qna_answer)
-
                     str += '<tr class="d_qna_top d_q_d">'
-                          +     '<td class="d_qna_top_list cell_type">'+qna_category+'</td>'
-                          +     '<td class="d_qna_top_list d_qna_faq_box cell_quest">'
-                          +     qnastatusIf
-                          +         '<div class="d_qna_faq">'
-                          +             '<div class="d_qna_faq_tit">'+ qna_title +'</div>'
-                          +             '<div class="d_qna_faq_que">'+qna_content+'</div>'
-                          +         '</div>'
-                          +     '</td>'
-                          +     '<td class="d_qna_top_list cell_writer">'+memberId+'</td>'
-                          +     '<td class="d_qna_top_list cell_date">'+Unix_timestamp(qna_register_date)+'</td>'
-                          + '</tr>'
-                          + '<tr class="d_qna_faq_view">'
-                          +     '<td colspan="4" class="d_qna_faq_view_qa">'
-                          +         '<div class="d_qna_faq_q">'+qna_content+'</div>'
-                          +         '<div class="d_qna_faq_a">'
-                          +             '<i></i>'
-                          +          qnaanswerIf + '</div>'
-                          +     '</td>'
-                          + '</tr>'
-
+                        +     '<td class="d_qna_top_list cell_type">'+qna_category+'</td>'
+                        +     '<td class="d_qna_top_list d_qna_faq_box cell_quest">'
+                        +     qnastatusIf
+                        +         '<div class="d_qna_faq">'
+                        +             '<div class="d_qna_faq_tit">'+ qna_title +'</div>'
+                        +             '<div class="d_qna_faq_que">'+qna_content+'</div>'
+                        +         '</div>'
+                        +     '</td>'
+                        +     '<td class="d_qna_top_list cell_writer">'+memberId+'</td>'
+                        +     '<td class="d_qna_top_list cell_date">'+Unix_timestamp(qna_register_date)+'</td>'
+                        + '</tr>'
+                        + '<tr class="d_qna_faq_view">'
+                        +     '<td colspan="4" class="d_qna_faq_view_qa">'
+                        +         '<div class="d_qna_faq_q">'+qna_content+'</div>'
+                        +         '<div class="d_qna_faq_a">'
+                        +             '<i></i>'
+                        +          qnaanswerIf + '</div>'
+                        +     '</td>'
+                        + '</tr>'
                 }
                 $('.d_qna_box').html(str);
             },
@@ -206,17 +197,13 @@
             }
         })
     }
-
     function purchase() {
-
         let product_count = $('.opt_name').length;
         let optionTitle_list = [];
         let size_name_list = [];
         let color_name_list = [];
         let pa_list = [];
         let price_list = [];
-
-
         for (let i = 0; i < product_count; i++) {
             let optionTitle = "#optionTitle" + i;
             let color = "#color" + i;
@@ -228,9 +215,7 @@
             pa_list.push($(pa).val());
             price_list.push($(price).val());
         }
-
         console.log(typeof product_purchase_info_list);
-
         //create element (form)
         let newForm = $('<form></form>');
         //set attribute (form)
@@ -248,10 +233,7 @@
         newForm.appendTo('body');
         // submit form
         newForm.submit();
-
         product_list_number = 0;
-
-
     }
 </script>
 <head>
@@ -259,32 +241,32 @@
 </head>
 <body>
 <div id="wrap">
-<%--=================================================================================--%>
-<%--=================================================================================--%>
-<%--================================HEADER===========================================--%>
+    <%--=================================================================================--%>
+    <%--=================================================================================--%>
+    <%--================================HEADER===========================================--%>
     <jsp:include page="header.jsp" />
-<%--================================HEADER===========================================--%>
-<%--=================================================================================--%>
-<%--=================================================================================--%>
+    <%--================================HEADER===========================================--%>
+    <%--=================================================================================--%>
+    <%--=================================================================================--%>
 
-<%--=================================================================================--%>
-<%--=================================================================================--%>
-<%--=================================MAIN============================================--%>
+    <%--=================================================================================--%>
+    <%--=================================================================================--%>
+    <%--=================================MAIN============================================--%>
     <main class="main">
         <div class="content_area">
             <div class="d_sub_nav"></div>
             <div class="d_product">
                 <div class="d_img_box">
-                        <c:forEach items="${imgList}" var="img">
-                            <div class="d_img">
-                                <img src="<c:url value='${img.imageDto.image_path}'/>">
-                            </div>
-                        </c:forEach>
+                    <c:forEach items="${imgList}" var="img">
+                        <div class="d_img">
+                            <img src="<c:url value='${img.imageDto.image_path}'/>">
+                        </div>
+                    </c:forEach>
                     <div class="d_indicator">
                         <c:forEach items="${imgList}" var="color">
-                                    <%--  ${color.colorCodeDto.color_code_name} 이거를 색상코드화 한 칼럼이 필요 백그라운드에 넣기--%>
+                            <%--  ${color.colorCodeDto.color_code_name} 이거를 색상코드화 한 칼럼이 필요 백그라운드에 넣기--%>
                             <div class="d_indi_btn" style="background-color:${color.colorCodeDto.color_code_code}">
-<%--                                <c:out value="${color.colorCodeDto.color_code_name}"/>--%>
+                                    <%--                                <c:out value="${color.colorCodeDto.color_code_name}"/>--%>
                             </div>
                         </c:forEach>
                         <!-- 상품의 색상 값 만큼 생성  / 색상에 맞는 이미지 찾아서 이동-->
@@ -305,7 +287,7 @@
                         <tr>
                             <td class="d_sell_title">가격</td>
                             <td class="d_sell_contents" id="s_price"></td>
-                        <%-- 할인된 가격 Productdto.product_price/(100/special_poduct.special_product_discount) 추후에 추가--%>
+                            <%-- 할인된 가격 Productdto.product_price/(100/special_poduct.special_product_discount) 추후에 추가--%>
                         </tr>
                         <tr>
                             <td class="d_title">배송방법</td>
@@ -380,7 +362,7 @@
             </ul>
             <div class="h1000" id="sec1">
                 <c:forEach items="${imgDetail}" var="de">
-                <img src="<c:url value='${de.image_path}'/>" alt="">
+                    <img src="<c:url value='${de.image_path}'/>" alt="">
                 </c:forEach>
             </div>
             <div class="h1000" id="sec2" >
@@ -400,12 +382,12 @@
                     </div>
                     <div class="review_list list_photo">
                         <c:forEach items="${reviewPageList}" var="re">
-                        <div class="photo_review">
-                            <div class="id_Photo_txt">${re.memberDto.member_id}</div>
-                            <div class="photo_review_img"><img src="<c:url value='${re.review_image}'/>" alt=""></div>
-                            <div class="review_star">★ ★ ★ ★ ★</div><span class="review_date"><fmt:formatDate value="${re.review_register_date}" pattern="yyyy-MM-dd" type="date"/></span> <!-- 리뷰쓴 날짜 출력  -->
-                            <div class="photo_review_txt">${re.review_content}</div>
-                        </div>
+                            <div class="photo_review">
+                                <div class="id_Photo_txt">${re.memberDto.member_id}</div>
+                                <div class="photo_review_img"><img src="<c:url value='${re.review_image}'/>" alt=""></div>
+                                <div class="review_star">★ ★ ★ ★ ★</div><span class="review_date"><fmt:formatDate value="${re.review_register_date}" pattern="yyyy-MM-dd" type="date"/></span> <!-- 리뷰쓴 날짜 출력  -->
+                                <div class="photo_review_txt">${re.review_content}</div>
+                            </div>
                         </c:forEach>
                         <div class="d_pagination">
                             <c:if test="${pageHandler.showFirst}">
@@ -428,22 +410,22 @@
 
                     <div class="review_list list_text">
                         <c:forEach items="${reviewPageTxtList}" var="re">
-                        <div class="text_review">
-                            <div class="id_txt_txt">${re.memberDto.member_id}</div>
-                            <div class="star_date">
-                                <div class="review_text_star">★ ★ ★ ★ ★</div>
-                                <div><fmt:formatDate value="${re.review_register_date}" pattern="yyyy-MM-dd" type="date"/></div>
-                            </div>
-                            <div class="review_product_info">
-                                <div class="product_img"><img src="<c:url value='${imgList.get(1).imageDto.image_path}'/>" alt=""></div>
-                                <div>
-                                    <div class="review_product_name">${re.productDto.product_name}</div>
-                                    <div class="review_product_size_color">${re.review_size} / ${re.review_color}</div>
+                            <div class="text_review">
+                                <div class="id_txt_txt">${re.memberDto.member_id}</div>
+                                <div class="star_date">
+                                    <div class="review_text_star">★ ★ ★ ★ ★</div>
+                                    <div><fmt:formatDate value="${re.review_register_date}" pattern="yyyy-MM-dd" type="date"/></div>
                                 </div>
+                                <div class="review_product_info">
+                                    <div class="product_img"><img src="<c:url value='${imgList.get(1).imageDto.image_path}'/>" alt=""></div>
+                                    <div>
+                                        <div class="review_product_name">${re.productDto.product_name}</div>
+                                        <div class="review_product_size_color">${re.review_size} / ${re.review_color}</div>
+                                    </div>
 
+                                </div>
+                                <div class="review_text_content">${re.review_content}</div>
                             </div>
-                            <div class="review_text_content">${re.review_content}</div>
-                        </div>
                         </c:forEach>
                         <div class="d_pagination">
                             <c:if test="${pageHandlerTxt.showFirst}">
@@ -465,17 +447,17 @@
                         </div>
                     </div>
                 </div>
-<%--                <div class="pagination">--%>
-<%--                    <c:if test="${pageHandler.showPrev}">--%>
-<%--                        <a href="<c:url value='/deal?page=${pageHandler.beginPage-1}&pageSize=${pageHandler.pageSize}' />" class="beginPage">[이전]</a>--%>
-<%--                    </c:if>--%>
-<%--                    <c:forEach var="i" begin="${pageHandler.beginPage}" end="${pageHandler.endPage}">--%>
-<%--                        <a href="<c:url value='/deal?page=${i}&pageSize=${pageHandler.pageSize}' /> " class="page ${i==ph.page?"pageActive":""}"> ${i}</a>--%>
-<%--                    </c:forEach>--%>
-<%--                    <c:if test="${pageHandler.showNext}">--%>
-<%--                        <a href="<c:url value='/deal?page=${pageHandler.endPage+1}&pageSize=${pageHandler.pageSize}' />" class="endPage">[다음]</a>--%>
-<%--                    </c:if>--%>
-<%--                </div>--%>
+                <%--                <div class="pagination">--%>
+                <%--                    <c:if test="${pageHandler.showPrev}">--%>
+                <%--                        <a href="<c:url value='/deal?page=${pageHandler.beginPage-1}&pageSize=${pageHandler.pageSize}' />" class="beginPage">[이전]</a>--%>
+                <%--                    </c:if>--%>
+                <%--                    <c:forEach var="i" begin="${pageHandler.beginPage}" end="${pageHandler.endPage}">--%>
+                <%--                        <a href="<c:url value='/deal?page=${i}&pageSize=${pageHandler.pageSize}' /> " class="page ${i==ph.page?"pageActive":""}"> ${i}</a>--%>
+                <%--                    </c:forEach>--%>
+                <%--                    <c:if test="${pageHandler.showNext}">--%>
+                <%--                        <a href="<c:url value='/deal?page=${pageHandler.endPage+1}&pageSize=${pageHandler.pageSize}' />" class="endPage">[다음]</a>--%>
+                <%--                    </c:if>--%>
+                <%--                </div>--%>
             </div>
             <div class="h1000" id="sec3" >
                 <div class="d_qna_title">
@@ -494,25 +476,25 @@
                         <td class="d_qna_top_list">작성일</td>
                     </tr>
                     <c:forEach items="${qnaList}" var="qna">
-                    <tr class="d_qna_top d_q_d">
-                        <td class="d_qna_top_list cell_type">${qna.qna_category}</td>
-                        <td class="d_qna_top_list d_qna_faq_box cell_quest">
-                            <c:if test="${qna.qna_answer_status==1}">
-                                <div class="d_qna_tag_mark d_qna_tag_active">답변완료</div>
-                            </c:if>
-                            <c:if test="${qna.qna_answer_status==0}">
-                                <div class="d_qna_tag_mark">답변대기</div>
-                            </c:if>
-                            <div class="d_qna_faq">
-                                <div class="d_qna_faq_tit">${qna.qna_title}</div>
-                                <div class="d_qna_faq_que">${qna.qna_content}</div>
-                                <!-- <div class="d_qna_faq_ans">3일 걸립니다.</div> -->
-                            </div>
-                        </td>
-                        <td class="d_qna_top_list cell_writer">${qna.member_id}</td>
-                        <td class="d_qna_top_list cell_date"><fmt:formatDate value="${qna.qna_register_date}"
-                                                                             pattern="yyyy-MM-dd" type="date"/></td>
-                    </tr>
+                        <tr class="d_qna_top d_q_d">
+                            <td class="d_qna_top_list cell_type">${qna.qna_category}</td>
+                            <td class="d_qna_top_list d_qna_faq_box cell_quest">
+                                <c:if test="${qna.qna_answer_status==1}">
+                                    <div class="d_qna_tag_mark d_qna_tag_active">답변완료</div>
+                                </c:if>
+                                <c:if test="${qna.qna_answer_status==0}">
+                                    <div class="d_qna_tag_mark">답변대기</div>
+                                </c:if>
+                                <div class="d_qna_faq">
+                                    <div class="d_qna_faq_tit">${qna.qna_title}</div>
+                                    <div class="d_qna_faq_que">${qna.qna_content}</div>
+                                    <!-- <div class="d_qna_faq_ans">3일 걸립니다.</div> -->
+                                </div>
+                            </td>
+                            <td class="d_qna_top_list cell_writer">${qna.member_id}</td>
+                            <td class="d_qna_top_list cell_date"><fmt:formatDate value="${qna.qna_register_date}"
+                                                                                 pattern="yyyy-MM-dd" type="date"/></td>
+                        </tr>
                         <tr class="d_qna_faq_view">
                             <td colspan="4" class="d_qna_faq_view_qa">
                                 <div class="d_qna_faq_q">${qna.qna_content}</div>
