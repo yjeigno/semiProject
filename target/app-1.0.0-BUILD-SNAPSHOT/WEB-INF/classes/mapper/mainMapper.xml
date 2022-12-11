@@ -16,6 +16,16 @@
         <result column="product_tag" property="product_tag"/>
     </resultMap>
 
+    <resultMap id="ImageDto" type="ImageDto">
+        <result column="image_number" property="image_number"/>
+        <result column="image_path" property="image_path"/>
+        <result column="image_file_name" property="image_file_name"/>
+        <result column="image_rename_file_name" property="image_rename_file_name"/>
+        <result column="image_code_number" property="image_code_number"/>
+        <result column="image_register_date" property="image_register_date"/>
+        <result column="product_number" property="product_number"/>
+    </resultMap>
+
 
     <!--    상품 전체 가져오기 (정렬: 최근 게시물이 위로)    -->
     <select id="selectAll" resultType="ProductDto">

@@ -30,8 +30,8 @@ public class MainDao {
 
 
     //전체 이미지 불러오기
-    public List<ImageDto> selectImgAll(Integer product_number){
-        return session.selectList(imagePath+"selectAll",product_number);
+    public List<ImageDto> selectImgAll(){
+        return session.selectList(imagePath+"selectAll");
     }
 
 

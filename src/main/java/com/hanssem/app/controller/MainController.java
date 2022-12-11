@@ -28,12 +28,11 @@ public class MainController {
 
 //        상품정보
         List<ProductDto> productDto = mainService.selectAll();
-        for (ProductDto pd: productDto
-             ) {
-            System.out.println("product:"+ pd);
-        }
         model.addAttribute("productInfo",productDto);
 
+
+//        List<ProductDto> imageDto = mainService.selectImgAll();
+//        model.addAttribute("newImgList",imageDto);
 
 
         SpecialPriceDto specialPriceDto = mainService.getDiscount(1);
