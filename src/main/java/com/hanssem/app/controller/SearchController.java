@@ -1,20 +1,17 @@
 package com.hanssem.app.controller;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.hanssem.app.dto.*;
 import com.hanssem.app.service.SearchService;
 import com.hanssem.app.service.UserManageService;
-import com.mysql.cj.xdevapi.JsonArray;
-import com.mysql.cj.xdevapi.JsonValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,19 +84,15 @@ public class SearchController {
             }
             if(minPrice!=null||maxPrice!=null){
                 totalCount = searchService.getPriceAmount(sc);
-                System.out.println("totalcount : " + totalCount);
+
             }
             PageHandler ph = new PageHandler(totalCount, page, pageSize);
-            System.out.println(sc);
+
             sc.setOffset((page-1)*pageSize);
             sc.setPageSize(pageSize);
             sc.setSort(sort);
             Integer totalProduct = searchService.getSearchResultCount(sc);
             List<SearchResult> list = searchService.getSearchResultList(sc);
-            for (SearchResult sr:list
-                 ) {
-                System.out.println(sr);
-            }
 
             if(cateSize!=null){
                 m.addAttribute("cateSize", cateSize);
@@ -107,7 +100,7 @@ public class SearchController {
             }
             if(session.getAttribute("member_id")!=null){
                 String member_id = (String) session.getAttribute("member_id");
-//                String member_id = "akrclsek1";
+
                 MemberDto member = new MemberDto();
                 member.setMember_id(member_id);
                 Integer member_number = userManager.getUserNo(member_id);
@@ -133,7 +126,8 @@ public class SearchController {
     @RequestMapping(value = "/removeWish.do", method = {RequestMethod.POST})
     public @ResponseBody Long removeWish(@RequestBody WishProduct wishNum, HttpSession session){
         String member_id = (String) session.getAttribute("member_id");
-//        String member_id = "akrclsek1";
+        if(member_id == null||member_id.equals("null")||member_id.equals("")){return 1l;}
+
         Integer member_number = userManager.getUserNo(member_id);
         Integer product_number = wishNum.getProduct_number();
         Map map = new HashMap();
@@ -146,10 +140,12 @@ public class SearchController {
     @RequestMapping(value = "/addWish.do", method = {RequestMethod.POST})
     public @ResponseBody Long addWish(@RequestBody WishProduct wishNum, HttpSession session){
         String member_id = (String) session.getAttribute("member_id");
+        if(member_id == null||member_id.equals("null")||member_id.equals("")){return 1l;}
+
         Integer member_number = userManager.getUserNo(member_id);
-        System.out.println("member_number = " + member_number);
+
         Integer product_number = wishNum.getProduct_number();
-        System.out.println(wishNum);
+
         Map map = new HashMap();
         map.put("member_number", member_number);
         map.put("product_number", product_number);
