@@ -39,10 +39,10 @@
 
   <div class="sprc_main content_area">
       <div class="sprc_nav">
-        <a href="#" class="sprc_tab_nav nav_on" id="sprc_tab_nav1"><span>타임특가</span></a>
-        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav2"><span>쌤딜특가</span></a>
-        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav3"><span>리빙특가</span></a>
-        <a href="#" class="sprc_tab_nav" id="sprc_tab_nav4"><span>마진특가</span></a>
+        <a href="/specialPrice" class="sprc_tab_nav nav_on" id="sprc_tab_nav1"><span>타임특가</span></a>
+        <a href="/specialPrice" class="sprc_tab_nav" id="sprc_tab_nav2"><span>쌤딜특가</span></a>
+        <a href="/specialPrice" class="sprc_tab_nav" id="sprc_tab_nav3"><span>리빙특가</span></a>
+        <a href="/specialPrice" class="sprc_tab_nav" id="sprc_tab_nav4"><span>마진특가</span></a>
       </div>
     </div>
 
@@ -58,6 +58,7 @@
               <input type="hidden" class="h-sprc-end-date" value="${li.special_product_end_date}">
               <a href="/deal?product_number=${li.productDto.product_number}">
                 <div class="sprc_img_box">
+                  <%--<img src="${li.imageDto.image_path}" class="sprc_img" class="sprc_img" alt="">--%>
                   <img src="${li.imageDto.image_path}" class="sprc_img" class="sprc_img" alt="">
                 </div>
               </a>
