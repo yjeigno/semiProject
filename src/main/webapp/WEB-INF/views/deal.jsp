@@ -58,12 +58,12 @@
                 //
                 $('#sizeColor').empty();
                 let JsonColorList = JSON.stringify(data);
-                console.log(JsonColorList);
+                // console.log("JsonColorList : " +JsonColorList);
                 let ParseColorList = JSON.parse(JsonColorList);
-                console.log(ParseColorList);
+                // console.log("ParseColorList : " +ParseColorList);
                 for (let i = 0; i < ParseColorList.length; i++) {
                     let colorInfo = ParseColorList[i];
-                    // console.log(colorInfo)
+                    // console.log("colorInfo : " +colorInfo)
                     if (colorInfo.colorCodeDto.color_code_code != 'noneColorCode') {
                         colorCodeText[i] = colorInfo.colorCodeDto.color_code_code;
                         colorSizeText[i] = colorInfo.sizeCodeDto.size_code_name;
@@ -106,7 +106,7 @@
 
     function ajaxPagination(page, pageSize, product_number) {
         let jsonData = {
-            // "page" : page,
+            "page" : page,
             "page_size": pageSize,
             "product_number": product_number,
             "offset": (page - 1) * pageSize
@@ -118,13 +118,68 @@
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                console.log(data);
-                $('.d_qna_top').empty();
+                var str = '<tr class="d_qna_top d_q_t">'
+                    + '<td class="d_qna_top_list">문의유형</td>'
+                    + '<td class="d_qna_top_list">문의/답변</td>'
+                    + '<td class="d_qna_top_list">작성자</td>'
+                    + '<td class="d_qna_top_list">작성일</td>'
+                    + '</tr>' ;
+                var pagination = "";
+                // console.log(data);
+                $('.d_q_d').empty();
                 $('.d_qna_faq_view').empty();
-                // for(int i = 0 ; i < data.length; i++){
-                //     $('.d_qna_top').append()
-                // }
+                let JsonQnaList = JSON.stringify(data);
+                // console.log("JsonQnaList : " +JsonQnaList);
+                let ParseQnaList = JSON.parse(JsonQnaList);
+                // console.log("ParseQnaList : " +ParseQnaList);
+                // console.log("ParseQnaListlength : " +ParseQnaList.length)
+                function Unix_timestamp(t){
+                    var date = new Date(t);
+                    var year = date.getFullYear();
+                    var month = "0" + (date.getMonth()+1);
+                    var day = "0" + date.getDate();
+                    var hour = "0" + date.getHours();
+                    var minute = "0" + date.getMinutes();
+                    var second = "0" + date.getSeconds();
+                    return year + "-" + month.substr(-2) + "-" + day.substr(-2)  ;
+                    // " " + hour.substr(-2) + ":" + minute.substr(-2) + ":" + second.substr(-2)
+                }
+                for(let i = 0 ; i< ParseQnaList.length;i++){
+                    let QnaInfo = ParseQnaList[i]
+                    let memberId = QnaInfo.member_id;
+                    let qna_answer = QnaInfo.qna_answer;
+                    let qna_category = QnaInfo.qna_category;
+                    let qna_content = QnaInfo.qna_content;
+                    let qna_register_date = QnaInfo.qna_register_date;
+                    let qna_title = QnaInfo.qna_title;
+                    let qna_answer_status = QnaInfo.qna_answer_status;
+                    console.log(qna_register_date)
+                    let qnastatusIf = (qna_answer_status==1?'<div class="d_qna_tag_mark d_qna_tag_active">답변완료</div>':'<div class="d_qna_tag_mark">답변대기</div>')
+                    let qnaanswerIf = (qna_answer=="-1"?"답변 준비중입니다.":qna_answer)
 
+                    str += '<tr class="d_qna_top d_q_d">'
+                          +     '<td class="d_qna_top_list cell_type">'+qna_category+'</td>'
+                          +     '<td class="d_qna_top_list d_qna_faq_box cell_quest">'
+                          +     qnastatusIf
+                          +         '<div class="d_qna_faq">'
+                          +             '<div class="d_qna_faq_tit">'+ qna_title +'</div>'
+                          +             '<div class="d_qna_faq_que">'+qna_content+'</div>'
+                          +         '</div>'
+                          +     '</td>'
+                          +     '<td class="d_qna_top_list cell_writer">'+memberId+'</td>'
+                          +     '<td class="d_qna_top_list cell_date">'+Unix_timestamp(qna_register_date)+'</td>'
+                          + '</tr>'
+                          + '<tr class="d_qna_faq_view">'
+                          +     '<td colspan="4" class="d_qna_faq_view_qa">'
+                          +         '<div class="d_qna_faq_q">'+qna_content+'</div>'
+                          +         '<div class="d_qna_faq_a">'
+                          +             '<i></i>'
+                          +          qnaanswerIf + '</div>'
+                          +     '</td>'
+                          + '</tr>'
+
+                }
+                $('.d_qna_box').html(str);
             },
             error: function (err) {
                 console.log("");
@@ -132,6 +187,19 @@
                 console.log("");
             },
             complete: function (data, textStatus) {
+                $('.d_qna_faq_box').click(function(){
+                    let faq_view = $(this).parent('.d_qna_top').next('.d_qna_faq_view').children('.d_qna_faq_view_qa')
+                    if(faq_view.children('.d_qna_faq_q').css("display") == "block"){
+                        $(this).children('.d_qna_faq').children('.d_qna_faq_tit').removeClass('on')
+                        faq_view.children('.d_qna_faq_q').slideUp(400);
+                        faq_view.children('.d_qna_faq_a').slideUp(400);
+                    }
+                    else{
+                        $(this).children('.d_qna_faq').children('.d_qna_faq_tit').addClass('on')
+                        faq_view.children('.d_qna_faq_q').slideDown(400);
+                        faq_view.children('.d_qna_faq_a').slideDown(400);
+                    }
+                })
                 console.log("");
                 console.log("[requestPostBodyJson] : [complete] : " + textStatus);
                 console.log("");
@@ -194,127 +262,7 @@
 <%--=================================================================================--%>
 <%--=================================================================================--%>
 <%--================================HEADER===========================================--%>
-    <header class="header">
-        <div class="content_area header_top">
-            <ul class="top_nav_ul">
-                <!-- 회원가입 페이지로 이동 -->
-                <li><a href="#">JOIN</a></li>
-                <!-- 로그인 페이지로 이동 -->
-                <li><a href="#">LOGIN</a></li>
-                <!-- 위시리스트 내역 페이지로 이동 -->
-                <li><a href="#">WISHLIST</a></li>
-                <!-- 본인인증 후 / 마이페이지로 이동 -->
-                <li><a href="#">MYPAGE</a></li>
-                <li id="search_icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48">
-                        <path d="M31 28h-1.59l-.55-.55C30.82 25.18 32 22.23 32 19c0-7.18-5.82-13-13-13S6 11.82 6 19s5.82 13 13 13c3.23 0 6.18-1.18 8.45-3.13l.55.55V31l10 9.98L40.98 38 31 28zm-12 0c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z"/>
-                    </svg>
-                </li>
-            </ul>
-            <div class="search_box">
-                <form action="" method="post"name="search">
-                    <input class="search_bar" type="text" name="search" placeholder="검색어를 입력해주세요.">
-                    <input class="search_btn" type="button" value="검색">
-                </form>
-            </div>
-            <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/> " alt=""></div></a>
-        </div>
-<%--        src="img/headerImg/logo_black.png"--%>
-<%--        href="<c:url value='img/headerImg/logo_black.png'/> "--%>
-        <div class="header_bottom">
-            <div class="content_area">
-                <ul class="bottom_nav_ul">
-                    <li class="box">Furniture</li>
-                    <li class="box">Lighting</li>
-                    <li class="box">Fabric</li>
-                    <!-- 홈데코 클릭시 인테리어 페이지 이동 -->
-                    <li><a href="">Home Deco</a></li>
-                    <!-- 특가페이지 이동 -->
-                    <li><a href="">Hot Deal</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="menu_box">
-            <div class="content_area o_f_hidden">
-                <ul class="ul_category_box">
-                    <li class="li_Title">Furniture</li>
-                    <li class="li_content">
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Table</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/> "></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Table & Dining</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/> "></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Chair</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/> "></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Sofa</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/> "></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Desk</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/> "></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">TV Stand & Storage</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/> "></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Small Furniture</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/> "></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Bed</li>
-                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/> "></li>
-                        </ul>
-                    </li>
-
-                </ul>
-                <ul class="ul_category_box">
-                    <li class="li_Title">Lighting</li>
-                    <li>
-                        <ul class="li_content str">
-                            <li class="l_txt">pendant</li>
-                            <li class="l_txt">table</li>
-                            <li class="l_txt">floor lamp</li>
-                            <li class="l_txt">wall</li>
-                            <li class="l_txt">ceiling</li>
-                        </ul>
-                    </li>
-
-                </ul>
-                <ul class="ul_category_box">
-                    <li class="li_Title">Fabric</li>
-                    <li>
-                        <ul class="li_content str right">
-                            <li class="l_txt">Curtain</li>
-                            <li class="l_txt">Rug</li>
-                            <li class="l_txt">blind</li>
-                            <li class="l_txt">mat</li>
-                            <li></li>
-                        </ul>
-                    </li>
-
-                </ul>
-                <!-- <ul class="ul_category_box">
-                    <li class="li_Title">Home Deco</li>
-                    <li class="li_content"></li>
-
-                </ul>
-                <ul class="ul_category_box">
-                    <li class="li_Title">Hot Deal</li>
-                    <li class="li_content"></li>
-
-                </ul> -->
-            </div>
-        </div>
-    </header>
-    <div class="h_100"></div>
+    <jsp:include page="header.jsp" />
 <%--================================HEADER===========================================--%>
 <%--=================================================================================--%>
 <%--=================================================================================--%>
@@ -546,7 +494,7 @@
                         <td class="d_qna_top_list">작성일</td>
                     </tr>
                     <c:forEach items="${qnaList}" var="qna">
-                    <tr class="d_qna_top">
+                    <tr class="d_qna_top d_q_d">
                         <td class="d_qna_top_list cell_type">${qna.qna_category}</td>
                         <td class="d_qna_top_list d_qna_faq_box cell_quest">
                             <c:if test="${qna.qna_answer_status==1}">
