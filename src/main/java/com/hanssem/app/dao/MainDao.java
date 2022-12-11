@@ -24,9 +24,10 @@ public class MainDao {
 
 
     //전체 상품 불러오기
-    public List<ProductDto> select(Integer product_number){
-        return session.selectList(productPath+"selectAll",product_number);
+    public List<ProductDto> select(){
+        return session.selectList(productPath+"selectAll");
     }
+
 
     //전체 이미지 불러오기
     public List<ImageDto> selectImgAll(Integer product_number){

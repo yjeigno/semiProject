@@ -13,8 +13,8 @@ public class MainService {
     MainDao mainDao;
 
 
-    public List<ProductDto> getInfo(Integer product_number) {
-        return mainDao.select(product_number);
+    public List<ProductDto> getInfo() {
+        return mainDao.select();
     }
 
 

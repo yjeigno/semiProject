@@ -27,7 +27,7 @@ public class MainController {
     public String main(Model model){
 
 //        상품정보
-        List<ProductDto> productDto = mainService.getInfo(1);
+        List<ProductDto> productDto = mainService.getInfo();
         model.addAttribute("pInfo",productDto);
 
 

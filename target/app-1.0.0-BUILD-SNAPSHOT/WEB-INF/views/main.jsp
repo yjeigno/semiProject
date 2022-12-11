@@ -122,18 +122,9 @@
         </div>
 
         <div class="items_area">
-            <c:forEach items="${imgList}" var="img">
+            <c:forEach items="${pInfo}" var="p" begin="0" end="4">
             <div class="item">
-                <div class="img_box">
-                    <img src="<c:url value='${img.imageDto.image_path}'/>">
-                </div>
-                <div class="item_txt">
-                    <h4>${pInfo.product_name}</h4>
-                    <h5>${pInfo.product_content}</h5>
-                    <h5><del>${pInfo.product_price}</del></h5>
-                    <h4>${pInfo.product_status==2 && SpeDiscount.special_product_end_date>now()
-                            ?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price}</h4>
-                </div>
+                <div>${p.product_name}</div>
             </div>
             </c:forEach>
 <%--            <div class="item">--%>
