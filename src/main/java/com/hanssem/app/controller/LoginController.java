@@ -78,6 +78,13 @@ public class LoginController {
 //        }
         response.addCookie(cookie);
 
+        /** 비밀번호 확인 유효기간(10분)*/
+        Cookie pwCheckCookie = new Cookie("pwChk", "pass");
+        pwCheckCookie.setPath("/");
+        pwCheckCookie.setMaxAge(60*10);
+        pwCheckCookie.setSecure(true);
+        response.addCookie(pwCheckCookie);
+
         /* 3. 홈으로 이동 */
 //		loginForm 에서 넘어온 주소값(toURL) 을 redirect 경로에 넣어준다
 //		그냥 넣을순 없고 넘어오는거니까 일단 매개변수에 String toURL 을 넣고 여기서 가져다 쓰자
@@ -89,6 +96,18 @@ public class LoginController {
 
         String toURL = String.valueOf(session.getAttribute("toURL"));
         toURL= toURL==null || toURL=="null" || toURL.equals("") ? "/": toURL;
+
+        /** 세션에 toURL 없을때 쿠키도 확인해서 넣어주기 */
+        Cookie[] cookies = request.getCookies();
+        for(Cookie c : cookies){
+            if(c.getName().equals("toURL")){
+                if(toURL.equals("/")) {
+                    toURL = c.getValue();
+                }
+                c.setMaxAge(0);
+                response.addCookie(c);
+            }
+        }
         return "redirect:"+toURL;
 
 
