@@ -1,5 +1,6 @@
 package com.hanssem.app.controller;
 
+import com.hanssem.app.dto.PageHandler;
 import com.hanssem.app.dto.ProductSizeColorDto;
 import com.hanssem.app.dto.QnaDto;
 import com.hanssem.app.service.DealService;
@@ -56,6 +57,8 @@ public class DealRestController {
         System.out.println("3번값 : " + map.get("product_number"));
         System.out.println("4번값 : " + map.get("offset"));
 
+        int totalQnaCount = dealService.getQnaCount(1);
+        PageHandler qnaPageHandler = new PageHandler(totalQnaCount,1,10);
         System.out.println("map :" + map);
 
         List<QnaDto> qnaList = dealService.getQna(map);
