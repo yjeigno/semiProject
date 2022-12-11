@@ -81,11 +81,21 @@
     cursor: pointer;
 }
 .w_chk {
-    width: 25px;
-    height: 25px;
+    display: none;
+}
+.w_chk::after {display:block; clear:both; content:"";}
+input[type="checkbox"] + label {
+    width: 20px;
+    height: 20px;
     position: absolute;
-    top: 4%;
+    top: 5%;
     left: 7%;
+    background: url(../img/etc/input_checkbox.png) no-repeat 0 0;
+    cursor: pointer;
+}
+input[type="checkbox"]:checked + label {
+    background: url(../img/etc/input_checkbox.png) no-repeat 0 -30px;
+    cursor: pointer;
 }
 .wish_title {
     width: 100%;

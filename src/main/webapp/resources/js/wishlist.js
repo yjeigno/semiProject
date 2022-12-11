@@ -35,6 +35,7 @@ $(document).ready(function () {
         if (checkList.length >= 1) {
             const chkConfirm = confirm("선택한 상품을 삭제하시겠습니까?")
             if(chkConfirm == true) {
+                console.log("elem");
                 checkList.each(function (index, elem) {
                     url += elem.value+","
                 })
@@ -43,7 +44,6 @@ $(document).ready(function () {
                     type: 'DELETE',       // 요청 메서드
                     url: url,  // 요청 URI
                     success: function (res) {
-                        alert("삭제가 완료되었습니다.");
                         location.reload();
                     },
                     error: function (xhr, err) {
@@ -52,7 +52,6 @@ $(document).ready(function () {
                 });
             }
         }
-
     })
 })
 

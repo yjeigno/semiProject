@@ -6,9 +6,9 @@
     margin: 15px 0;
     padding: 0 15px;
 }
-input[name="qna_type"] { display: none;}
+input[name="qna_category"] { display: none;}
 .inquiry_type_item {
-    width: calc((100% - (10px * 3)) / 4);
+    width: calc((100% - (10px * 3)) / 3);
     height: 50px;
     line-height: 50px;
 }
@@ -74,9 +74,7 @@ input[type="text"] {
     background-color: #ffffff;
     box-sizing: border-box;
     line-height: 20px;
-    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif !important;
     font-size: 14px;
-    /* transition: border 0.2s ease-in-out; */
 }
 #n_text {
     width: 100%;
@@ -102,11 +100,12 @@ input[type="text"] {
     cursor: pointer;
     vertical-align: middle;
 }
-.n_btn_cancel {
+.n_btn_cancel, .n_btn_modify {
     border: 1px solid #f1f1f1;
     background-color: #f1f1f1;
     color: #000;
 }
+
 .n_btn_accent {
     border: 1px solid #000;
     background-color: #000;

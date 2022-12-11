@@ -5,9 +5,13 @@
   Time: 오후 6:34
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<c:set var="logInOutLink" value="${sessionScope.member_id==null?'/login/login':'/login/logout' }"/>
+<c:set var="logInOutTxt" value="${sessionScope.member_id==null?'LOGIN':'LOGOUT'}"/>
+<c:set var="memberId" value="${sessionScope.member_id==null?'':sessionScope.member_id}" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,10 +23,11 @@
 
     <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
     <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
-    <link rel="stylesheet" href="<c:url value='/css/inquiry_details.css'/> ">
+    <link rel="stylesheet" href="<c:url value='/css/mypage.css'/> ">
+    <link rel="stylesheet" href="<c:url value='/css/inquiry_contents_list.css'/> ">
     <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/> "></script>
     <script src="<c:url value='/js/header.js'/> "></script>
-    <script src="<c:url value='/js/inquiryDetails.js'/> "></script>
+    <script src="<c:url value='/js/inquiryContentsList.js'/> "></script>
 </head>
 <body>
 <div id="wrap">
@@ -60,8 +65,8 @@
                     <table class="in_table table_col">
                         <colgroup>
                             <col style="width:17%">
-                            <col style="width:32%">
                             <col style="width:17%">
+                            <col style="width:32%">
                             <col style="width:17%">
                             <col style="width:17%">
                         </colgroup>
@@ -69,58 +74,28 @@
                         <tr class="in_tit">
                             <th scope="col">문의 유형</th>
                             <th scope="col">제목</th>
-                            <th scope="col">주문번호</th>
+                            <th scope="col">내용</th>
                             <th scope="col">작성일</th>
                             <th scope="col">처리 상태</th>
                         </tr>
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td>배송</td>
-                            <td class="left">
-                                <a href="#">언제 배송되는지 궁금합니다.</a>
-                            </td>
-                            <td>2022120711234</td>
-                            <td>2022-12-07</td>
-                            <td><span class="state txt_info">답변 완료</span></td>
-                        </tr>
-                        <tr>
-                            <td>배송</td>
-                            <td class="left">
-                                <a href="#">언제 배송되는지 궁금합니다.</a>
-                            </td>
-                            <td>2022120711234</td>
-                            <td>2022-12-07</td>
-                            <td><span class="state txt_info">답변 완료</span></td>
-                        </tr>
-                        <tr>
-                            <td>배송</td>
-                            <td class="left">
-                                <a href="#">언제 배송되는지 궁금합니다.</a>
-                            </td>
-                            <td>2022120711234</td>
-                            <td>2022-12-07</td>
-                            <td><span class="state txt_info">답변 완료</span></td>
-                        </tr>
-                        <tr>
-                            <td>배송</td>
-                            <td class="left">
-                                <a href="#">언제 배송되는지 궁금합니다.</a>
-                            </td>
-                            <td>2022120711234</td>
-                            <td>2022-12-07</td>
-                            <td><span class="state txt_info">답변 완료</span></td>
-                        </tr>
-                        <tr>
-                            <td>배송</td>
-                            <td class="left">
-                                <a href="#">언제 배송되는지 궁금합니다.</a>
-                            </td>
-                            <td>2022120711234</td>
-                            <td>2022-12-07</td>
-                            <td><span class="state txt_info">답변 완료</span></td>
-                        </tr>
+                            <c:forEach var="li" items="${list}" varStatus="status">
+                            <tr>
+                                <td>
+                                    <c:if test = "${li.qna_category eq 1}">상품</c:if>
+                                    <c:if test = "${li.qna_category eq 2}">결제</c:if>
+                                    <c:if test = "${li.qna_category eq 3}">배송</c:if>
+                                </td>
+                                <td>${li.qna_title}</td>
+                                <td class="left">
+                                    <a href="/inquiryContents/detail?qna_number=${li.qna_number}">${li.qna_content}</a>
+                                </td>
+                                <td><fmt:formatDate value="${li.qna_register_date}" pattern="yyyy-MM-dd"/></td>
+                                <td><span class="state txt_info">${li.qna_answer_status}</span></td>
+                            </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
 
@@ -134,7 +109,7 @@
                         </div>
 
                         <div class="in_btn_o">
-                            <a href="#" class="in_btn btn_accent">문의작성</a>
+                            <a href="#" class="in_btn btn_accent" onclick="location.href='<c:url value="/inquiryContents/write"/>'">문의작성</a>
                         </div>
                     </div>
                 </div>

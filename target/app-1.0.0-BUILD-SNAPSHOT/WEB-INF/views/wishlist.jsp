@@ -71,9 +71,10 @@
                 </form>
             </div>
             <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="<c:url value='/'/>"><div class="logo"><img src="./img/headerImg/logo_black.png" alt=""></div></a>
+            <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/> " alt=""></div></a>
         </div>
-
+        <%--        src="img/headerImg/logo_black.png"--%>
+        <%--        href="<c:url value='img/headerImg/logo_black.png'/> "--%>
         <div class="header_bottom">
             <div class="content_area">
                 <ul class="bottom_nav_ul">
@@ -94,35 +95,35 @@
                     <li class="li_content">
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn1.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Table & Dining</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn2.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Chair</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn3.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Sofa</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn4.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Desk</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn5.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">TV Stand & Storage</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn6.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Small Furniture</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn7.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/> "></li>
                         </ul>
                         <ul class="ca_box" onclick="location.href='#';">
                             <li class="ca_txt">Bed</li>
-                            <li class="ca_img"><img src="./img/headerImg/Furn8.png"></li>
+                            <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/> "></li>
                         </ul>
                     </li>
 
@@ -200,7 +201,7 @@
 
                             <%------------------------------ 일반 상품일 경우 --------------------------%>
                             <c:if test="${li.productDto.product_status eq 1}">
-                                <div class="wish_item" id="pr+${li.productDto.product_number}">
+                                <div class="wish_item" id="pr${li.productDto.product_number}">
                                     <a href="/deal/${li.productDto.product_number}">
                                         <div class="wish_sec">
                                             <div class="wish_img_box">
@@ -214,13 +215,14 @@
                                         </div>
                                     </a>
                                     <div class="wish_wish" target-data="<%=(String)session.getAttribute("member_id")%>,${li.productDto.product_number}"></div>
-                                    <input type="checkbox" class="w_chk" value="${li.product_number}">
+                                    <input type="checkbox" class="w_chk" id="w_chk_id_${li.productDto.product_number}" value="${li.product_number}">
+                                    <label for="w_chk_id_${li.productDto.product_number}"></label>
                                 </div>
                             </c:if>
 
                             <%------------------------------ 특가 상품일 경우 --------------------------%>
                             <c:if test="${li.productDto.product_status eq 2}">
-                                <div class="wish_item">
+                                <div class="wish_item" id="prs${li.productDto.product_number}">
                                     <a href="/deal/${li.productDto.product_number}">
                                         <div class="wish_sec">
                                             <div class="wish_img_box">
@@ -241,7 +243,8 @@
                                         </div>
                                     </a>
                                     <div class="wish_wish" target-data="<%=(String)session.getAttribute("member_id")%>,${li.productDto.product_number}"></div>
-                                    <input type="checkbox" class="w_chk" value="${li.product_number}">
+                                    <input type="checkbox" class="w_chk" id="w_chk_ids_${li.productDto.product_number}" value="${li.product_number}">
+                                    <label for="w_chk_ids_${li.productDto.product_number}"></label>
                                 </div>
                             </c:if>
                         </c:forEach>
