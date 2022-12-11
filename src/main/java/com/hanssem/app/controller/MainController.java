@@ -1,9 +1,7 @@
 package com.hanssem.app.controller;
 
-import com.hanssem.app.dto.CateSizeDto;
-import com.hanssem.app.dto.ImageColorDto;
-import com.hanssem.app.dto.ProductDto;
-import com.hanssem.app.dto.SpecialPriceDto;
+import com.hanssem.app.dto.*;
+import com.hanssem.app.service.InteriorService;
 import com.hanssem.app.service.MainService;
 import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;
@@ -23,22 +21,38 @@ import java.util.Locale;
 public class MainController {
     @Autowired
     MainService mainService;
+
     // 기존꺼
     @GetMapping("/main")
     public String main(Model model){
+
 //        상품정보
-        ProductDto productDto = mainService.getInfo(1);
+        List<ProductDto> productDto = mainService.getInfo(1);
         model.addAttribute("pInfo",productDto);
-        // 상품 이미지랑 색상 가져오기
-        List<ImageColorDto> imageColorDto = mainService.showImgColor(1);
-        model.addAttribute("imgList",imageColorDto);
+
+
 
         SpecialPriceDto specialPriceDto = mainService.getDiscount(1);
         model.addAttribute("SpeDiscount", specialPriceDto);
+
+        List<InteriorDto> interior_category = mainService.selectInterior(1);;
+        model.addAttribute("list", interior_category);
         return "main";
     }
 
-
+//    @Autowired
+//    private InteriorService interiorService;
+//    @GetMapping("/Interior")
+//    public String Interior(Model model){
+//
+//        List<InteriorDto> interior_category = interiorService.selectInterior(1);;
+//        model.addAttribute("list", interior_category);
+//
+//
+//
+//
+//        return "Interior1";
+//    }
 
 
 
