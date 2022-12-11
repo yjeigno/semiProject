@@ -18,7 +18,6 @@ public class MainDao {
     private String productPath="com.hanssem.app.dao.productMapper.";
     private String imagePath="com.hanssem.app.dao.imageMapper.";
     private String SpecialPath="com.hanssem.app.dao.specialPriceMapper.";
-//    인테리어
     private String namespace = "com.hanssem.app.dao.InteriorMapper.";
 
 
@@ -30,9 +29,9 @@ public class MainDao {
 
 
     //전체 이미지 불러오기
-    public List<ImageDto> selectImgAll(){
-        return session.selectList(imagePath+"selectAll");
-    }
+//    public List<ImageDto> selectProductInfo(){
+//        return session.selectList(imagePath+"selectAll");
+//    }
 
 
     // 특정 상품의 이미지 불러오기

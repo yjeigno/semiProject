@@ -30,13 +30,9 @@ public class MainController {
         List<ProductDto> productDto = mainService.selectAll();
         model.addAttribute("productInfo",productDto);
 
-
-//        List<ProductDto> imageDto = mainService.selectImgAll();
+//        List<ImageDto> imageDto = mainService.selectProductInfo();
 //        model.addAttribute("newImgList",imageDto);
 
-
-        SpecialPriceDto specialPriceDto = mainService.getDiscount(1);
-        model.addAttribute("SpeDiscount", specialPriceDto);
 
         List<InteriorDto> interior_category = mainService.selectInterior(1);;
         model.addAttribute("list", interior_category);

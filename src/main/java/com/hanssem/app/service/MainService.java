@@ -16,24 +16,16 @@ public class MainService {
     public List<ProductDto> selectAll() {
         return mainDao.selectAll();
     }
-    public List<ImageDto> selectImgAll(Integer product_number){
-        return mainDao.selectImgAll();
-    }
 
+//    public List<ImageDto> selectProductInfo(){
+//        return mainDao.selectProductInfo();
+//    }
 
-    public SpecialPriceDto getDiscount(Integer product_number){
-        return mainDao.selectDiscount(product_number);
-    }
 
 
     public List<InteriorDto> selectInterior(Integer interior_category_number){
         return mainDao.selectInterior(interior_category_number);
     }
-
-    public List<InteriordetailDto> selectInteriordetail(Integer interior_number){
-        return mainDao.selectInteriordetail(interior_number);
-    }
-
 
 
 

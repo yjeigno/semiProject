@@ -31,6 +31,26 @@
     <select id="selectAll" resultType="ProductDto">
         SELECT * FROM product ORDER BY product_register_date desc, product_number desc
     </select>
+<!--    <select id="selectAll" resultType="ProductDto">-->
+<!--        SELECT * FROM product ORDER BY product_register_date desc, product_number desc-->
+<!--    </select>-->
+
+    <select id="selectProductInfo" resultType="mainDto">
+        SELECT
+        product_number,
+        product_name,
+        product_price,
+        product_register_date,
+        product_content,
+        product_status,
+        product_class,
+        category_code_number,
+
+        image_path
+
+        FROM product
+        LEFT JOIN image on product.product_number = image.product_number
+    </select>
 
     <select id="selectInterior" parameterType="int" resultType="InteriorDto">
         SELECT * FROM interior
