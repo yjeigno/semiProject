@@ -50,8 +50,6 @@ public class LoginController {
                         HttpServletRequest request,
                         HttpServletResponse response) throws Exception {
 
-        System.out.println(("입력 ID : " + memberLogin.getMember_id() + ", 입력 PW : "+ memberLogin.getMember_pw()));
-
         String id = memberLogin.getMember_id();
         String pw = memberLogin.getMember_pw();
 //        Boolean rememberId = memberLogin.isRememberId();
@@ -95,7 +93,7 @@ public class LoginController {
 
 
     }
-//      DB 내 id pw 정보 있는지 확인하는 메서드
+    //      DB 내 id pw 정보 있는지 확인하는 메서드
     private boolean loginChk(String member_id, String member_pw) throws Exception {
         MemberDto memberDto = memberDao.selectMember(member_id);
         if(memberDto == null) return false;
@@ -105,5 +103,5 @@ public class LoginController {
     }
 
 
-    
+
 }

@@ -1,7 +1,10 @@
 package com.hanssem.app.service;
 
 import com.hanssem.app.dao.SpecialPriceDao;
+import com.hanssem.app.dao.WishlistDao;
+import com.hanssem.app.dto.ImageDto;
 import com.hanssem.app.dto.SpecialPriceDto;
+import com.hanssem.app.dto.WishlistPostDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

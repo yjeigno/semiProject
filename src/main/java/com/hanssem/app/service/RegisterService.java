@@ -4,8 +4,6 @@ import com.hanssem.app.dao.RegisterDao;
 import com.hanssem.app.dto.MemberDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 
 import java.sql.Timestamp;
 
@@ -26,6 +24,11 @@ public class RegisterService {
         memberDto.setMember_login_date(timestamp);
 
         return registerDao.insertMember(memberDto);
+    }
+
+
+    public int idCheck(MemberDto memberDto) throws Exception {
+        return registerDao.selectMember(memberDto);
     }
 
 

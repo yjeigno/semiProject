@@ -1,7 +1,9 @@
 package com.hanssem.app.dao;
 
 import com.hanssem.app.dto.MemberDto;
+import jdk.jfr.DataAmount;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -16,8 +18,8 @@ public class RegisterDao {
     @Autowired
     DataSource ds;
 
-//    회원가입 form 정보 DB 내 저장하기
-    public int insertMember(MemberDto memberDto) throws Exception {
+    //    회원가입 form 정보 DB 내 저장하기
+    public int insertMember(MemberDto memberDto) throws SQLException {
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -49,12 +51,7 @@ public class RegisterDao {
             close(pstmt, conn);
         }
     }
-//    //    아이디 중복체크
-//    @Override
-//    public int registerIdCheck(MemberDto memberDto){
-//    int result = sql.selectOne("member.registerIdCheck");
-//    return result;
-//    }
+
 
     public void close(AutoCloseable... acs) {
         for (AutoCloseable ac : acs)
@@ -64,4 +61,34 @@ public class RegisterDao {
                 e.printStackTrace();
             }
     }
+    public int selectMember(MemberDto memberDto) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String memberId = memberDto.getMember_id();
+
+        try{                                  // 아이디
+            String sql = "select member_id from member where member_id = ?";
+            conn = ds.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, memberDto.getMember_id());
+
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()) {
+                String findMemberId = rs.getString(1);
+                System.out.println("find member: " + findMemberId);
+                if(findMemberId != "") {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+            return 0;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return 0;
+        }finally {
+            close(pstmt, conn);
+        }
+    }
+
 }
