@@ -18,7 +18,10 @@
 <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
 <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/> "></script>
 <script src="<c:url value='/js/header.js'/> "></script>
-
+<script>
+  let logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
+  let logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
+</script>
 <html>
 <head>
   <title>header</title>
