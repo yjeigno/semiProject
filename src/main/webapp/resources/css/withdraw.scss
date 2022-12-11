@@ -1,3 +1,25 @@
+//Break Point
+$laptop: 1023px;
+$tablet: 821px;
+$mobile: 639px;
+
+//Mixins
+@mixin laptop {
+  @media (max-width: #{$laptop}) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (max-width: #{$tablet}) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media (max-width: #{$mobile}) {
+    @content;
+  }
+}
+
 .contents_box {
   width: 100%;
   max-width: 1200px;
@@ -6,15 +28,12 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-}
-@media (max-width: 639px) {
-  .contents_box {
+  @include mobile{
     padding-bottom: unset;
     padding: 0.6em;
     box-sizing: border-box;
   }
 }
-
 .notice {
   padding: 30px;
   width: 400px;
@@ -22,16 +41,13 @@
   font-size: 20px;
   line-height: 30px;
   margin: 0;
-}
-@media (max-width: 639px) {
-  .notice {
+  @include mobile{
     padding: unset;
     width: unset;
     font-size: 0.8em;
     line-height: 20px;
   }
 }
-
 #pw {
   width: 300px;
   height: 40px;
@@ -42,29 +58,24 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   outline: none;
-}
-@media (max-width: 639px) {
-  #pw {
+  @include mobile{
     width: 10rem;
     font-size: 0.7em;
     margin-bottom: unset;
     margin: 1em auto;
+
   }
 }
-
 .btn_box {
   width: 300px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
-}
-@media (max-width: 639px) {
-  .btn_box {
+  @include mobile{
     width: 10rem;
   }
 }
-
 .btn {
   width: 40%;
   height: 50px;
@@ -73,20 +84,14 @@
   line-height: 50px;
   border-radius: 5px;
   cursor: pointer;
-}
-@media (max-width: 639px) {
-  .btn {
+  @include mobile{
     font-size: 1em;
   }
 }
-
 .btn_cancel {
   background: #eee;
 }
-
 .btn_confirm {
   background: #333;
   color: #fff;
 }
-
-/*# sourceMappingURL=withdraw.css.map */

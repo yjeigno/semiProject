@@ -319,6 +319,7 @@
   font-size: 20px;
   text-align: center;
   cursor: pointer;
+  word-break: keep-all;
 }
 
 .product:hover .product_name {

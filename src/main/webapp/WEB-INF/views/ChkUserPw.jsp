@@ -13,30 +13,25 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../css/common.css">
-    <link rel="stylesheet" type="text/css" href="<c:url value="../css/mypage.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="../css/myPage.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="../css/chkUserPwPage.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
 </head>
 <body>
 <div id="wrap">
     <jsp:include page="header2ndFloor.jsp"/>
     <main class="main">
-        <div class="contents_area">
-            <div class="mypage_container">
-                <div id="my_page_container">
-                    <div class="contents_box">
-                        <p class="notice">
-                            비밀번호를 한번 더 입력해주세요<br><br>
-                            회원님의 정보를 안전하게 보호하기 위해<br> 비밀번호를 한번 더 확인합니다.
-                        </p>
-                        <form id="pwForm">
-                        <input type="password" name="member_pw" id="pw" placeholder="비밀번호를 입력해주세요.">
-                        <div class="btn_confirm">비밀번호 확인</div>
-                        </form>
-                    </div>
-                </div>
+            <div class="contents_box">
+                <p class="notice">
+                    비밀번호를 한번 더 입력해주세요<br><br>
+                    회원님의 정보를 안전하게 보호하기 위해<br> 비밀번호를 한번 더 확인합니다.
+                </p>
+                <form id="pwForm">
+                    <input type="password" name="member_pw" id="pw" placeholder="비밀번호를 입력해주세요.">
+                    <div class="btn_confirm">비밀번호 확인</div>
+                </form>
             </div>
-        </div>
     </main>
+    <footer class="footer"></footer>
 </div>
 <script>
     $(function (){

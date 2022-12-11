@@ -156,7 +156,7 @@
                                             <div class="product_name">${prd.product_name}</div>
                                             <c:if test="${!empty prd.discount_rate}">
                                                 <div class="product_price" style="text-decoration-line: line-through; font-size: 14px; font-weight: normal">￦<fmt:formatNumber value="${prd.product_price}" pattern="#,###" /></div>
-                                                <div class="product_price">￦<fmt:formatNumber value="${prd.product_price * (prd.discount_rate / 100)}" pattern="#,###" /></div>
+                                                <div class="product_price">￦<fmt:formatNumber value="${prd.product_price - prd.product_price * (prd.discount_rate / 100)}" pattern="#,###" /></div>
                                             </c:if>
                                             <c:if test="${empty prd.discount_rate}">
                                                 <div class="product_price">￦<fmt:formatNumber value="${prd.product_price}" pattern="#,###" /></div>
@@ -166,7 +166,9 @@
                                                 <div class="review_count">${prd.review_count==null?"0":prd.review_count}</div>
                                             </div>
                                         </div>
-                                        <p class="dc_rate">${prd.discount_rate}%</p>
+                                        <c:if test="${!empty prd.discount_rate}">
+                                            <p class="dc_rate">${prd.discount_rate}%</p>
+                                        </c:if>
                                         <div class="wish_mark <c:forEach var="wish" items="${wishList}">${wish.product_number==prd.product_number?"added_wishlist":""}</c:forEach>" onclick="wishlist(this)"></div>
                                     </li>
                                 </c:forEach>
