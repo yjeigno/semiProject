@@ -27,7 +27,10 @@
         <typeAlias alias="InquiryDto" type="com.hanssem.app.dto.InquiryDto"/>
 
         <typeAlias alias="InteriorDto" type="com.hanssem.app.dto.InteriorDto"/>
+        <typeAlias alias="InteriordetailDto" type="com.hanssem.app.dto.InteriordetailDto"/>
+        <typeAlias alias="AddressDto" type="com.hanssem.app.dto.AddressDto"/>
         <typeAlias alias="QnaDto" type="com.hanssem.app.dto.QnaDto"/>
+
 
 
 

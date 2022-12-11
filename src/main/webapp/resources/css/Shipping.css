@@ -1,0 +1,213 @@
+.contents_box {
+    border: none;
+    padding: 0;
+    /* min-width: 900px; */
+}
+.infoGraph_box {
+    background: #eee;
+    margin-bottom: 50px;
+}
+
+.shipping_status{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 30px 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #aaa;
+}
+.shipping_status >li {
+    width: calc(100% / 3);
+}
+.shipping_status >li>div {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+.info_img {
+    height: 80px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80px 80px;
+    padding: 10px 0 ;
+}
+.imgOfTruck { background-image: url(../img/Shipping/van.png); }
+.imgOfBox{ background-image: url(../img/Shipping/box.png); }
+.imgOfCancel{ background-image: url(../img/Shipping/return.png); }
+
+.period_box {
+    padding: 30px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.monthly_reference {
+    width: 400px;
+    display: flex;
+}
+.month {
+    width: calc(100% / 6);
+    height: 30px;
+    line-height: 25px;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+    color: #666;
+    /* border-left: 0; */
+    border-right: 0;
+    text-align: center;
+}
+.month_checked {
+    background: #333;
+    color: #fff;
+}
+.month:last-child{border-right: 1px solid #aaa;}
+
+.calendar_reference {
+    display: flex;
+    gap: 10px;
+}
+.calendar_reference > li > * { height: 30px; line-height: 30px;}
+.btn_confirm {
+    width: 60px;
+    height: 30px;
+    background: #333;
+    color: #fff;
+    border-radius: 5px;
+}
+input[type="date"] {
+    position: relative;
+    box-sizing: border-box;
+    border: 0;
+    outline: none;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    z-index: 1;
+}
+input[type="date"]::after {
+    position: absolute;
+    content: "";
+    width: 20px;height: 20px;
+    right: 5px;
+    background: url(../img/Shipping/calendar.png) no-repeat center / 20px 20px;
+}
+
+.status_detail {
+    width: 100%;
+}
+.date_tagLine {
+    margin-bottom: 50px;
+}
+.line {
+    width: 100%;
+    border: 1px solid #bbb;
+    position: relative;
+}
+.date_tag {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 15px;
+    border: 2px solid #bbb;
+    border-radius: 30px;
+}
+
+.product_status{
+    display: flex;
+    align-items: center;
+}
+
+
+.product_img{
+    width: 200px;
+    height: 200px;
+    border: 1px solid;
+    margin: 30px;
+}
+
+.product_desc{
+    width: 400px;
+    height: 200px;
+}
+
+.product_name{
+    font-size: 30px;
+    margin: 0 auto;
+
+}
+
+.product_opt{
+    font-size: 20px;
+    margin: 10px auto;
+}
+
+.product_price{
+    font-size: 20px;
+    margin: 0px auto;
+}
+
+.order_date{
+    font-size: 13px;
+    color: #afabab;
+    margin: 10px auto;
+
+}
+
+.product_status{
+    font-size: 15px;
+    margin: 0 auto;
+}
+
+.opt_btn_box{
+    margin: 0px 65px 0px 50px;
+
+}
+.btn_box1{
+    width: 100px;
+    height: 28px;
+    border: 1px solid;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.btn_box2{
+    width: 100px;
+    height: 28px;
+    border: 1px solid;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 0 10px;
+
+}
+
+.btn_box3{
+    width: 100px;
+    height: 28px;
+    border: 1px solid;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 0 10px;
+
+}
+
+.btn_box4{
+    width: 100px;
+    height: 28px;
+    border: 1px solid;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 0 10px;
+
+}
+
+
+
+

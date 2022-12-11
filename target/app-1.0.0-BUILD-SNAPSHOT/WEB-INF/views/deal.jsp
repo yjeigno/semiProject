@@ -33,7 +33,7 @@
     let sPrice = ${pInfo.product_status==2 && SpeDiscount.special_product_end_date>now()
     ?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price};
     <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
-    console.log( ${pInfo.product_price*(SpeDiscount.special_product_discount / 100)}  );
+    <%--console.log( ${pInfo.product_price*(SpeDiscount.special_product_discount / 100)}  );--%>
 
     let logoWhite = "<c:url value='/img/headerImg/logo_white.png'/>"
     let logoBlack = "<c:url value='/img/headerImg/logo_black.png'/>"
@@ -41,68 +41,150 @@
     let optTitle = "${pInfo.product_name}";
     <%--var colorLength = ${imgList.size()}--%>
         // 사이즈 클릭하면 맞는 색상 나오게 하기..
-        function ajax(size_code_name,product_number){
-            let jsonData = {
-                "size_code_name" : size_code_name,
-                "product_number" : product_number
-            };
-            // console.log(jsonData)
-            $.ajax({
-                type : 'POST',
-                url : '/deal/color',
-                data: JSON.stringify(jsonData),
-                dataType : 'json',
-                contentType: "application/json; charset=utf-8",
-                success : function(data){
-                    //var
-                    //
-                    $('#sizeColor').empty();
-                    let JsonColorList = JSON.stringify(data);
-                    console.log(JsonColorList);
-                    let ParseColorList = JSON.parse(JsonColorList);
-                    console.log(ParseColorList);
-                    for(let i = 0 ; i < ParseColorList.length ; i++){
-                        let colorInfo = ParseColorList[i];
-                        console.log(colorInfo)
-                        if(colorInfo.colorCodeDto.color_code_code != 'noneColorCode'){
-                            colorCodeText[i] = colorInfo.colorCodeDto.color_code_code;
-                            colorSizeText[i] = colorInfo.sizeCodeDto.size_code_name;
-                            colorNameText[i] = colorInfo.colorCodeDto.color_code_name;
-                            let colorId = colorCodeText[i].split("#")[1];
-                            console.log("id : " + colorId);
-                            console.log("1 : "+ colorCodeText[i]) ;
-                            console.log("2 : "+ colorNameText[i]) ;
-                            console.log("3 : "+ colorSizeText[i]) ;
+    function ajaxColor(size_code_name, product_number) {
+        let jsonData = {
+            "size_code_name": size_code_name,
+            "product_number": product_number
+        };
+        // console.log(jsonData)
+        $.ajax({
+            type: 'POST',
+            url: '/deal/color',
+            data: JSON.stringify(jsonData),
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                //var
+                //
+                $('#sizeColor').empty();
+                let JsonColorList = JSON.stringify(data);
+                console.log(JsonColorList);
+                let ParseColorList = JSON.parse(JsonColorList);
+                console.log(ParseColorList);
+                for (let i = 0; i < ParseColorList.length; i++) {
+                    let colorInfo = ParseColorList[i];
+                    // console.log(colorInfo)
+                    if (colorInfo.colorCodeDto.color_code_code != 'noneColorCode') {
+                        colorCodeText[i] = colorInfo.colorCodeDto.color_code_code;
+                        colorSizeText[i] = colorInfo.sizeCodeDto.size_code_name;
+                        colorNameText[i] = colorInfo.colorCodeDto.color_code_name;
+                        let colorId = colorCodeText[i].split("#")[1];
+                        // console.log("id : " + colorId);
+                        // console.log("1 : " + colorCodeText[i]);
+                        // console.log("2 : " + colorNameText[i]);
+                        // console.log("3 : " + colorSizeText[i]);
 
-                            /*
-                            *  받아온 값을 리스트로 담는다
-                            *  클릭할때 리스트 번호로 불러온다
-                            **/
+                        /*
+                        *  받아온 값을 리스트로 담는다
+                        *  클릭할때 리스트 번호로 불러온다
+                        **/
 
 
-                            $('#sizeColor').append(
-                                "<div class='sc_btn cClick' id='"+ colorId +","+ i +
-                                 "' style='background-color:" + colorCodeText[i] +
-                                ";'>" + "</div>"
-                                + "<input class='colorIndex"+i+"' type='hidden' value='"+ i +"'>"
-                            )
-                               <%-- `  <div class='sc_btn cClick' id='${colorId}' style='background-color:${colorCodeText};'></div>`--%>
+                        $('#sizeColor').append(
+                            "<div class='sc_btn cClick' id='" + colorId + "," + i +
+                            "' style='background-color:" + colorCodeText[i] +
+                            ";'>" + "</div>"
+                            + "<input class='colorIndex" + i + "' type='hidden' value='" + i + "'>"
+                        )
+                        <%-- `  <div class='sc_btn cClick' id='${colorId}' style='background-color:${colorCodeText};'></div>`--%>
 
-                        }
                     }
-                },
-                error : function(err) {
-                    console.log("");
-                    console.log("[requestPostBodyJson] : [error] : " + JSON.stringify(err));
-                    console.log("");
-                },
-                complete : function(data,textStatus) {
-                    console.log("");
-                    console.log("[requestPostBodyJson] : [complete] : " + textStatus);
-                    console.log("");
                 }
-            })
+            },
+            error: function (err) {
+                console.log("");
+                console.log("[requestPostBodyJson] : [error] : " + JSON.stringify(err));
+                console.log("");
+            },
+            complete: function (data, textStatus) {
+                console.log("");
+                console.log("[requestPostBodyJson] : [complete] : " + textStatus);
+                console.log("");
+            }
+        })
+    }
+
+    function ajaxPagination(page, pageSize, product_number) {
+        let jsonData = {
+            // "page" : page,
+            "page_size": pageSize,
+            "product_number": product_number,
+            "offset": (page - 1) * pageSize
         }
+        $.ajax({
+            type: 'POST',
+            url: '/deal/qna',
+            data: JSON.stringify(jsonData),
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                console.log(data);
+                $('.d_qna_top').empty();
+                $('.d_qna_faq_view').empty();
+                // for(int i = 0 ; i < data.length; i++){
+                //     $('.d_qna_top').append()
+                // }
+
+            },
+            error: function (err) {
+                console.log("");
+                console.log("[requestPostBodyJson] : [error] : " + JSON.stringify(err));
+                console.log("");
+            },
+            complete: function (data, textStatus) {
+                console.log("");
+                console.log("[requestPostBodyJson] : [complete] : " + textStatus);
+                console.log("");
+            }
+        })
+    }
+
+    function purchase() {
+
+        let product_count = $('.opt_name').length;
+        let optionTitle_list = [];
+        let size_name_list = [];
+        let color_name_list = [];
+        let pa_list = [];
+        let price_list = [];
+
+
+        for (let i = 0; i < product_count; i++) {
+            let optionTitle = "#optionTitle" + i;
+            let color = "#color" + i;
+            let pa = "#pa" + i;
+            let price = "#price" + i;
+            optionTitle_list.push($(optionTitle).text().trim());
+            size_name_list.push($(color).text().split("/")[0].trim());
+            color_name_list.push($(color).text().split("/")[1].trim());
+            pa_list.push($(pa).val());
+            price_list.push($(price).val());
+        }
+
+        console.log(typeof product_purchase_info_list);
+
+        //create element (form)
+        let newForm = $('<form></form>');
+        //set attribute (form)
+        newForm.attr("name","newForm");
+        newForm.attr("method","post");
+        newForm.attr("action","/purchase");
+        newForm.attr("target","_blank");
+        // create element & set attribute (input)
+        newForm.append($('<input/>', {type: 'hidden', name: 'optionTitle_list', value: optionTitle_list }));
+        newForm.append($('<input/>', {type: 'hidden', name: 'size_name_list', value: size_name_list }));
+        newForm.append($('<input/>', {type: 'hidden', name: 'color_name_list', value: color_name_list }));
+        newForm.append($('<input/>', {type: 'hidden', name: 'pa_list', value: pa_list }));
+        newForm.append($('<input/>', {type: 'hidden', name: 'price_list', value: price_list }));
+        // append form (to body)
+        newForm.appendTo('body');
+        // submit form
+        newForm.submit();
+
+        product_list_number = 0;
+
+
+    }
 </script>
 <head>
     <title>deal</title>
@@ -301,47 +383,54 @@
                             <td class="d_title">사이즈</td>
                             <td class="d_contents sc_contents">
                                 <c:forEach items="${sizeList}" var="size">
-<%--                                   <div class="sc_btn"><c:out value="${size.sizeCodeDto.size_code_name}"/>--%>
-<%--                                   </div>--%>
-                                    <a href="#" class="sc_btn sclick" onclick="ajax('${size.sizeCodeDto.size_code_name}',${pInfo.product_number})">
-                                        ${size.sizeCodeDto.size_code_name}
+                                    <%--                                   <div class="sc_btn"><c:out value="${size.sizeCodeDto.size_code_name}"/>--%>
+                                    <%--                                   </div>--%>
+                                    <a href="#" class="sc_btn sclick"
+                                       onclick="ajaxColor('${size.sizeCodeDto.size_code_name}',${pInfo.product_number})">
+                                            ${size.sizeCodeDto.size_code_name}
                                     </a>
                                 </c:forEach>
                             </td>
                         </tr>
                         <tr>
                             <td class="d_title">색상</td>
-                            <td class="d_contents sc_contents" id="sizeColor">
-<%--                                <c:forEach items="${colorList}" var="color">--%>
-<%--                                    <div class="sc_btn"style="background-color:${color.colorCodeDto.color_code_code}" >--%>
-<%--                                            </div>--%>
-<%--                                </c:forEach>--%>
+                            <td class="d_contents cc_contents" id="sizeColor">
+                                <%--                                <c:forEach items="${colorList}" var="color">--%>
+                                <%--                                    <div class="sc_btn"style="background-color:${color.colorCodeDto.color_code_code}" >--%>
+                                <%--                                            </div>--%>
+                                <%--                                </c:forEach>--%>
                             </td>
                         </tr>
                     </table>
-                    <p class="d_p">(최소주문수량 1개 이상 / 최대주문수량 100개 이하)</p>
-                    <p class="d_p2">위 옵션선택 박스를 선택하시면 아래에 상품이 추가됩니다.</p>
-                    <div class="opt_selected"></div>
-                    <div class="d_total_price d_b_bw2">
-                        <div>TOTAL: <span id="p_tot">0 원</span> (0개)</div>
+                    <form id="purchase" method="post">
+                        <p class="d_p">(최소주문수량 1개 이상 / 최대주문수량 100개 이하)</p>
+                        <p class="d_p2">위 옵션선택 박스를 선택하시면 아래에 상품이 추가됩니다.</p>
+                        <div class="opt_selected">
 
-<%--                        <span class="d_total"><strong><em>0</em></strong>" (0개)"</span>--%>
-                    </div>
-                    <div class="d_btn_box">
-                        <div>BUY NOW</div>
-                        <div>ADD CART</div>
-                        <div>WISHLIST</div>
-                    </div>
+                        </div>
+                        <div class="d_total_price d_b_bw2">
+                            <div>TOTAL: <span id="p_tot">0 원</span> (0개)</div>
+                        </div>
+                        <input type="hidden" name="aaa" value="bbb">
+                        <div class="d_btn_box">
+                            <%--아래의 버튼을 클릭했을때
+                            purcahse form 전송한다. --%>
+                            <button id='purchase_button' type='button' onclick='purchase();'>BUY NOW</button>
+                            <button>ADD CART</button>
+                            <button>WISHLIST</button>
+
+                        </div>
+
                 </div>
             </div>
             <ul class="d_tab_btn">
-                <li class="small_btn"> <a href="#sec1">상품상세</a> </li>
-                <li class="small_btn"> <a href="#sec2">상품후기</a> </li>
-                <li class="small_btn"> <a href="#sec3">상품문의</a> </li>
-                <li class="small_btn"> <a href="#sec4">배송안내</a> </li>
-                <li class="small_btn"> <a href="#sec5">교환/반품정책</a> </li>
+                <li class="small_btn"><a href="#sec1">상품상세</a></li>
+                <li class="small_btn"><a href="#sec2">상품후기</a></li>
+                <li class="small_btn"><a href="#sec3">상품문의</a></li>
+                <li class="small_btn"><a href="#sec4">배송안내</a></li>
+                <li class="small_btn"><a href="#sec5">교환/반품정책</a></li>
             </ul>
-            <div class="h1000" id="sec1" >
+            <div class="h1000" id="sec1">
                 <c:forEach items="${imgDetail}" var="de">
                 <img src="<c:url value='${de.image_path}'/>" alt="">
                 </c:forEach>
@@ -422,7 +511,8 @@
                                 <a href="<c:url value='/deal?page=${pageHandlerTxt.endPage+1}&pageSize=${pageHandlerTxt.pageSize}' />" class="d_pagination_a d_next">[다음]</a>
                             </c:if>
                             <c:if test="${pageHandler.showLast}">
-                                <a href="<c:url value='/deal?page=${pageHandlerTxt.totalPage}&pageSize=${pageHandlerTxt.pageSize}' />" class="d_pagination_a d_next">[마지막]</a>
+                                <a href="<c:url value='/deal?page=${pageHandlerTxt.totalPage}&pageSize=${pageHandlerTxt.pageSize}' />"
+                                   class="d_pagination_a d_nn">[마지막]</a>
                             </c:if>
                         </div>
                     </div>
@@ -472,48 +562,78 @@
                             </div>
                         </td>
                         <td class="d_qna_top_list cell_writer">${qna.member_id}</td>
-                        <td class="d_qna_top_list cell_date"><fmt:formatDate value="${qna.qna_register_date}" pattern="yyyy-MM-dd" type="date"/></td>
+                        <td class="d_qna_top_list cell_date"><fmt:formatDate value="${qna.qna_register_date}"
+                                                                             pattern="yyyy-MM-dd" type="date"/></td>
                     </tr>
-                    <tr class="d_qna_faq_view">
-                        <td colspan="4" class="d_qna_faq_view_qa">
-                            <div class="d_qna_faq_q">${qna.qna_content}</div>
+                        <tr class="d_qna_faq_view">
+                            <td colspan="4" class="d_qna_faq_view_qa">
+                                <div class="d_qna_faq_q">${qna.qna_content}</div>
 
-                            <div class="d_qna_faq_a">
-                                <i></i>
-                                ${qna.qna_answer=="-1"?"답변 준비중입니다.":qna.qna_answer}</div>
-                        </td>
-                    </tr>
+                                <div class="d_qna_faq_a">
+                                    <i></i>
+                                        ${qna.qna_answer=="-1"?"답변 준비중입니다.":qna.qna_answer}</div>
+                            </td>
+                        </tr>
                     </c:forEach>
                     <!-- ////////////////////////////////////////////////////// -->
                 </table>
                 <div class="d_pagination">
                     <c:if test="${phQna.showFirst}">
-                        <a href="<c:url value='/deal?page=1&pageSize=${phQna.pageSize}' />" class="d_pp d_pagination_a">[처음]</a>
+                        <div onclick="ajaxPagination(1,'${phQna.pageSize}','${pInfo.product_number}')"
+                             class="d_pp d_pagination_a">[처음]
+                        </div>
                     </c:if>
                     <c:if test="${phQna.showPrev}">
-                        <a href="<c:url value='/deal?page=${phQna.beginPage-1}&pageSize=${phQna.pageSize}' />" class="d_pre d_pagination_a">[이전]</a>
+                        <div onclick="ajaxPagination('${phQna.beginPage-1}','${phQna.pageSize}','${pInfo.product_number}')"
+                             class="d_pre d_pagination_a">[이전]
+                        </div>
                     </c:if>
                     <c:forEach var="i" begin="${phQna.beginPage}" end="${phQna.endPage}">
-                        <a href="<c:url value='/deal?page=${i}&pageSize=${phQna.pageSize}' /> " class="d_pagination_a d_pnum ${i==phQna.page?"d_on":""}"> ${i}</a>
+                        <div onclick="ajaxPagination('${i}','${phQna.pageSize}','${pInfo.product_number}')"
+                             class="d_pagination_a d_pnum ${i==phQna.page?"d_on":""}"> ${i}</div>
                     </c:forEach>
                     <c:if test="${phQna.showNext}">
-                        <a href="<c:url value='/deal?page=${phQna.endPage+1}&pageSize=${phQna.pageSize}' />" class="d_pagination_a d_next">[다음]</a>
+                        <div onclick="ajaxPagination('${phQna.endPage+1}','${phQna.pageSize}','${pInfo.product_number}')"
+                             class="d_next d_pagination_a">[다음]
+                        </div>
                     </c:if>
                     <c:if test="${pageHandler.showLast}">
-                        <a href="<c:url value='/deal?page=${phQna.totalPage}&pageSize=${phQna.pageSize}' />" class="d_pagination_a d_next">[마지막]</a>
+                        <div onclick="ajaxPagination('${phQna.totalPage}','${phQna.pageSize}','${pInfo.product_number}')"
+                             class="d_nn d_pagination_a">[마지막]
+                        </div>
                     </c:if>
                 </div>
+                <%--                <div class="d_pagination">--%>
+                <%--                    <c:if test="${phQna.showFirst}">--%>
+                <%--                        <a href="<c:url value='/deal?page=1&pageSize=${phQna.pageSize}' />" class="d_pp d_pagination_a">[처음]</a>--%>
+                <%--                    </c:if>--%>
+                <%--                    <c:if test="${phQna.showPrev}">--%>
+                <%--                        <a href="<c:url value='/deal?page=${phQna.beginPage-1}&pageSize=${phQna.pageSize}' />" class="d_pre d_pagination_a">[이전]</a>--%>
+                <%--                    </c:if>--%>
+                <%--                    <c:forEach var="i" begin="${phQna.beginPage}" end="${phQna.endPage}">--%>
+                <%--                        <a href="<c:url value='/deal?page=${i}&pageSize=${phQna.pageSize}' /> " class="d_pagination_a d_pnum ${i==phQna.page?"d_on":""}"> ${i}</a>--%>
+                <%--                    </c:forEach>--%>
+                <%--                    <c:if test="${phQna.showNext}">--%>
+                <%--                        <a href="<c:url value='/deal?page=${phQna.endPage+1}&pageSize=${phQna.pageSize}' />" class="d_pagination_a d_next">[다음]</a>--%>
+                <%--                    </c:if>--%>
+                <%--                    <c:if test="${pageHandler.showLast}">--%>
+                <%--                        <a href="<c:url value='/deal?page=${phQna.totalPage}&pageSize=${phQna.pageSize}' />" class="d_pagination_a d_next">[마지막]</a>--%>
+                <%--                    </c:if>--%>
+                <%--                </div>--%>
             </div>
-            <div class="h1000" id="sec4" >
+            <div class="h1000" id="sec4">
                 <img src="<c:url value='/img/dealImg/delivery.jpg'/> ">
             </div>
-            <div class="h1000" id="sec5" >
-                <div class="d_refund_txt"> 교환/반품정책 </div>
+            <div class="h1000" id="sec5">
+                <div class="d_refund_txt"> 교환/반품정책</div>
                 <img src="<c:url value='/img/dealImg/refund.jpg'/> ">
             </div>
         </div>
 
         <div class="btn_top"><a href="#wrap">TOP</a></div>
+        <%--=================================MAIN============================================--%>
+        <%--=================================================================================--%>
+        <%--=================================================================================--%>
         <footer class="footer">푸터입니당</footer>
         </html>
     </main>
