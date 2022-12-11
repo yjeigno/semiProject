@@ -14,10 +14,10 @@
 <%--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--%>
 <%--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--%>
 <%--@@@@@@@@@@@@@@@@@@@임시파일임 지울예정@@@@@@@@@@@@@@@--%>
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/header.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="js/header.js"></script>
+<link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
+<script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/> "></script>
+<script src="<c:url value='/js/header.js'/> "></script>
 
 <html>
 <head>
