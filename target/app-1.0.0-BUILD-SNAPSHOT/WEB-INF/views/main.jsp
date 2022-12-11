@@ -104,7 +104,7 @@
             <div class="main_title">NEW ARRIVALS</div>
             <br>
             <h4 class="sub_title">한샘의 새로운 상품을 구경하세요.</h4>
-            <a href="/search.do?search=가구"><div class="more new">More</div></a>
+            <a href="<c:url value='/search.do?search=가구'/>"><div class="more new">More</div></a>
         </div>
 
         <div class="items_area">
@@ -128,7 +128,7 @@
                 <div class="main_title">BEST PRODUCTS</div>
                 <br>
                 <h4 class="sub_title">한샘의 인기 상품을 구경하세요.</h4>
-                <a href="#_best"><div class="more best">More</div></a>
+                <a href="#_best"><div class="<c:url value='/search.do?search=가구'/>">More</div></a>
             </div>
 
             <div class="items_area">
