@@ -136,15 +136,15 @@
                 </div>
             </div>
             </c:forEach>
-            <div class="item">
-                <div class="img_box"><img src="./img/main/new2.png" alt="" id="new_img2" ></div>
-                <div class="item_txt">
-                    <h4>SAMPLE</h4>
-                    <h5>상품요약 설명</h5>
-                    <h5><del>000,000원</del></h5>
-                    <h4>000,000원</h4>
-                </div>
-            </div>
+<%--            <div class="item">--%>
+<%--                <div class="img_box"><img src="./img/main/new2.png" alt="" id="new_img2" ></div>--%>
+<%--                <div class="item_txt">--%>
+<%--                    <h4>SAMPLE</h4>--%>
+<%--                    <h5>상품요약 설명</h5>--%>
+<%--                    <h5><del>000,000원</del></h5>--%>
+<%--                    <h4>000,000원</h4>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
 <%--            <div class="item">--%>
 <%--                <div class="img_box"><img src="./img/main/new3.png" alt="" id="new_img3" ></div>--%>
