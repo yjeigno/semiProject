@@ -30,8 +30,7 @@
     // 소비자가, 가격에 원 하고 , 표시
     let oPrice = ${pInfo.product_price};
     <%--여기에 ${pdto.product_price}--%>
-    let sPrice = ${pInfo.product_status==2 && SpeDiscount.special_product_end_date>now()
-    ?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price};
+    let sPrice = ${pInfo.product_status==2?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price};
     <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
     <%--console.log( ${pInfo.product_price*(SpeDiscount.special_product_discount / 100)}  );--%>
 

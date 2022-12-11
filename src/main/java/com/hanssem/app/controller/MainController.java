@@ -23,12 +23,13 @@ public class MainController {
     MainService mainService;
 
     // 기존꺼
-    @GetMapping("/main")
+    @GetMapping("/")
     public String main(Model model){
 
 //        상품정보
-        List<ProductDto> productDto = mainService.getInfo(1);
-        model.addAttribute("pInfo",productDto);
+        List<ProductDto> productDto = mainService.selectAll();
+        System.out.println("productList : "+ productDto);
+        model.addAttribute("productInfo",productDto);
 
 
 
@@ -37,6 +38,7 @@ public class MainController {
 
         List<InteriorDto> interior_category = mainService.selectInterior(1);;
         model.addAttribute("list", interior_category);
+
         return "main";
     }
 
