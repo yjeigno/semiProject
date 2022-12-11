@@ -11,12 +11,12 @@
 <%--var ProductDto = '<c:out value='${productDto}' />';--%>
 
 <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
-<link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
+<%--<link rel="stylesheet" href="<c:url value='/css/header.css'/> ">--%>
 <link rel="stylesheet" href="<c:url value='/css/deal.css'/> ">
 <link rel="stylesheet" href="<c:url value='/css/dealReview.css'/> ">
 <%--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--%>
 <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/> "></script>
-<script src="<c:url value='/js/header.js'/> "></script>
+<%--<script src="<c:url value='/js/header.js'/> "></script>--%>
 <script src="<c:url value='/js/deal.js'/> "></script>
 <script src="<c:url value='/js/dealReview.js'/> "></script>
 
