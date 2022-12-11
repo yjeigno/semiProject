@@ -69,11 +69,11 @@
                 <td>
                   <div>
                     <c:set var="tel" value="${user.member_phone}"/>
-                    <input type="number" name="tel1" id="tel1"  value="${tel.substring(0,3)}">
+                    <input type="number" name="tel1" id="tel1"  value="${tel.split('-')[0]}">
                     <span class="line"></span>
-                    <input type="number" name="tel2" id="tel2"  value="${tel.length()==11?tel.substring(3,7):tel.substring(3,6)}">
+                    <input type="number" name="tel2" id="tel2"  value="${tel.split('-')[1]}">
                     <span class="line"></span>
-                    <input type="number" name="tel3" id="tel3"  value="${tel.length()==11?tel.substring(7):tel.substring(6)}">
+                    <input type="number" name="tel3" id="tel3"  value="${tel.split('-')[2]}">
                   </div>
                   <button type="button" class="btn_user_info" id="change_phoneNumber">인증하기</button>
                 </td>

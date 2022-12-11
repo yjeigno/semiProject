@@ -34,7 +34,14 @@
                 <span> 검색 결과</span>
             </div>
             <div class="mobile_filter">
-                <div class="btn_filter"></div>
+                <div class="btn_filter">
+                    <section class="mobile_filter">
+
+                    </section>
+                </div>
+                <script>
+
+                </script>
                 <div class="btn_sort" onclick="mobileSort()">
                     <section class="mobile_sort">
                         <input type="radio" name="sort" id="sort_pop" value="popular" ${sc.sort=="popular"?"checked":""}>
@@ -51,28 +58,7 @@
                     </section>
                 </div>
             </div>
-            <script>
-                function mobileSort(){
-                    if($(".dimLayer").length == 0){
-                        $("body").append("<div class='dimLayer'></div>");
-                        $(".dimLayer").css('height', $(document).height());
-                        $(".mobile_sort").css({display: "flex"});
-                    } else {
-                        return;
-                    }
-                }
-                function doSort(){
-                    let sort = $('input[name="sort"]:checked').val();
-                    getSearch(1, 20, sort);
-                }
-                $(document).mouseup(function (e){
-                    let layerPopup = $(".mobile_sort");
-                    if(layerPopup.has(e.target).length === 0){
-                        layerPopup.css({display : "none"});
-                        $(".dimLayer").remove();
-                    }
-                })
-            </script>
+
             <c:choose>
                 <c:when test="${!empty list}">
                     <div class="cate_box">
