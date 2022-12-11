@@ -14,36 +14,42 @@ public class MainDao {
     @Autowired
     SqlSession session;
 
+//      상품(인기, 신상품)
     private String productPath="com.hanssem.app.dao.productMapper.";
     private String imagePath="com.hanssem.app.dao.imageMapper.";
     private String SpecialPath="com.hanssem.app.dao.specialPriceMapper.";
+//    인테리어
+    private String namespace = "com.hanssem.app.dao.InteriorMapper.";
 
-    //상품 불러오기
-    public ProductDto select(Integer product_number){
-        return session.selectOne(productPath+"select",product_number);
 
-    }// 특정 상품의 이미지 불러오기
+
+    //전체 상품 불러오기
+    public List<ProductDto> select(Integer product_number){
+        return session.selectList(productPath+"selectAll",product_number);
+    }
+
+    //전체 이미지 불러오기
+    public List<ImageDto> selectImgAll(Integer product_number){
+        return session.selectList(imagePath+"selectAll",product_number);
+    }
+
+
+    // 특정 상품의 이미지 불러오기
     public ImageDto selectImg(Integer product_number){
         return session.selectOne(imagePath+"selectImg",product_number);
     }
-    // 특정 상품의 이미지경로와 이미지에 맞는 색상 불러오기
-    public List<ImageColorDto> selectImgColor(Integer product_number){
-        return session.selectList(imagePath+"selectImgColor",product_number);
-    }
-    // 특정 상품의 상세이미지 경로 불러오기
-    public List<ImageDto> selectImgDetail(Integer product_number){
-        return session.selectList(imagePath+"selectImgDetail",product_number);
-    }
-    // 특정 상품의 사이즈 불러오기
-    public List<CateSizeDto> selectSize(Integer product_number){
-        return session.selectList(productPath+"selectSize",product_number);
-    }
-    // 특정 상품의 사이즈에 맞는 컬러 불러오기
-    public List<ProductSizeColorDto> selectSizeColor(Map map){
-        return session.selectList(productPath+"selectSizeColor",map);
-    }
+
 //    할인율
     public SpecialPriceDto selectDiscount(Integer product_number) {
         return session.selectOne(SpecialPath+"selectSpeDiscount",product_number);
     }
+//    인테리어 카테고리 정보 가져오기
+    public List<InteriorDto> selectInterior(Integer interior_category_number){
+        return session.selectList(namespace+"selectInterior",interior_category_number);
+    }
+//      인테리어 상세정보
+    public List<InteriordetailDto> selectInteriordetail(Integer interior_number){
+        return session.selectList(namespace+"selectInteriordetail", interior_number);
+    }
+
 }

@@ -29,14 +29,19 @@
   <header class="header">
     <div class="content_area header_top">
       <ul class="top_nav_ul">
-        <!-- 회원가입 페이지로 이동 -->
+
         <li><a href="<c:url value='/register'/>">JOIN</a></li>
+
         <!-- 로그인 페이지로 이동 -->
-        <li><a href="login">LOGIN</a></li>
+        <li>
+          <a href="<c:url value='/login/login'/>">LOGIN</a>
+        </li>
         <!-- 위시리스트 내역 페이지로 이동 -->
-        <li><a href="#">WISHLIST</a></li>
+        <li><a href="/wishlist">WISHLIST</a></li>
+
+
         <!-- 본인인증 후 / 마이페이지로 이동 -->
-        <li><a href="#">MYPAGE</a></li>
+        <li><a href="/pwchecker">MYPAGE</a></li>
         <li id="search_icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48">
             <path d="M31 28h-1.59l-.55-.55C30.82 25.18 32 22.23 32 19c0-7.18-5.82-13-13-13S6 11.82 6 19s5.82 13 13 13c3.23 0 6.18-1.18 8.45-3.13l.55.55V31l10 9.98L40.98 38 31 28zm-12 0c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z"/>
@@ -50,19 +55,19 @@
         </form>
       </div>
       <!-- 로고 클릭시 메인페이지로 이동 -->
-      <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/>" alt=""></div></a>
+      <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/> " alt=""></div></a>
     </div>
 
     <div class="header_bottom">
       <div class="content_area">
         <ul class="bottom_nav_ul">
-          <li class="box">Furniture</li>
-          <li class="box">Lighting</li>
-          <li class="box">Fabric</li>
+          <li class="box"><a href="/search.do?search=가구"> Furniture</a></li>
+          <li class="box"><a href="/search.do?search=가구">Lighting</a></li>
+          <li class="box"><a href="/search.do?search=가구">Fabric</a></li>
           <!-- 홈데코 클릭시 인테리어 페이지 이동 -->
-          <li><a href="">Home Deco</a></li>
+          <li><a href="/Interior">Home Deco</a></li>
           <!-- 특가페이지 이동 -->
-          <li><a href="">Hot Deal</a></li>
+          <li><a href="/specialPrice">Hot Deal</a></li>
         </ul>
       </div>
     </div>
@@ -71,35 +76,35 @@
         <ul class="ul_category_box">
           <li class="li_Title">Furniture</li>
           <li class="li_content">
-            <ul class="ca_box" onclick="location.href='#';">
+            <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=3';">
               <li class="ca_txt">Table</li>
               <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/> "></li>
             </ul>
-            <ul class="ca_box" onclick="location.href='#';">
+            <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=5';">
               <li class="ca_txt">Table & Dining</li>
               <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/> "></li>
             </ul>
-            <ul class="ca_box" onclick="location.href='#';">
+            <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=7';">
               <li class="ca_txt">Chair</li>
               <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/> "></li>
             </ul>
-            <ul class="ca_box" onclick="location.href='#';">
+            <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=2';">
               <li class="ca_txt">Sofa</li>
               <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/> "></li>
             </ul>
-            <ul class="ca_box" onclick="location.href='#';">
+            <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=6';">
               <li class="ca_txt">Desk</li>
               <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/> "></li>
             </ul>
-            <ul class="ca_box" onclick="location.href='#';">
+            <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=4';">
               <li class="ca_txt">TV Stand & Storage</li>
               <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/> "></li>
             </ul>
-            <ul class="ca_box" onclick="location.href='#';">
+            <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=8';">
               <li class="ca_txt">Small Furniture</li>
               <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/> "></li>
             </ul>
-            <ul class="ca_box" onclick="location.href='#';">
+            <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=1';">
               <li class="ca_txt">Bed</li>
               <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/> "></li>
             </ul>
@@ -110,11 +115,11 @@
           <li class="li_Title">Lighting</li>
           <li>
             <ul class="li_content str">
-              <li class="l_txt">pendant</li>
-              <li class="l_txt">table</li>
-              <li class="l_txt">floor lamp</li>
-              <li class="l_txt">wall</li>
-              <li class="l_txt">ceiling</li>
+              <li class="l_txt"><a href="/search.do?search=가구&category=1"> pendant</a></li>
+              <li class="l_txt"><a href="/search.do?search=가구&category=1"> table</a></li>
+              <li class="l_txt"><a href="/search.do?search=가구&category=1"> floor lamp</a></li>
+              <li class="l_txt"><a href="/search.do?search=가구&category=1"> wall</a></li>
+              <li class="l_txt"><a href="/search.do?search=가구&category=1"> ceiling</a></li>
             </ul>
           </li>
 
@@ -123,30 +128,19 @@
           <li class="li_Title">Fabric</li>
           <li>
             <ul class="li_content str right">
-              <li class="l_txt">Curtain</li>
-              <li class="l_txt">Rug</li>
-              <li class="l_txt">blind</li>
-              <li class="l_txt">mat</li>
+              <li class="l_txt"><a href="/search.do?search=가구&category=1"> Curtain</a></li>
+              <li class="l_txt"><a href="/search.do?search=가구&category=1"> Rug</a></li>
+              <li class="l_txt"><a href="/search.do?search=가구&category=1"> blind</a></li>
+              <li class="l_txt"><a href="/search.do?search=가구&category=1"> mat</a></li>
               <li></li>
             </ul>
           </li>
 
         </ul>
-        <!-- <ul class="ul_category_box">
-            <li class="li_Title">Home Deco</li>
-            <li class="li_content"></li>
-
-        </ul>
-        <ul class="ul_category_box">
-            <li class="li_Title">Hot Deal</li>
-            <li class="li_content"></li>
-
-        </ul> -->
       </div>
     </div>
   </header>
   <div class="h_100"></div>
-</div>
 
 
 <div class="member_sec">
