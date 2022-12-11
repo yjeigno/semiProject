@@ -58,7 +58,7 @@ public class DealRestController {
         System.out.println("4번값 : " + map.get("offset"));
 
         int totalQnaCount = dealService.getQnaCount(1);
-        PageHandler qnaPageHandler = new PageHandler(totalQnaCount,1,10);
+//        PageHandler qnaPageHandler = new PageHandler(totalQnaCount,1,10);
         System.out.println("map :" + map);
 
         List<QnaDto> qnaList = dealService.getQna(map);
