@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanssem.app.dao.inquiryMapper">
+
+    <!--    게시글 등록-->
+    <insert id="insert" parameterType="InquiryDto">
+        INSERT INTO qna
+        (qna_title, qna_content, qna_category, member_number)
+        VALUES
+        (#{qna_title}, #{qna_content}, #{qna_category}, (
+            select member_number from member where member_id = #{member_id}
+        ))
+    </insert>
+
+    <!--    전체 게시글 개수 구하기-->
+    <select id="count" resultType="int">
+        SELECT count(*) FROM qna
+    </select>
+
+    <!--    게시글 전체 가져오기(특정 번호부터 몇개)-->
+    <select id="selectPage" parameterType="map" resultType="InquiryDto">
+        select * from qna
+        where member_number = (
+            select member_number from member where member_id = #{member_id}
+        )
+        order by qna_register_date desc, qna_number desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="detail" parameterType="Integer" resultType="InquiryDto">
+        select * from qna
+        where qna_number = #{qna_number}
+    </select>
+</mapper>

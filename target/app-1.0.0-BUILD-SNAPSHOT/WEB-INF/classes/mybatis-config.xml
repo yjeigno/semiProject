@@ -22,6 +22,9 @@
         <typeAlias alias="MemberDto" type="com.hanssem.app.dto.MemberDto" />
 
         <typeAlias alias="SpecialPriceDto" type="com.hanssem.app.dto.SpecialPriceDto"/>
+        <typeAlias alias="WishlistDto" type="com.hanssem.app.dto.WishlistDto"/>
+        <typeAlias alias="WishPartialDeleteDto" type="com.hanssem.app.dto.WishPartialDeleteDto"/>
+        <typeAlias alias="InquiryDto" type="com.hanssem.app.dto.InquiryDto"/>
 
         <typeAlias alias="InteriorDto" type="com.hanssem.app.dto.InteriorDto"/>
         <typeAlias alias="InteriordetailDto" type="com.hanssem.app.dto.InteriordetailDto"/>

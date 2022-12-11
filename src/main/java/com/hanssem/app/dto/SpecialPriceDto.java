@@ -10,8 +10,13 @@ public class SpecialPriceDto {
 
     private ProductDto productDto;
 
+    private ImageDto imageDto;
+
     private Double review_rank_average;
     private Integer review_count;
+
+    private Integer wishFlag;
+
 
     public SpecialPriceDto() {
 
@@ -33,6 +38,15 @@ public class SpecialPriceDto {
                 ", product_number=" + product_number +
                 '}';
     }
+
+    public boolean getWishFlag() {
+        return wishFlag == 1;
+    }
+
+    public void setWishFlag(Integer wishFlag) {
+        this.wishFlag = wishFlag;
+    }
+
 
     public Integer getSpecial_product_number() {
         return special_product_number;
@@ -72,6 +86,14 @@ public class SpecialPriceDto {
 
     public void setProductDto(ProductDto productDto) {
         this.productDto = productDto;
+    }
+
+    public ImageDto getImageDto() {
+        return imageDto;
+    }
+
+    public void setImageDto(ImageDto imageDto) {
+        this.imageDto = imageDto;
     }
 
     public Double getReview_rank_average() {
