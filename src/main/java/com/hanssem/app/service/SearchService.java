@@ -2,7 +2,6 @@ package com.hanssem.app.service;
 
 import com.hanssem.app.dto.*;
 
-import java.awt.*;
 import java.util.List;
 
 public interface SearchService {

@@ -50,7 +50,7 @@
 
 
       <!-- 본인인증 후 / 마이페이지로 이동 -->
-      <li><a href="/pwchecker">MYPAGE</a></li>
+      <li><a href="/mypage/mpMain">MYPAGE</a></li>
       <li id="search_icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48">
           <path d="M31 28h-1.59l-.55-.55C30.82 25.18 32 22.23 32 19c0-7.18-5.82-13-13-13S6 11.82 6 19s5.82 13 13 13c3.23 0 6.18-1.18 8.45-3.13l.55.55V31l10 9.98L40.98 38 31 28zm-12 0c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z"/>
@@ -158,5 +158,28 @@
   </div>
 </header>
 <div class="h_100"></div>
+
+<!-- confirm 모달을 쓸 페이지에 추가 start-->
+<section class="modal modal_section type_confirm">
+  <div class="enroll_box">
+    <p class="menu_msg"></p>
+  </div>
+  <div class="enroll_btn">
+    <button class="btn posi_btn btn_ok">확인</button>
+    <button class="btn gray_btn modal_close" onclick="modalClose(this)">취소</button>
+  </div>
+</section>
+<!-- confirm 모달을 쓸 페이지에 추가 end-->
+
+<!-- alert 모달을 쓸 페이지에 추가 start-->
+<section class="modal modal_section type_alert">
+  <div class="enroll_box">
+    <p class="menu_msg"></p>
+  </div>
+  <div class="enroll_btn">
+    <button class="btn posi_btn modal_close" onclick="modalClose(this)">확인</button>
+  </div>
+</section>
+<!-- alert 모달을 쓸 페이지에 추가 end-->
 </body>
 </html>
