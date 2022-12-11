@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 이준환
@@ -5,13 +7,13 @@
   Time: 오전 12:48
   To change this template use File | Settings | File Templates.
 --%>
-<link rel="stylesheet" href="./css/common.css">
-<link rel="stylesheet" href="./css/header(ver1.0.2).css">
-<link rel="stylesheet" href="./css/Interior_detail.css">
+<link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/Interior_detail.css'/> ">
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="./js/header(ver1.0.2).js"></script>
-<script src="./js/Interior_detail.js"></script>
+<script src="<c:url value='/js/header.js'/> "></script>
+<script src="<c:url value='/js/Interior_detail.js'/> "></script>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -43,9 +45,10 @@
         </form>
       </div>
       <!-- 로고 클릭시 메인페이지로 이동 -->
-      <a href="#"><div class="logo"><img src="img/headerImg/logo_black.png" alt=""></div></a>
+      <a href="<c:url value='/'/>"><div class="logo"><img src="<c:url value='/img/headerImg/logo_black.png'/> " alt=""></div></a>
     </div>
-
+    <%--        src="img/headerImg/logo_black.png"--%>
+    <%--        href="<c:url value='img/headerImg/logo_black.png'/> "--%>
     <div class="header_bottom">
       <div class="content_area">
         <ul class="bottom_nav_ul">
@@ -66,35 +69,35 @@
           <li class="li_content">
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Table</li>
-              <li class="ca_img"><img src="img/headerImg/Furn1.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Table & Dining</li>
-              <li class="ca_img"><img src="img/headerImg/Furn2.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Chair</li>
-              <li class="ca_img"><img src="img/headerImg/Furn3.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Sofa</li>
-              <li class="ca_img"><img src="img/headerImg/Furn4.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Desk</li>
-              <li class="ca_img"><img src="img/headerImg/Furn5.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">TV Stand & Storage</li>
-              <li class="ca_img"><img src="img/headerImg/Furn6.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Small Furniture</li>
-              <li class="ca_img"><img src="img/headerImg/Furn7.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/> "></li>
             </ul>
             <ul class="ca_box" onclick="location.href='#';">
               <li class="ca_txt">Bed</li>
-              <li class="ca_img"><img src="img/headerImg/Furn8.png"></li>
+              <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/> "></li>
             </ul>
           </li>
 
@@ -201,17 +204,21 @@
 
 
 
-                <ul class="Interior_case">
-                  <li class="Interior_case_box">
-                    <a href="">
+                 <ul class="Interior_case">
+
+
+                     <li class="Interior_case_box">
+                      <div>${product_number} </div>
+                       <a href="">
                       <img class="Interior_case_img" id="Interior_box1" src="img/Interior/interior_5(3).jpg"  alt="">
-                    </a>
+                       </a>
+                     </li>
 
-                  </li>
 
 
-                  <li class="Interior_case_box">
-                    <a href="">
+                   <li class="Interior_case_box">
+                     <div>${product_number} </div>
+                     <a href="">
                       <img class="Interior_case_img" id="Interior_box2" src="img/Interior/interior_5(4).jpg"  alt="">
                     </a>
 
@@ -219,15 +226,16 @@
 
 
 
-
-                  <li class="Interior_case_box">
-                    <a href="">
+                   <li class="Interior_case_box">
+                     <div>${product_number} </div>
+                     <a href="">
                       <img class="Interior_case_img" id="Interior_box3" src="img/Interior/interior_5(5).jpg" width="100%" alt="">
                     </a>
 
                   </li>
 
                   <li class="Interior_case_box" >
+                    <div>${product_number} </div>
                     <a href="">
                       <img class="Interior_case_img" id="Interior_box4" src="img/Interior/interior_5(6).jpg" width="100%" alt="">
                     </a>
@@ -235,6 +243,7 @@
                   </li>
 
                   <li class="Interior_case_box">
+                    <div>${product_number} </div>
                     <a href="">
                       <img class="Interior_case_img" id="Interior_box5" src="img/Interior/interior_5(7).jpg" width="100%" alt="">
                     </a>
@@ -253,9 +262,11 @@
           <p class="Interior_arrow_box" id="arrow1">파스타 2S 렌지대 겸 조리대 185,000원
             <img src="img/Interior/interior_5(3).jpg" width="100%" style="height:80%" alt="">
           </p>
+
           <p class="Interior_arrow_box" id="arrow2">반자동머신 249,000원
             <img src="img/Interior/interior_5(4).jpg" width="100%" style="height:80%" alt="">
           </p>
+
           <p class="Interior_arrow_box" id="arrow3">아이코나 전기주전자 89,000원
             <img src="img/Interior/interior_5(5).jpg" width="100%" style="height:80%" alt="">
           </p>
