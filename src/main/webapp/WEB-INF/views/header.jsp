@@ -86,35 +86,35 @@
       <ul class="ul_category_box">
         <li class="li_Title">Furniture</li>
         <li class="li_content">
-          <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=3';">
+          <ul class="ca_box" onclick="location.href='/search.do?search=테이블&category=3';">
             <li class="ca_txt">Table</li>
             <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn1.png'/> "></li>
           </ul>
-          <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=5';">
+          <ul class="ca_box" onclick="location.href='/search.do?search=식탁&category=5';">
             <li class="ca_txt">Table & Dining</li>
             <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn2.png'/> "></li>
           </ul>
-          <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=7';">
+          <ul class="ca_box" onclick="location.href='/search.do?search=의자&category=7';">
             <li class="ca_txt">Chair</li>
             <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn3.png'/> "></li>
           </ul>
-          <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=2';">
+          <ul class="ca_box" onclick="location.href='/search.do?search=쇼파&category=2';">
             <li class="ca_txt">Sofa</li>
             <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn4.png'/> "></li>
           </ul>
-          <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=6';">
+          <ul class="ca_box" onclick="location.href='/search.do?search=책상&category=6';">
             <li class="ca_txt">Desk</li>
             <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn5.png'/> "></li>
           </ul>
-          <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=4';">
+          <ul class="ca_box" onclick="location.href='/search.do?search=거실장&category=4';">
             <li class="ca_txt">TV Stand & Storage</li>
             <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn6.png'/> "></li>
           </ul>
-          <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=8';">
+          <ul class="ca_box" onclick="location.href='/search.do?search=서랍장&category=8';">
             <li class="ca_txt">Small Furniture</li>
             <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn7.png'/> "></li>
           </ul>
-          <ul class="ca_box" onclick="location.href='/search.do?search=가구&category=1';">
+          <ul class="ca_box" onclick="location.href='/search.do?search=침대&category=1';">
             <li class="ca_txt">Bed</li>
             <li class="ca_img"><img src="<c:url value='/img/headerImg/Furn8.png'/> "></li>
           </ul>
