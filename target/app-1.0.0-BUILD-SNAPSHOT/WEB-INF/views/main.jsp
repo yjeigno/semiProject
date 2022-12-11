@@ -122,16 +122,10 @@
         </div>
 
         <div class="items_area">
-
+            <c:forEach items="${imgList}" var="img">
             <div class="item">
                 <div class="img_box">
-                    <c:forEach items="${imgList}" var="img">
-                        <div class="new_img">
-
-                            <img src="<c:url value='${img.imageDto.image_path}'/>">
-
-                        </div>
-                    </c:forEach>
+                    <img src="<c:url value='${img.imageDto.image_path}'/>">
                 </div>
                 <div class="item_txt">
                     <h4>${pInfo.product_name}</h4>
@@ -141,7 +135,7 @@
                             ?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price}</h4>
                 </div>
             </div>
-
+            </c:forEach>
             <div class="item">
                 <div class="img_box"><img src="./img/main/new2.png" alt="" id="new_img2" ></div>
                 <div class="item_txt">
@@ -152,27 +146,27 @@
                 </div>
             </div>
 
-            <div class="item">
-                <div class="img_box"><img src="./img/main/new3.png" alt="" id="new_img3" ></div>
-                <div class="item_txt">
-                    <h4>SAMPLE</h4>
-                    <h5>상품요약 설명</h5>
-                    <h5><del>000,000원</del></h5>
-                    <h4>000,000원</h4>
-                </div>
-            </div>
+<%--            <div class="item">--%>
+<%--                <div class="img_box"><img src="./img/main/new3.png" alt="" id="new_img3" ></div>--%>
+<%--                <div class="item_txt">--%>
+<%--                    <h4>SAMPLE</h4>--%>
+<%--                    <h5>상품요약 설명</h5>--%>
+<%--                    <h5><del>000,000원</del></h5>--%>
+<%--                    <h4>000,000원</h4>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
-            <div class="item">
-                <div class="img_box"><img src="./img/main/new4.png" alt="" id="new_img4" ></div>
-                <div class="item_txt">
-                    <a href="#">
-                        <h4>SAMPLE</h4>
-                        <h5>상품요약 설명</h5>
-                        <h5><del>000,000원</del></h5>
-                        <h4>000,000원</h4>
-                    </a>
-                </div>
-            </div>
+<%--            <div class="item">--%>
+<%--                <div class="img_box"><img src="./img/main/new4.png" alt="" id="new_img4" ></div>--%>
+<%--                <div class="item_txt">--%>
+<%--                    <a href="#">--%>
+<%--                        <h4>SAMPLE</h4>--%>
+<%--                        <h5>상품요약 설명</h5>--%>
+<%--                        <h5><del>000,000원</del></h5>--%>
+<%--                        <h4>000,000원</h4>--%>
+<%--                    </a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
         </div>
 
