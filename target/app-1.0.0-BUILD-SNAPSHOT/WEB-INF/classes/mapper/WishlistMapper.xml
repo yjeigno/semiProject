@@ -47,19 +47,18 @@
         SELECT
             sp.special_product_discount,
             sp.special_product_end_date,
-            p.*, w.*, im.*
+            p.*, w.*, i.image_path
         FROM product p
         inner join wishlist w
         ON p.product_number = w.product_number
-        inner join image im
-        ON p.product_number = im.product_number
+        LEFT OUTER JOIN (SELECT DISTINCT(product_number) AS product_number, i.image_path
+        FROM (SELECT product_number, image_path, ROW_NUMBER() over (PARTITION BY product_number ORDER BY image_number ASC) AS rn FROM image) AS i WHERE rn=1) AS i ON i.product_number = p.product_number
         left join special_product sp
         ON p.product_number = sp.product_number and p.product_status = 2
         WHERE w.member_number = #{member_number}
         <if test="product_number != null">
             and   p.product_number = #{product_number}
         </if>
-        and   p.product_number = im.product_number
     </select>
 
     <select id="selectWishlist" parameterType="WishlistDto" resultType="Integer">

@@ -40,6 +40,7 @@
     background-color: #999;
 }
 .wish_list {
+    min-height: 1000px;
     padding: 0 30px;
     overflow: hidden;
     box-sizing: border-box;
@@ -103,9 +104,23 @@ input[type="checkbox"]:checked + label {
 }
 .wish_item_name {
     margin-bottom: 3px;
+    max-height: 4rem;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 .wish_item_prd {
     margin-bottom: 3px;
+    max-height: 4rem;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 .wish_price {
     font-size: 20px;
