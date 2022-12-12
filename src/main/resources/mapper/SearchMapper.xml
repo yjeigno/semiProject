@@ -6,7 +6,7 @@
     <!--    검색어 포함 상품 전체 가져오기-->
     <select id="searchProduct" parameterType="SearchCondition" resultType="SearchResult">
         SELECT p.product_number
-        , p.product_name
+        , p.product_content
         , p.product_price
         , p.product_register_date
         , p.category_code_number
@@ -85,23 +85,25 @@
         LEFT OUTER JOIN size_code sc ON psc.size_code_number = sc.size_code_number
         WHERE p.product_tag LIKE CONCAT('%', #{search}, '%')
         AND p.category_code_number = #{category}
-        <if test="color != null">
-            AND psc.color_code_number = #{color}
-        </if>
+<!--        <if test="color != null">-->
+<!--            AND psc.color_code_number = #{color}-->
+<!--        </if>-->
         GROUP BY psc.size_code_number, p.category_code_number
         ORDER BY psc.size_code_number ASC
     </select>
     <!--    컬러 목록 가져오기-->
     <select id="selectColorList" parameterType="SearchCondition" resultType="com.hanssem.app.dto.ColorFilterDto">
-        SELECT DISTINCT psc.color_code_number, count(*) color_amount, p.category_code_number, c.color_code_name
-        FROM product_size_color psc
+        SELECT distinct  psc.color_code_number, count(psc.color_code_number) color_amount, p.category_code_number, cc.color_code_name FROM (SELECT psc.product_number, psc.color_code_number, count(*) color_amount, p.category_code_number, cc.color_code_name FROM (SELECT product_number, color_code_number, count(*) FROM product_size_color GROUP BY product_number, color_code_number) psc
         LEFT OUTER JOIN product p ON p.product_number = psc.product_number
-        LEFT OUTER JOIN color_code c ON psc.color_code_number = c.color_code_number
+        LEFT OUTER JOIN color_code cc ON psc.color_code_number = cc.color_code_number
+        GROUP BY psc.product_number, psc.color_code_number, p.category_code_number, cc.color_code_name) psc
+        LEFT OUTER JOIN product p ON psc.product_number = p.product_number
+        LEFT OUTER JOIN color_code cc ON psc.color_code_number = cc.color_code_number
         WHERE p.product_tag LIKE CONCAT('%', #{search}, '%')
         AND p.category_code_number = #{category}
-        <if test="size != null">
-            AND psc.size_code_number = #{size}
-        </if>
+<!--        <if test="size != null">-->
+<!--            AND psc.size_code_number = #{size}-->
+<!--        </if>-->
         GROUP BY psc.color_code_number, p.category_code_number
         ORDER BY psc.color_code_number ASC
     </select>

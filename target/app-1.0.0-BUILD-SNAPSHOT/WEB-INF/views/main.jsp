@@ -110,11 +110,14 @@
         <div class="items_area">
 
             <c:forEach items="${newImgList}" var="p" begin="2" end="5">
+
             <div class="item">
+                <a href="/deal?product_number=${p.product_number}">
                 <div class="img_box"><img class="img_resize" width="280px" height="280px" src="<c:url value='${p.image_path}'/>"></div>
                 <h4 class ="p_txt">${p.product_name}</h4>
                 <h5 class ="p_txt">${p.product_content}</h5>
                 <h5 class ="p_txt">${p.product_price}</h5>
+                </a>
             </div>
             </c:forEach>
         </div>
@@ -133,10 +136,12 @@
             <div class="items_area">
                 <c:forEach items="${newImgList}" var="p" begin="6" end="9">
                     <div class="item">
+                        <a href="/deal?product_number=${p.product_number}">
                         <div class="img_box"><img class="img_resize" width="280px" height="280px" src="<c:url value='${p.image_path}'/>"></div>
                         <h4 class ="p_txt">${p.product_name}</h4>
                         <h5 class ="p_txt">${p.product_content}</h5>
                         <h5 class ="p_txt">${p.product_price}</h5>
+                        </a>
                     </div>
                 </c:forEach>
             </div>
@@ -152,13 +157,16 @@
                 </div>
 
                 <div class="items_area">
-                    <c:forEach items="${list}" var="b" begin="1" end="4">
+                    <c:forEach items="${list}" var="b" begin="0" end="3">
                     <div class="item">
+<%--                        <a href="/deal?interior_number=${b.interior_number}">--%>
+                            <a href="/Interior_detail">
                         <div class="img_box"><img class="img_resize" width="280px" height="280px" src=${b.interior_image_path} alt="" ></div>
                         <div class="item_txt">
                             <h4 class ="p_txt">${b.interior_name}</h4>
                             <h5 class ="p_txt">${b.interior_content}</h5>
                         </div>
+                        </a>
                     </div>
                     </c:forEach>
                 </div>

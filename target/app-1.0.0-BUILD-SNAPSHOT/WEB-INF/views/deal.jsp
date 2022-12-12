@@ -124,7 +124,7 @@
                     + '<td class="d_qna_top_list">작성자</td>'
                     + '<td class="d_qna_top_list">작성일</td>'
                     + '</tr>' ;
-                var pagination = "";
+                // var pagination = "";
                 // console.log(data);
                 $('.d_q_d').empty();
                 $('.d_qna_faq_view').empty();
@@ -133,7 +133,7 @@
                 let ParseQnaList = JSON.parse(JsonQnaList);
                 // console.log("ParseQnaList : " +ParseQnaList);
                 // console.log("ParseQnaListlength : " +ParseQnaList.length)
-                let ph = data.qnaPageHanlder;
+                // let ph = data.qnaPageHanlder;
                 function Unix_timestamp(t){
                     var date = new Date(t);
                     var year = date.getFullYear();
