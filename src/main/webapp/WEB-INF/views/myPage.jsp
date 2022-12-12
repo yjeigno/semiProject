@@ -12,7 +12,7 @@
     <title>Hanssem</title>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <link rel="stylesheet" type="text/css" href="../css/common.css">
-  <link rel="stylesheet" type="text/css" href="<c:url value="../css/mypage.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
+  <link rel="stylesheet" type="text/css" href="<c:url value="../css/myPage.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
 </head>
 <body>
 <div id="wrap">
@@ -27,7 +27,7 @@
         <ul class="mypage_list">
           <li class="mypage_section" id="user_info">
             <img src="../img/etc/user.png" class="section_logo">
-            <h2 class="section_title">${userId} 님</h2>
+            <h2 class="section_title">${user.member_name} 님</h2>
             <p class="btn_moveSection">정보 수정</p>
           </li>
           <li class="mypage_section" id="adrs_book">
@@ -69,6 +69,15 @@
     })
     $('#user_info > .btn_moveSection').on('click', function (){
       location.href = "/mypage/userInfo";
+    })
+    $('#adrs_book > .btn_moveSection').on('click', function (){
+      location.href = "/address";
+    });
+    $('#delivery > .btn_moveSection').on('click', function (){
+      location.href = "/Shipping";
+    });
+    $('#QnA > .btn_moveSection').on('click', function (){
+      location.href = "/inquiryContents/list";
     })
   })
 </script>

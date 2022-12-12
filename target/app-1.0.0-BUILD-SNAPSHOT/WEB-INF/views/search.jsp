@@ -34,7 +34,14 @@
                 <span> 검색 결과</span>
             </div>
             <div class="mobile_filter">
-                <div class="btn_filter"></div>
+                <div class="btn_filter">
+                    <section class="mobile_filter">
+
+                    </section>
+                </div>
+                <script>
+
+                </script>
                 <div class="btn_sort" onclick="mobileSort()">
                     <section class="mobile_sort">
                         <input type="radio" name="sort" id="sort_pop" value="popular" ${sc.sort=="popular"?"checked":""}>
@@ -51,28 +58,7 @@
                     </section>
                 </div>
             </div>
-            <script>
-                function mobileSort(){
-                    if($(".dimLayer").length == 0){
-                        $("body").append("<div class='dimLayer'></div>");
-                        $(".dimLayer").css('height', $(document).height());
-                        $(".mobile_sort").css({display: "flex"});
-                    } else {
-                        return;
-                    }
-                }
-                function doSort(){
-                    let sort = $('input[name="sort"]:checked').val();
-                    getSearch(1, 20, sort);
-                }
-                $(document).mouseup(function (e){
-                    let layerPopup = $(".mobile_sort");
-                    if(layerPopup.has(e.target).length === 0){
-                        layerPopup.css({display : "none"});
-                        $(".dimLayer").remove();
-                    }
-                })
-            </script>
+
             <c:choose>
                 <c:when test="${!empty list}">
                     <div class="cate_box">
@@ -156,7 +142,7 @@
                                             <div class="product_name">${prd.product_name}</div>
                                             <c:if test="${!empty prd.discount_rate}">
                                                 <div class="product_price" style="text-decoration-line: line-through; font-size: 14px; font-weight: normal">￦<fmt:formatNumber value="${prd.product_price}" pattern="#,###" /></div>
-                                                <div class="product_price">￦<fmt:formatNumber value="${prd.product_price * (prd.discount_rate / 100)}" pattern="#,###" /></div>
+                                                <div class="product_price">￦<fmt:formatNumber value="${prd.product_price - prd.product_price * (prd.discount_rate / 100)}" pattern="#,###" /></div>
                                             </c:if>
                                             <c:if test="${empty prd.discount_rate}">
                                                 <div class="product_price">￦<fmt:formatNumber value="${prd.product_price}" pattern="#,###" /></div>
@@ -166,7 +152,9 @@
                                                 <div class="review_count">${prd.review_count==null?"0":prd.review_count}</div>
                                             </div>
                                         </div>
-                                        <p class="dc_rate">${prd.discount_rate}%</p>
+                                        <c:if test="${!empty prd.discount_rate}">
+                                            <p class="dc_rate">${prd.discount_rate}%</p>
+                                        </c:if>
                                         <div class="wish_mark <c:forEach var="wish" items="${wishList}">${wish.product_number==prd.product_number?"added_wishlist":""}</c:forEach>" onclick="wishlist(this)"></div>
                                     </li>
                                 </c:forEach>

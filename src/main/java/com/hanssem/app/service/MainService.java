@@ -17,20 +17,15 @@ public class MainService {
         return mainDao.selectAll();
     }
 
-
-    public SpecialPriceDto getDiscount(Integer product_number){
-        return mainDao.selectDiscount(product_number);
+    public List<MainDto> selectProductInfo(){
+        return mainDao.selectProductInfo();
     }
+
 
 
     public List<InteriorDto> selectInterior(Integer interior_category_number){
         return mainDao.selectInterior(interior_category_number);
     }
-
-    public List<InteriordetailDto> selectInteriordetail(Integer interior_number){
-        return mainDao.selectInteriordetail(interior_number);
-    }
-
 
 
 

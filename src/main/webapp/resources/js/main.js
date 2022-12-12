@@ -60,7 +60,7 @@ $(document).ready(function(){
     function auto_slide() {
         interval = setInterval(()=>{
             $('#btn_slide_R').trigger('click')
-        }, timer + 1500) // 500은 멈춰있을 시간
+        }, timer + 2000) // 500은 멈춰있을 시간
     }
     auto_slide();
 

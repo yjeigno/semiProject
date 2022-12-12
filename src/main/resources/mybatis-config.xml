@@ -31,6 +31,7 @@
         <typeAlias alias="AddressDto" type="com.hanssem.app.dto.AddressDto"/>
         <typeAlias alias="QnaDto" type="com.hanssem.app.dto.QnaDto"/>
 
+        <typeAlias alias="MainDto" type="com.hanssem.app.dto.MainDto"/>
 
 
 

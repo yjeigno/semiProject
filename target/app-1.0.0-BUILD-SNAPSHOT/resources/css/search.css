@@ -319,6 +319,7 @@
   font-size: 20px;
   text-align: center;
   cursor: pointer;
+  word-break: keep-all;
 }
 
 .product:hover .product_name {
@@ -465,7 +466,7 @@
 }
 @media (max-width: 639px) {
   .container {
-    width: 90%;
+    width: 85%;
     min-height: 0;
     margin: 0;
     padding: 0 20px;
@@ -583,7 +584,7 @@
 
 @media (max-width: 639px) {
   .product_img {
-    width: 30%;
+    width: 45%;
     display: inline;
   }
 }
@@ -658,7 +659,7 @@
 @media (max-width: 639px) {
   .wish_mark {
     top: unset;
-    right: 13px;
+    left: 5px;
     bottom: 5px;
   }
 }
@@ -684,21 +685,38 @@
 }
 
 .mobile_filter {
-  text-align: right;
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  gap: 1.3em;
+  display: none;
+}
+.mobile_filter p {
+  padding: 0;
+  margin: 0;
 }
 
+.btn_filter,
 .btn_sort {
   width: 1.5em;
   height: 1.5em;
-  background: url("../img/etc/sort-down.png") no-repeat center/cover;
   position: relative;
   cursor: pointer;
   display: none;
 }
 @media (max-width: 639px) {
+  .btn_filter,
   .btn_sort {
     display: inline-block;
   }
+}
+
+.btn_filter {
+  background: url("../img/etc/filter.png") no-repeat center/cover;
+}
+
+.btn_sort {
+  background: url("../img/etc/sort-down.png") no-repeat center/cover;
 }
 
 .dimLayer {

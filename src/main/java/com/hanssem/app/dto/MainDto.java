@@ -23,6 +23,10 @@ public class MainDto {
 
     private String product_tag;
 
+    private String image_path;
+
+    private ImageDto imageDto;
+
 
 
     //      인테리어 상품전용
@@ -46,7 +50,7 @@ public class MainDto {
 
     }
 
-    public MainDto(Integer product_number, String product_name, Integer product_price, Timestamp product_register_date, String product_content, Integer product_status, String product_class, Integer category_code_number, String product_tag, Integer interior_number, String interior_name, String interior_content, Timestamp interior_register_date, String interior_image_path, Integer interior_category_number, String interior_cash) {
+    public MainDto(Integer product_number, String product_name, Integer product_price, Timestamp product_register_date, String product_content, Integer product_status, String product_class, Integer category_code_number, String product_tag, String image_path, ImageDto imageDto, Integer interior_number, String interior_name, String interior_content, Timestamp interior_register_date, String interior_image_path, Integer interior_category_number, String interior_cash) {
         this.product_number = product_number;
         this.product_name = product_name;
         this.product_price = product_price;
@@ -56,6 +60,8 @@ public class MainDto {
         this.product_class = product_class;
         this.category_code_number = category_code_number;
         this.product_tag = product_tag;
+        this.image_path = image_path;
+        this.imageDto = imageDto;
         this.interior_number = interior_number;
         this.interior_name = interior_name;
         this.interior_content = interior_content;
@@ -63,6 +69,22 @@ public class MainDto {
         this.interior_image_path = interior_image_path;
         this.interior_category_number = interior_category_number;
         this.interior_cash = interior_cash;
+    }
+
+    public String getImage_path() {
+        return image_path;
+    }
+
+    public void setImage_path(String image_path) {
+        this.image_path = image_path;
+    }
+
+    public ImageDto getImageDto() {
+        return imageDto;
+    }
+
+    public void setImageDto(ImageDto imageDto) {
+        this.imageDto = imageDto;
     }
 
     public Integer getProduct_number() {
@@ -205,6 +227,8 @@ public class MainDto {
                 ", product_class='" + product_class + '\'' +
                 ", category_code_number=" + category_code_number +
                 ", product_tag='" + product_tag + '\'' +
+                ", image_path='" + image_path + '\'' +
+                ", imageDto=" + imageDto +
                 ", interior_number=" + interior_number +
                 ", interior_name='" + interior_name + '\'' +
                 ", interior_content='" + interior_content + '\'' +

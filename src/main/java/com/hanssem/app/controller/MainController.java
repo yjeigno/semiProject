@@ -28,13 +28,14 @@ public class MainController {
 
 //        상품정보
         List<ProductDto> productDto = mainService.selectAll();
-        System.out.println("productList : "+ productDto);
         model.addAttribute("productInfo",productDto);
 
 
-
-        SpecialPriceDto specialPriceDto = mainService.getDiscount(1);
-        model.addAttribute("SpeDiscount", specialPriceDto);
+        List<MainDto> imageDto = mainService.selectProductInfo();
+        model.addAttribute("newImgList",imageDto);
+        for(MainDto m : imageDto){
+            System.out.println(m);
+        }
 
         List<InteriorDto> interior_category = mainService.selectInterior(1);;
         model.addAttribute("list", interior_category);

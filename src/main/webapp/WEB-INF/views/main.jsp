@@ -104,20 +104,19 @@
             <div class="main_title">NEW ARRIVALS</div>
             <br>
             <h4 class="sub_title">한샘의 새로운 상품을 구경하세요.</h4>
-            <a href="/search.do?search=가구"><div class="more new">More</div></a>
+            <a href="<c:url value='/search.do?search=가구&page=1&pageSize=20&sort=new'/>"><div class="more new">More</div></a>
         </div>
 
         <div class="items_area">
 
-            <c:forEach items="${productInfo}" var="p" begin="0" end="3">
+            <c:forEach items="${newImgList}" var="p" begin="2" end="5">
             <div class="item">
-                <div class="img_box">${imgList}</div>
-                <h4 >${p.product_name}</h4>
-                <h5>${p.product_content}</h5>
-                <h5>${p.product_price}</h5>
+                <div class="img_box"><img class="img_resize" width="280px" height="280px" src="<c:url value='${p.image_path}'/>"></div>
+                <h4 class ="p_txt">${p.product_name}</h4>
+                <h5 class ="p_txt">${p.product_content}</h5>
+                <h5 class ="p_txt">${p.product_price}</h5>
             </div>
             </c:forEach>
-
         </div>
 
 
@@ -128,16 +127,16 @@
                 <div class="main_title">BEST PRODUCTS</div>
                 <br>
                 <h4 class="sub_title">한샘의 인기 상품을 구경하세요.</h4>
-                <a href="#_best"><div class="more best">More</div></a>
+                <a href="<c:url value='/search.do?search=가구&page=1&pageSize=20&sort=popular'/>"><div class="more new">More</div></a>
             </div>
 
             <div class="items_area">
-                <c:forEach items="${productInfo}" var="p" begin="4" end="7">
+                <c:forEach items="${newImgList}" var="p" begin="6" end="9">
                     <div class="item">
-                        <div class="img_box">${imgList}</div>
-                        <h4 >${p.product_name}</h4>
-                        <h5>${p.product_content}</h5>
-                        <h5>${p.product_price}</h5>
+                        <div class="img_box"><img class="img_resize" width="280px" height="280px" src="<c:url value='${p.image_path}'/>"></div>
+                        <h4 class ="p_txt">${p.product_name}</h4>
+                        <h5 class ="p_txt">${p.product_content}</h5>
+                        <h5 class ="p_txt">${p.product_price}</h5>
                     </div>
                 </c:forEach>
             </div>
@@ -153,15 +152,13 @@
                 </div>
 
                 <div class="items_area">
-                    <c:forEach items="${list}" var="li" begin="0" end="3">
+                    <c:forEach items="${list}" var="b" begin="1" end="4">
                     <div class="item">
-                        <a href="<c:url value='/Interior_detail'/>">
-                        <div class="img_box"><img src=${li.interior_image_path} alt="" ></div>
+                        <div class="img_box"><img class="img_resize" width="280px" height="280px" src=${b.interior_image_path} alt="" ></div>
                         <div class="item_txt">
-                            <h4>${li.interior_name}</h4>
-                            <h5>${li.interior_content}</h5>
+                            <h4 class ="p_txt">${b.interior_name}</h4>
+                            <h5 class ="p_txt">${b.interior_content}</h5>
                         </div>
-                        </a>
                     </div>
                     </c:forEach>
                 </div>
