@@ -7,8 +7,10 @@ import com.hanssem.app.service.DealService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -40,31 +42,26 @@ public class DealRestController {
         System.out.println("결과값 : "+sizeColorList.size());
         System.out.println(sizeColorList);
 
-
-//        Map noColor = new HashMap();
-        if(sizeColorList.size() == 0){
-
-//            noColor.put("color_code.color_code_name", "noneColor");
-//            noColor.put("color_code.color_code_code", "noneColorCode");
-//            sizeColorList.add(0, (ProductSizeColorDto) noColor);
-        }
-
         return sizeColorList;
     }
     @PostMapping(value = "/deal/qna")
-    public List<QnaDto> qnaList(@RequestBody Map map){
-        //pageSize -> page_size
+    public  Map<String,Object> qnaList(@RequestBody Map map, @RequestParam(value = "page", defaultValue = "1", required = false) int page , Model m)
+    {
+        Map<String,Object> result = new HashMap<String, Object>();
         System.out.println("2번값 : " + map.get("page_size"));
         System.out.println("3번값 : " + map.get("product_number"));
         System.out.println("4번값 : " + map.get("offset"));
 
-        int totalQnaCount = dealService.getQnaCount(1);
-//        PageHandler qnaPageHandler = new PageHandler(totalQnaCount,1,10);
+        int totalQnaCount = dealService.getQnaCount((Integer) map.get("product_number"));
+        PageHandler qnaPageHandler = new PageHandler(totalQnaCount,page,10);
+        m.addAttribute("qnaPageHandler",qnaPageHandler);
         System.out.println("map :" + map);
 
         List<QnaDto> qnaList = dealService.getQna(map);
+        result.put("qnalist",qnaList);
+        result.put("qnaPageHandler",qnaPageHandler);
         System.out.println("결과값 : "+qnaList.size());
-        return qnaList;
+        return result;
     }
 
 }
