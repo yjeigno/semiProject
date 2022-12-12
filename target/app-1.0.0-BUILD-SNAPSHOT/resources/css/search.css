@@ -691,6 +691,11 @@
   gap: 1.3em;
   display: none;
 }
+@media (max-width: 639px) {
+  .mobile_filter {
+    display: flex;
+  }
+}
 .mobile_filter p {
   padding: 0;
   margin: 0;
