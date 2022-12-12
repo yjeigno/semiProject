@@ -23,6 +23,7 @@
 <%--<script src="/js/header.js"></script>--%>
 
 <script>
+    ajaxPagination(1, 10, ${pInfo.product_number})
     let colorCodeText = [];
     let colorSizeText = [];
     let colorNameText = [];
@@ -30,7 +31,7 @@
     // 소비자가, 가격에 원 하고 , 표시
     let oPrice = ${pInfo.product_price};
     <%--여기에 ${pdto.product_price}--%>
-    let sPrice = ${pInfo.product_status==2?pInfo.product_price*(SpeDiscount.special_product_discount / 100):pInfo.product_price};
+    let sPrice = ${pInfo.product_status==2?(pInfo.product_price - pInfo.product_price*(SpeDiscount.special_product_discount / 100)):pInfo.product_price};
     <%--여기에 ${pdto.product_status==2?pdto.product_price/(100/sdto.special_product_discount):pdto.product_price}--%>
     <%--console.log( ${pInfo.product_price*(SpeDiscount.special_product_discount / 100)}  );--%>
 
@@ -132,6 +133,7 @@
                 let ParseQnaList = JSON.parse(JsonQnaList);
                 // console.log("ParseQnaList : " +ParseQnaList);
                 // console.log("ParseQnaListlength : " +ParseQnaList.length)
+                let ph = data.qnaPageHanlder;
                 function Unix_timestamp(t){
                     var date = new Date(t);
                     var year = date.getFullYear();
@@ -152,12 +154,16 @@
                     let qna_register_date = QnaInfo.qna_register_date;
                     let qna_title = QnaInfo.qna_title;
                     let qna_answer_status = QnaInfo.qna_answer_status;
+                    let qna_product_number = QnaInfo.product_number;
                     console.log(qna_register_date)
                     let qnastatusIf = (qna_answer_status==1?'<div class="d_qna_tag_mark d_qna_tag_active">답변완료</div>':'<div class="d_qna_tag_mark">답변대기</div>')
                     let qnaanswerIf = (qna_answer=="-1"?"답변 준비중입니다.":qna_answer)
+                    let cate2 = (qna_category==2?"결제":"배송")
+                    let cate = (qna_category==1?"상품":cate2)
+
 
                     str += '<tr class="d_qna_top d_q_d">'
-                          +     '<td class="d_qna_top_list cell_type">'+qna_category+'</td>'
+                          +     '<td class="d_qna_top_list cell_type">'+cate+'</td>'
                           +     '<td class="d_qna_top_list d_qna_faq_box cell_quest">'
                           +     qnastatusIf
                           +         '<div class="d_qna_faq">'
@@ -179,6 +185,18 @@
 
                 }
                 $('.d_qna_box').html(str);
+
+                    pagination +=  '<div onclick="ajaxPagination(1,10,"'+qna_product_number+'")" class="d_pp d_pagination_a">[처음] </div>'
+                                + '<div onclick="ajaxPagination("'+ (ph.beginPage-1) +'",10,"'+qna_product_number+'")" class="d_pre d_pagination_a">[이전] </div>'
+                                + 'for(let i = 0 ; i<'
+                                <%--+ <c:forEach var="i" begin="${phQna.beginPage}" end="${phQna.endPage}">--%>
+                                <%--    <div onclick="ajaxPagination('${i}','${phQna.pageSize}','${pInfo.product_number}')"--%>
+                                <%--class="d_pagination_a d_pnum ${i==phQna.page?"d_on":""}"> ${i}</div>--%>
+
+<%--                </c:forEach>--%>
+
+
+
             },
             error: function (err) {
                 console.log("");
@@ -330,11 +348,8 @@
                             <td class="d_title">사이즈</td>
                             <td class="d_contents sc_contents">
                                 <c:forEach items="${sizeList}" var="size">
-                                    <%--                                   <div class="sc_btn"><c:out value="${size.sizeCodeDto.size_code_name}"/>--%>
-                                    <%--                                   </div>--%>
                                     <a href="#" class="sc_btn sclick"
-                                       onclick="ajaxColor('${size.sizeCodeDto.size_code_name}',${pInfo.product_number})">
-                                            ${size.sizeCodeDto.size_code_name}
+                                       onclick="ajaxColor('${size.sizeCodeDto.size_code_name}',${pInfo.product_number})">${size.sizeCodeDto.size_code_name}
                                     </a>
                                 </c:forEach>
                             </td>
@@ -342,10 +357,6 @@
                         <tr>
                             <td class="d_title">색상</td>
                             <td class="d_contents cc_contents" id="sizeColor">
-                                <%--                                <c:forEach items="${colorList}" var="color">--%>
-                                <%--                                    <div class="sc_btn"style="background-color:${color.colorCodeDto.color_code_code}" >--%>
-                                <%--                                            </div>--%>
-                                <%--                                </c:forEach>--%>
                             </td>
                         </tr>
                     </table>
@@ -360,8 +371,6 @@
                         </div>
                         <input type="hidden" name="aaa" value="bbb">
                         <div class="d_btn_box">
-                            <%--아래의 버튼을 클릭했을때
-                            purcahse form 전송한다. --%>
                             <button id='purchase_button' type='button' onclick='purchase();'>BUY NOW</button>
                             <button>ADD CART</button>
                             <button>WISHLIST</button>
@@ -434,7 +443,7 @@
                                 <div><fmt:formatDate value="${re.review_register_date}" pattern="yyyy-MM-dd" type="date"/></div>
                             </div>
                             <div class="review_product_info">
-                                <div class="product_img"><img src="<c:url value='${imgList.get(1).imageDto.image_path}'/>" alt=""></div>
+<%--                                <div class="product_img"><img src="<c:url value='${}'/>" alt=""></div>--%>
                                 <div>
                                     <div class="review_product_name">${re.productDto.product_name}</div>
                                     <div class="review_product_size_color">${re.review_size} / ${re.review_color}</div>
@@ -464,17 +473,6 @@
                         </div>
                     </div>
                 </div>
-<%--                <div class="pagination">--%>
-<%--                    <c:if test="${pageHandler.showPrev}">--%>
-<%--                        <a href="<c:url value='/deal?page=${pageHandler.beginPage-1}&pageSize=${pageHandler.pageSize}' />" class="beginPage">[이전]</a>--%>
-<%--                    </c:if>--%>
-<%--                    <c:forEach var="i" begin="${pageHandler.beginPage}" end="${pageHandler.endPage}">--%>
-<%--                        <a href="<c:url value='/deal?page=${i}&pageSize=${pageHandler.pageSize}' /> " class="page ${i==ph.page?"pageActive":""}"> ${i}</a>--%>
-<%--                    </c:forEach>--%>
-<%--                    <c:if test="${pageHandler.showNext}">--%>
-<%--                        <a href="<c:url value='/deal?page=${pageHandler.endPage+1}&pageSize=${pageHandler.pageSize}' />" class="endPage">[다음]</a>--%>
-<%--                    </c:if>--%>
-<%--                </div>--%>
             </div>
             <div class="h1000" id="sec3" >
                 <div class="d_qna_title">
@@ -486,43 +484,6 @@
                     </div>
                 </div>
                 <table class="d_qna_box">
-                    <tr class="d_qna_top d_q_t">
-                        <td class="d_qna_top_list">문의유형</td>
-                        <td class="d_qna_top_list">문의/답변</td>
-                        <td class="d_qna_top_list">작성자</td>
-                        <td class="d_qna_top_list">작성일</td>
-                    </tr>
-                    <c:forEach items="${qnaList}" var="qna">
-                    <tr class="d_qna_top d_q_d">
-                        <td class="d_qna_top_list cell_type">${qna.qna_category}</td>
-                        <td class="d_qna_top_list d_qna_faq_box cell_quest">
-                            <c:if test="${qna.qna_answer_status==1}">
-                                <div class="d_qna_tag_mark d_qna_tag_active">답변완료</div>
-                            </c:if>
-                            <c:if test="${qna.qna_answer_status==0}">
-                                <div class="d_qna_tag_mark">답변대기</div>
-                            </c:if>
-                            <div class="d_qna_faq">
-                                <div class="d_qna_faq_tit">${qna.qna_title}</div>
-                                <div class="d_qna_faq_que">${qna.qna_content}</div>
-                                <!-- <div class="d_qna_faq_ans">3일 걸립니다.</div> -->
-                            </div>
-                        </td>
-                        <td class="d_qna_top_list cell_writer">${qna.member_id}</td>
-                        <td class="d_qna_top_list cell_date"><fmt:formatDate value="${qna.qna_register_date}"
-                                                                             pattern="yyyy-MM-dd" type="date"/></td>
-                    </tr>
-                        <tr class="d_qna_faq_view">
-                            <td colspan="4" class="d_qna_faq_view_qa">
-                                <div class="d_qna_faq_q">${qna.qna_content}</div>
-
-                                <div class="d_qna_faq_a">
-                                    <i></i>
-                                        ${qna.qna_answer=="-1"?"답변 준비중입니다.":qna.qna_answer}</div>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    <!-- ////////////////////////////////////////////////////// -->
                 </table>
                 <div class="d_pagination">
                     <c:if test="${phQna.showFirst}">
