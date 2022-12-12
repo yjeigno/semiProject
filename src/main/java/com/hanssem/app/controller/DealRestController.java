@@ -45,23 +45,23 @@ public class DealRestController {
         return sizeColorList;
     }
     @PostMapping(value = "/deal/qna")
-    public  Map<String,Object> qnaList(@RequestBody Map map, @RequestParam(value = "page", defaultValue = "1", required = false) int page , Model m)
+    public  List<QnaDto> qnaList(@RequestBody Map map, @RequestParam(value = "page", defaultValue = "1", required = false) int page , Model m)
     {
-        Map<String,Object> result = new HashMap<String, Object>();
+//        Map<String,Object> result = new HashMap<String, Object>();
         System.out.println("2번값 : " + map.get("page_size"));
         System.out.println("3번값 : " + map.get("product_number"));
         System.out.println("4번값 : " + map.get("offset"));
 
-        int totalQnaCount = dealService.getQnaCount((Integer) map.get("product_number"));
-        PageHandler qnaPageHandler = new PageHandler(totalQnaCount,page,10);
-        m.addAttribute("qnaPageHandler",qnaPageHandler);
+//        int totalQnaCount = dealService.getQnaCount((Integer) map.get("product_number"));
+//        PageHandler qnaPageHandler = new PageHandler(totalQnaCount,page,10);
+//        m.addAttribute("qnaPageHandler",qnaPageHandler);
         System.out.println("map :" + map);
 
         List<QnaDto> qnaList = dealService.getQna(map);
-        result.put("qnalist",qnaList);
-        result.put("qnaPageHandler",qnaPageHandler);
+//        result.put("qnalist",qnaList);
+//        result.put("qnaPageHandler",qnaPageHandler);
         System.out.println("결과값 : "+qnaList.size());
-        return result;
+        return qnaList;
     }
 
 }

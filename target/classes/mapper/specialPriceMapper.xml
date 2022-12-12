@@ -50,12 +50,12 @@
                 FROM review r
                 WHERE r.product_number = p.product_number
             ) review_count
-        FROM    special_product sp,
-                product p,
-                image im
-        WHERE   p.product_number = sp.product_number
-        and     p.product_number = im.product_number
-        and     p.product_status = 2
+        FROM  product p
+        inner join special_product sp
+        ON p.product_number = sp.product_number
+        LEFT OUTER JOIN (SELECT DISTINCT(product_number) AS product_number, i.image_path
+        FROM (SELECT product_number, image_path, ROW_NUMBER() over (PARTITION BY product_number ORDER BY image_number ASC) AS rn FROM image) AS i WHERE rn=1) AS i ON i.product_number = p.product_number
+        WHERE p.product_status = 2
         Limit 20;
     </select>
 
