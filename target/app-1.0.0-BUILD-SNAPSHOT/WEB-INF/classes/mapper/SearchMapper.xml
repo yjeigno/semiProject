@@ -6,7 +6,7 @@
     <!--    검색어 포함 상품 전체 가져오기-->
     <select id="searchProduct" parameterType="SearchCondition" resultType="SearchResult">
         SELECT p.product_number
-        , p.product_name
+        , p.product_content
         , p.product_price
         , p.product_register_date
         , p.category_code_number

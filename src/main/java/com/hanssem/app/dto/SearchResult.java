@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class SearchResult {
     private Integer product_number;
-    private String product_name;
+    private String product_content;
     private Integer product_price;
     private Timestamp product_register_date;
     private Integer category_code_number;
@@ -28,12 +28,12 @@ public class SearchResult {
         this.product_number = product_number;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    public String getProduct_content() {
+        return product_content;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setProduct_content(String product_content) {
+        this.product_content = product_content;
     }
 
     public Integer getProduct_price() {
@@ -120,7 +120,7 @@ public class SearchResult {
     public String toString() {
         return "SearchResult{" +
                 "product_number=" + product_number +
-                ", product_name='" + product_name + '\'' +
+                ", product_content='" + product_content + '\'' +
                 ", product_price=" + product_price +
                 ", product_register_date=" + product_register_date +
                 ", category_code_number=" + category_code_number +
