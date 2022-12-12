@@ -139,7 +139,7 @@
                                     <li class="product">
                                         <img data-prd="${prd.product_number}" src="${prd.image_path}" class="product_img" onclick="getProduct(this)" alt="상품이미지">
                                         <div class="desc_box">
-                                            <div class="product_name">${prd.product_name}</div>
+                                            <div class="product_name">${prd.product_content}</div>
                                             <c:if test="${!empty prd.discount_rate}">
                                                 <div class="product_price" style="text-decoration-line: line-through; font-size: 14px; font-weight: normal">￦<fmt:formatNumber value="${prd.product_price}" pattern="#,###" /></div>
                                                 <div class="product_price">￦<fmt:formatNumber value="${prd.product_price - prd.product_price * (prd.discount_rate / 100)}" pattern="#,###" /></div>
