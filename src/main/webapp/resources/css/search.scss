@@ -626,6 +626,9 @@ $mobile: 639px;
     justify-content: right;
     gap: 1.3em;
     display: none;
+    @include mobile{
+        display: flex;
+    }
     p {
         padding: 0;
         margin: 0;
