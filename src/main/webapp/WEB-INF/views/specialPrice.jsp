@@ -59,7 +59,7 @@
               <a href="/deal?product_number=${li.productDto.product_number}">
                 <div class="sprc_img_box">
                   <%--<img src="${li.imageDto.image_path}" class="sprc_img" class="sprc_img" alt="">--%>
-                  <img src="${li.imageDto.image_path}" class="sprc_img" class="sprc_img" alt="">
+                  <img src="${li.imageDto.image_path}" class="sprc_img" alt="">
                 </div>
               </a>
               <div class="${li.wishFlag ? "sprc_wish_on" : "sprc_wish"}" id="dibs" target-data="<%=(String)session.getAttribute("member_id")%>,${li.productDto.product_number}"></div>
@@ -72,9 +72,7 @@
                   </div>
                   <div class="sprc_item_prc">
                     <div class="sprc_item_cur">
-                        <%--${li.productDto.product_status==2?li.productDto.product_price*(li.special_product_discount / 100):li.productDto.product_price}--%>
-                    <%--<c:set var="s_price" value="${li.productDto.product_price * (li.special_product_discount * 0.01)}" />--%>
-                    <c:set var="s_price" value="${li.productDto.product_status==2?li.productDto.product_price*(li.special_product_discount / 100):li.productDto.product_price}" />
+                    <c:set var="s_price" value="${li.productDto.product_price - (li.productDto.product_price * (li.special_product_discount * 0.01))}" />
                     <fmt:formatNumber value="${s_price}" type="number" />원
                     </div>
                     <span class="sprc_item_rate">${li.special_product_discount}<span>%</span></span>
