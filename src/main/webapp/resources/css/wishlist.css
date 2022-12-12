@@ -126,11 +126,9 @@ input[type="checkbox"]:checked + label {
     font-size: 20px;
     font-weight: bold;
     margin-top: 2px;
-    font-family: 'Montserrat';
 }
 .sprc_item_prc {
     margin: 7px 0;
-    font-family: 'Montserrat';
 }
 .sprc_item_cur {
     font-size: 20px;
