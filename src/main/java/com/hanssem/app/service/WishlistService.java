@@ -7,9 +7,8 @@ import com.hanssem.app.dto.WishlistPostDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 @Service
 public class WishlistService {
@@ -25,6 +24,7 @@ public class WishlistService {
         return wishlistDao.selectWishlist(wishlistDto);
     }
 
+    // 하나씩 삭제
     public Integer wishlistWork(Integer memberNumber, WishlistPostDto wishlistPostDto){
         WishlistDto wishlistDto = new WishlistDto();
         wishlistDto.setProduct_number(wishlistPostDto.getProductNumber());
@@ -45,6 +45,7 @@ public class WishlistService {
         return wishlistDao.deleteWishlist(wishlistDto);
     }
 
+    // 선택 삭제
     public Integer partialDelete(List<Integer> productNumbers,Integer memberNumber){
         WishPartialDeleteDto dto = new WishPartialDeleteDto();
         dto.setMemberNumber(memberNumber);
@@ -53,6 +54,7 @@ public class WishlistService {
         return wishlistDao.partialDelete(dto);
     }
 
+    // 전체삭제
     public Integer deleteAllWishlist(Integer memberNumber){
         return wishlistDao.deleteAllWishlist(memberNumber);
     }
