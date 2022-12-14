@@ -33,8 +33,9 @@
 <div id="wrap">
     <jsp:include page="header.jsp" />
 
+
     <div class="main">
-        <form method="post" action="/inquiryContents/write" class="frm" onsubmit="event.preventDefault(); inquireContentsSubmit(this)">
+        <form method="post" action="${mode=="write"?"/inquiryContents/write":mode=="update"?"/inquiryContents/update":""}" class="frm" onsubmit="event.preventDefault(); inquireContentsSubmit(this)">
             <input type="hidden" name="qna_number"
                value="<c:if test="${mode eq 'update'}">${inquiryDto.qna_number}</c:if>"
             >

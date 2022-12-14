@@ -2,6 +2,7 @@ package com.hanssem.app.service;
 
 import com.hanssem.app.dao.InquiryDao;
 import com.hanssem.app.dto.InquiryDto;
+import com.hanssem.app.dto.InquiryUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class InquiryService {
         return inquiryDao.detail(qna_number);
     }
 
-    public InquiryDto update(Integer qna_number) throws Exception {
-        return inquiryDao.update(qna_number);
+    public int update(InquiryUpdateDto dto) throws Exception {
+        return inquiryDao.update(dto);
     }
 }
