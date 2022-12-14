@@ -1,6 +1,7 @@
 package com.hanssem.app.dao;
 
 import com.hanssem.app.dto.InquiryDto;
+import com.hanssem.app.dto.InquiryUpdateDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,8 +35,8 @@ public class InquiryDao {
         return session.selectOne(namespace+"detail", qna_number);
     }
 
-    public InquiryDto update(Integer qna_number) throws Exception {
-        return session.selectOne(namespace+"update", qna_number);
+    public int update(InquiryUpdateDto dto) throws Exception {
+        return session.update(namespace+"update", dto);
     }
 
 }

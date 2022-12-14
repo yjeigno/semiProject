@@ -32,4 +32,9 @@
         select * from qna
         where qna_number = #{qna_number}
     </select>
+
+    <update id="update" parameterType="InquiryUpdateDto">
+        UPDATE qna SET qna_title = #{qna_title}, qna_content = #{qna_content}, qna_category = #{qna_category}
+        WHERE qna_number = #{qna_number}
+    </update>
 </mapper>
