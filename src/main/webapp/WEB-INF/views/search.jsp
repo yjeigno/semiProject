@@ -59,8 +59,7 @@
                 </div>
             </div>
 
-            <c:choose>
-                <c:when test="${!empty list}">
+
                     <div class="cate_box">
                         <div class="cate_major">
                             <div class="major_title">CATEGORY</div>
@@ -131,8 +130,9 @@
                                 <option value="60" ${ph.pageSize==60?"selected":""}>60개씩 보기</option>
                             </select>
 <%--                            </c:if>--%>
-
                         </div>
+            <c:choose>
+                <c:when test="${!empty list}">
                         <div class="product_box">
                             <ul class="product_li">
                                 <c:forEach var="prd" items="${list}">
@@ -181,7 +181,9 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <h1 style="text-align: center" id="no_result">검색 결과가 없습니다.</h1>
+                    <div class="product_box">
+                        <h1 style="text-align: center" id="no_result">검색 결과가 없습니다.</h1>
+                    </div>
                 </c:otherwise>
             </c:choose>
 
