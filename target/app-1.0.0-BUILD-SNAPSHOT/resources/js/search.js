@@ -28,7 +28,7 @@ function mobileFilter(){
   if($(".dimLayer").length == 0){
     $("body").append("<div class='dimLayer'></div>");
     $(".dimLayer").css('height', $(document).height());
-    $(".mobile_filter").css({display : "flex"});
+    $(".mb_filters").css({display : "block"});
   }else {
     return;
   }
@@ -47,8 +47,16 @@ function doSort(){
   let sort = $('input[name="sort"]:checked').val();
   getSearch(1, 20, sort);
 }
+
 $(document).mouseup(function (e){
   let layerPopup = $(".mobile_sort");
+  if(layerPopup.has(e.target).length === 0){
+    layerPopup.css({display : "none"});
+    $(".dimLayer").remove();
+  }
+})
+$(document).mouseup(function (e){
+  let layerPopup = $(".mb_filters");
   if(layerPopup.has(e.target).length === 0){
     layerPopup.css({display : "none"});
     $(".dimLayer").remove();
