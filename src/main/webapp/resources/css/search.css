@@ -31,10 +31,11 @@
 
 /* 검색결과 없음 문구  */
 #no_result {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 검색어 띄우는 박스 */
@@ -320,6 +321,11 @@
   text-align: center;
   cursor: pointer;
   word-break: keep-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product:hover .product_name {
@@ -466,10 +472,11 @@
 }
 @media (max-width: 639px) {
   .container {
-    width: 85%;
+    width: 100%;
+    box-sizing: border-box;
     min-height: 0;
     margin: 0;
-    padding: 0 20px;
+    padding: 0 5px;
   }
 }
 @media (max-width: 1023px) {
@@ -584,7 +591,10 @@
 
 @media (max-width: 639px) {
   .product_img {
-    width: 45%;
+    width: 50%;
+    max-width: 135px;
+    max-height: 135px;
+    height: 100%;
     display: inline;
   }
 }
@@ -596,7 +606,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    column-gap: 2em;
+    column-gap: 1em;
   }
 }
 
@@ -611,8 +621,8 @@
   .product_name {
     width: 100%;
     font-weight: 900;
-    font-size: 0.9em;
-    display: inline;
+    font-size: 1em;
+    white-space: normal;
     text-align: left;
   }
 }
@@ -626,8 +636,8 @@
 }
 @media (max-width: 639px) {
   .product_price {
-    font-size: 0.8em;
-    width: unset;
+    width: 65%;
+    font-size: 0.9em;
     padding: 5px 0;
     display: inline;
     text-align: left;
@@ -643,7 +653,7 @@
 }
 @media (max-width: 639px) {
   .estim_box {
-    width: 50%;
+    width: 60%;
     justify-content: left;
     margin: 0;
   }
@@ -658,9 +668,10 @@
 
 @media (max-width: 639px) {
   .wish_mark {
-    top: unset;
-    left: 5px;
-    bottom: 5px;
+    top: 5px;
+    left: 135px;
+    transform: translateX(calc(-100% - 5px));
+    background-image: url("../img/etc/heart2red.png");
   }
 }
 
