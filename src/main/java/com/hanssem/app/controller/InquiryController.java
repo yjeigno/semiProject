@@ -1,10 +1,7 @@
 package com.hanssem.app.controller;
 
 import com.hanssem.app.dao.MemberDao;
-import com.hanssem.app.dto.InquiryDto;
-import com.hanssem.app.dto.MemberDto;
-import com.hanssem.app.dto.PageHandler;
-import com.hanssem.app.dto.QnaDto;
+import com.hanssem.app.dto.*;
 import com.hanssem.app.service.InquiryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.rmi.server.ExportException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -107,7 +108,7 @@ public class InquiryController {
     }
 
     @GetMapping("/detail")
-    public String detail(Model m, HttpServletRequest request, Integer qna_number) throws Exception {
+    public String detail(Model m, HttpServletRequest request, @RequestParam Integer qna_number) throws Exception {
         HttpSession session = request.getSession();
         String member_id = (String) session.getAttribute("member_id");
         MemberDto memberDto = memberDao.selectMember(member_id);
@@ -134,21 +135,23 @@ public class InquiryController {
     }
 
     @PostMapping("/update")
-    public String update(InquiryDto inquiryDto, HttpSession session, Model m) {
-        try {
-            String member_id = (String) session.getAttribute("member_id");
+    public String update(InquiryUpdateDto dto, HttpSession session, RedirectAttributes re) {
+        String member_id = (String) session.getAttribute("member_id");
+        String redirectUrl = "redirect:/inquiryContents/detail";
+        re.addAttribute("qna_number",dto.getQna_number());
+        // InquiryUpdateDto를 클라이언트한테 받아서  > 컨트롤러 > 서비스 > dao > mapper 순서로 전달한 후
+        // mapper에서 성공 실패 여부만 확인해서 리스폰스 처리한다
+        try{
             MemberDto memberDto = memberDao.selectMember(member_id);
-            m.addAttribute("memberDto",memberDto);
-            inquiryDto.setMember_id(member_id);
+            inquiryService.update(dto);
 
-            return "redirect:/inquiryContents/list";
-
-        } catch (Exception e) {
+            return redirectUrl;
+        }catch (Exception e){
             e.printStackTrace();
-
-            m.addAttribute("inquiryDto", inquiryDto);
-            return "inquiryContents/list";
+            // 에러메시지 클라이언트한테 제공
+            return redirectUrl;
         }
+
     }
     private boolean loginChk(HttpServletRequest request) {
         HttpSession session = request.getSession();
