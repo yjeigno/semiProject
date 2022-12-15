@@ -41,23 +41,23 @@ input[name="qna_category"] { display: none;}
     border-bottom: none;
 }
 
+tr:nth-child(2) > th,
 tr:nth-child(3) > th,
-tr:nth-child(4) > th,
-tr:nth-child(6) > th,
+tr:nth-child(5) > th,
+tr:nth-child(2) > td,
 tr:nth-child(3) > td,
-tr:nth-child(4) > td,
-tr:nth-child(6) > td {
+tr:nth-child(5) > td {
     border-top: none;
     padding-bottom: 0px;
 }
+tr:nth-child(1) > td,
+tr:nth-child(1) > th,
 tr:nth-child(2) > td,
-tr:nth-child(2) > td,
-tr:nth-child(5) > td,
-tr:nth-child(5) > td {
+tr:nth-child(4) > td,
+tr:nth-child(4) > th {
     padding-bottom: 0px;
 }
-tr:nth-child(4) > td,
-tr:nth-child(4) > td {
+tr:nth-child(3) > td {
     padding-bottom: 15px;
 }
 tr:nth-child(6) > th {

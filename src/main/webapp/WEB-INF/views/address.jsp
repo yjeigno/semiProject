@@ -12,7 +12,7 @@
 
 
 
-<link rel="stylesheet" href="<c:url value='/css/mypage.css'/> ">
+<link rel="stylesheet" href="<c:url value='/css/myPage.css'/> ">
 <link rel="stylesheet" href="<c:url value='/css/address_book.css'/> ">
 <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
 <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">

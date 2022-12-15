@@ -23,7 +23,7 @@
 
     <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
     <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
-    <link rel="stylesheet" href="<c:url value='/css/mypage.css'/> ">
+    <link rel="stylesheet" href="<c:url value='/css/myPage.css'/> ">
     <link rel="stylesheet" href="<c:url value='/css/inquiry_contents.css'/> ">
     <script src="<c:url value='https://code.jquery.com/jquery-1.12.4.js'/> "></script>
     <script src="<c:url value='/js/header.js'/> "></script>

@@ -20,11 +20,8 @@ $(document).ready(function () {
     });
 
 
+    // 선택 삭제
     $("#btn_pro_del").click(function (){
-        // 체크박스를 클릭할 때 마다 전역변수에 해당 상품 아이디를 저장하고 삭제 버튼 누를 때 전역변수를 불러와서
-        // API에 전송한다
-
-        // 삭제 버튼을 눌렀을 때 체크된 상품들의 아이디를 가져와서 API에 전송한다
         const checkList = $(".w_chk:checked");
         let url = "/wishlist/partial-delete/";
 
@@ -55,6 +52,7 @@ $(document).ready(function () {
     })
 })
 
+// 하나씩 삭제
 function clickDibs(elem, loginId, product_number, isWishlist) {
     $.ajax({
         type: 'POST',       // 요청 메서드
@@ -73,6 +71,7 @@ function clickDibs(elem, loginId, product_number, isWishlist) {
     });
 }
 
+// 전체 삭제
 function clickAll() {
     $.ajax({
         type: 'DELETE',       // 요청 메서드
