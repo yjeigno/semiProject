@@ -73,21 +73,12 @@
                         // console.log("1 : " + colorCodeText[i]);
                         // console.log("2 : " + colorNameText[i]);
                         // console.log("3 : " + colorSizeText[i]);
-
-                        /*
-                        *  받아온 값을 리스트로 담는다
-                        *  클릭할때 리스트 번호로 불러온다
-                        **/
-
-
                         $('#sizeColor').append(
                             "<div class='sc_btn cClick' id='" + colorId + "," + i +
                             "' style='background-color:" + colorCodeText[i] +
                             ";'>" + "</div>"
                             + "<input class='colorIndex" + i + "' type='hidden' value='" + i + "'>"
                         )
-                        <%-- `  <div class='sc_btn cClick' id='${colorId}' style='background-color:${colorCodeText};'></div>`--%>
-
                     }
                 }
             },
