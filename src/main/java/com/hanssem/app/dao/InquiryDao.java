@@ -39,4 +39,8 @@ public class InquiryDao {
         return session.update(namespace+"update", dto);
     }
 
+    public int delete(Integer qnaNumber) throws Exception {
+        return session.delete(namespace+"delete", qnaNumber);
+    }
+
 }

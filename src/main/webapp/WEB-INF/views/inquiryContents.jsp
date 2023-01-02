@@ -106,7 +106,9 @@
                         <div class="n_btn_group">
                             <a href="/inquiryContents/list" class="n_btn n_btn_cancel">취소</a>
                             <c:if test="${mode eq 'detail'}">
-                                <a href="/inquiryContents/update?qna_number=${inquiryDto.qna_number}" class="n_btn n_btn_modify">수정 페이지로 이동</a>
+                                <button type="click" id="delete-button" data-target="${inquiryDto.qna_number}" class="n_btn n_btn_delete">삭제</button>
+<%--                                <a href="/inquiryContents/delete?qna_number=${inquiryDto.qna_number}" class="n_btn n_btn_delete">삭제</a>--%>
+                                <a href="/inquiryContents/update?qna_number=${inquiryDto.qna_number}" class="n_btn n_btn_modify">수정</a>
                             </c:if>
                             <c:if test="${mode eq 'write'}">
                                 <button class="n_btn n_btn_accent">등록하기</button>

@@ -15,6 +15,26 @@ $(document).ready(function(){
             })
     })
 
+    $("#delete-button").on("click",function (e){
+        const qnaNumber = $(this).attr("data-target");
+        e.preventDefault();
+
+        $.ajax({
+            type: 'DELETE',       // 요청 메서드
+            url: '/inquiryContents/delete/'+qnaNumber,  // 요청 URI
+            headers: {"Content-Type": "application/json"}, // 요청 헤더
+            success: function (res) {
+                alert(res);
+                location.href = "/inquiryContents/list";
+
+            },
+            error: function (xhr, err) {
+                alert(err);
+            }
+        });
+
+    });
+
     $('#btn_modify').on("click", function(){
         // 1. 읽기 상태면 수정 상태로 변경
         let frm = $("#frm");
@@ -36,6 +56,14 @@ $(document).ready(function(){
         frm.attr('method', 'post');
         frm.submit();
     })
+
+    const qna_category = document.getElementsByName('qna_category');
+    let qna_category_value; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
+    for(let i=0; i<qna_category.length; i++) {
+        if(qna_category[i].checked) {
+            qna_category_value = qna_category[i].value;
+        }
+    }
 })
 
 const inquireContentsSubmit = function(form) {
@@ -49,3 +77,13 @@ const inquireContentsSubmit = function(form) {
     }
     form.submit();
 };
+
+/*const qna_category = document.getElementsByName('qna_category');
+let qna_category_value; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
+for(let i=0; i<qna_category.length; i++) {
+    if(qna_category[i].checked) {
+        qna_category_value = qna_category[i].value;
+    }
+}*/
+
+

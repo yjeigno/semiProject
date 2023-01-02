@@ -4,12 +4,11 @@ import com.hanssem.app.dao.MemberDao;
 import com.hanssem.app.dto.*;
 import com.hanssem.app.service.InquiryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -113,6 +112,7 @@ public class InquiryController {
         String member_id = (String) session.getAttribute("member_id");
         MemberDto memberDto = memberDao.selectMember(member_id);
         InquiryDto inquiryDto = inquiryService.detail(qna_number);
+
         m.addAttribute("mode","detail");
         m.addAttribute("memberDto",memberDto);
         m.addAttribute("inquiryDto",inquiryDto);
@@ -151,8 +151,23 @@ public class InquiryController {
             // 에러메시지 클라이언트한테 제공
             return redirectUrl;
         }
-
     }
+
+    @DeleteMapping("/delete/{qnaNumber}")
+    public ResponseEntity<String> delete(HttpSession session, @PathVariable Integer qnaNumber) {
+        String member_id = (String) session.getAttribute("member_id");
+
+        try{
+            MemberDto memberDto = memberDao.selectMember(member_id);
+            inquiryService.delete(qnaNumber);
+
+            return new ResponseEntity<>("success delete.", HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>("fail delete.", HttpStatus.OK);
+        }
+    }
+
     private boolean loginChk(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return session.getAttribute("member_id") != null; // 세션통에 id가 있다

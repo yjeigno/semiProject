@@ -88,7 +88,9 @@
                                     <c:if test = "${li.qna_category eq 2}">결제</c:if>
                                     <c:if test = "${li.qna_category eq 3}">배송</c:if>
                                 </td>
-                                <td>${li.qna_title}</td>
+                                <td>
+                                    <a href="/inquiryContents/detail?qna_number=${li.qna_number}">${li.qna_title}</a>
+                                </td>
                                 <td class="left">
                                     <a href="/inquiryContents/detail?qna_number=${li.qna_number}">${li.qna_content}</a>
                                 </td>
