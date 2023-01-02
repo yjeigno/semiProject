@@ -27,16 +27,24 @@
         LEFT OUTER JOIN (SELECT product_number, SUM(purchase_amount) AS product_sales
         FROM purchase GROUP BY product_number) AS sales
         ON p.product_number = sales.product_number
-        <include refid="size" />
-        <include refid="color"/>
+        <choose>
+            <when test="size != null and color != null">
+                JOIN product_size_color psc ON psc.product_number= p.product_number
+                AND psc.size_code_number = ${size}
+                AND psc.color_code_number= ${color}
+            </when>
+            <when test="size != null and color == null">
+                JOIN product_size_color sizeFilter ON sizeFilter.product_number= p.product_number
+                AND sizeFilter.size_code_number = ${size}
+            </when>
+            <when test="color != null and size == null">
+                JOIN product_size_color colorFilter ON colorFilter.product_number= p.product_number
+                AND colorFilter.color_code_number = ${color}
+            </when>
+            <otherwise></otherwise>
+        </choose>
         WHERE p.product_tag LIKE CONCAT('%',#{search},'%')
         <include refid="category"/>
-        <if test="size != null">
-            AND psc.size_code_number = #{size}
-        </if>
-        <if test="color != null">
-            AND pcolor.color_code_number = #{color}
-        </if>
         <if test="minPrice != null">
             <![CDATA[
             AND p.product_price >= #{minPrice}
@@ -76,35 +84,30 @@
 
     <!--    사이즈 목록 가져오기-->
     <select id="selectSizeList" parameterType="SearchCondition" resultType="com.hanssem.app.dto.SizeFilterDto">
-        SELECT distinct psc.size_code_number, count(psc.size_code_number) size_amount, p.category_code_number, sc.size_code_name FROM (SELECT psc.product_number, psc.size_code_number, count(*) size_amount, p.category_code_number, sc.size_code_name
-        FROM (SELECT product_number, size_code_number, count(*) FROM product_size_color GROUP BY product_number, size_code_number) psc
-        LEFT OUTER JOIN product p ON p.product_number = psc.product_number
-        LEFT OUTER JOIN size_code sc ON psc.size_code_number = sc.size_code_number
-        GROUP BY psc.product_number, psc.size_code_number, p.category_code_number) psc
-        LEFT OUTER JOIN product p ON p.product_number = psc.product_number
-        LEFT OUTER JOIN size_code sc ON psc.size_code_number = sc.size_code_number
+        SELECT psc.size_code_number,count(distinct p.product_number) size_amount, p.category_code_number,
+        sc.size_code_name from product p
+        JOIN product_size_color psc ON p.product_number = psc.product_number
+        <if test="color != null">
+            AND psc.color_code_number = ${color}
+        </if>
+        JOIN size_code sc ON sc.size_code_number = psc.size_code_number
         WHERE p.product_tag LIKE CONCAT('%', #{search}, '%')
         AND p.category_code_number = #{category}
-<!--        <if test="color != null">-->
-<!--            AND psc.color_code_number = #{color}-->
-<!--        </if>-->
-        GROUP BY psc.size_code_number, p.category_code_number
+        GROUP BY size_code_number, size_code_name, p.category_code_number
         ORDER BY psc.size_code_number ASC
     </select>
     <!--    컬러 목록 가져오기-->
     <select id="selectColorList" parameterType="SearchCondition" resultType="com.hanssem.app.dto.ColorFilterDto">
-        SELECT distinct  psc.color_code_number, count(psc.color_code_number) color_amount, p.category_code_number, cc.color_code_name FROM (SELECT psc.product_number, psc.color_code_number, count(*) color_amount, p.category_code_number, cc.color_code_name FROM (SELECT product_number, color_code_number, count(*) FROM product_size_color GROUP BY product_number, color_code_number) psc
-        LEFT OUTER JOIN product p ON p.product_number = psc.product_number
-        LEFT OUTER JOIN color_code cc ON psc.color_code_number = cc.color_code_number
-        GROUP BY psc.product_number, psc.color_code_number, p.category_code_number, cc.color_code_name) psc
-        LEFT OUTER JOIN product p ON psc.product_number = p.product_number
-        LEFT OUTER JOIN color_code cc ON psc.color_code_number = cc.color_code_number
+        SELECT psc.color_code_number,count(distinct p.product_number) color_amount, p.category_code_number,
+        cc.color_code_name from product p
+        JOIN product_size_color psc ON p.product_number = psc.product_number
+        <if test="size != null">
+            AND psc.size_code_number = ${size}
+        </if>
+        JOIN color_code cc ON cc.color_code_number = psc.color_code_number
         WHERE p.product_tag LIKE CONCAT('%', #{search}, '%')
         AND p.category_code_number = #{category}
-<!--        <if test="size != null">-->
-<!--            AND psc.size_code_number = #{size}-->
-<!--        </if>-->
-        GROUP BY psc.color_code_number, p.category_code_number
+        GROUP BY color_code_number, color_code_name, p.category_code_number
         ORDER BY psc.color_code_number ASC
     </select>
 

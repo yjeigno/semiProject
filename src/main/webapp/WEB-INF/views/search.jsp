@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 <c:set var="userId" value="${pageContext.request.getSession(false).getAttribute('member_id')==null?'':pageContext.request.getSession(false).getAttribute('member_id')}" />
 <jsp:useBean id="today" class="java.util.Date" />
 <fmt:formatDate value="${today}" pattern="yyyyMMddHHmm" var="nowDate"/>
@@ -34,14 +35,41 @@
                 <span> 검색 결과</span>
             </div>
             <div class="mobile_filter">
-                <div class="btn_filter">
-                    <section class="mobile_filter">
-
+                <div class="btn_filter" onclick="mobileFilter()">
+                    <section class="mb_filters">
+                        <p id="mb_cate">Category</p>
+                        <div id="mb_cate_list">
+                            <input type="radio" name="cate" id="c0" ${sc.category==null?"checked":""} data-cate="0">
+                            <label for="c0"><span class="outer_circle"><span class="inner_circle"></span></span>전체</label>
+                            <c:forEach items="${cate}" var="c">
+                                <input type="radio" name="cate" id="c${c.category_code_number}" ${sc.category==c.category_code_number?"checked":""} data-cate="${c.category_code_number}">
+                                <label for="c${c.category_code_number}"><span class="outer_circle"><span class="inner_circle"></span></span>${c.category_code_name}</label>
+                            </c:forEach>
+                        </div>
+                        <c:if test="${!empty sc.category}">
+                            <p id="mb_size">Size</p>
+                            <div id="mb_size_list">
+                                <input type="radio" name="size" id="sz0" ${sc.size==null?"checked":""} data-size="0">
+                                <label for="sz0"><span class="outer_circle"><span class="inner_circle"></span></span>전체</label>
+                            <c:forEach items="${cateSize}" var="sz">
+                                <input type="radio" name="size" id="sz${sz.size_code_number}" ${sc.size==sz.size_code_number?"checked":""} data-size="${sz.size_code_number}">
+                                <label for="sz${sz.size_code_number}"><span class="outer_circle"><span class="inner_circle"></span></span>${sz.size_code_name}</label>
+                            </c:forEach>
+                            </div>
+                            <p id="mb_solor">Color</p>
+                            <div id="mb_color_list">
+                                <input type="radio" name="color" id="co0" ${sc.color==null?"checked":""} data-color="0">
+                                <label for="co0"><span class="outer_circle"><span class="inner_circle"></span></span>전체</label>
+                            <c:forEach items="${cateColor}" var="co">
+                                <input type="radio" name="color" id="co${co.color_code_number}" ${sc.color==co.color_code_number?"checked":""} data-color="${co.color_code_number}">
+                                <label for="co${co.color_code_number}"><span class="outer_circle"><span class="inner_circle"></span></span>${co.color_code_name}</label>
+                            </c:forEach>
+                            </div>
+                        </c:if>
+                        <div class="btn_line"><button onclick="doFilter()">적용</button></div>
                     </section>
                 </div>
-                <script>
 
-                </script>
                 <div class="btn_sort" onclick="mobileSort()">
                     <section class="mobile_sort">
                         <input type="radio" name="sort" id="sort_pop" value="popular" ${sc.sort=="popular"?"checked":""}>
@@ -59,8 +87,7 @@
                 </div>
             </div>
 
-            <c:choose>
-                <c:when test="${!empty list}">
+
                     <div class="cate_box">
                         <div class="cate_major">
                             <div class="major_title">CATEGORY</div>
@@ -131,8 +158,9 @@
                                 <option value="60" ${ph.pageSize==60?"selected":""}>60개씩 보기</option>
                             </select>
 <%--                            </c:if>--%>
-
                         </div>
+            <c:choose>
+                <c:when test="${!empty list}">
                         <div class="product_box">
                             <ul class="product_li">
                                 <c:forEach var="prd" items="${list}">
@@ -181,7 +209,9 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <h1 style="text-align: center" id="no_result">검색 결과가 없습니다.</h1>
+                    <div class="product_box">
+                        <h1 style="text-align: center" id="no_result">검색 결과가 없습니다.</h1>
+                    </div>
                 </c:otherwise>
             </c:choose>
 
@@ -309,11 +339,6 @@
         }
     }
 
-    // window.onpageshow = function (event){
-    //     if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
-    //         location.reload();
-    //     }
-    // }
     window.onbeforeunload = function (){
         $('#load').show();
     }
@@ -332,7 +357,30 @@
         $(window).scrollTop(offset.top);
     })
 
-
+    function doFilter(){
+        let cate = $('input[name="cate"]:checked').data("cate");
+        cate = cate==0?null:cate;
+        let currCate = ${sc.category};
+        if(cate!=currCate){
+            location.href = "/search.do?search=${sc.search}&sort=${sc.sort}&category="+cate;
+        } else {
+            let size = $('input[name="size"]:checked').data("size");
+            size = size==0?null:size;
+            let color = $('input[name="color"]:checked').data("color");
+            color = color==0?null:color;
+            if(size==null&&color==null){
+                location.href = "/search.do?search=${sc.search}&sort=${sc.sort}&category="+cate;
+            }
+            else if(size==null&&color!=null){
+                location.href = "/search.do?search=${sc.search}&sort=${sc.sort}&category=${sc.category}&color="+color;
+            }
+            else if(color==null&&size!=null){
+                location.href = "/search.do?search=${sc.search}&sort=${sc.sort}&category=${sc.category}&size="+size;
+            } else {
+                location.href = "/search.do?search=${sc.search}&sort=${sc.sort}&category=${sc.category}&size="+size+"&color="+color;
+            }
+        }
+    }
 </script>
 </body>
 </html>

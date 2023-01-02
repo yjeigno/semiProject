@@ -49,10 +49,11 @@ $mobile: 639px;
 }
 /* 검색결과 없음 문구  */
 #no_result {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /* 검색어 띄우는 박스 */
 /* span :"검색결과" / h1: 검색어 */
@@ -303,6 +304,11 @@ $mobile: 639px;
         text-align: center;
         cursor: pointer;
         word-break: keep-all;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .product:hover .product_name{
         font-weight: 900;
@@ -428,10 +434,11 @@ $mobile: 639px;
         font-size: 1em;
     }
     @include mobile{
-        width: 85%;
+        width: 100%;
+        box-sizing: border-box;
         min-height: 0;
         margin: 0;
-        padding: 0 20px;
+        padding: 0 5px;
     }
     .src_title {
         @include laptop{
@@ -532,7 +539,10 @@ $mobile: 639px;
 }
 .product_img {
     @include mobile {
-        width: 45%;
+        width: 50%;
+        max-width: 135px;
+        max-height: 135px;
+        height: 100%;
         display: inline;
     }
 }
@@ -543,7 +553,7 @@ $mobile: 639px;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        column-gap: 2em;
+        column-gap: 1em;
     }
     
 }
@@ -557,8 +567,8 @@ $mobile: 639px;
     @include mobile {
         width: 100%;
         font-weight: 900;
-        font-size: 0.9em;
-        display: inline;
+        font-size: 1em;
+        white-space: normal;
         text-align: left;
     }
 }
@@ -569,8 +579,8 @@ $mobile: 639px;
         text-align: center;
     }
     @include mobile {
-        font-size: 0.8em;
-        width: unset;
+        width: 65%;
+        font-size: 0.9em;
         padding: 5px 0;
         display: inline;
         text-align: left;
@@ -584,7 +594,7 @@ $mobile: 639px;
 
     }
     @include mobile{
-        width: 50%;
+        width: 60%;
         justify-content: left;
         margin: 0;
     }
@@ -597,9 +607,10 @@ $mobile: 639px;
 }
 .wish_mark {
     @include mobile {
-        top: unset;
-        left: 5px;
-        bottom: 5px;
+        top: 5px;
+        left: 135px;
+        transform: translateX(calc(-100% - 5px));
+        background-image: url("../img/etc/heart2red.png");
     }
 }
 
@@ -668,14 +679,37 @@ $mobile: 639px;
     transform: translateY(100%);
     z-index: 9999999;
 }
-input[name="sort"]{
+.mb_filters{
+    width: calc(100% - 10px * 2);
+    padding: 10px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 0 1px 2px rgba(100, 100, 100, 0.6);
+    z-index: 99999999;
     display: none;
 }
+input[type="radio"]{
+    display: none;
+}
+.mb_filters > div > label,
 .mobile_sort > label {
     display: flex;
     align-items: center;
     column-gap: 0.3em;
     cursor: pointer;
+}
+#mb_cate_list,
+#mb_size_list,
+#mb_color_list{
+    display: flex;
+    justify-content: start;
+    gap: 1em;
+    flex-wrap: wrap;
 }
 .outer_circle {
     width: 1rem;
@@ -696,7 +730,7 @@ input[name="sort"]{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-input[name="sort"]:checked + label > .outer_circle > .inner_circle {
+input[type="radio"]:checked + label > .outer_circle > .inner_circle {
     background: #6e6e6e;
 }
 .btn_line {
