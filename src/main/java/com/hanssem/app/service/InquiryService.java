@@ -34,4 +34,8 @@ public class InquiryService {
     public int update(InquiryUpdateDto dto) throws Exception {
         return inquiryDao.update(dto);
     }
+
+    public int delete(Integer qnaNumber) throws Exception {
+        return inquiryDao.delete(qnaNumber);
+    }
 }

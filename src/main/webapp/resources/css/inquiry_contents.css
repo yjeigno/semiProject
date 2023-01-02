@@ -100,7 +100,7 @@ input[type="text"] {
     cursor: pointer;
     vertical-align: middle;
 }
-.n_btn_cancel, .n_btn_modify {
+.n_btn_cancel, .n_btn_modify, .n_btn_delete {
     border: 1px solid #f1f1f1;
     background-color: #f1f1f1;
     color: #000;
