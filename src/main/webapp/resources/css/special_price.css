@@ -1,13 +1,22 @@
 .sprc_main {
-    min-width: 1920px;
+    width: 100%;
+    height: auto;
     margin-top: 52px;
 }
 .sprc_nav {
     display: flex;
     justify-content: space-around;
-    margin: 30px;
+    margin: 30px 0;
     font-weight: 900;
     font-size: 18px;
+}
+.sprc_nav .nav_on {
+    background-color: #000;
+    color: #ffffff;
+}
+.sprc_nav > a:hover {
+    background-color: #333;
+    color: #ffffff;
 }
 .sprc_tab_nav {
     width: 268px;
@@ -17,25 +26,24 @@
     border: 1px solid #d1d1d1;
     border-radius: 8px;
     box-sizing: border-box;
+    transition: all 0.5s;
 }
 .sprc_main_banner {
     position: relative;
     /* height: 38.5vw; */
     width: 1920px;
-    height: 621px;
+    height: 650px;
     margin: 0 auto;
 }
 .sprc_banner {
     width: 100%;
     height: 100%;
-    background: url(../img/1652686909325_12370_0.png) no-repeat center / contain;
+    background: url(../img/main/event_banner.png) no-repeat center / contain;
     position: absolute;
     left: 0;
     top: 0;
 }
 .sprc_sec {
-    /* overflow-x: auto;
-    overflow-y: hidden; */
     margin: 100px 0;
 }
 .sprc_list {
@@ -44,6 +52,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     font-size: 14px;
+    margin: 0 auto;
 }
 .sprc_item {
     width: 227px;
@@ -70,7 +79,7 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    background: url(../img/wishlist_heart.png) no-repeat center / contain;
+    background: url(../img/etc/heart2.png) no-repeat center 0 / cover;
     cursor: pointer;
 }
 .sprc_wish_on {
@@ -79,7 +88,7 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    background: url(../img/wishlist_heart_on.png) no-repeat center / contain;
+    background: url(../img/etc/heart2.png) no-repeat center 100% / cover;
     cursor: pointer;
 }
 .sprc_timer {
@@ -88,90 +97,75 @@
     line-height: 30px;
     margin: 8px 0;
     background: #f8f8f8;
-    font-family: 'Montserrat';
     font-size: 15px;
     font-weight: 600;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
 }
-.time_obj {
-    float: left;
+.sprc_item_name {
+    max-height: 4rem;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+.sprc_item_prd {
+    max-height: 4rem;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 .sprc_item_prc {
-    position: relative;
-    margin: 10px 0;
+    margin: 7px 0;
     font-family: 'Montserrat';
 }
 .sprc_item_cur {
-    position: absolute;
-    top: 0;
-    left: 0;
     font-size: 20px;
     font-weight: bold;
+    margin-bottom: 2px;
 }
 .sprc_item_sale {
-    position: absolute;
-    top: 25px;
-    left: 35px;
+    display: inline-block;
     color: #999;
     text-decoration: line-through;
 }
 .sprc_item_rate {
-    position: absolute;
-    top: 25px;
-    left: 0;
     font-weight: bold;
     color: #ff3a69;
+    margin-right: 2px;
 }
 .sprc_item_user {
     width: 100%;
-    height: 80px;
-    display: inline-block;
-    position: relative;
+    display: flex;
+    gap: 10px;
 }
 .user_score {
-    position: absolute;
-    top: 50px;
-    left: 0px;
-    padding: 0 0 0 19px;
     align-items:center;
-    display: flex;
-    justify-content:center;
 }
 .user_review {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    padding: 0 0 0 22px;
     align-items:center;
-    display: flex;
-    justify-content:center;
 }
 .sprc_item_user .num {
     font-size: 12px;
     align-items: center;
+    display: flex;
+    gap: 5px;
 }
 .sprc_item_user .user_score .num::before {
     content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 16px;
     height: 15px;
-    background: url(../img/sprite-common.png) no-repeat -925px 0;
+    background: url(../img/etc/sprite-common.png) no-repeat -925px 0;
 }
 .sprc_item_user .user_review .num::before {
     content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 18px;
     height: 15px;
-    background: url(../img/sprite-common.png) no-repeat -945px 0;
-}
-.footer {
-    width: 100%;
-    height: 400px;
-    background: #ddd;
+    background: url(../img/etc/sprite-common.png) no-repeat -945px 0;
 }

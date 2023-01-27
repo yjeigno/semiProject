@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanssem.app.dao.userManageMapper">
+
+    <!--    세션id정보로 회원번호 가져오기-->
+    <select id="getUserNo" parameterType="MemberDto" resultType="int">
+        SELECT member_number FROM member
+        WHERE member_id = #{member_id}
+    </select>
+    <!--    비밀번호 확인 0: 불일치 / 1: 일치-->
+    <select id="checkPw" parameterType="MemberDto" resultType="int">
+        SELECT COUNT(member_id) FROM member
+        WHERE member_id = #{member_id} AND member_pw = #{member_pw}
+    </select>
+    <!--    세션 id와 비밀번호를 받아 회원 탈퇴-->
+    <delete id="withdrawUser" parameterType="MemberDto">
+        DELETE FROM member WHERE member_id = #{member_id}
+        AND member_pw = #{member_pw}
+    </delete>
+    <!--    세션 id로 회원 위시리스트 상품번호 불러오기-->
+    <select id="getUserWishlist" parameterType="String" resultType="com.hanssem.app.dto.WishProduct">
+        SELECT product_number FROM wishlist w LEFT OUTER JOIN member m
+        ON w.member_number = m.member_number
+        WHERE m.member_id = #{member_id}
+    </select>
+    <!--    회원번호와 상품번호로 위시리스트에서 제거-->
+    <delete id="removeFromWishlist" parameterType="Map">
+        DELETE FROM wishlist WHERE member_number = #{member_number}
+        AND product_number = #{product_number}
+    </delete>
+    <!--    회원번호와 상품번호로 위시리스트 추가-->
+    <insert id="addWishlist" parameterType="Map">
+        INSERT INTO wishlist (member_number, product_number)
+        SELECT #{member_number}, #{product_number} FROM DUAL
+        WHERE NOT EXISTS (SELECT * FROM wishlist WHERE member_number = #{member_number}
+        AND product_number = #{product_number})
+    </insert>
+
+    <!--    회원 아이디로 회원정보 받아오기-->
+    <select id="getUserInfo" parameterType="String" resultType="MemberDto">
+        SELECT member_id, member_name, member_email, member_phone, member_birth, member_address, member_sms FROM member WHERE
+        member_id = #{member_id}
+    </select>
+
+    <!--    수정된 정보 받아 회원정보 갱신-->
+    <update id="renewUserInfo" parameterType="MemberDto">
+        UPDATE member SET
+        <if test="member_pw != null">
+            member_pw = #{member_pw},
+        </if>
+        member_email = #{member_email}
+        , member_phone = #{member_phone}
+        , member_address = #{member_address}
+        , member_sms = #{member_sms}
+        WHERE member_id = #{member_id}
+    </update>
+</mapper>

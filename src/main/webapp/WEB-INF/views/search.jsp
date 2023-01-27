@@ -1,228 +1,386 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
+<c:set var="userId" value="${pageContext.request.getSession(false).getAttribute('member_id')==null?'':pageContext.request.getSession(false).getAttribute('member_id')}" />
+<jsp:useBean id="today" class="java.util.Date" />
+<fmt:formatDate value="${today}" pattern="yyyyMMddHHmm" var="nowDate"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<%--    <script>--%>
+<%--        history.replaceState({},null,location.pathname+"#${sc.search}");--%>
+<%--    </script>--%>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hanssem</title>
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-    <script defer src="./js/search(WIP).js"></script>
-    <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" href="./css/header(ver1.0.2).css">
-    <link rel="stylesheet" href="./css/search(WIP).css">
-    <script defer src="./js/searchPagination(WIP).js"></script>
-    <script src="./js/header(ver1.0.2).js"></script>
+    <script defer src="<c:url value="./js/search.js"><c:param name="dt" value="${nowDate}"/></c:url>"></script>
+    <link rel="stylesheet" type="text/css" href="<c:url value="./css/common.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="./css/search.css"><c:param name="dt" value="${nowDate}"/></c:url>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="./css/search.scss"><c:param name="dt" value="${nowDate}"/></c:url>"/>
 </head>
 <body>
 <div id="wrap">
-    <header class="header">
-        <div class="content_area header_top">
-            <ul class="top_nav_ul">
-                <!-- 로그인 페이지로 이동 -->
-                <li><a href="#">LOGIN</a></li>
-                <!-- 회원가입 페이지로 이동 -->
-                <li><a href="#">JOIN</a></li>
-                <!-- 위시리스트 내역 페이지로 이동 -->
-                <li><a href="#">WISHLIST</a></li>
-                <!-- 본인인증 후 / 마이페이지로 이동 -->
-                <li><a href="#">MYPAGE</a></li>
-                <li id="search_icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48">
-                        <path d="M31 28h-1.59l-.55-.55C30.82 25.18 32 22.23 32 19c0-7.18-5.82-13-13-13S6 11.82 6 19s5.82 13 13 13c3.23 0 6.18-1.18 8.45-3.13l.55.55V31l10 9.98L40.98 38 31 28zm-12 0c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z"/>
-                    </svg>
-                </li>
-            </ul>
-            <div class="search_box">
-                <form action="<c:url value='/search' />" method="post"name="search">
-                    <input class="search_bar" type="text" name="search" placeholder="검색어를 입력해주세요.">
-                    <input class="search_btn" type="submit" value="검색">
-                </form>
-            </div>
-            <!-- 로고 클릭시 메인페이지로 이동 -->
-            <a href="#"><div class="logo"><img src="img/fiximg/logo_black.png" alt=""></div></a>
-        </div>
-
-        <div class="header_bottom">
-            <div class="content_area">
-                <!-- 호버하면 영어에서 한글로 변경 -->
-                <ul class="bottom_nav_ul">
-                    <li>
-                        <div class="kor">가구</div>
-                        <div class="eng">Furniture</div>
-                    </li>
-                    <li>
-                        <div class="kor">조명</div>
-                        <div class="eng">Lighting</div>
-                    </li>
-                    <li>
-                        <div class="kor">부엌</div>
-                        <div class="eng">Kitchen</div>
-                    </li>
-                    <li>
-                        <div class="kor">인테리어</div>
-                        <div class="eng">Home Deco</div>
-                    </li>
-                    <li>
-                        <div class="kor">세일</div>
-                        <div class="eng">Hot Deal</div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="menu_box">
-            <div class="content_area o_f_hidden">
-                <ul class="ul_category_box">
-                    <li class="li_Title">Furniture</li>
-                    <li class="li_content">
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Boutique Furniture</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn1.png"></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Table & Dining</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn2.png"></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Chair</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn3.png"></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Sofa</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn4.png"></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Global Furniture</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn5.png"></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">TV Stand & Storage</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn6.png"></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Small Furniture</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn7.png"></li>
-                        </ul>
-                        <ul class="ca_box" onclick="location.href='#';">
-                            <li class="ca_txt">Bed</li>
-                            <li class="ca_img"><img src="img/fiximg/Furn8.png"></li>
-                        </ul>
-                    </li>
-
-                </ul>
-                <ul class="ul_category_box">
-                    <li class="li_Title">Lighting</li>
-                    <li class="li_content"></li>
-
-                </ul>
-                <ul class="ul_category_box">
-                    <li class="li_Title">Kitchen</li>
-                    <li class="li_content"></li>
-
-                </ul>
-                <ul class="ul_category_box">
-                    <li class="li_Title">Home Deco</li>
-                    <li class="li_content"></li>
-
-                </ul>
-                <ul class="ul_category_box">
-                    <li class="li_Title">Hot Deal</li>
-                    <li class="li_content"></li>
-
-                </ul>
-            </div>
-        </div>
-    </header>
+    <div id="load">
+        <img src="./img/etc/1487.gif" alt="loading">
+    </div>
+    <jsp:include page="header.jsp" />
 
     <main id="main">
         <div class="container">
             <div class="src_title">
-                <span>PRODUCT</span>
                 <h1>${param.search}</h1>
+                <span> 검색 결과</span>
+            </div>
+            <div class="mobile_filter">
+                <div class="btn_filter" onclick="mobileFilter()">
+                    <section class="mb_filters">
+                        <p id="mb_cate">Category</p>
+                        <div id="mb_cate_list">
+                            <input type="radio" name="cate" id="c0" ${sc.category==null?"checked":""} data-cate="0">
+                            <label for="c0"><span class="outer_circle"><span class="inner_circle"></span></span>전체</label>
+                            <c:forEach items="${cate}" var="c">
+                                <input type="radio" name="cate" id="c${c.category_code_number}" ${sc.category==c.category_code_number?"checked":""} data-cate="${c.category_code_number}">
+                                <label for="c${c.category_code_number}"><span class="outer_circle"><span class="inner_circle"></span></span>${c.category_code_name}</label>
+                            </c:forEach>
+                        </div>
+                        <c:if test="${!empty sc.category}">
+                            <p id="mb_size">Size</p>
+                            <div id="mb_size_list">
+                                <input type="radio" name="size" id="sz0" ${sc.size==null?"checked":""} data-size="0">
+                                <label for="sz0"><span class="outer_circle"><span class="inner_circle"></span></span>전체</label>
+                            <c:forEach items="${cateSize}" var="sz">
+                                <input type="radio" name="size" id="sz${sz.size_code_number}" ${sc.size==sz.size_code_number?"checked":""} data-size="${sz.size_code_number}">
+                                <label for="sz${sz.size_code_number}"><span class="outer_circle"><span class="inner_circle"></span></span>${sz.size_code_name}</label>
+                            </c:forEach>
+                            </div>
+                            <p id="mb_solor">Color</p>
+                            <div id="mb_color_list">
+                                <input type="radio" name="color" id="co0" ${sc.color==null?"checked":""} data-color="0">
+                                <label for="co0"><span class="outer_circle"><span class="inner_circle"></span></span>전체</label>
+                            <c:forEach items="${cateColor}" var="co">
+                                <input type="radio" name="color" id="co${co.color_code_number}" ${sc.color==co.color_code_number?"checked":""} data-color="${co.color_code_number}">
+                                <label for="co${co.color_code_number}"><span class="outer_circle"><span class="inner_circle"></span></span>${co.color_code_name}</label>
+                            </c:forEach>
+                            </div>
+                        </c:if>
+                        <div class="btn_line"><button onclick="doFilter()">적용</button></div>
+                    </section>
+                </div>
+
+                <div class="btn_sort" onclick="mobileSort()">
+                    <section class="mobile_sort">
+                        <input type="radio" name="sort" id="sort_pop" value="popular" ${sc.sort=="popular"?"checked":""}>
+                        <label for="sort_pop"><span class="outer_circle"><span class="inner_circle"></span> </span>인기상품순</label>
+                        <input type="radio" name="sort" id="sort_rate" value="rate" ${sc.sort=="rate"?"checked":""}>
+                        <label for="sort_rate"><span class="outer_circle"><span class="inner_circle"></span> </span>상품평순</label>
+                        <input type="radio" name="sort" id="sort_new" value="new" ${sc.sort=="new"?"checked":""}>
+                        <label for="sort_new"><span class="outer_circle"><span class="inner_circle"></span> </span>신상품순</label>
+                        <input type="radio" name="sort" id="sort_low" value="low" ${sc.sort=="low"?"checked":""}>
+                        <label for="sort_low"><span class="outer_circle"><span class="inner_circle"></span> </span>낮은가격순</label>
+                        <input type="radio" name="sort" id="sort_high" value="high" ${sc.sort=="high"?"checked":""}>
+                        <label for="sort_high"><span class="outer_circle"><span class="inner_circle"></span> </span>높은가격순</label>
+                        <div class="btn_line"><button onclick="doSort()">적용</button></div>
+                    </section>
+                </div>
             </div>
 
-            <div class="cate_box">
-                <div class="cate_major">
-                    <div class="major_title">CATEGORY</div>
-                    <div class="major_selector">
-                        <p class="major major_checked">전체</p>
-                    </div>
-                    <div class="btn_expand">∨</div>
-                </div>
-                <div class="cate_subclass">
-                    <div class="subclass_title">SIZE</div>
-                    <div class="sub_selector">
-                        <p class="subclass subclass_checked">전체</p>
-                        <p class="subclass">싱글/슈퍼싱글</p>
-                        <p class="subclass">더블</p>
-                        <p class="subclass">킹/퀸</p>
-                    </div>
-                </div>
-                <div class="opt_box">
-                    <div class="opt_title">COLOR</div>
-                    <div class="opt_selector">
-                        <p class="cate_opt opt_checked">전체</p>
-                        <p class="cate_opt">화이트</p>
-                        <p class="cate_opt">블랙</p>
-                        <p class="cate_opt">베이지</p>
-                    </div>
-                </div>
-                <div class="price_box">
-                    <div class="price_title">PRICE</div>
-                    <div class="price_bounds">
-                        <input type="number" name="min_price" id="minPrice" class="input_price" placeholder="최소가격">
-                        -
-                        <input type="number" name="max_price" id="maxPrice" class="input_price" placeholder="최대가격">
-                        <span class="won">원</span>
-                        <button class="btn_price_src">검색</button>
-                    </div>
-                </div>
-            </div>
 
-            <div class="product_box">
-                <div class="sort_opt">
-                    <ul class="sort_li">
-                        <li data-chk="0" id="sort_popular" class="sort_checked">인기상품순</li>
-                        <li data-chk="0" id="sort_review">상품평순</li>
-                        <li data-chk="0" id="sort_new">신상품순</li>
-                        <li data-chk="0" id="sort_low">낮은가격순</li>
-                        <li data-chk="0" id="sort_high">높은가격순</li>
-                    </ul>
-                    <select name="show_qtt" id="show_qtt">
-                        <option value="20">20개씩 보기</option>
-                        <option value="40" selected>40개씩 보기</option>
-                        <option value="60">60개씩 보기</option>
-                    </select>
-                </div>
+                    <div class="cate_box">
+                        <div class="cate_major">
+                            <div class="major_title">CATEGORY</div>
+                            <div class="major_selector">
+                                <a href='./search.do?search=${sc.search}&sort=${sc.sort}&pageSize=${ph.pageSize}' class='major ${sc.category==null?"major_checked":""}'>전체(${totalAmount})</a>
+                                <c:forEach var="cate" items="${cate}">
+                                    <c:set var="cno" value="${cate.category_code_number}"/>
+                                <a href='./search.do?search=${sc.search}&category=${cno}&sort=${sc.sort}&pageSize=${ph.pageSize}' class='major ${sc.category==cno?"major_checked":""}' >${cate.category_code_name}(${cate.category_amount})
+                                </a>
+                                </c:forEach>
+                            </div>
+<%--                            <div class="btn_expand">∨</div>--%>
+                        </div>
+                        <div class="size_box ${sc.category==null?"opt_hidden":""}">
+                            <div class="size_title">SIZE</div>
+                            <div class="size_selector">
+                                <a href='./search.do?search=${sc.search}&category=${sc.category}&sort=${sc.sort}&pageSize=${ph.pageSize}${sc.color==null?"":"&color="}${sc.color}' class="size ${sc.size==null?"size_checked":""}">전체</a>
+                                <c:if test="${!empty sc.category}">
+                                    <c:forEach var="size" items="${cateSize}">
+                                        <c:set var="sno" value="${size.size_code_number}"/>
+                                        <a href="./search.do?search=${sc.search}&category=${sc.category}&sort=${sc.sort}&pageSize=${ph.pageSize}&size=${sno}${sc.color==null?"":"&color="}${sc.color}" class="size ${sc.size==sno?"size_checked":""}" >${size.size_code_name}(${size.size_amount})</a>
+                                    </c:forEach>
+                                </c:if>
+                            </div>
+                        </div>
+                        <div class="color_box ${sc.category==null?"opt_hidden":""}">
+                            <div class="color_title">COLOR</div>
+                            <div class="color_selector">
+                                <a href='./search.do?search=${sc.search}&category=${sc.category}&sort=${sc.sort}&pageSize=${ph.pageSize}${sc.size==null?"":"&size="}${sc.size}' class='color ${sc.color==null?"color_checked":""}'>전체</a>
+<%--                                <c:if test="${!empty sc.category}">--%>
+                                    <c:forEach var="color" items="${cateColor}">
+                                        <c:set var="colorNo" value="${color.color_code_number}"/>
+                                        <a href="./search.do?search=${sc.search}&category=${sc.category}&sort=${sc.sort}&pageSize=${ph.pageSize}${sc.size==null?"":"&size="}${sc.size}&color=${colorNo}" class="color ${sc.color==colorNo?"color_checked":""}">${color.color_code_name}(${color.color_amount})</a>
+                                    </c:forEach>
+<%--                                </c:if>--%>
+                            </div>
+                        </div>
+                        <div class="price_box">
+                            <div class="price_title">PRICE</div>
+                            <div class="price_bounds">
+                                <input type="number" name="min_price" id="minPrice" class="input_price" placeholder="최소가격" onkeydown="priceEnter()">
+                                -
+                                <input type="number" name="max_price" id="maxPrice" class="input_price" placeholder="최대가격" onkeydown="priceEnter()">
+                                <span class="won">원</span>
+                                <div class="btn_box">
+                                    <button id="btn_price_src" class="btn_price" onclick="priceSubmit()">검색</button>
+                                    <button id="btn_price_reset" class="btn_price" onclick="priceReset()">리셋</button>
+                                </div>
+                                <span id="alert_msg"></span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="product_box">
-                    <ul class="product_li"></ul>
-                </div>
+                    <div class="product_container">
+                        <div class="sort_opt">
+                            <div class="sort_li">
+                                <button class="${sc.sort.equals('popular')?"sort_checked":""}" onclick="getSearch(1, ${ph.pageSize}, 'popular')" data-sort="popular">인기상품순</button>
+                                <button class="${sc.sort.equals('rate')?"sort_checked":""}" onclick="getSearch(1, ${ph.pageSize}, 'rate')" data-sort="rate">상품평순</button>
+                                <button class="${sc.sort.equals('new')?"sort_checked":""}" onclick="getSearch(1, ${ph.pageSize}, 'new')" data-sort="new">신상품순</button>
+                                <button class="${sc.sort.equals('low')?"sort_checked":""}" onclick="getSearch(1, ${ph.pageSize}, 'low')" data-sort="low">낮은가격순</button>
+                                <button class="${sc.sort.equals('high')?"sort_checked":""}" onclick="getSearch(1, ${ph.pageSize}, 'high')" data-sort="high">높은가격순</button>
+                            </div>
 
-                <div class="pagination">
-                    <div class="pp"><a href="">최초페이지</a> </div>
-                    <div class="pre"><a href="">이전페이지</a> </div>
-                    <ol class="paging_list">
-                        <li class="pnum"><a href="">1</a></li>
-                        <li class="pnum"><a href="">2</a></li>
-                        <li class="pnum"><a href="">3</a></li>
-                        <li class="pnum"><a href="">4</a></li>
-                        <li class="pnum"><a href="">5</a></li>
-                        <li class="pnum"><a href="">6</a></li>
-                        <li class="pnum"><a href="">7</a></li>
-                        <li class="pnum"><a href="">8</a></li>
-                        <li class="pnum"><a href="">9</a></li>
-                        <li class="pnum"><a href="">10</a></li>
-                    </ol>
-                    <div class="next"><a href="">다음페이지</a> </div>
-                    <div class="nn"><a href="">마지막페이지</a></div>
-                </div>
-            </div>
+<%--                            <c:if test="${ph.totalCount > 20}">--%>
+                            <select name="page_size" id="page_size" onchange="pageSizeChange()">
+                                <option value="20" ${ph.pageSize==20?"selected":""}>20개씩 보기</option>
+                                <option value="40" ${ph.pageSize==40?"selected":""}>40개씩 보기</option>
+                                <option value="60" ${ph.pageSize==60?"selected":""}>60개씩 보기</option>
+                            </select>
+<%--                            </c:if>--%>
+                        </div>
+            <c:choose>
+                <c:when test="${!empty list}">
+                        <div class="product_box">
+                            <ul class="product_li">
+                                <c:forEach var="prd" items="${list}">
+                                    <li class="product">
+                                        <img data-prd="${prd.product_number}" src="${prd.image_path}" class="product_img" onclick="getProduct(this)" alt="상품이미지">
+                                        <div class="desc_box">
+                                            <div class="product_name">${prd.product_content}</div>
+                                            <c:if test="${!empty prd.discount_rate}">
+                                                <div class="product_price" style="text-decoration-line: line-through; font-size: 14px; font-weight: normal">￦<fmt:formatNumber value="${prd.product_price}" pattern="#,###" /></div>
+                                                <div class="product_price">￦<fmt:formatNumber value="${prd.product_price - prd.product_price * (prd.discount_rate / 100)}" pattern="#,###" /></div>
+                                            </c:if>
+                                            <c:if test="${empty prd.discount_rate}">
+                                                <div class="product_price">￦<fmt:formatNumber value="${prd.product_price}" pattern="#,###" /></div>
+                                            </c:if>
+                                            <div class="estim_box">
+                                                <div class="score">${prd.review_rank==null?"0":prd.review_rank}</div>
+                                                <div class="review_count">${prd.review_count==null?"0":prd.review_count}</div>
+                                            </div>
+                                        </div>
+                                        <c:if test="${!empty prd.discount_rate}">
+                                            <p class="dc_rate">${prd.discount_rate}%</p>
+                                        </c:if>
+                                        <div class="wish_mark <c:forEach var="wish" items="${wishList}">${wish.product_number==prd.product_number?"added_wishlist":""}</c:forEach>" onclick="wishlist(this)"></div>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </div>
+
+                        <div class="pagination">
+                            <c:if test="${ph.showFirst}">
+                                <div onclick="getSearch(1, ${ph.pageSize}, '${sc.sort}')" class="pp">최초페이지</div>
+                            </c:if>
+                            <c:if test="${ph.showPrev}">
+                                <div onclick="getSearch(${ph.beginPage-1}, ${ph.pageSize}, '${sc.sort}')" class="pre">이전페이지</div>
+                            </c:if>
+                            <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                                <div onclick="getSearch(${i}, ${ph.pageSize}, '${sc.sort}')" class="pnum ${i==ph.page?"on":""}">${i}</div>
+                            </c:forEach>
+                            <c:if test="${ph.showNext}">
+                                <div onclick="getSearch(${ph.endPage+1}, ${ph.pageSize}, '${sc.sort}')" class="next">다음페이지</div>
+                            </c:if>
+                            <c:if test="${ph.showLast}">
+                                <div onclick="getSearch(${ph.totalPage}, ${ph.pageSize}, '${sc.sort}')" class="nn">마지막페이지</div>
+                            </c:if>
+                        </div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="product_box">
+                        <h1 style="text-align: center" id="no_result">검색 결과가 없습니다.</h1>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+
         </div>
     </main>
-
+    <div class="btn_top">
+        <a href="#wrap" id="moveTop">TOP</a>
+    </div>
     <footer class="footer"></footer>
 </div>
+<script>
+    function getSearch(page, pageSize, sort){
+        location.href ='/search.do?search=${sc.search}&page='+page+'&pageSize='+pageSize+'&sort='+sort+'${sc.category==null?"":"&category="}${sc.category}${sc.size==null?"":"&size="}${sc.size}${sc.color==null?"":"&color="}${sc.color}${sc.minPrice==null?"":"&minPrice="}${sc.minPrice}${sc.maxPrice==null?"":"&maxPrice="}${sc.maxPrice}';
+    }
+    function priceSubmit() {
+        var minPrice = $('#minPrice').val()==null?null:$('#minPrice').val();
+        var maxPrice = $('#maxPrice').val()==null?null:$('#maxPrice').val();
+        if(minPrice==""&&maxPrice==""){return;}
+        if(maxPrice!=""&&minPrice!=""){
+            if(minPrice>maxPrice){
+                $('#alert_msg').text("최소/최대 가격을 알맞게 입력해주세요.");
+                $('#minPrice').val("");
+                $('#maxPrice').val("");
+                return;
+            }
+        }
+        let minPriceUrl = minPrice==null||minPrice==""?"":"&minPrice="+minPrice;
+        let maxPriceUrl = maxPrice==null||maxPrice==""?"":"&maxPrice="+maxPrice;
+
+        location.href = '/search.do?search=${sc.search}${sc.category==null?"":"&category="}${sc.category}&sort=${sc.sort}&pageSize=${ph.pageSize}${sc.size==null?"":"&size="}${sc.size}${sc.color==null?"":"&color="}${sc.color}'+minPriceUrl+maxPriceUrl;
+    }
+
+    function priceEnter(){
+        if(window.event.keyCode == 13){
+            window.event.preventDefault();
+            $("#btn_price_src").trigger('click');
+        }
+    };
+
+    function priceReset(){
+        <c:if test="${not empty sc.minPrice or not empty sc.maxPrice}">
+        location.href = '/search.do?search=${sc.search}${sc.category==null?"":"&category="}${sc.category}&sort=${sc.sort}&pageSize=${ph.pageSize}${sc.size==null?"":"&size="}${sc.size}${sc.color==null?"":"&color="}${sc.color}';
+        </c:if>
+    };
+
+    function pageSizeChange(){
+        switch (Number($('#page_size').val())){
+            case 20 :
+                getSearch(1, 20, '${sc.sort}');
+                break;
+            case 40:
+                getSearch(1, 40, '${sc.sort}');
+                break;
+            case 60 :
+                getSearch(1, 60, '${sc.sort}');
+                break;
+            default :
+                getSearch(1, 20, '${sc.sort}');
+                break;
+        }
+    }
+
+    $('.modal_close').on("click", function (){
+        modal_popup.close(this);
+    });
+
+    function wishlist(el){
+        if(${empty pageContext.request.getSession(false).getAttribute('member_id')}){
+            modal_popup.confirm('로그인이 필요한 기능입니다.<br> 로그인하시겠습니까?', function (){
+                var d = new Date();
+                d.setTime(d.getTime() + (10*1000*60));
+                document.cookie = "toURL="+location.href+"; expires="+d.toUTCString();
+
+                location.href = "/login/login";
+            })
+            return;
+        }
+        let wishNum = $(el).parent().children('.product_img').data("prd");
+        if($(el).hasClass('added_wishlist')) {
+            $(el).removeClass('added_wishlist');
+
+            let wishProduct = {};
+            wishProduct["product_number"] = wishNum;
+            $.ajax({
+                url: "/removeWish.do",
+                type: "POST",
+                data: JSON.stringify(wishProduct),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (data) {
+                    if(data){
+                        console.log("성공")
+                    }else{
+                        console.log("전송값없음")
+                    }
+                },
+                error: function (){
+                    console.log("에러");
+                }
+            });
+        }
+        else {
+            $(el).addClass('added_wishlist');
+            let wishProduct = {};
+            wishProduct["product_number"] = wishNum;
+            $.ajax({
+                url: "/addWish.do",
+                type: "POST",
+                data: JSON.stringify({
+                    "product_number":wishNum
+                }),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (data) {
+                    if(data){
+                        console.log("성공")
+                    }else{
+                        console.log("전송값없음")
+                    }
+                },
+                error: function (){
+                    console.log("에러");
+                }
+            });
+        }
+    }
+
+    window.onbeforeunload = function (){
+        $('#load').show();
+    }
+
+    window.onpageshow = function (){
+        $('#main').load(location.href + ' #main');
+        $('#load').hide();
+    }
+
+    $(window).load(function (){
+        $('#load').hide();
+    });
+
+    $(document).ready(function (){
+        let offset = $('#main').offset();
+        $(window).scrollTop(offset.top);
+    })
+
+    function doFilter(){
+        let cate = $('input[name="cate"]:checked').data("cate");
+        cate = cate==0?null:cate;
+        let currCate = ${sc.category};
+        if(cate!=currCate){
+            location.href = "/search.do?search=${sc.search}&sort=${sc.sort}&category="+cate;
+        } else {
+            let size = $('input[name="size"]:checked').data("size");
+            size = size==0?null:size;
+            let color = $('input[name="color"]:checked').data("color");
+            color = color==0?null:color;
+            if(size==null&&color==null){
+                location.href = "/search.do?search=${sc.search}&sort=${sc.sort}&category="+cate;
+            }
+            else if(size==null&&color!=null){
+                location.href = "/search.do?search=${sc.search}&sort=${sc.sort}&category=${sc.category}&color="+color;
+            }
+            else if(color==null&&size!=null){
+                location.href = "/search.do?search=${sc.search}&sort=${sc.sort}&category=${sc.category}&size="+size;
+            } else {
+                location.href = "/search.do?search=${sc.search}&sort=${sc.sort}&category=${sc.category}&size="+size+"&color="+color;
+            }
+        }
+    }
+</script>
 </body>
 </html>

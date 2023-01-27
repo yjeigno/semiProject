@@ -1,0 +1,167 @@
+h2, h1, h3,h5{margin: 0;}
+/* 기본 영역 */
+.member_sec{
+    width: 700px;
+    height: 500px;
+    margin: 80px auto;
+    position: relative;
+    border: 1px solid black;
+    box-sizing: border-box;
+    /* background: green; */
+}
+
+/* ////////////////////////////////////////////////////////// */
+/* 메인 탭(로그인 / 회원가입) 버튼 */
+.tap_btn {
+    width: 100%;
+    height: 60px;
+    line-height: 50px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* 메인 탭안에 로그인/ 회원가입 label 공통 클래스명*/
+.m_btn_line{
+    display: block;
+    width: 320px;
+    height: 100%;
+    border-bottom: 3px solid gray;
+    color: gray;
+    border-width:1px 4px;
+    border-spacing: 2px;
+    text-align: center;
+}
+.tap_checked{
+    color: black;
+    border-bottom: 3px solid black;
+}
+
+/* 메인 탭버튼(로그인/회원가입) 호버 밑줄 */
+.m_btn_line:hover {
+    cursor: pointer;
+    background: white;
+    color: black;
+    border-bottom: 3px solid black;
+}
+
+#msg {
+    height: 30px;
+    text-align:center;
+    font-size:16px;
+    color:red;
+    margin-bottom: 20px;
+}
+
+
+/* 하단 폼  */
+.pan_box{
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    /* background: red; */
+}
+/* 회원가입 틀 */
+.login_pan{
+    /* margin: 20px; */
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: all 0.2s;
+}
+/* 로그인 상단 문구 */
+.login_title{
+    margin-left: 20px;
+}
+/* 로그인 양식 */
+form {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+
+}
+/* HANSSEM 문구 */
+.t1{
+    display: flex;
+    padding-left: 10px;
+
+    border-left: 5px solid;
+}
+/* 로그인 문구 */
+h3{
+    padding-left: 10px;
+    line-height: 50px;
+}
+/* 한샘몰 회원으로 많은 혜택을 누르세요 */
+.t2{
+    padding-left: 17px;
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(79, 79, 79);
+}
+/* ID / PW 입력란 */
+.login_id, .login_pw{
+    width: 300px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    font-weight: 600;
+}
+/* ID / PW 입력 input */
+#member_id, #member_pw {
+    width: 270px;
+    height: 40px;
+    display: flex;
+    border: 1px solid black;
+    outline: none;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+
+/* 아이디 기억하기 / 아이디 비밀번호 찾기 영역 */
+.login_footer {
+    font-size: 13px;
+
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 300px;
+    align-items: baseline;
+}
+/* 아이디 기억하기 / 아이디 비밀번호 찾기 문구 */
+h5{
+    display: inline;
+}
+
+/* 아이디 비밀번호 찾기 호버 글씨 밑줄 */
+.login_footer a:hover { font-weight: 900; text-decoration: underline;}
+
+/* 로그인 버튼 */
+button {
+    width: 300px;
+    height: 50px;
+    border: none;
+    background: #121212;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 900;
+    margin: 20px 0 10px 0;
+    cursor: pointer;
+}
+
+
+
+
+
+

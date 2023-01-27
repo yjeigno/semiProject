@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hanssem.app.dao.InteriorMapper">
+
+
+   <select id="selectInterior" parameterType="int" resultType="InteriorDto">
+      SELECT * FROM interior
+      WHERE interior_category_number = #{interior_category_number}
+   </select>
+
+
+    <select id="selectInteriordetail" parameterType="int" resultType="InteriordetailDto">
+        SELECT * FROM interior_product
+        WHERE interior_number = #{interior_number}
+    </select>
+
+
+
+
+
+
+</mapper>

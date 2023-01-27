@@ -14,6 +14,15 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.14.1</version>
+		</dependency>
+
+
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -126,7 +135,17 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.18.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.18.0</version>
+		</dependency>
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>
@@ -197,6 +216,28 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
+			<plugin>
+				<groupId>us.hebi.sass</groupId>
+				<artifactId>sass-cli-maven-plugin</artifactId>
+				<version>1.0.1</version>
+				<configuration>
+					<sassVersion>1.54.5</sassVersion>
+					<args> <!-- Any argument that should be forwarded to the sass cli -->
+						<arg>${project.basedir}/src/scss/input.scss:${project.basedir}/target/classes/output.css</arg>
+						<arg>${project.basedir}/src/scss/input2.scss:${project.basedir}/target/classes/output2.css</arg>
+						<arg>--no-source-map</arg>
+					</args>
+				</configuration>
+				<executions>
+					<execution>
+						<id>sass-exec</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
         </plugins>
     </build>
 </project>

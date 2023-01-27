@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hanssem.app.dao.SearchMapper">
+    <!--    검색어 포함 상품 전체 가져오기-->
+    <select id="searchProduct" parameterType="SearchCondition" resultType="SearchResult">
+        SELECT p.product_number
+        , p.product_content
+        , p.product_price
+        , p.product_register_date
+        , p.category_code_number
+        , c.category_code_name
+        , i.image_path
+        , r.review_rank
+        , r.review_count
+        , p.product_status
+        , sales.product_sales
+        , sp.special_product_discount AS 'discount_rate'
+        FROM product p
+        LEFT OUTER JOIN (SELECT product_number, ROUND(AVG(review_rank), 1) AS review_rank, COUNT(product_number) as review_count FROM review GROUP BY product_number) AS r
+        ON p.product_number = r.product_number
+        LEFT OUTER JOIN category_code c ON c.category_code_number = p.category_code_number
+        LEFT OUTER JOIN (SELECT DISTINCT(product_number) AS product_number, i.image_path
+        FROM (SELECT product_number, image_path, ROW_NUMBER() over (PARTITION BY product_number ORDER BY image_number ASC) AS rn FROM image) AS i WHERE rn=1) AS i ON i.product_number = p.product_number
+        LEFT OUTER JOIN special_product sp ON sp.product_number = p.product_number
+        LEFT OUTER JOIN (SELECT product_number, SUM(purchase_amount) AS product_sales
+        FROM purchase GROUP BY product_number) AS sales
+        ON p.product_number = sales.product_number
+        <choose>
+            <when test="size != null and color != null">
+                JOIN product_size_color psc ON psc.product_number= p.product_number
+                AND psc.size_code_number = ${size}
+                AND psc.color_code_number= ${color}
+            </when>
+            <when test="size != null and color == null">
+                JOIN product_size_color sizeFilter ON sizeFilter.product_number= p.product_number
+                AND sizeFilter.size_code_number = ${size}
+            </when>
+            <when test="color != null and size == null">
+                JOIN product_size_color colorFilter ON colorFilter.product_number= p.product_number
+                AND colorFilter.color_code_number = ${color}
+            </when>
+            <otherwise></otherwise>
+        </choose>
+        WHERE p.product_tag LIKE CONCAT('%',#{search},'%')
+        <include refid="category"/>
+        <if test="minPrice != null">
+            <![CDATA[
+            AND p.product_price >= #{minPrice}
+            ]]>
+        </if>
+        <if test="maxPrice != null">
+            <![CDATA[
+            AND p.product_price <= #{maxPrice}
+            ]]>
+        </if>
+        GROUP BY p.product_number, i.image_path, r.review_rank, r.review_count, sales.product_sales,
+        sp.special_product_discount
+        <include refid="sort" />
+        LIMIT #{offset}, #{pageSize}
+    </select>
+    <select id="searchSelectCount" parameterType="SearchCondition" resultType="int">
+        SELECT COUNT(*) FROM product WHERE true
+        AND product_tag LIKE CONCAT('%', #{search}, '%')
+    </select>
+    <!--    카테고리  목록 가져오기-->
+    <select id="selectCategory" resultType="CategoryDto">
+        SELECT * FROM category_code
+        ORDER BY category_code_name ASC
+    </select>
+    <!--    검색대상 카테고리 리스트-->
+    <select id="getCateList" resultType="String">
+        SELECT DISTINCT category_code_number FROM product
+        WHERE product_tag LIKE CONCAT('%', #{search}, '%')
+    </select>
+    <!--    검색대상 카테고리 필터시 정보 가져오기-->
+    <select id="getCateInfo" resultType="com.hanssem.app.dto.CateFilterDto">
+        SELECT DISTINCT count(*) category_amount, p.category_code_number, c.category_code_name FROM product p
+        LEFT JOIN category_code c ON p.category_code_number = c.category_code_number
+        WHERE product_tag LIKE CONCAT('%', #{search}, '%')
+        GROUP BY p.category_code_number, c.category_code_name
+    </select>
+
+    <!--    사이즈 목록 가져오기-->
+    <select id="selectSizeList" parameterType="SearchCondition" resultType="com.hanssem.app.dto.SizeFilterDto">
+        SELECT psc.size_code_number,count(distinct p.product_number) size_amount, p.category_code_number,
+        sc.size_code_name from product p
+        JOIN product_size_color psc ON p.product_number = psc.product_number
+        <if test="color != null">
+            AND psc.color_code_number = ${color}
+        </if>
+        JOIN size_code sc ON sc.size_code_number = psc.size_code_number
+        WHERE p.product_tag LIKE CONCAT('%', #{search}, '%')
+        AND p.category_code_number = #{category}
+        GROUP BY size_code_number, size_code_name, p.category_code_number
+        ORDER BY psc.size_code_number ASC
+    </select>
+    <!--    컬러 목록 가져오기-->
+    <select id="selectColorList" parameterType="SearchCondition" resultType="com.hanssem.app.dto.ColorFilterDto">
+        SELECT psc.color_code_number,count(distinct p.product_number) color_amount, p.category_code_number,
+        cc.color_code_name from product p
+        JOIN product_size_color psc ON p.product_number = psc.product_number
+        <if test="size != null">
+            AND psc.size_code_number = ${size}
+        </if>
+        JOIN color_code cc ON cc.color_code_number = psc.color_code_number
+        WHERE p.product_tag LIKE CONCAT('%', #{search}, '%')
+        AND p.category_code_number = #{category}
+        GROUP BY color_code_number, color_code_name, p.category_code_number
+        ORDER BY psc.color_code_number ASC
+    </select>
+
+    <!--    가격 필터 적용시 총 개수 가져오기-->
+    <select id="selectPriceAmount" parameterType="SearchCondition" resultType="int">
+        SELECT COUNT(*) FROM product p
+        <include refid="size" />
+        <include refid="color"/>
+        WHERE p.product_tag LIKE CONCAT('%', #{search}, '%')
+        <include refid="category"/>
+        <if test="size != null">
+            AND psc.size_code_number = #{size}
+        </if>
+        <if test="color != null">
+            AND pcolor.color_code_number = #{color}
+        </if>
+        <if test="minPrice != null">
+            <![CDATA[
+            AND p.product_price >= #{minPrice}
+            ]]>
+        </if>
+        <if test="maxPrice != null">
+            <![CDATA[
+            AND p.product_price <= #{maxPrice}
+            ]]>
+        </if>
+
+    </select>
+
+
+    <sql id="sort">
+        <if test="sort == null">
+            ORDER BY sales.product_sales DESC, p.product_register_date DESC
+        </if>
+        <if test="sort == 'popular'">
+            ORDER BY sales.product_sales DESC, p.product_register_date DESC
+        </if>
+        <if test="sort == 'rate'">
+            ORDER BY r.review_rank DESC, r.review_count DESC
+        </if>
+        <if test="sort == 'new'">
+            ORDER BY p.product_register_date DESC, sales.product_sales DESC, r.review_rank DESC
+        </if>
+        <if test="sort == 'low'">
+            ORDER BY p.product_price ASC
+        </if>
+        <if test="sort == 'high'">
+            ORDER BY p.product_price DESC
+        </if>
+    </sql>
+    <sql id="category">
+        <if test="category != null">
+            AND p.category_code_number = #{category}
+        </if>
+    </sql>
+    <sql id="size">
+        <if test="size != null">
+            LEFT OUTER JOIN (SELECT product_number, size_code_number, count(*) FROM product_size_color GROUP BY product_number, size_code_number) psc
+            ON psc.product_number = p.product_number
+            LEFT OUTER JOIN size_code sc ON sc.size_code_number = psc.size_code_number
+        </if>
+    </sql>
+    <sql id="color">
+        <if test="color != null">
+            LEFT OUTER JOIN (SELECT product_number, color_code_number FROM product_size_color) pcolor
+            ON pcolor.product_number = p.product_number
+            LEFT OUTER JOIN color_code cc ON cc.color_code_number = pcolor.color_code_number
+        </if>
+    </sql>
+</mapper>

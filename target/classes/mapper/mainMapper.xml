@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hanssem.app.dao.mainMapper">
+    <!-- ProductDto resultMap -->
+    <resultMap id="ProductDto" type="ProductDto">
+        <result column="product_number" property="product_number"/>
+        <result column="product_name" property="product_name"/>
+        <result column="product_price" property="product_price"/>
+        <result column="product_register_date" property="product_register_date"/>
+        <result column="product_content" property="product_content"/>
+        <result column="product_status" property="product_status"/>
+        <result column="product_class" property="product_class"/>
+        <result column="category_code_number" property="category_code_number"/>
+        <result column="product_tag" property="product_tag"/>
+    </resultMap>
+
+    <resultMap id="ImageDto" type="ImageDto">
+        <result column="image_number" property="image_number"/>
+        <result column="image_path" property="image_path"/>
+        <result column="image_file_name" property="image_file_name"/>
+        <result column="image_rename_file_name" property="image_rename_file_name"/>
+        <result column="image_code_number" property="image_code_number"/>
+        <result column="image_register_date" property="image_register_date"/>
+        <result column="product_number" property="product_number"/>
+    </resultMap>
+
+
+    <!--    상품 전체 가져오기 (정렬: 최근 게시물이 위로)    -->
+    <select id="selectAll" resultType="ProductDto">
+        SELECT * FROM product ORDER BY product_register_date desc, product_number desc
+    </select>
+<!--    <select id="selectAll" resultType="ProductDto">-->
+<!--        SELECT * FROM product ORDER BY product_register_date desc, product_number desc-->
+<!--    </select>-->
+
+    <select id="selectProductInfo" resultType="MainDto">
+        SELECT
+        p.product_number,
+        product_name,
+        product_price,
+        product_register_date,
+        product_content,
+        product_status,
+        product_class,
+        category_code_number,
+
+        image_path
+
+        FROM product p
+        LEFT JOIN image i on p.product_number = i.product_number
+        WHERE i.image_code_number = 1
+    </select>
+
+    <select id="selectInterior" parameterType="int" resultType="InteriorDto">
+        SELECT * FROM interior
+        WHERE interior_category_number = #{interior_category_number}
+    </select>
+
+
+    <select id="selectInteriordetail" parameterType="int" resultType="InteriordetailDto">
+        SELECT * FROM interior_product
+        WHERE interior_number = #{interior_number}
+    </select>
+</mapper>

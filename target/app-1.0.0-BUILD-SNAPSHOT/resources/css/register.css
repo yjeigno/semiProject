@@ -1,0 +1,324 @@
+h2, h1, h3,h5{margin: 0;}
+/* 기본 영역 */
+.member_sec{
+    width: 700px;
+    height: 1300px;
+    margin: 80px auto;
+    position: relative;
+    border: 1px solid black;
+    box-sizing: border-box;
+    /* background: green; */
+}
+/* 각 항목별 높이(아이디/비번 ... */
+.colSpace{
+    height: 60px;
+}
+
+/* 메인 탭(로그인/회원가입) 버튼 */
+.tap_btn {
+    width: 100%;
+    height: 60px;
+    line-height: 50px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* 메인 탭안에 로그인/ 회원가입 label 공통 클래스명*/
+.m_btn_line{
+    display: block;
+    width: 320px;
+    height: 100%;
+    border-bottom: 3px solid gray;
+    color: gray;
+    border-width: 1px,4px;
+    border-spacing: 2px;
+    text-align: center;
+}
+/* Join 탭 */
+.tap_checked{
+    color: black;
+    border-bottom: 3px solid black;
+}
+
+/* 메인 탭버튼(로그인/회원가입) 호버 밑줄 */
+.m_btn_line:hover {
+    cursor: pointer;
+    background: white;
+    color: black;
+    border-bottom: 3px solid black;
+}
+
+/* 하단 폼  */
+.pan_box{
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    /* background: red; */
+}
+/* 회원가입 틀 */
+.regi_pan{
+    /* margin: 20px; */
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: all 0.2s;
+}
+/* 로그인 상단 문구 */
+.regi_title{
+    margin-left: 20px;
+}
+/* 회원가입 양식 */
+form {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    /* border: 1px solid; */
+    /* background-color: pink;  */
+}
+/* HANSSEM 문구 */
+.t1{
+    display: flex;
+    padding-left: 10px;
+
+    border-left: 5px solid;
+}
+/* 회원기입 문구 */
+h3{
+    padding-left: 10px;
+    line-height: 50px;
+}
+/* 한샘몰 회원으로 많은 혜택을 누르세요 */
+.t2{
+    padding-left: 17px;
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(79, 79, 79);
+}
+
+/* 아이디 기억하기 / 아이디 비밀번호 찾기 문구 */
+h5{
+    display: inline;
+}
+
+
+
+button {
+    width: 300px;
+    height: 50px;
+    border: none;
+    background: #121212;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 900;
+    margin: 20px 0 10px 0;
+    cursor: pointer;
+}
+
+
+
+/* /////////////////회원가입//////////////////// */
+
+.regi_form_table{
+    margin:0 20px;
+    /* background: red; */
+
+}
+.regi_col1{
+    font-weight: 600;
+    width: 120px;
+}
+.regi_row_sec{
+    height: 50px;
+}
+.min_txt{
+    display: inline-block;
+    color: gray;
+    padding-top: 5px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+.regi_pan > input {
+    width: 270px;
+    height: 40px;
+    border: 1px solid black;
+    outline: none;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+input[name=member_gender]{
+    display: none;
+}
+
+.gender_m, .gender_f{
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    margin-left: 10px;
+    background: gray;
+    color: white;
+    border-radius: 5px;
+    font-weight: 600;
+    text-align: center;
+
+}
+/* //////////////////////////////////////////// */
+/* 이메일 영역 */
+#mail_domain{
+    width: 100px;
+}
+/* ///////////////////////////////////////////// */
+/* 주소입력 */
+
+#regi_generalAddress{
+    width: 245px;
+}
+#regi_address_detail{
+    width: 245px;
+}
+/* ////////////////////////////////////////////// */
+/* sms 수신 */
+input[name="sms_chk"]{
+    accent-color: black;
+    margin: 0;
+}
+.regi_sms_y, .regi_sms_n{
+    font-size: 10px;
+    font-weight: 600;
+}
+/* ////////////////////////////////////////////// */
+/* 이용약관 */
+textarea{
+    width: 500px;
+    height: 300px;
+    font-size: 12px;
+    text-align:left;
+    outline: none;
+    resize: none;
+
+    /* vertical-align: auto; */
+
+}
+#agree_y{
+    accent-color: black;
+}
+.regi_agree{
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+#id_check, #regi_address_search{
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+/* 유효성 검사 문구 */
+.id_input_re_1{
+    color : green;
+    display: none;
+}
+.id_input_re_2{
+    color : red;
+    display: none;
+}
+.final_id_ck{
+    color : red;
+    display: none;
+}
+.final_pw_ck{
+    color : red;
+    display: none;
+}
+.final_pwck_ck{
+    color : red;
+    display: none;
+}
+.final_name_ck{
+    color : red;
+    display: none;
+}
+.final_mail_ck{
+    color : red;
+    display: none;
+}
+.final_addr_ck{
+    color : red;
+    display: none;
+}
+.in_input_re_1{
+    color : green;
+    display: none;
+}
+.in_input_re_2{
+    color : red;
+    display: none;
+}
+.final_birth_ck{
+    color : red;
+    display: none;
+}
+.final_phone_ck{
+    color : red;
+    display: none;
+}
+.pwck_input_re_1{
+    color : green;
+    display : none;
+}
+.pwck_input_re_2{
+    color : red;
+    display : none;
+}
+.final_agree_ck{
+    color : red;
+    display : none;
+}
+
+/* 이벤트 목록 */
+.warning{
+    color: red;
+    font-size: 12px;
+    font-weight: 600;
+   visibility: hidden;
+}
+.on{
+    visibility: visible;
+
+}
+#msg{
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    color: red;
+}
+
+/* 메인 탭버튼(로그인/회원가입) 호버 밑줄 */
+.m_btn_line:hover {
+    cursor: pointer;
+    background: white;
+    color: black;
+    border-bottom: 3px solid black;
+}
+/* 메인 탭버튼 클릭 시, 글씨/밑줄 색변환 */
+/* #login_btn:checked ~ .member_sec > .tap_btn > .gender_color */
+#regi_btn:checked ~ .member_sec > .tap_btn > .gender_color {
+    color: black;
+    border-bottom: 3px solid black;
+}
+/* 성별 */
+#member_gender_male:checked ~ .gender_m,
+#member_gender_female:checked ~ .gender_f{
+    background-color: black;
+}
